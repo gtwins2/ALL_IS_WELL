@@ -1,0 +1,479 @@
+/* reset.css */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* 바디영역 */
+body{
+    overflow-x:hidden;
+    overflow-y:auto;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/app/static/img/back.png);
+    background-repeat: no-repeat;
+}
+
+/* 헤더&네브 */
+#mainLogo{
+    width: 100%;
+    height: 100%;
+}
+
+#wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#logoCategory{
+    display: flex;
+    position: relative;
+    justify-content: right;
+    margin-right: 100px;
+    bottom: 320px;
+    background-color: red;
+    height: 0px;
+}
+
+#logoCategory{
+    margin-bottom: 100px;
+}
+
+#logoCategory>a{
+    margin-left:5px;
+}
+
+
+
+.SMN_effect-45 div:nth-child(3)>a, .SMN_effect-45 div:nth-child(4)>a,
+.SMN_effect-45 div:nth-child(7)>a, .SMN_effect-45 div:nth-child(8)>a,
+.SMN_effect-45 div:nth-child(9)>a, .SMN_effect-45 div:nth-child(10)>a,
+.SMN_effect-45 div:nth-child(11)>a{
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+  
+.SMN_effect-45 div:nth-child(3)>a:before, .SMN_effect-45 div:nth-child(4)>a:before,
+.SMN_effect-45 div:nth-child(7)>a:before, .SMN_effect-45 div:nth-child(8)>a:before,
+.SMN_effect-45 div:nth-child(9)>a:before, .SMN_effect-45 div:nth-child(10)>a:before,
+.SMN_effect-45 div:nth-child(11)>a:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #568A35;
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+  
+.SMN_effect-45 div:nth-child(3)>a:hover, .SMN_effect-45 div:nth-child(4)>a:hover,
+.SMN_effect-45 div:nth-child(7)>a:hover, .SMN_effect-45 div:nth-child(8)>a:hover,
+.SMN_effect-45 div:nth-child(9)>a:hover, .SMN_effect-45 div:nth-child(10)>a:hover,
+.SMN_effect-45 div:nth-child(11)>a:hover,
+.SMN_effect-45 div:nth-child(3)>a:focus, .SMN_effect-45 div:nth-child(4)>a:focus,
+.SMN_effect-45 div:nth-child(7)>a:focus, .SMN_effect-45 div:nth-child(8)>a:focus,
+.SMN_effect-45 div:nth-child(9)>a:focus, .SMN_effect-45 div:nth-child(10)>a:focus,
+.SMN_effect-45 div:nth-child(11)>a:focus,
+.SMN_effect-45 div:nth-child(3)>a:active, .SMN_effect-45 div:nth-child(4)>a:active,
+.SMN_effect-45 div:nth-child(7)>a:active, .SMN_effect-45 div:nth-child(8)>a:active,
+.SMN_effect-45 div:nth-child(9)>a:active, .SMN_effect-45 div:nth-child(10)>a:active,
+.SMN_effect-45 div:nth-child(11)>a:active{
+    color: #ffffff;
+}
+
+.SMN_effect-45 div:nth-child(3)>a:hover:before, .SMN_effect-45 div:nth-child(4)>a:hover:before,
+.SMN_effect-45 div:nth-child(7)>a:hover:before, .SMN_effect-45 div:nth-child(8)>a:hover:before,
+.SMN_effect-45 div:nth-child(9)>a:hover:before, .SMN_effect-45 div:nth-child(10)>a:hover:before,
+.SMN_effect-45 div:nth-child(11)>a:hover:before,
+.SMN_effect-45 div:nth-child(3)>a:focus:before, .SMN_effect-45 div:nth-child(4)>a:focus:before,
+.SMN_effect-45 div:nth-child(7)>a:focus:before, .SMN_effect-45 div:nth-child(8)>a:focus:before,
+.SMN_effect-45 div:nth-child(9)>a:focus:before, .SMN_effect-45 div:nth-child(10)>a:focus:before,
+.SMN_effect-45 div:nth-child(11)>a:focus:before,
+.SMN_effect-45 div:nth-child(3)>a:active:before, .SMN_effect-45 div:nth-child(4)>a:active:before,
+.SMN_effect-45 div:nth-child(7)>a:active:before, .SMN_effect-45 div:nth-child(8)>a:active:before,
+.SMN_effect-45 div:nth-child(9)>a:active:before, .SMN_effect-45 div:nth-child(10)>a:active:before,
+.SMN_effect-45 div:nth-child(11)>a:active:before{
+    -webkit-transform: scale(2);
+    transform: scale(2);
+}
+
+.SMN_effect-23 a {
+    text-shadow: none;
+    position: relative;
+}
+  
+.SMN_effect-23 a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    max-height: 0;
+    color: #5A8CF2;
+    content: attr(data-hover);
+    transition: 0.35s;
+}
+  
+.SMN_effect-23 a:hover:before {
+    max-height: 100%;
+    transition: 0.35s;
+}
+
+
+/* 사이드바 */
+#side-bar{
+    height: 1480px; 
+    width: 280px;
+    position: relative;
+    top: 0%;
+}
+
+#side{
+    height: 1480px;
+    width: 280px;
+    background-color: #5A8CF2;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#SIDEBAR{
+	background-color: #5A8CF2;
+}
+
+#side-bar>img{
+    position: absolute;
+    width: 90px;
+    height: 60px;
+    left: 36%;
+    top: 33px;
+    z-index: 5;
+}
+
+#profile{
+    position: absolute;
+    width: 280px;
+    height: 340px;
+    z-index: 4;
+    display: flex;
+}
+
+#profile>img{
+    margin-top: 25px;
+    position: absolute;
+    width: 279px;
+    height: 180px;
+}
+
+#profile>a{
+    margin-top: 260px;
+    position: absolute;
+    width: 279px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.topbar{
+    width: 100%;
+}
+
+#side-content{
+    width: 100%;
+}
+
+#sub-img{
+    position: relative;
+    width: 279px;
+    height: 300px;
+    margin-left: -45px;
+    margin-top: 90px;
+    background-color: #d8f1c7;
+    border-bottom: 1px solid black;;
+}
+
+#triangle2{
+    position: absolute;
+    width: 90px;
+    height: 70px;
+    margin-left: 35%;
+    top: 93.7%;
+    z-index: 5;
+}
+
+#site-logo{
+    position: absolute;
+    top: 23%;
+    left: 0%;
+    margin-left: -25px;
+    width: 110%;
+    height: 58%;
+}
+
+/* 왼쪽사이드바 내용영역 */
+#admin-private{
+    margin-top: 550px;
+    color: black;
+}
+
+#sidebar-menu,
+#sidebar-menu ul,
+#sidebar-menu li,
+#sidebar-menu a {
+    border: 0;
+    font-weight: normal;
+    line-height: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+}
+
+.left_sub_menu {
+    position: absolute;
+    top: -45px;
+    width: 100%;
+    z-index: 3;
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
+    margin-top: 0px;
+    margin-left: 45px;
+    padding-bottom: 0px;
+    height: 0px;
+}
+
+.sub_menu {
+    margin-left: 40px;
+    width: 70%;
+}
+
+.sub_menu li:hover {
+    background-color: #ffffffac;
+}
+
+.sub_menu li {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 450;
+    padding: 20px 0px 8px 14px;
+    border-bottom: 3px solid #ffffff96;
+}
+
+.sub_menu>h2 {
+    padding-bottom: 4px;
+    border-bottom: 3px solid #000000;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'NotoKrB';
+    line-height: 35px;
+}
+
+.sub_menu>.big_menu>.small_menu li {
+    color: #08354D;
+    font-size: 17px;
+    font-weight: 600;
+    border-bottom: 0px solid #ff0000;
+    margin-left: 14px;
+    padding-top: 8px;
+}
+
+.big_menu {
+    cursor: pointer;
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+a {
+    font-weight: lighter;
+    color: #3b3b3b;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+ul {
+    list-style: none;
+}
+
+ol,ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.has_sub {
+    width: 100%;
+}
+
+/* .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+} */
+
+.hide_sidemenu {
+    display: none;
+}
+
+.SMN_effect-23-2 {
+    text-shadow: none;
+    position: relative;
+}
+  
+.SMN_effect-23-2:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    max-height: 0;
+    color: #ffffff;
+    content: attr(data-hover);
+    transition: 0.35s;
+}
+  
+.SMN_effect-23-2:hover:before {
+    max-height: 100%;
+    transition: 0.35s;
+}
+
+/* 오른쪽 사이드바 */
+#right-sidebar{
+    position: fixed;
+    right: 0px;
+    top: 50%;
+    z-index: 7;
+}
+
+#right-sidebar svg{color: white;}
+
+*,*:before,*:after {
+	box-sizing: border-box;
+}
+
+:after {
+	content: "";
+}
+
+section {
+    position: relative;
+    left: 100px;
+}
+
+#right-sidebar ul {
+	text-align: center;
+}
+
+#right-sidebar ul li {
+	position: relative;
+    width: 70px;
+    cursor: pointer;
+    background: #88b56b;
+	text-transform: uppercase;
+	transition:all .4s ease-out;
+}
+
+#right-sidebar ul li:after {
+	position: absolute;
+	background: rgb(255, 255, 255);
+	color: #35550f;
+    border: 1px solid #35550f;
+	top:0;
+	left: 70px;
+	width: 70px; height: 100%;
+    opacity:.5;
+    transform: perspective(400px) rotateY(90deg);
+	transform-origin: 0 100%;
+	transition:all .4s ease-out;
+}
+
+#right-sidebar ul li:nth-child(1):after { 
+	content: "CART";
+	line-height: 88px;
+}
+#right-sidebar ul li:nth-child(2):after { 
+	content: "UP";
+	line-height: 88px;
+}
+#right-sidebar ul li:nth-child(3):after { 
+	content: "LIST";
+	line-height: 85px;
+}
+#right-sidebar ul li:nth-child(4):after { 
+	content: "DOWN";
+	line-height: 85px;
+}
+
+#right-sidebar ul li:hover {
+	transform: translateX(-70px);
+}
+
+#right-sidebar ul li:hover:after {
+    opacity: 1;
+	transform: perspective(400px) rotateY(0deg) scale(1) ;
+}
+
+
+#right-sidebar ul li > div {
+	display: inline-block;
+	padding: 25px 0;
+	background: transparent;
+}
+
+#right-sidebar ul li div { position: relative; }
+
+/* 오른쪽 사이드바 카테고리영역 */
+.active1{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 250px;
+    height: 100vh;
+    background: rgb(243, 243, 243);
+    z-index: 7;
+    box-shadow : rgba(0, 0, 0, 0.735) 0 0 0 9999px;
+    border-left: 1px solid black;
+}
+
+.active2{
+    display: none;
+}
+
