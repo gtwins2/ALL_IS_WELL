@@ -32,7 +32,7 @@
 <body>
 
 	<div id="header">
-		<img src="${root}/static/img/logo/logo2.png" width="300px" height="158px">
+		<img src="${root}/static/img/logo/logo2.png">
 		<!-- 여기는 로그인 시 로그인 화면 보이게 -->
 		<div></div>
 	</div>
