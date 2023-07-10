@@ -22,15 +22,15 @@
 </style>
 </head>
 <body>
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
 		
 		<!-- 내용영역 -->
 	<div id="content">
-		<%@ include file="/WEB-INF/views/common/side-bar.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 			
 	</div>
 
-		<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>	
 	
 	
 
