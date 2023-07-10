@@ -10,7 +10,7 @@
       width: 100%;
       height: 150px;
       box-sizing: border-box;
-      margin-top: 1000px;
+      margin-top: 20px;
       margin-left: 50px;
     }
 
