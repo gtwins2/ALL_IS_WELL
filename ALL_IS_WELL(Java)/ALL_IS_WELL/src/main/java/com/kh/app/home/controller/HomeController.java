@@ -1,19 +1,16 @@
 package com.kh.app.home.controller;
 
-import java.io.IOException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+@Controller
+@RequestMapping("common")
+public class HomeController{
 
-@WebServlet("/home")
-public class HomeController extends HttpServlet{
-
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/common/home.jsp").forward(req, resp);
+	@GetMapping("home")
+	public void home() {
+		
 	}
 	
 }
