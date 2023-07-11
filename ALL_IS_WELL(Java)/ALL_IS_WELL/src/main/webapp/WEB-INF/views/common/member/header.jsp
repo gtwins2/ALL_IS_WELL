@@ -43,6 +43,20 @@
     #header span a {
         margin-right: 15px;
     }
+
+    #profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+    #profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+    }
 </style>
 </head>
 <body>
@@ -53,9 +67,12 @@
         <div id="header-right">
             <img alt="메신저" src="#">
             <img alt="메일" src="#">
-            <img alt="프로필 사진" src="#">
-            <span><a href="#">로그인</a></span>
-            <span><a href="#">로그아웃</a></span>
+            <div id="profile">
+                <img alt="프로필 사진" src="#">
+                <span>
+                    <a href="#">마이페이지</a> | <a href="#">로그아웃</a>
+                </span>
+            </div>
         </div>
     </div>
 </body>

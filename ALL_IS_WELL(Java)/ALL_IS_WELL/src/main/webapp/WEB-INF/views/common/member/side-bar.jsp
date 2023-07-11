@@ -16,7 +16,7 @@
         }
 
         #side-bar {
-            height: 100vh;
+            height: 1200px;
             width: 300px;
             background-color: #5A8CF2;
             padding: 15px;
@@ -84,19 +84,21 @@
                 <div class="sub-menu-item">입원</div>
             </div>
         </div>
-        <div id="menu-item">
-            <div id="menu">게시판 >
-                <div id="sub-menu">건의 게시판</div>
-                <div id="sub-menu">문의 게시판</div>
-                <div id="sub-menu">공지 게시판</div>
+        <div class="menu-item">
+            <div class="menu">게시판</div>
+            <div class="sub-menu">
+                <div id="sub-menu-item">건의 게시판</div>
+                <div id="sub-menu-item">문의 게시판</div>
+                <div id="sub-menu-item">공지 게시판</div>
             </div>
         </div>
-        <div id="menu-item">
-            <div id="menu">메일 >
-                <div id="sub-menu">메일쓰기</div>
-                <div id="sub-menu">받은 메일함</div>
-                <div id="sub-menu">보낸 메일함</div>
-                <div id="sub-menu">휴지통</div>
+        <div class="menu-item">
+            <div class="menu">메일</div>
+            <div class="sub-menu">
+                <div id="sub-menu-item">메일 쓰기</div>
+                <div id="sub-menu-item">받은 메일함</div>
+                <div id="sub-menu-item">보낸 메일함</div>
+                <div id="sub-menu-item">휴지통</div>
             </div>
         </div>
 
