@@ -18,7 +18,7 @@
     #side-bar {
         height: 1200px;
         width: 300px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         padding: 15px;
     }
 
@@ -54,7 +54,7 @@
         left: 0;
         font-size: 20px;
         line-height: 1.6;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         color: white;
         max-height: 0;
         overflow: hidden;
@@ -76,7 +76,7 @@
     .menu-item:hover .menu,
     .sub-menu-item:hover {
         background-color: #ffffff;
-        color: #5A8CF2;
+        color: #FF8686;
     }
 
     .arrow {
@@ -94,8 +94,8 @@
     }
 
     .menu-item:hover .arrow {
-        border-right-color: #5a8cf2;
-        border-bottom-color: #5a8cf2;
+        border-right-color: #FF8686;
+        border-bottom-color: #FF8686;
     }
 
     .menu-item:not(:hover) .sub-menu {
