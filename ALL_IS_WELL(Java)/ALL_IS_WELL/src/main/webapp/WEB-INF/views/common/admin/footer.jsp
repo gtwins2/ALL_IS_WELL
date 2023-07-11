@@ -28,7 +28,7 @@
     p ,i {
       margin-left: 10%;
       display: block;
-      font-size: 20px;
+      font-size: 12px;
       margin: 0;
       padding: 0;
     }
