@@ -14,7 +14,7 @@
 	
 	#content{
 		width: 1920px;
-		height: 1600px;
+		height: 1200px;
 		display: grid;
 		grid-template-columns: 300px 1620px;
 		border-bottom: 1px ;
@@ -22,17 +22,23 @@
 </style>
 </head>
 <body>
+
+	<header>
 		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+	</header>
 		
-		<!-- 내용영역 -->
 	<div id="content">
-		<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
-			
+		<nav>
+			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+		</nav>
+		<main>
+
+		</main>
 	</div>
 
-		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>	
-	
-	
+	<footer>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+	</footer>
 
 </body>
 </html>
