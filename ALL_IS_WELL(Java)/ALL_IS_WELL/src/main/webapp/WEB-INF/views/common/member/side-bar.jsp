@@ -6,20 +6,17 @@
 <meta charset="UTF-8">
 <title>Custom Sidebar</title>
 <style>
-    * {
+    *, body{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
-    body {
-        font-family: Arial, sans-serif;
-    }
-
     #side-bar {
-        position: fixed;
-        height: 100vh;
+        position: relative;
+        height: 1500px;
         width: 300px;
+        box-sizing: border-box;
         background-color: #5A8CF2;
         z-index: 1;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -28,7 +25,7 @@
     .menu {
         font-size: 40px;
         color: #ffffff;
-        padding: 15px 0;
+        padding: 21px 0;
         cursor: pointer;
         user-select: none;
         box-sizing: border-box;
@@ -38,30 +35,30 @@
 
     .menu-item {
         position: relative;
-        margin-top: 20px;
     }
 
     .sub-menu {
         position: fixed;
-        top: 0;
-        left: 300px;
-        height: 100vh;
+        top: 158px;
+        left: 0;
+        height: 1500px;
         width: 300px;
         font-size: 18px;
         line-height: 1.6;
         background-color: #83a6ee;
         color: white;
-        display: none;
         opacity: 0;
+        display: none;
         transition: opacity 0.2s;
         z-index: 1;
     }
 
     .sub-menu-item {
-        padding: 8px 16px;
-        margin-top: 20px;
+        padding: 15px 0;
         font-size: 40px;
+        text-align: center;
         cursor: pointer;
+        box-sizing: border-box;
     }
 
     .menu-item ,
@@ -77,15 +74,11 @@
         transition: background-color 0.3s, color 0.3s;
     }
 
-    span{
-        text-align: center;
-    }
-
     .third-sidebar {
         position: fixed;
-        top: 0;
-        left: 600px;
-        height: 100vh;
+        top: 158px;
+        left: 200px;
+        height: 1500px;
         width: 300px;
         font-size: 40px;
         line-height: 1.6;
@@ -97,23 +90,17 @@
         z-index: 1;
     }
 
-    .third-sidebar div {
-        padding: 8px 16px;
-        margin-top: 20px;
-        font-size: 40px;
-        cursor: pointer;
-    }
-
     .sub-menu-item:hover {
         background-color: #ffffff;
         color: #5A8CF2;
     }
 
     .third-sidebar div {
-        padding: 8px 16px;
-        margin-top: 20px;
+        padding: 15px 0;
         font-size: 40px;
+        text-align: center;
         cursor: pointer;
+        box-sizing: border-box;
         transition: background-color 0.3s, color 0.3s;
     }
 
@@ -126,14 +113,9 @@
 </head>
 <body>
     <div id="side-bar">
-        <div class="menu-item" title="home">
-            <div class="menu">
-                <span style="font-size: 50px;">HOME</span>
-            </div>
-        </div>
         <div class="menu-item">
             <div class="menu">
-                <span>행정업무</span>
+                <div>행정업무</div>
             </div>
             <div class="sub-menu">
                 <div class="sub-menu-item">결재
@@ -168,7 +150,7 @@
         </div>
         <div class="menu-item">
             <div class="menu">
-                <span>의료업무</span>
+                <div>의료업무</div>
             </div>
             <div class="sub-menu">
                 <div class="sub-menu-item">수술
@@ -196,7 +178,7 @@
         </div>
         <div class="menu-item">
             <div class="menu">
-                <span>게시판</span>
+                <div>게시판</div>
             </div>
             <div class="sub-menu">
                 <div class="sub-menu-item">건의 게시판
@@ -224,7 +206,7 @@
         </div>
         <div class="menu-item">
             <div class="menu">
-                <span>메일</span>
+                <div>메일</div>
             </div>
             <div class="sub-menu">
                 <div class="sub-menu-item">메일 쓰기
@@ -276,8 +258,8 @@
             const subMenu = menuItem.querySelector(".sub-menu");
 
             if (subMenu) {
-                const adminMenuItem = document.querySelector("div[title='home']");
-                subMenu.style.top = adminMenuItem.offsetTop + adminMenuItem.offsetHeight + 'px';
+                const menuItemCoords = menuItem.getBoundingClientRect();
+                subMenu.style.left = menuItemCoords.right + 'px';
                 subMenu.style.display = "block";
                 subMenu.style.opacity = "1";
             }
@@ -303,8 +285,8 @@
             submenu.addEventListener("mouseenter", function () {
                 const thirdSidebar = submenu.querySelector(".third-sidebar");
                 if (thirdSidebar) {
-                    const adminMenuItem = document.querySelector("div[title='home']");
-                    thirdSidebar.style.top = (adminMenuItem.offsetTop + adminMenuItem.offsetHeight) + 'px';
+                    const submenuCoords = submenu.getBoundingClientRect();
+                    thirdSidebar.style.left = submenuCoords.right + 'px';
                     thirdSidebar.style.display = "block";
                     thirdSidebar.style.opacity = 1;
                 }

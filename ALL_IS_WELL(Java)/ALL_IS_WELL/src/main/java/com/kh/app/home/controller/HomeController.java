@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("common/member")
 public class HomeController{
 
-	@GetMapping("side-bar")
+	@GetMapping("home")
 	public void home() {
 		
 	}

@@ -15,21 +15,15 @@
     }
 
     #header {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 300px 1620px;
         align-items: center;
         width: 1920px;
         height: 158px;
-        padding: 0 20px;
-    }
-
-    #header-left {
-        display: flex;
     }
 
     #header-right {
-        display: flex;
-        align-items: center;
+        text-align: right;
     }
 
     #header img {
@@ -38,6 +32,7 @@
 
     #header img[alt="로고"] {
         width: 300px;
+        height: 158px;
     }
 
     #header span a {
@@ -57,16 +52,25 @@
         border-radius: 50%;
         margin-bottom: 5px;
     }
+
+    #header-rigth{
+        display: grid;
+        text-align: right;
+    }
 </style>
 </head>
 <body>
     <div id="header">
         <div id="header-left">
-            <img src="${root}/static/img/logo/logo2.png" alt="로고">
+            <img src="/app/resources/static/img/logo/logo2.png" alt="로고">
         </div>
         <div id="header-right">
-            <img alt="메신저" src="#">
-            <img alt="메일" src="#">
+            <div>
+                <img alt="메신저" src="#">
+            </div>
+            <div>
+                <img alt="메일" src="#">
+            </div>
             <div id="profile">
                 <img alt="프로필 사진" src="#">
                 <span>

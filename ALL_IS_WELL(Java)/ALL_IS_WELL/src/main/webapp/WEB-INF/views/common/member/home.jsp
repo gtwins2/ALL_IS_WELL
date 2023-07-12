@@ -7,13 +7,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	
+	*, body{
+		margin: auto;
+	}
+
+	header{
+		box-sizing: border-box;
+	}
+	
+	#wrap{
+		width: 1920px;
+		height: 1500px;
+	}
 
 </style>
 </head>
 <body>
-		
-	<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+	
+	<header>
+		<%@include file="/WEB-INF/views/common/member/header.jsp" %>
+	</header>
+	
+	<main id="wrap">
+		<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+	</main>
 
-
+	<footer>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+	</footer>
 </body>
 </html>
