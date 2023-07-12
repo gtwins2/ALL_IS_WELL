@@ -19,6 +19,8 @@
 	#wrap{
 		width: 1920px;
 		height: 1500px;
+		display: grid;
+		grid-template-columns: 300px 1620px;
 	}
 
 </style>

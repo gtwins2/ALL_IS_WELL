@@ -15,21 +15,15 @@
     }
 
     #header {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 300px 1220px 400px;
         align-items: center;
         width: 1920px;
         height: 158px;
-        padding: 0 20px;
-    }
-
-    #header-left {
-        display: flex;
     }
 
     #header-right {
-        display: flex;
-        align-items: center;
+        text-align: right;
     }
 
     #header img {
@@ -38,6 +32,7 @@
 
     #header img[alt="로고"] {
         width: 300px;
+        height: 158px;
     }
 
     #header span a {
@@ -57,18 +52,33 @@
         border-radius: 50%;
         margin-bottom: 5px;
     }
+
+    #header-right{
+        display: grid;
+        grid-template-columns: 1fr 1fr 3fr;
+    }
 </style>
 </head>
 <body>
     <div id="header">
         <div id="header-left">
-            <img src="${root}/static/img/logo/logo2.png" alt="로고">
+            <img src="/app/resources/static/img/logo/adminlogo.png" alt="로고">
+        </div>
+        <div id="header-center">
+
         </div>
         <div id="header-right">
-            <img alt="메신저" src="#">
-            <img alt="메일" src="#">
+            <div id="messenger">
+                <img alt="메신저" src="#">
+            </div>
+            <div id="mail">
+                <img alt="메일" src="#">
+            </div>
             <div id="profile">
                 <img alt="프로필 사진" src="#">
+                <span>
+                    <a href="#">마이페이지</a> | <a href="#">로그아웃</a>
+                </span>
             </div>
         </div>
     </div>
