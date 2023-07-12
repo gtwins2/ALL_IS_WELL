@@ -16,4 +16,13 @@ public class MypageController {
 		return "mypage/mypageMember";
 	}
 	
+	@GetMapping("memberInfoUpdate")
+	public String memberInfoUpdate() {
+		
+		return "mypage/memberInfoUpdate";
+	}
+	
+	
+	
+	
 }

@@ -193,7 +193,7 @@
  </div>
  <div id="div01-3"></div>
 
- <div id="div02"><h2>개인정보수정</h2></div>
+ <btn id="div02" onclick="next();"><h2>개인정보수정</h2></btn>
 
  <!-- 서명 -->
  <div id="div04">서명 수정</div>
@@ -207,3 +207,10 @@
  
 </body>
 </html>
+
+<script>
+	function next(){
+		href="/app/mypage/";
+	}
+
+</script>
