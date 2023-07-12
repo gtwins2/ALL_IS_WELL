@@ -54,7 +54,7 @@
   <div id="footerDiv">
     <footer class="footer">
       <div>
-        <img src="${root}/static/img/logo2.PNG" alt="작은로고" width="30px" height="20px">
+        <img src="/app/resources/static/img/logo/logo2.png" alt="작은로고" width="30px" height="20px">
         <p>ALL IS WELL
         <i>전화 010-5796-3553</i>
         <i>팩스 02-877-9626</i>

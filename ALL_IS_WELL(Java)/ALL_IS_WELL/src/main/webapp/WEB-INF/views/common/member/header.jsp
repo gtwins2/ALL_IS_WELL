@@ -16,7 +16,7 @@
 
     #header {
         display: grid;
-        grid-template-columns: 300px 1620px;
+        grid-template-columns: 300px 1220px 400px;
         align-items: center;
         width: 1920px;
         height: 158px;
@@ -53,9 +53,9 @@
         margin-bottom: 5px;
     }
 
-    #header-rigth{
+    #header-right{
         display: grid;
-        text-align: right;
+        grid-template-columns: 1fr 1fr 3fr;
     }
 </style>
 </head>
@@ -64,11 +64,14 @@
         <div id="header-left">
             <img src="/app/resources/static/img/logo/logo2.png" alt="로고">
         </div>
+        <div id="header-center">
+
+        </div>
         <div id="header-right">
-            <div>
+            <div id="messenger">
                 <img alt="메신저" src="#">
             </div>
-            <div>
+            <div id="mail">
                 <img alt="메일" src="#">
             </div>
             <div id="profile">
