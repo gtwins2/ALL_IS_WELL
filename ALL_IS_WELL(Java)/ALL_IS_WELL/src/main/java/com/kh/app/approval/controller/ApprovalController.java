@@ -11,10 +11,26 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("approval")
 public class ApprovalController {
 
-	@GetMapping("list")
-	public String list() {
+	// 기안한 문서(h화면)
+	@GetMapping("draft_list")
+	public void dtaftList() {
 		
-		return "approval/list";
 	}
+	
+
+	
+	// 결재한 문서(화면)
+	@GetMapping("list")
+	public void list() {
+		
+	}
+	
+	
+	// 결재해야할 문서(휴가) 상세(화면)
+	@GetMapping("vacation")
+	public void vacation() {
+		
+	}
+	
 	
 }

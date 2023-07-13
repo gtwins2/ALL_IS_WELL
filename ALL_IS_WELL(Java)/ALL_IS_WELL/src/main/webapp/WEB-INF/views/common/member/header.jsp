@@ -20,6 +20,7 @@
         align-items: center;
         width: 1920px;
         height: 158px;
+        border-bottom: 0.5px solid darkgray;
     }
 
     #header-right {
