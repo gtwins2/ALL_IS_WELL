@@ -48,7 +48,10 @@ hr{
     text-align: center;
 }
 
-#div02 > div > input{width: 400px;}
+#div02 > div > input{
+    width: 400px;
+    border: 1px solid #B2B2B2;
+}
 
 #div02 > div:nth-child(3){
     display: grid;
