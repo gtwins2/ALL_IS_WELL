@@ -162,7 +162,7 @@
                 </div>
                 <div class="sub-menu-item">진료
                     <div class="third-sidebar">
-                        <div>예제 항목</div>
+                        <div>예제 항목1</div>
                         <div>예제 항목</div>
                         <div>예제 항목</div>
                     </div>
