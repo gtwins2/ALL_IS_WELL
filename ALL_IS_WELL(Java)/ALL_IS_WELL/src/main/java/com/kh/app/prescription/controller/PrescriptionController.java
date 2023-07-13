@@ -13,4 +13,14 @@ public class PrescriptionController {
 		return "prescription/list";
 	}
 	
+	@GetMapping("detail")
+	public String detail() {
+		return "prescription/detail";
+	}
+	
+	@GetMapping("write")
+	public String write() {
+		return "prescription/write";
+	}
+	
 }
