@@ -23,3 +23,4 @@ mvnLib/
 **/test/
 *.log
 ALL_IS_WELL(SQL)/ALLISWELL(스크립트).sql
+.metadata/

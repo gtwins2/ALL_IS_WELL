@@ -14,4 +14,10 @@ public class BoardController {
 		return "board/noticeList";
 	}
 	
+	//공지사항 작성하기
+	@GetMapping("noticeWrite")
+	public String noticeWrite() {
+		return "board/noticeWrite";
+	}
+	
 }

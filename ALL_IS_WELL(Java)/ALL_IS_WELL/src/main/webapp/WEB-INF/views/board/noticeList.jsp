@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>받은 메일함</title>
+        <title>공지사항</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             .main-area {
@@ -30,7 +30,7 @@
             #sendMail {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color:  #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -239,7 +239,7 @@
 
                 <div class="list-area">
                     <table>
-                        <th>발신자</th>
+                        <th>번호</th>
                         <th>제목</th>
                         <th>작성일</th>
 
