@@ -264,7 +264,7 @@
                 <button id="listBtn">목록</button>
             </div>
             <div id="vacation-application">
-                <div id="title">휴가신청서</div>
+                <div id="title">출장신청서</div>
                 <div id="contain-top">
                     <div id="document-info">
                         <table border="1" id="info">
@@ -313,7 +313,7 @@
                     </div>
                 </div>
                 <div id="reasonDiv">
-                    <div class="top">휴가기간</div>
+                    <div class="top">출장기간</div>
                     <div class="top-side"></div>
                     <div class="bottom">사유</div>
                     <div class="bottom-side"></div>

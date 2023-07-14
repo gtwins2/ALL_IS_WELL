@@ -136,6 +136,71 @@
         margin-top: 80px;
     }
 
+    #inventory-div{
+        margin-top: 100px;
+        height: 600px;
+    }
+
+    #inventory-table{
+        border-collapse: collapse;
+        font-size: 20px;
+        margin: auto;
+        width: 90%;
+        height: 70%;
+    }
+
+    #inventory-table th:first-child{
+        width: 80px;
+    }
+
+    input[type=number]{
+        height: 20px;
+    }
+
+    .add-btn {
+        background-color: #C8C8C8;
+        border: none;
+        color: white;
+        text-align: right;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 0px 2px;
+        cursor:pointer;
+        border-radius: 4px;
+        padding: 4px 8px;
+    }
+
+    .add-btn:hover{
+        background-color: #909090;
+        transition: 0.7ss;
+    }
+
+    .subtract-btn {
+        background-color: #C8C8C8;
+        border: none;
+        color: white;
+        text-align: right;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 0px 2px;
+        cursor:pointer;
+        border-radius: 4px;
+        padding: 4px 8px;
+    }
+
+    .subtract-btn:hover{
+        background-color: #909090;
+        transition: 0.7ss;
+    }
+
+    #buttonDiv{
+        text-align: right;
+        margin-right: 180px;
+        margin-top: 80px;
+    }
+
     #approvalBtn{
         width: 100px;
         font-size: 20px;
@@ -264,7 +329,7 @@
                 <button id="listBtn">목록</button>
             </div>
             <div id="vacation-application">
-                <div id="title">휴가신청서</div>
+                <div id="title">재고신청서</div>
                 <div id="contain-top">
                     <div id="document-info">
                         <table border="1" id="info">
@@ -312,25 +377,115 @@
                         </table>
                     </div>
                 </div>
-                <div id="reasonDiv">
-                    <div class="top">휴가기간</div>
-                    <div class="top-side"></div>
-                    <div class="bottom">사유</div>
-                    <div class="bottom-side"></div>
+                <div id="inventory-div">
+                    <table border="1" id="inventory-table">
+                        <tr>
+                            <th>품목명</th>
+                            <th>개수</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; position: relative;">
+                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
+                                    <option value="">가위</option>
+                                </select>
+                            </td>
+                            <td style="text-align: left; padding-left: 10px;">
+                                <input type="number" name="inventoryNum" value="1" disabled>
+                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
+                            </td>
+                        </tr>                    
+                    </table>
                 </div>
             </div>
             <div id="buttonDiv">
                 <button id="approvalBtn">승인</button>
                 <button id="refuseBtn">반려</button>
             </div>
-        </div>
-        <div id="myModal" class="jw-modal">
-            <div class="modal-content">
-                <div style="font-size: 35px; font-weight: bold;">MEMO</div>
-                <div contenteditable="true" id="modalContent"></div>
-                <div class="button-container">
-                    <button id="submitBtn">제출</button>
-                    <button id="cancelBtn">취소</button>
+            <div id="myModal" class="jw-modal">
+                <div class="modal-content">
+                    <div style="font-size: 35px; font-weight: bold;">MEMO</div>
+                    <div contenteditable="true" id="modalContent"></div>
+                    <div class="button-container">
+                        <button id="submitBtn">제출</button>
+                        <button id="cancelBtn">취소</button>
+                    </div>
                 </div>
             </div>
         </div>

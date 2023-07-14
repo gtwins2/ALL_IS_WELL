@@ -168,81 +168,7 @@
     }
 
     #refuseBtn:hover{
-        background-color: black;
-        color: white;
-        transition: 0.7s;
-    }
-
-    .jw-modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        padding-top: 100px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #modalContent {
-        width: 100%;
-        height: 400px;
-        border: 1px solid #ccc;
-        padding: 8px;
-        margin-bottom: 20px;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    #submitBtn{
-        width: 100px;
-        font-size: 20px;
-        color: white;
-        background-color: #5A8CF2;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    #submitBtn:hover{
         background-color: #555;
-        transition: 0.7s;
-    }
-
-    #cancelBtn{
-        width: 100px;
-        font-size: 20px;
-        color: black;
-        background-color: #C8C8C8;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    #cancelBtn:hover{
-        background-color: black;
         color: white;
         transition: 0.7s;
     }
@@ -264,7 +190,7 @@
                 <button id="listBtn">목록</button>
             </div>
             <div id="vacation-application">
-                <div id="title">휴가신청서</div>
+                <div id="title">출장신청서</div>
                 <div id="contain-top">
                     <div id="document-info">
                         <table border="1" id="info">
@@ -313,24 +239,10 @@
                     </div>
                 </div>
                 <div id="reasonDiv">
-                    <div class="top">휴가기간</div>
+                    <div class="top">출장기간</div>
                     <div class="top-side"></div>
                     <div class="bottom">사유</div>
                     <div class="bottom-side"></div>
-                </div>
-            </div>
-            <div id="buttonDiv">
-                <button id="approvalBtn">승인</button>
-                <button id="refuseBtn">반려</button>
-            </div>
-        </div>
-        <div id="myModal" class="jw-modal">
-            <div class="modal-content">
-                <div style="font-size: 35px; font-weight: bold;">MEMO</div>
-                <div contenteditable="true" id="modalContent"></div>
-                <div class="button-container">
-                    <button id="submitBtn">제출</button>
-                    <button id="cancelBtn">취소</button>
                 </div>
             </div>
         </div>
@@ -339,38 +251,6 @@
    <footer>
       <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
    </footer>
-
-   <script>
-        // 버튼과 모달 요소 선택하기
-        const approvalBtn = document.getElementById("approvalBtn");
-        const myModal = document.getElementById("myModal");
-        const submitBtn = document.getElementById("submitBtn");
-        const cancelBtn = document.getElementById("cancelBtn");
-
-        // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            myModal.style.display = "block";
-        });
-
-        // 제출 버튼 클릭 시 경로 이동
-        submitBtn.addEventListener("click", () => {
-            window.location.href = "your_destination_path"; // 수정하세요!
-        });
-
-        // 취소 버튼 클릭 시 모달 닫기
-        cancelBtn.addEventListener("click", () => {
-            myModal.style.display = "none";
-        });
-
-        // 모달 바깥쪽 클릭 시 모달 닫기
-        window.onclick = (event) => {
-            if (event.target === myModal) {
-                myModal.style.display = "none";
-            }
-        };
-    </script>
-
 </body>
 </html>
-
 
