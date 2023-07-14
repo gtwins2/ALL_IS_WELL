@@ -339,24 +339,18 @@
         const endDate = document.querySelector("#end-date");
         const approvalBtn = document.querySelector("#approvalBtn");
 
+        // 오늘 날짜로 min 속성 설정
+        const currentDate = new Date().toISOString().substr(0, 10);
+        startDate.min = currentDate;
+
+        // start-date 값 변경시 end-date의 min 속성 갱신
+        startDate.addEventListener("change", function() {
+            endDate.min = startDate.value;
+        });
+
         approvalBtn.addEventListener("click", function() {
             validateDates();
         });
-
-        function validateDates() {
-            if (!startDate.value || !endDate.value) {
-                alert("시작 날짜와 종료 날짜를 모두 선택해 주세요.");
-                return false;
-            }
-
-            if (startDate.value < endDate.value) {
-                alert("휴가 기간이 올바르게 설정되었습니다.");
-            } else if (startDate.value > endDate.value) {
-                alert("시작 날짜는 종료 날짜보다 빨라야 합니다. 날짜를 다시 선택해주세요.");
-            } else {
-                alert("시작 날짜와 종료 날짜가 동일합니다. 날짜를 다시 선택해주세요.");
-            }
-        }
 
         const listBtn = document.querySelector("#listBtn");
 
