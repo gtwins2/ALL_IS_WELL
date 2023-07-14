@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>회의록목록</title>
+        <title>당직 지정</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             .main-area {
@@ -30,7 +30,7 @@
             #sendRequest {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color: #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -163,17 +163,22 @@
             }
 
             .list-area th:nth-child(4) {
-                padding-left: 10%;
+                padding-left: 9.5%;
+                width: 150px;
+            }
+            
+            .list-area th:nth-child(5) {
+                padding-left: 2%;
                 width: 150px;
             }
 
             .list-area td:nth-child(3) {
-                padding-left: 9.5%;
+                padding-left: 10.5%;
                 width: 150px;                
             }
 
             .list-area td:nth-child(2) {
-                padding-left: 8%;
+                padding-left: 9.5%;
                 width: 150px;                
             }
 
@@ -190,6 +195,10 @@
 			}
 
             .number-area {
+                text-align: center;
+            }
+
+            .date-area {
                 text-align: center;
             }
 
@@ -256,33 +265,58 @@
                 grid-template-columns: 300px 1620px;
             }
 
+            .date-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 30px;
+		}
+		.date-container button {
+			font-size: 20px;
+			background: none;
+			border: none;
+			padding: 10px;
+			cursor: pointer;
+		}
+		.date {
+			font-size: 30px;
+			margin: 0 15px;
+		}
+
         </style>
     </head>
 
     <body>
         <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
 
 
         <div id="content">
             <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </div>
 
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">회의록목록</span>
+                    <span id="title">당직 지정</span>
+
+                    <div class="date-container">
+                        <button id="prev-day">&#11013;</button>
+                        <div class="date"></div>
+                        <button id="next-day">&#10145;</button>
+                    </div>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
                             <select name="search" id="search">
-                                <option value="title">제목</option>
-                                <option value="date">등록일</option>
+                                <option value="title">부서</option>
+                                <option value="date">직급</option>
                                 
                             </select>
 
+                            
 					
 
                         </label>
@@ -290,6 +324,7 @@
                         <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
                         
                     </form>
+                    
                    
 
 
@@ -300,72 +335,94 @@
                 <br>
                 <br>
 
-					<button id="sendRequest">글쓰기</button>
+					<button id="sendRequest">지정하기</button>
                 <div class="list-area">
                     <table>
                         <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
-                        <th>제목</th>
-                        <th>등록일</th>
+                        <th>이름</th>
+                        <th>부서</th>
+                        <th>직급</th>
+                        <th>전화번호</th>
                         
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제21회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제20회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제19회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제18회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제17회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제16회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제15회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제14회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제13회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제12회의록</td>
-                            <td>2023-07-15</td>
+                            <td>송섭섭</td>
+                            <td>외과</td>
+                            <td>과장</td>
+                            <td>01012345678</td>
                         </tr>
 
 
@@ -392,7 +449,7 @@
         </div>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
@@ -403,6 +460,28 @@
                     checkbox.checked = selectAll.checked;
                 })
             }
+
+            let date = new Date();
+		const prevDayBtn = document.getElementById('prev-day');
+		const nextDayBtn = document.getElementById('next-day');
+		const dateEl = document.querySelector('.date');
+		
+		function setDate() {
+			dateEl.innerHTML = date.toDateString();
+		}
+		
+		setDate();
+		
+		prevDayBtn.addEventListener('click', () => {
+			date.setDate(date.getDate() - 1);
+			setDate();
+		});
+		
+		nextDayBtn.addEventListener('click', () => {
+			date.setDate(date.getDate() + 1);
+			setDate();
+		});
+
         </script>
     </body>
 

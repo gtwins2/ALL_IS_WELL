@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>회의록목록</title>
+        <title>재고입고조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             .main-area {
@@ -14,7 +14,7 @@
     			height: 600px;
     			margin: auto;
     			margin-top: 20px; /* Add this line */
-            }
+}
 
             .title-area {
                 text-align: center;
@@ -30,7 +30,7 @@
             #sendRequest {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color: #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -39,7 +39,7 @@
                 font-weight: bold;
             }
 
-            #sendRequest:hover {
+            #sendMail:hover {
                 background-color: #555;
                 transition: 0.7s;
             }
@@ -168,12 +168,12 @@
             }
 
             .list-area td:nth-child(3) {
-                padding-left: 9.5%;
+                padding-left: 10.5%;
                 width: 150px;                
             }
 
             .list-area td:nth-child(2) {
-                padding-left: 8%;
+                padding-left: 10.5%;
                 width: 150px;                
             }
 
@@ -183,11 +183,11 @@
             }
 			
 			
-			.list-area td:nth-child(4) {
-			    white-space: nowrap;
-			    text-overflow: ellipsis;
-			    overflow: hidden;
-			}
+.list-area td:nth-child(4) {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
             .number-area {
                 text-align: center;
@@ -261,26 +261,26 @@
 
     <body>
         <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
 
 
         <div id="content">
             <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </div>
 
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">회의록목록</span>
+                    <span id="title">재고입고조회</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
                             <select name="search" id="search">
-                                <option value="title">제목</option>
-                                <option value="date">등록일</option>
-                                
+                                <option value="kind">종류</option>
+                                <option value="title">개수</option>
+                                <option value="date">입고일자</option>
                             </select>
 
 					
@@ -300,72 +300,82 @@
                 <br>
                 <br>
 
-					<button id="sendRequest">글쓰기</button>
+					<!-- <button id="sendRequest">재고 신청하기</button> -->
                 <div class="list-area">
                     <table>
                         <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
-                        <th>제목</th>
-                        <th>등록일</th>
-                        
+                        <th>종류</th>
+                        <th>개수</th>
+                        <th>입고일자</th>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제21회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제20회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제19회의록</td>
-                            <td>2023-07-15</td>
+                           <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제18회의록</td>
-                            <td>2023-07-15</td>
+                           <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제17회의록</td>
-                            <td>2023-07-15</td>
+                           <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제16회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제15회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제14회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제13회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
                         <tr>
                             <td><input type="checkbox" name="choose"></td>
-                            <td>제12회의록</td>
-                            <td>2023-07-15</td>
+                            <td>메스</td>
+                            <td>100</td>
+                            <td>2023-07-14</td>
                         </tr>
 
 
@@ -392,7 +402,7 @@
         </div>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
