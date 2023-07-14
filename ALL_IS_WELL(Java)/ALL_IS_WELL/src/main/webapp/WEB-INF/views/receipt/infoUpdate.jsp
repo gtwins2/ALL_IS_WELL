@@ -163,7 +163,7 @@ color: #000000;
 					</div>
 				</div>
 				
-				<input type="submit" id="div03" value="작성"></input>
+				<input type="submit" id="div03" value="수정"></input>
 				<input type="submit" id="div04" value="뒤로가기"></input>
 			</form>
 		</main>
