@@ -22,7 +22,7 @@
 
 #div01{
 position: absolute;
-width: 167px;
+width: 250px;
 height: 59px;
 left: 450px;
 top: 209px;
@@ -32,6 +32,16 @@ font-weight: 400;
 font-size: 40px;
 line-height: 48px;
 color: #000000;
+}
+
+hr{
+	position: absolute;
+	width: 1620px;
+	height: 0px;
+	left: 300px;
+	top: 298px;
+	border: 1px solid #D1CECE;
+
 }
 
 #div02{
@@ -45,46 +55,25 @@ color: #000000;
 	height: 600px;
 	margin: auto;
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
+	grid-template-rows: 1fr 2fr;
 }
 
-#div02-1, #div02-2{
+#div02 > div{
+	display: grid;
+	grid-template-columns: 1fr 8fr;
 	text-align: center;
 	line-height: 100px;
 }
 
-#div02-1{
-	display: grid;
-	grid-template-columns: 1fr 2fr 3fr;
-}
-
-#div02-1 > div:nth-child(2) >input{
+#div02 > div > div> input{
 	border: 1px solid #B2B2B2;
 	width: 80%;
+	height: 80%;
+	margin-top: 30px;
 }
 
-#div02-2{
-	display: grid;
-	grid-template-columns: 1fr 5fr;
-}
+#div02 > div:nth-child(2) > div:nth-child(2) > input{height: 80%;}
 
-#div02-3 > input{
-	border: 1px solid #B2B2B2;
-	width: 100px;
-}
-#div02-2 > div:nth-child(2){
-	text-align: left;
-	margin-left: 40px;
-}
-#div02-2 > div > input{
-	border: 1px solid #B2B2B2;
-	width: 320px;
-}
-#div02-2 > div > textarea{
-	border: 1px solid #B2B2B2;
-	width: 80%;
-	resize: none;
-}
 
 #div03, #div04{
 	position: absolute;
@@ -125,46 +114,24 @@ color: #000000;
 			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</div>
 		<main>
-			<div id="div01">접수</div>
+			<div id="div01">접수 내용</div>
+			<hr>
 			<form action="" method="post">
 				
 				<div id="div02">
-					<div id="div02-1">
-						<div>이름</div>
-						<div><input type="text"></div>
-						<div id="div02-3">남<input type="checkbox" name="" id="">여<input type="checkbox"></div>
-					</div>
-					<div id="div02-1">
-						<div>주민번호</div>
-						<div><input type="text"></div>
-						<div></div>
-					</div>
-					<div id="div02-1">
-						<div>휴대전화</div>
-						<div><input type="text"></div>
-						<div></div>
-					</div>
-					<div id="div02-2">
-						<div>이메일</div>
-						<div>
-							<input type="text">@
-							<label for="search" class="category-area">
-								<select name="search" id="search">
-									<option value="naver">naver.com</option>
-									<option value="gmail">gmail.com</option>
-									<option value="nate">nate.com</option>
-								</select>
-							</label>	 
-						</div>
-					</div>
-					<div id="div02-2">
+					<div>
 						<div>특이사항</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><input type="text"></div>
+					</div>
+					<div>
+						<div>내용</div>
+						<div><input type="text"></div>
 					</div>
 				</div>
 				
 				<input type="submit" id="div03" value="작성"></input>
 				<input type="submit" id="div04" value="뒤로가기"></input>
+				
 			</form>
 		</main>
 	</div>

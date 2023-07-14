@@ -16,15 +16,13 @@
 
     #header {
         display: grid;
-        grid-template-columns: 300px 1220px 400px;
+        grid-template-columns: 300px 1400px 220px;
         align-items: center;
         width: 1920px;
         height: 158px;
     }
 
-    #header-right {
-        text-align: right;
-    }
+   
 
     #header img {
         margin-right: 20px;
@@ -52,11 +50,10 @@
         border-radius: 50%;
         margin-bottom: 5px;
     }
-
-    #header-right{
-        display: grid;
-        grid-template-columns: 1fr 1fr 3fr;
-    }
+    
+   
+	
+   
 </style>
 </head>
 <body>
@@ -68,16 +65,11 @@
 
         </div>
         <div id="header-right">
-            <div id="messenger">
-                <img alt="메신저" src="#">
-            </div>
-            <div id="mail">
-                <img alt="메일" src="#">
-            </div>
+            
             <div id="profile">
                 <img alt="프로필 사진" src="#">
                 <span>
-                    <a href="#">마이페이지</a> | <a href="#">로그아웃</a>
+                    <a href="#">로그아웃</a>
                 </span>
             </div>
         </div>
