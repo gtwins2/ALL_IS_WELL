@@ -112,7 +112,7 @@
         grid-template-rows: 1fr 9fr;
     }
 
-    #reasonDiv div{
+    #reasonDiv div:not(:nth-child(2), :nth-child(4)){
         box-sizing: border-box;
         display: flex;
         justify-content: center;
@@ -251,11 +251,11 @@
 </head>
 <body>
    
-   <header>
-      <%@include file="/WEB-INF/views/common/member/header.jsp" %>
-   </header>
-   
-   <main id="wrap">
+    <header>
+        <%@include file="/WEB-INF/views/common/member/header.jsp" %>
+    </header>
+
+    <main id="wrap">
         <div>
             <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
         </div>
@@ -314,60 +314,56 @@
                 </div>
                 <div id="reasonDiv">
                     <div class="top">휴가기간</div>
-                    <div class="top-side"></div>
+                    <div class="top-side">
+                        <input type="date" style="font-size: 25px; margin-left: 10px; margin-top: 5px;" id="start-date">
+                        ~~
+                        <input type="date" style="font-size: 25px;" id="end-date">
+                    </div>
                     <div class="bottom">사유</div>
-                    <div class="bottom-side"></div>
+                    <div class="bottom-side">
+                        <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;"></textarea>
+                    </div>
                 </div>
             </div>
             <div id="buttonDiv">
-                <button id="approvalBtn">승인</button>
-                <button id="refuseBtn">반려</button>
+                <button id="approvalBtn">작성</button>
             </div>
         </div>
-        <div id="myModal" class="jw-modal">
-            <div class="modal-content">
-                <div style="font-size: 35px; font-weight: bold;">MEMO</div>
-                <div contenteditable="true" id="modalContent"></div>
-                <div class="button-container">
-                    <button id="submitBtn">제출</button>
-                    <button id="cancelBtn">취소</button>
-                </div>
-            </div>
-        </div>
-   </main>
+    </main>
+    <footer>
+        <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+    </footer>
 
-   <footer>
-      <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
-   </footer>
+    <script>
+        const startDate = document.querySelector("#start-date");
+        const endDate = document.querySelector("#end-date");
+        const approvalBtn = document.querySelector("#approvalBtn");
 
-   <script>
-        // 버튼과 모달 요소 선택하기
-        const approvalBtn = document.getElementById("approvalBtn");
-        const myModal = document.getElementById("myModal");
-        const submitBtn = document.getElementById("submitBtn");
-        const cancelBtn = document.getElementById("cancelBtn");
-
-        // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            myModal.style.display = "block";
+        approvalBtn.addEventListener("click", function() {
+            validateDates();
         });
 
-        // 제출 버튼 클릭 시 경로 이동
-        submitBtn.addEventListener("click", () => {
-            window.location.href = "your_destination_path"; // 수정하세요!
-        });
-
-        // 취소 버튼 클릭 시 모달 닫기
-        cancelBtn.addEventListener("click", () => {
-            myModal.style.display = "none";
-        });
-
-        // 모달 바깥쪽 클릭 시 모달 닫기
-        window.onclick = (event) => {
-            if (event.target === myModal) {
-                myModal.style.display = "none";
+        function validateDates() {
+            if (!startDate.value || !endDate.value) {
+                alert("시작 날짜와 종료 날짜를 모두 선택해 주세요.");
+                return false;
             }
-        };
+
+            if (startDate.value < endDate.value) {
+                alert("휴가 기간이 올바르게 설정되었습니다.");
+            } else if (startDate.value > endDate.value) {
+                alert("시작 날짜는 종료 날짜보다 빨라야 합니다. 날짜를 다시 선택해주세요.");
+            } else {
+                alert("시작 날짜와 종료 날짜가 동일합니다. 날짜를 다시 선택해주세요.");
+            }
+        }
+
+        const listBtn = document.querySelector("#listBtn");
+
+        listBtn.addEventListener("click", function(){
+            window.location.href = "/app/approval/draft_list";
+        });
+
     </script>
 
 </body>
