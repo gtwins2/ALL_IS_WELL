@@ -101,6 +101,7 @@ textarea{
 	width:80%;
 	height: 400px;
 	font-size: 25px;
+	resize: none;
 }
 </style>
 </head>
@@ -117,12 +118,12 @@ textarea{
 		<main>
 			<form action="">
 
-				<button id="sendMail">작성하기</button>
+				<button id="sendMail">수정하기</button>
 				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="" id=""></div>
+						<div> <input type="text" name="" id="" value="안녕하세요" readonly></div>
 					</div>
 					<div>
 						<div>파일첨부</div>
@@ -130,7 +131,7 @@ textarea{
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><textarea name="" id="" cols="30" rows="10" readonly>안녕</textarea></div>
 					</div>
 				</div>
 			</form>

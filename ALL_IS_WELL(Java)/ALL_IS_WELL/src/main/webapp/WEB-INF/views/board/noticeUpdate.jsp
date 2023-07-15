@@ -117,7 +117,7 @@ textarea{
 		<main>
 			<form action="">
 
-				<button id="sendMail">작성하기</button>
+				<button id="sendMail">수정완료</button>
 				<hr>
 				<div id="div01">
 					<div>

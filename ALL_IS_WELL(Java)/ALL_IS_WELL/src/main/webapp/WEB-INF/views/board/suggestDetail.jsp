@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 1200px;
+	height: 2000px;
 	display: grid;
 	grid-template-columns: 300px 1620px;
 	border-bottom: 1px ;
@@ -37,7 +37,7 @@
 	color: #FFFFFF;
 }
 
-#sendMail:hover, #file:hover {
+#sendMail:hover, #file:hover, #list:hover, #write:hover {
 	background-color: #555;
 	transition: 0.7s;
 }
@@ -90,6 +90,7 @@ hr{
 #div01 > div:nth-child(1) > div > input{
 	width:80%;
 	font-size: 25px;
+	border: 0px;
 }
 
 #div01 > div:nth-child(2) >  div:nth-child(2) {
@@ -97,10 +98,81 @@ hr{
 	margin-left: 120px;
 }
 
-textarea{
+#textarea1{
 	width:80%;
 	height: 400px;
 	font-size: 25px;
+	resize: none;
+	border: 0px;
+}
+
+#list{
+	position: absolute;
+	width: 115px;
+	height: 53px;
+	left: 1748px;
+	top: 1280px;
+	background: #FF8686;
+	border-radius: 25px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+	color: #FFFFFF;
+	border: 0px;
+}
+
+#write{
+	width: 115px;
+	height: 53px;
+	background: #FF8686;
+	border-radius: 25px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+	color: #FFFFFF;
+	border: 0px;
+	margin-left: 60px;
+}
+
+#div02{
+	position: absolute;
+	top: 1480px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 1420px;
+	height: 136px;
+	background: #FFFFFF;
+	margin-left: 200px;
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+}
+
+#div02 > div:nth-child(2){
+	line-height: 130px;
+}
+
+#textarea2{
+	width: 100%;
+	height: 136px;
+	font-size: 25px;
+	resize: none;
+}
+
+#div03{
+position: absolute;
+width: 1516px;
+height: 173px;
+left: 347px;
+top: 1800px;
+background: #D9D9D9;
+border-radius: 50px;
+
 }
 </style>
 </head>
@@ -117,12 +189,12 @@ textarea{
 		<main>
 			<form action="">
 
-				<button id="sendMail">작성하기</button>
+				<button id="sendMail">수정하기</button>
 				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="" id=""></div>
+						<div> <input type="text" name="" id="" value="안녕하세요" readonly></div>
 					</div>
 					<div>
 						<div>파일첨부</div>
@@ -130,10 +202,23 @@ textarea{
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><textarea name="" id="textarea1" cols="30" rows="10" readonly>안녕</textarea></div>
 					</div>
 				</div>
 			</form>
+
+			<button id="list">목록</button>
+
+			<form action="">
+				<div id="div02">
+					<div><textarea name="" id="textarea2" cols="30" rows="10"></textarea></div>
+					<div><button id="write"> 작성</button></div>
+				</div>
+			</form>
+
+			<div id="div03">
+
+			</div>
 
 		</main>
 	</div>
