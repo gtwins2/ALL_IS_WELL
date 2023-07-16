@@ -14,7 +14,7 @@
 		display: grid;
 		grid-template-columns: 300px 1620px;
 	}
-
+    
     .main-area {
         width: 1200px;
         height: 80%;
@@ -23,6 +23,8 @@
     }
 
     .title-area {
+        margin-top: 100px;
+        margin-bottom: 50px;
         text-align: center;
         display: flex;
         flex-direction: row;
@@ -107,18 +109,90 @@
         margin-left: 2%;
     }
 
+    .title-area {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #title {
+        font-size: 35px;
+    }
+
+    #writeApproval {
+        font-size: 20px;
+        color: white;
+        background-color: #5A8CF2;
+        size: 10px;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    #writeApproval:hover {
+        background-color: #555;
+        transition: 0.7s;
+    }
+
+    .search-area {
+        display: flex;
+        align-items: center;
+    }
+
+    #search{
+        height: 50px;
+    }
+
+    .search-area input[type="text"] {
+        padding: 5px;
+        margin-right: 20px;
+        width: 600px;
+        height: 50px;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+
+    .category-area {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .category-area label {
+        margin-right: 5px;
+    }
+
+    .category-area select {
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid gray;
+        height: 40px;
+    }
+
+    .category-icon {
+        margin-right: 5px;
+        color: #555;
+    }
+
+    .category-icon::before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f0a5";
+        font-weight: 900;
+    }
+
+    #search-icon {
+        color: gray;
+    }
+
     .list-area {
         margin-top: 20px;
-
         background: #FFFFFF;
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
-    }
-
-    .list-area table {
-        border-collapse: collapse;
-        width: 100%;
     }
 
     .list-area th,
@@ -133,8 +207,16 @@
         font-weight: normal;
     }
 
-    #writer{
-        width: 20%;
+    #member{
+        width: 150px;
+    }
+
+    #enter-time{
+        width: 500px;
+    }
+
+    #out-time {
+        width: 600px;
     }
 
 
@@ -178,106 +260,78 @@
 <body>
 	
 	<header>
-		<%@include file="/WEB-INF/views/common/member/header.jsp" %>
+		<%@include file="/WEB-INF/views/common/admin/header.jsp" %>
 	</header>
 	
 	<main id="wrap">
         <div>
-            <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
         </div>
         <div class="main-area">
             <div class="title-area">
-                <span id="title">기안문서함</span>
+                <span id="title">직원근태목록</span>
 
                 <form action="" class="search-area">
                     <label for="search" class="category-area">
                         <select name="search" id="search">
-                            <option value="writer">문서종류</option>
-                            <option value="title">제목</option>
+                            <option value="name">이름</option>
                         </select>
                     </label>
                     <input type="text" id="search-input">
                     <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
 
-                <button id="writeApproval">문서 작성하기</button>
+                <button id="writeApproval">검색하기</button>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <div class="list-area">
                 <table>
                     <tr>
-                        <th id="writer">작성자</th>
-                        <th id="content">제목</th>
-                        <th id="enrollDate">작성일</th>
-                        <th id="status">상태</th>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                     <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
                     </tr>
                 </table>
             </div>
@@ -298,10 +352,9 @@
 	</main>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
     <script>
-        const sideBar = document.querySelector("#side-bar");
 
     </script>
 </body>
