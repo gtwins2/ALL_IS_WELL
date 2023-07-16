@@ -104,33 +104,48 @@ border-radius: 5px;
 </style>
 <body>
 	
+	<header>
+		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+	</header>
+		
+	<div id="content">
+		<nav>
+			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+		</nav>
+		<main>
+		
+		    <div id="div01">개인정보 수정</div>
+		    <hr>
+		    <div id="div02">
+		        <div>
+		            <br> 이름<br> 주민번호<br>  전화번호<br>  
+		            사무실 번호<br>  이메일<br>  아이디<br>
+		            비밀번호<br>  비밀번호 확인
+		        </div>
+		        <div>
+		            <br> <input type="text"><br> 
+		            <input type="text"><br> 
+		            <input type="text"><br> 
+		            <input type="text"><br> 
+		            <input type="text"><br> 
+		            <input type="text"><br> 
+		            <input type="password"><br> 
+		            <input type="password"><br> 
+		        </div>
+		        <div>
+		            <div id="div02-1">qwe</div>
+		            <div id="div02-2">파일찾기</div>
+		        </div>
+		    </div>
+		
+		    <div id="div03">수정</div>
+		    <div id="div04">뒤로가기</div>
+		</main>
+	</div>
 
+	<footer>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+	</footer>
 
-    <div id="div01">개인정보 수정</div>
-    <hr>
-    <div id="div02">
-        <div>
-            <br> 이름<br> 주민번호<br>  전화번호<br>  
-            사무실 번호<br>  이메일<br>  아이디<br>
-            비밀번호<br>  비밀번호 확인
-        </div>
-        <div>
-            <br> <input type="text"><br> 
-            <input type="text"><br> 
-            <input type="text"><br> 
-            <input type="text"><br> 
-            <input type="text"><br> 
-            <input type="text"><br> 
-            <input type="password"><br> 
-            <input type="password"><br> 
-        </div>
-        <div>
-            <div id="div02-1">qwe</div>
-            <div id="div02-2">파일찾기</div>
-        </div>
-    </div>
-
-    <div id="div03">수정</div>
-    <div id="div04">뒤로가기</div>
 </body>
 </html>

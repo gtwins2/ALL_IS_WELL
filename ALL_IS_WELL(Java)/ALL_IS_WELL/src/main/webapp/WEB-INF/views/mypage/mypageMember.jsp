@@ -180,30 +180,47 @@
 } 
 </style>
 <body>
- <div id="div03">마이페이지</div>
- <hr id="hr01">
 
- <!-- 개인정보 -->
- <div id="div01"></div>
- <div id="div01-1"></div>
- <hr id="hr02">
- <div id="div01-2">
- 	<div>부서<br>직급<br>이름<br>면허번호<br>전화번호<br>이메일<br>연봉</div>
- 	<div>흉부외과<br>전문의<br>이순신<br>123-98-1212<br>01012312428<br>sslee@naver.com<br>90,000,000</div>
- </div>
- <div id="div01-3"></div>
+<header>
+		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+	</header>
+		
+	<div id="content">
+		<nav>
+			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+		</nav>
+		<main>
+			 <div id="div03">마이페이지</div>
+			 <hr id="hr01">
+			
+			 <!-- 개인정보 -->
+			 <div id="div01"></div>
+			 <div id="div01-1"></div>
+			 <hr id="hr02">
+			 <div id="div01-2">
+			 	<div>부서<br>직급<br>이름<br>면허번호<br>전화번호<br>이메일<br>연봉</div>
+			 	<div>흉부외과<br>전문의<br>이순신<br>123-98-1212<br>01012312428<br>sslee@naver.com<br>90,000,000</div>
+			 </div>
+			 <div id="div01-3"></div>
+			
+			 <btn id="div02" onclick="next();"><h2>개인정보수정</h2></btn>
+			
+			 <!-- 서명 -->
+			 <div id="div04">서명 수정</div>
+			 <div id="div04-1"></div>
+			 <div id="div04-2"><h2>저장하기</h2></div>
+			 
+			 <!-- 잔여휴가 -->
+			 <div id="div05">
+				<div><h3>잔여휴가수 | 15일</h3></div>
+			 </div>
+		</main>
+	</div>
 
- <btn id="div02" onclick="next();"><h2>개인정보수정</h2></btn>
+	<footer>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+	</footer>
 
- <!-- 서명 -->
- <div id="div04">서명 수정</div>
- <div id="div04-1"></div>
- <div id="div04-2"><h2>저장하기</h2></div>
- 
- <!-- 잔여휴가 -->
- <div id="div05">
-	<div><h3>잔여휴가수 | 15일</h3></div>
- </div>
  
 </body>
 </html>
