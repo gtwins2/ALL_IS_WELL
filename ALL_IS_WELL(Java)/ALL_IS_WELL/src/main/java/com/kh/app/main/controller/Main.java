@@ -7,10 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Main {
 
-	@GetMapping("main")
-	public String main() {
+	@GetMapping("Mmain")
+	public String Mmain() {
 		
-		return "main/main";
+		return "main/Mmain";
+	}
+	
+	@GetMapping("Amain")
+	public String Amain() {
+		
+		return "main/Amain";
 	}
 	
 }
