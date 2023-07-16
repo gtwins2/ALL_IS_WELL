@@ -11,9 +11,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AttendanceController {
 
+	
+	//회원 근태확인(화면)
 	@GetMapping("list")
 	public void attendanceList() {
 		
+		
+	}
+	
+	//관리자 근태확인(화면)
+	@GetMapping("admin/list")
+	public void adminAttendanceList() {
 		
 	}
 	
