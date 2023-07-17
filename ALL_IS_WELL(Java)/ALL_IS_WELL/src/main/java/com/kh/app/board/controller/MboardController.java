@@ -26,4 +26,37 @@ public class MboardController {
 	public String suggestWrite() {
 		return "board/member/suggestWrite";
 	}
+	
+	//문의사항 목록
+	@GetMapping("inquiryList")
+	public String inquiryList() {
+		return "board/member/inquiryList";
+	}
+	
+	//문의사항 작성
+	@GetMapping("inquiryWrite")
+	public String inquiryWrite() {
+		return "board/member/inquiryWrite";
+	}
+	
+	//문의사항 상세페이지(댓글조회)
+	@GetMapping("inquiryDetail")
+	public String inquiryDetail() {
+		return "board/member/inquiryDetail";
+	}
+	
+	
+	
+	
+	//공지사항목록
+	@GetMapping("noticeList")
+	public String noticeList() {
+		return "board/member/noticeList";
+	}
+
+	//공지사항 상세페이지
+	@GetMapping("noticeDetail")
+	public String noticeDetail() {
+		return "board/member/noticeDetail";
+	}
 }

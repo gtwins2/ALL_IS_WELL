@@ -218,7 +218,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">건의사항</span>
+                    <span id="title">공지사항</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">

@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>공지사항</title>
+        <title>문의사항</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             .main-area {
@@ -30,7 +30,7 @@
             #sendMail {
                 font-size: 20px;
                 color: white;
-                background-color:  #5A8CF2;
+                background-color:  #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -206,19 +206,19 @@
 
     <body>
         <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
 
 
         <div id="content">
             <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </div>
 
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">건의사항</span>
+                    <span id="title">문의사항</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
@@ -327,7 +327,7 @@
         </div>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
        

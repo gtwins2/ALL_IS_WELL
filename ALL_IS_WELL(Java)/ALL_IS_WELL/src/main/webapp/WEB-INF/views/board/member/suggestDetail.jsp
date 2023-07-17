@@ -104,6 +104,8 @@ hr{
 	font-size: 25px;
 	resize: none;
 	border: 0px;
+	font-family: 'Inter';
+	font-style: normal;
 }
 
 #list{
@@ -178,12 +180,12 @@ hr{
 <body>
 
 	<header>
-		<%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
 	</header>
 		
 	<div id="content">
 		<nav>
-			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</nav>
 		<main>
 			<form action="">
@@ -216,7 +218,7 @@ hr{
 	</div>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
 
 </body>
