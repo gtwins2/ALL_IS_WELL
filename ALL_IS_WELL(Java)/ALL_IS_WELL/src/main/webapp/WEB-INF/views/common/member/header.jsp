@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
 <style>
     * {
         margin: auto;
