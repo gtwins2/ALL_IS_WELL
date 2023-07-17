@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수술 일정 등록</title>
+<title>수술 일정 상세 조회</title>
 <style>
    
    #wrap{
