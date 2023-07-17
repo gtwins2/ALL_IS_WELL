@@ -48,4 +48,22 @@ public class AboardController {
 		return "board/suggestDetail";
 	}
 	
+	
+	
+	
+	
+	
+	//문의사항 목록
+	@GetMapping("inquiryList")
+	public String inquiryList() {
+		return "board/inquiryList";
+	}
+	
+	//문의사항 상세페이지(댓글조회)
+	@GetMapping("inquiryDetail")
+	public String inquiryDetail() {
+		return "board/inquiryDetail";
+	}
+	
+	
 }

@@ -76,7 +76,7 @@ hr{
 #file{
 	width: 115px;
 	height: 53px;
-	background: #FF8686;
+	background: #5A8CF2;
 	border-radius: 25px;
 	border: 0px;
 	font-family: 'Inter';
@@ -90,6 +90,7 @@ hr{
 #div01 > div:nth-child(1) > div > input{
 	width:80%;
 	font-size: 25px;
+	border: 0px
 }
 
 #div01 > div:nth-child(2) >  div:nth-child(2) {
@@ -102,6 +103,9 @@ textarea{
 	height: 400px;
 	font-size: 25px;
 	resize: none;
+	border: 0px;
+	font-family: 'Inter';
+	font-style: normal;
 }
 
 #list{
@@ -110,7 +114,7 @@ textarea{
 	height: 53px;
 	left: 1748px;
 	top: 1280px;
-	background: #FF8686;
+	background: #5A8CF2;
 	border-radius: 25px;
 	font-family: 'Inter';
 	font-style: normal;
@@ -126,17 +130,17 @@ textarea{
 <body>
 
 	<header>
-		<%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
 	</header>
 		
 	<div id="content">
 		<nav>
-			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</nav>
 		<main>
 			<form action="">
 
-				<button id="sendMail">수정하기</button>
+				
 				<hr>
 				<div id="div01">
 					<div>
@@ -153,14 +157,14 @@ textarea{
 					</div>
 				</div>
 			</form>
-
+			
 			<button id="list">목록</button>
-
+			
 		</main>
 	</div>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
 
 </body>

@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 1200px;
+	height: 2000px;
 	display: grid;
 	grid-template-columns: 300px 1620px;
 	border-bottom: 1px ;
@@ -26,7 +26,7 @@
 	height: 53px;
 	left: 367px;
 	top: 200px;
-	background: #FF8686;
+	background: #5A8CF2;
 	border-radius: 25px;
 	border: 0px;
 	font-family: 'Inter';
@@ -37,7 +37,7 @@
 	color: #FFFFFF;
 }
 
-#sendMail:hover, #file:hover {
+#sendMail:hover, #file:hover, #list:hover, #write:hover {
 	background-color: #555;
 	transition: 0.7s;
 }
@@ -76,7 +76,7 @@ hr{
 #file{
 	width: 115px;
 	height: 53px;
-	background: #FF8686;
+	background: #5A8CF2;
 	border-radius: 25px;
 	border: 0px;
 	font-family: 'Inter';
@@ -90,6 +90,7 @@ hr{
 #div01 > div:nth-child(1) > div > input{
 	width:80%;
 	font-size: 25px;
+	border: 0px;
 }
 
 #div01 > div:nth-child(2) >  div:nth-child(2) {
@@ -97,11 +98,14 @@ hr{
 	margin-left: 120px;
 }
 
-textarea{
+#textarea1{
 	width:80%;
 	height: 400px;
 	font-size: 25px;
 	resize: none;
+	border: 0px;
+	font-family: 'Inter';
+	font-style: normal;
 }
 
 #list{
@@ -110,7 +114,7 @@ textarea{
 	height: 53px;
 	left: 1748px;
 	top: 1280px;
-	background: #FF8686;
+	background: #5A8CF2;
 	border-radius: 25px;
 	font-family: 'Inter';
 	font-style: normal;
@@ -121,17 +125,60 @@ textarea{
 	color: #FFFFFF;
 	border: 0px;
 }
+
+#write{
+	width: 115px;
+	height: 53px;
+	background: #5A8CF2;
+	border-radius: 25px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+	color: #FFFFFF;
+	border: 0px;
+	margin-left: 60px;
+}
+
+#div02{
+	position: absolute;
+	top: 1480px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 1420px;
+	height: 136px;
+	background: #FFFFFF;
+	margin-left: 200px;
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+}
+
+#div02 > div:nth-child(2){
+	line-height: 130px;
+}
+
+#div03{
+	position: absolute;
+	width: 1516px;
+	height: 173px;
+	left: 347px;
+	top: 1500px;
+	background: #D9D9D9;
+	border-radius: 50px;
+}
 </style>
 </head>
 <body>
 
 	<header>
-		<%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
 	</header>
 		
 	<div id="content">
 		<nav>
-			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</nav>
 		<main>
 			<form action="">
@@ -149,18 +196,22 @@ textarea{
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10" readonly>안녕</textarea></div>
+						<div><textarea name="" id="textarea1" cols="30" rows="10" readonly>안녕</textarea></div>
 					</div>
 				</div>
 			</form>
 
 			<button id="list">목록</button>
 
+			<div id="div03">
+
+			</div>
+
 		</main>
 	</div>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
 
 </body>
