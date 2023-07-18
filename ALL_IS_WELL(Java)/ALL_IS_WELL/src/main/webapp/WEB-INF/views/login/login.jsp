@@ -106,10 +106,10 @@ a{
             <div id="div02-1">
                 <div><img src="" alt=""></div>
             </div>
-            <form action="" id="div02-2">
-                <div><input type="text" placeholder="아이디를 입력하세요"></div>
-                <div><input type="text" placeholder="비밀번호를 입력하세요"></div>
-                <button id="login">로그인</button>
+            <form action="/app/member/login" method="POST" id="div02-2">
+                <div><input type="text" placeholder="아이디를 입력하세요" name="id"></div>
+                <div><input type="password" placeholder="비밀번호를 입력하세요" name="password"></div>
+                <input type="submit" id="login" value="로그인">
                 <div><a href="#">아이디 찾기</a>&nbsp;ㅣ&nbsp;<a href="#">비밀번호 찾기</a></div>
             </form>
             
