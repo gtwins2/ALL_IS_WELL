@@ -230,7 +230,7 @@ color: #000000;
 		<main>
 			<!-- 프로필 -->
 		    <div id="div01"></div>
-			<h2>흉부외과 전문의<br><br>  이순신 <br><br> 면허</h2>
+			<h2>흉부외과 전문의<br><br>  ${loginMember.name} <br><br> 면허</h2>
 			<hr>
 			
 		    <!-- 출근 -->

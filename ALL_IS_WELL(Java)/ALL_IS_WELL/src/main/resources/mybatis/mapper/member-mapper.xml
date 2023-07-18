@@ -3,5 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-
+	<select id="login" resultType="MemberVo">
+		SELECT 
+			NO
+			,DEPARTMENT_NO
+			,POSITION_NO
+			,ID
+			,PASSWORD
+			,NAME
+			,STATUS
+			,POSITION_TYPE
+			,ENROLL_DATE
+			,REGISTRATION_NUMBER
+			,EMAIL
+			,PROFILE
+			,PHONE_NUMBER
+			,OFFICE_NUMBER
+			,LICENSE_NUMBER
+			,YEAR_SALARY
+		FROM MEMBER
+		WHERE ID = #{id}
+		
+	</select>
 </mapper>
