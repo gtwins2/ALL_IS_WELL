@@ -8,33 +8,116 @@
 <title>수술실 목록</title>
 <style>
    
-   #wrap{
-      width: 1920px;
-      height: 1500px;
-      display: grid;
-      grid-template-columns: 300px 1620px;
-   }
-   
-    .title-area {
-           
-           margin-top: 10%;
-           text-align: center;
-           display : flex;
-           flex-direction: row;
-           justify-content: center;
-       }
+  		 #wrap {
+            width: 1920px;
+            height: 1500px;
+            display: grid;
+            grid-template-columns: 300px 1620px;
+        }
 
-       #title {
-            margin-right: 50px;
-           font-size: 35px;
-       }
+        .title-area {
+            margin-top: 50px;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
 
-       
+        .main-area {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
 
-       #sendMail:hover {
-           background-color: #555;
-           transition: 0.7s;
-       }
+        .search-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .search-area label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .search-area select {
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .search-area input[type="text"] {
+            padding: 5px;
+            width: 300px;
+            height: 30px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            flex-grow: 1;
+        }
+
+        .search-area a {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #5A8CF2;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-area a:hover {
+            background-color: #555;
+        }
+
+        /* Adjusting the box styles */
+        .select-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .box {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            min-height: 200px; /* Added to ensure boxes have consistent height */
+        }
+
+        .box > div {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .statusBtn {
+            padding: 8px 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #5A8CF2;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .statusBtn:hover {
+            background-color: #555;
+        }
+  		
 
        .search-area {
            display: flex;
@@ -169,8 +252,8 @@
 		 <div class="title-area">
             <div id="title">수술실 조회</div>
 
-
-            <form action="" class="search-area">
+		<div class="main-area">
+			<form action="" class="search-area">
                 <label for="search" class="category-area">
                     <select name="search" id="search">
                         <option value="writer">작성자</option>
@@ -248,6 +331,8 @@
         </div>
         <br>
         <br>
+		</div>
+            
    </main>
 
    <footer>
