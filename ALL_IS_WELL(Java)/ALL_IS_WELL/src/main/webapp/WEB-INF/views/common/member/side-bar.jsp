@@ -14,8 +14,8 @@
 
     #side-bar {
         position: relative;
-        height: 1500px;
-        width: 300px;
+        height: 100%;
+        width: 150px;
         box-sizing: border-box;
         background-color: #5A8CF2;
         z-index: 1;
@@ -23,7 +23,7 @@
     }
 
     .menu {
-        font-size: 40px;
+        font-size: 20px;
         color: #ffffff;
         padding: 21px 0;
         cursor: pointer;
@@ -39,10 +39,10 @@
 
     .sub-menu {
         position: fixed;
-        top: 158px;
+        top: 100px;
         left: 0;
-        height: 1500px;
-        width: 300px;
+        height: 750px;
+        width: 150px;
         font-size: 18px;
         line-height: 1.6;
         background-color: #83a6ee;
@@ -55,7 +55,7 @@
 
     .sub-menu-item {
         padding: 15px 0;
-        font-size: 40px;
+        font-size: 20px;
         text-align: center;
         cursor: pointer;
         box-sizing: border-box;
@@ -76,11 +76,11 @@
 
     .third-sidebar {
         position: fixed;
-        top: 158px;
+        top: 100px;
         left: 200px;
-        height: 1500px;
-        width: 300px;
-        font-size: 40px;
+        height: 750px;
+        width: 150px;
+        font-size: 20px;
         line-height: 1.6;
         background-color: #97b7fc;
         color: white;
@@ -97,7 +97,7 @@
 
     .third-sidebar div {
         padding: 15px 0;
-        font-size: 40px;
+        font-size: 20px;
         text-align: center;
         cursor: pointer;
         box-sizing: border-box;
@@ -241,6 +241,19 @@
         </div>
     </div>
   <script>
+
+    document.addEventListener("Do",function(){
+        const sideB = document.querySelector("#side-bar");
+        const subM = document.querySelector(".sub-menu");
+
+        subMenu.style.height = sideBar.offsetHeight + "px";
+    })
+    
+
+    
+
+
+
     document.querySelectorAll(".menu-item").forEach(function (menuItem) {
         const onClick = (element) => {
             if (!element.querySelector('a')) {
