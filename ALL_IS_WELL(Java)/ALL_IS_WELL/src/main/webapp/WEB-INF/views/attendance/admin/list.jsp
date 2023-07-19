@@ -10,29 +10,22 @@
 	
 	#wrap{
 		width: 1920px;
-		height: 1500px;
+		height: 750px;
 		display: grid;
-		grid-template-columns: 300px 1620px;
+		grid-template-columns: 150px 1770px;
 	}
     
     .main-area {
-        width: 1200px;
+        width: 70%;
         height: 80%;
         margin: auto;
-        margin-top: 100px;
     }
 
     .title-area {
-        margin-top: 100px;
-        margin-bottom: 50px;
         text-align: center;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-    }
-
-    #title {
-        font-size: 35px;
     }
 
     #writeApproval {
@@ -41,7 +34,7 @@
         background-color: #5A8CF2;
         size: 10px;
         border: none;
-        padding: 10px 15px;
+        padding: 5px 8px;
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
@@ -64,7 +57,7 @@
     .search-area input[type="text"] {
         padding: 5px;
         margin-right: 20px;
-        width: 600px;
+        width: 800px;
         height: 50px;
         border: 1px solid gray;
         border-radius: 10px;
@@ -110,6 +103,9 @@
     }
 
     .title-area {
+        margin: auto;
+        margin-bottom: 40px;
+        width: 80%;
         text-align: center;
         display: flex;
         flex-direction: row;
@@ -117,16 +113,15 @@
     }
 
     #title {
-        font-size: 35px;
+        font-size: 20px;
     }
 
     #writeApproval {
-        font-size: 20px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
         border: none;
-        padding: 10px 15px;
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
@@ -143,14 +138,14 @@
     }
 
     #search{
-        height: 50px;
+        height: 40px;
     }
 
     .search-area input[type="text"] {
         padding: 5px;
         margin-right: 20px;
         width: 600px;
-        height: 50px;
+        height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
     }
@@ -188,22 +183,24 @@
     }
 
     .list-area {
-        margin-top: 20px;
+        margin: auto;
+        width: 80%;
         background: #FFFFFF;
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
+
     }
 
     .list-area th,
     .list-area td {
-        padding: 20px;
+        padding: 15px;
         border-bottom: 1px solid #ddd;
         text-align: center;
     }
 
     .list-area th {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: normal;
     }
 
@@ -212,7 +209,7 @@
     }
 
     #enter-time{
-        width: 500px;
+        width: 600px;
     }
 
     #out-time {
@@ -231,7 +228,7 @@
         text-decoration: none;
         border: none;
         color: inherit;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #previous {
@@ -244,15 +241,6 @@
 
     .number-area a:hover {
         color: #5A8CF2;
-    }
-
-    #statusBtn{
-        box-sizing: border-box;
-        width: 50px;
-        height: 30px;
-        border-radius: 20px;
-        background-color: #A7A7A7;
-        color: white;
     }
 
 </style>
@@ -270,7 +258,6 @@
         <div class="main-area">
             <div class="title-area">
                 <span id="title">직원근태목록</span>
-
                 <form action="" class="search-area">
                     <label for="search" class="category-area">
                         <select name="search" id="search">
@@ -333,12 +320,20 @@
                         <th id="out-time">2023-07-02 00:00:00</th>
                         <th id="status">O</th>
                     </tr>
+                    <tr>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
+                    </tr>
+                    <tr>
+                        <th id="member">지준경</th>
+                        <th id="enter-time">2023-07-02 00:00:00</th>
+                        <th id="out-time">2023-07-02 00:00:00</th>
+                        <th id="status">O</th>
+                    </tr>
                 </table>
             </div>
-            <br>
-            <br>
-            <br>
-
             <div class="number-area">
                 <a id="previous" href=""><</a>
                 <a href=""> 1 </a>
@@ -348,7 +343,7 @@
                 <a href=""> 5 </a>
                 <a id="after" href="">></a>
             </div>
-        </div>
+        </div>            
 	</main>
 
 	<footer>

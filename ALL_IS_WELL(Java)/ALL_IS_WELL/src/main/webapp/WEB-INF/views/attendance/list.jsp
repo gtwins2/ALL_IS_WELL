@@ -222,10 +222,12 @@
                         <th id="writer">출근시간</th>
                         <th id="content">퇴근시간</th>
                     </tr>
-                    <tr>
-                        <td>2023-07-02 00:00:00</td>
-                        <td>2023-07-02 00:00:00</td>
-                    </tr>
+                    <c:forEach items="${voList}" var="voList">
+                    	<tr>
+	                        <td>2023-07-02 00:00:00</td>
+	                        <td>2023-07-02 00:00:00</td>
+	                    </tr>
+                    </c:forEach>
                     <tr>
                         <td>2023-07-02 00:00:00</td>
                         <td>2023-07-02 00:00:00</td>

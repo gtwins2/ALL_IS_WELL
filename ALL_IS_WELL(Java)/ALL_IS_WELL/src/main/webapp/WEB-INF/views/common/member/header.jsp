@@ -17,10 +17,10 @@
 
     #header {
         display: grid;
-        grid-template-columns: 300px 1220px 400px;
+        grid-template-columns: 150px 1370px 400px;
         align-items: center;
         width: 1920px;
-        height: 158px;
+        height: 100px;
         border-bottom: 0.5px solid darkgray;
     }
 
@@ -33,8 +33,8 @@
     }
 
     #header img[alt="로고"] {
-        width: 300px;
-        height: 158px;
+        width: 150px;
+        height: 100px;
     }
 
     #header span a {
