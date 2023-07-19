@@ -21,4 +21,6 @@ public class MemberVo {
 	private String licenseNumber;
 	private String yearSalary;
 	private String sign;
+	private String departmentName;
+	private String positionName;
 }
