@@ -232,7 +232,7 @@ color: #000000;
 		    <div id="div01"></div>
 			<h2>흉부외과 전문의<br><br>  ${loginMember.name} <br><br> 면허</h2>
 			<hr>
-			
+		
 		    <!-- 출근 -->
 			<div id="div02"></div>
 		    <h2 id="div02-1">출근</h2>

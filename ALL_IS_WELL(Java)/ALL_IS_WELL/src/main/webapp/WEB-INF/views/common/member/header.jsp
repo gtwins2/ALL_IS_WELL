@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
     * {
         margin: auto;
@@ -17,10 +17,10 @@
 
     #header {
         display: grid;
-        grid-template-columns: 300px 1220px 400px;
+        grid-template-columns: 150px 1370px 400px;
         align-items: center;
         width: 1920px;
-        height: 158px;
+        height: 100px;
         border-bottom: 0.5px solid darkgray;
     }
 
@@ -33,8 +33,8 @@
     }
 
     #header img[alt="로고"] {
-        width: 300px;
-        height: 158px;
+        width: 150px;
+        height: 100px;
     }
 
     #header span a {
@@ -64,7 +64,7 @@
 <body>
     <div id="header">
         <div id="header-left">
-            <img src="/app/resources/static/img/logo/logo2.png" alt="로고">
+            <img src="/app/resources/static/img/logo/멤버로고.jpg" alt="로고">
         </div>
         <div id="header-center">
 

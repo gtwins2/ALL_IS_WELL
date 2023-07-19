@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attendance">
+
+	<select id="getList" resultType="com.kh.app.attendance.vo.AttendanceVo">
+		SELECT *
+		FROM ATTENDANCE
+		WHERE 
+	</select>
+	
+	<select id="" resultType="com.kh.app.attendance.vo.AttendanceVo">
+		SELECT COUNT(*)
+		FROM ATTENDANCE A
+		JOIN MEMBER M ON M.NO = A.MEMBER_NO
+		WHERE M.NO = #{no};
+	</select>
+
+	<!-- 관리자 근태 조회(개수) -->
+	<select id="getAttendanceListAdminCnt" resultType="com.kh.app.attendance.vo.AttendanceVo">
+		SELECT COUNT(*)
+		FROM ATTENDANCE
+	</select>
+	
+	<!-- 관리자 근태 조회 -->
+	<select id="getAttendanceListAdmin" resultType="com.kh.app.attendance.vo.AttendanceVo">
+		SELECT 
+			NO,
+			MEMBER_NO,
+			PRESENCE_TIME,
+			LEAVE_TIME,
+			STATUS
+		FROM ATTENDANCE
+	</select>
+	
+	
+</mapper>

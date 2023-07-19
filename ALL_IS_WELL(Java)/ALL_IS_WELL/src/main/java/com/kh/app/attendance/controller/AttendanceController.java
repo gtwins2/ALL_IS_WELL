@@ -1,8 +1,16 @@
 package com.kh.app.attendance.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kh.app.attendance.service.AttendanceService;
+import com.kh.app.attendance.vo.AttendanceVo;
+import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -11,18 +19,98 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AttendanceController {
 
+	private final AttendanceService as;
 	
-	//È¸¿ø ±ÙÅÂÈ®ÀÎ(È­¸é)
+	//ê·¼íƒœê¸°ë¡ ëª©ë¡(ì§ì›)
 	@GetMapping("list")
-	public void attendanceList() {
+	public void attendanceList(AttendanceVo vo, Model model) {
 		
+//		String no = loginMember.get(no);
+		
+//		vo.setMemberNo(no);
+		
+		int listCount = as.getAttendanceListCnt();
+		int currentPage = 1;
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<AttendanceVo> voList = as.getAttendanceList(vo);
+		
+//		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("voList", voList);
 		
 	}
 	
-	//°ü¸®ÀÚ ±ÙÅÂÈ®ÀÎ(È­¸é)
+	//ê·¼íƒœê¸°ë¡ ì¡°íšŒ(ê´€ë¦¬ì)
 	@GetMapping("admin/list")
-	public void adminAttendanceList() {
+	public void adminAttendanceList(String search, String searchValue, AttendanceVo vo, Model model) {
 		
+		int listCount = as.getAttendanceListAdminCnt();
+		int currentPage = 1;
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<AttendanceVo> voList = as.getAttendanceListAdmin(vo);
+		
+		model.addAttribute("voList", voList);
+		model.addAttribute("pv", pv);
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

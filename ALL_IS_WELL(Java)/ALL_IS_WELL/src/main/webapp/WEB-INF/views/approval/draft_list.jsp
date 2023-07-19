@@ -10,16 +10,18 @@
 	
 	#wrap{
 		width: 1920px;
-		height: 1500px;
 		display: grid;
-		grid-template-columns: 300px 1620px;
+		grid-template-columns: 150px 1770px;
 	}
 
+    main{
+        min-height: 100%;
+    }
+
     .main-area {
-        width: 1200px;
-        height: 80%;
+        width: 70%;
+        min-height: 80%;
         margin: auto;
-        margin-top: 100px;
     }
 
     .title-area {
@@ -27,10 +29,12 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     #title {
-        font-size: 35px;
+        font-size: 20px;
     }
 
     #writeApproval {
@@ -39,7 +43,7 @@
         background-color: #5A8CF2;
         size: 10px;
         border: none;
-        padding: 10px 15px;
+        padding: 5px 8px;
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
@@ -100,16 +104,7 @@
         color: gray;
     }
 
-    #delete-button {
-        color: #5A8CF2;
-        font-weight: bold;
-        font-size: 15px;
-        margin-left: 2%;
-    }
-
     .list-area {
-        margin-top: 20px;
-
         background: #FFFFFF;
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -123,13 +118,13 @@
 
     .list-area th,
     .list-area td {
-        padding: 20px;
+        padding: 15px;
         border-bottom: 1px solid #ddd;
         text-align: center;
     }
 
     .list-area th {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: normal;
     }
 
@@ -140,6 +135,8 @@
 
     .number-area {
         text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .number-area a {
@@ -149,7 +146,7 @@
         text-decoration: none;
         border: none;
         color: inherit;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #previous {
@@ -202,11 +199,6 @@
 
                 <button id="writeApproval">문서 작성하기</button>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <div class="list-area">
                 <table>
                     <tr>
@@ -279,12 +271,24 @@
                             <button id="statusBtn" disabled>대기</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>출장신청서</td>
+                        <td>2023-06-13</td>
+                        <td>
+                            <button id="statusBtn" disabled>대기</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>출장신청서</td>
+                        <td>2023-06-13</td>
+                        <td>
+                            <button id="statusBtn" disabled>대기</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
-            <br>
-            <br>
-            <br>
-
             <div class="number-area">
                 <a id="previous" href=""><</a>
                 <a href=""> 1 </a>
@@ -301,7 +305,18 @@
 		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
     <script>
-        const sideBar = document.querySelector("#side-bar");
+
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
 
     </script>
 </body>

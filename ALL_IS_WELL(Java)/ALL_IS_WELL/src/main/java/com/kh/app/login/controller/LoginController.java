@@ -32,9 +32,11 @@ public class LoginController {
 	public String login(MemberVo vo, HttpSession session) {
 		MemberVo loginMember = ms.login(vo);
 		session.setAttribute("loginMember", loginMember);
+
 		if(loginMember == null) {
 			return "error/404page";
 		}
+
 		return "main/Mmain";
 	}
 	

@@ -10,29 +10,29 @@
 	
 	#wrap{
 		width: 1920px;
-		height: 1500px;
 		display: grid;
-		grid-template-columns: 300px 1620px;
+		grid-template-columns: 150px 1770px;
 	}
-    
+
+    main{
+        min-height: 100%;
+    }
+
     .main-area {
-        width: 1200px;
-        height: 80%;
+        width: 70%;
+        min-height: 80%;
         margin: auto;
-        margin-top: 100px;
     }
 
     .title-area {
-        margin-top: 100px;
-        margin-bottom: 50px;
+        margin: auto;
+        width: 80%;
         text-align: center;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-    }
-
-    #title {
-        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     #writeApproval {
@@ -41,7 +41,7 @@
         background-color: #5A8CF2;
         size: 10px;
         border: none;
-        padding: 10px 15px;
+        padding: 5px 8px;
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
@@ -64,7 +64,7 @@
     .search-area input[type="text"] {
         padding: 5px;
         margin-right: 20px;
-        width: 600px;
+        width: 800px;
         height: 50px;
         border: 1px solid gray;
         border-radius: 10px;
@@ -109,24 +109,16 @@
         margin-left: 2%;
     }
 
-    .title-area {
-        text-align: center;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
     #title {
-        font-size: 35px;
+        font-size: 20px;
     }
 
     #writeApproval {
-        font-size: 20px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
         border: none;
-        padding: 10px 15px;
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
@@ -143,14 +135,14 @@
     }
 
     #search{
-        height: 50px;
+        height: 40px;
     }
 
     .search-area input[type="text"] {
         padding: 5px;
         margin-right: 20px;
         width: 600px;
-        height: 50px;
+        height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
     }
@@ -188,22 +180,24 @@
     }
 
     .list-area {
-        margin-top: 20px;
+        margin: auto;
+        width: 80%;
         background: #FFFFFF;
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
+
     }
 
     .list-area th,
     .list-area td {
-        padding: 20px;
+        padding: 15px;
         border-bottom: 1px solid #ddd;
         text-align: center;
     }
 
     .list-area th {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: normal;
     }
 
@@ -212,7 +206,7 @@
     }
 
     #enter-time{
-        width: 500px;
+        width: 600px;
     }
 
     #out-time {
@@ -222,6 +216,8 @@
 
     .number-area {
         text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .number-area a {
@@ -231,7 +227,7 @@
         text-decoration: none;
         border: none;
         color: inherit;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #previous {
@@ -246,15 +242,6 @@
         color: #5A8CF2;
     }
 
-    #statusBtn{
-        box-sizing: border-box;
-        width: 50px;
-        height: 30px;
-        border-radius: 20px;
-        background-color: #A7A7A7;
-        color: white;
-    }
-
 </style>
 </head>
 <body>
@@ -264,20 +251,17 @@
 	</header>
 	
 	<main id="wrap">
-        <div>
             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
-        </div>
         <div class="main-area">
             <div class="title-area">
                 <span id="title">직원근태목록</span>
-
-                <form action="" class="search-area">
+                <form action="" class="search-area" method="get">
                     <label for="search" class="category-area">
                         <select name="search" id="search">
                             <option value="name">이름</option>
                         </select>
                     </label>
-                    <input type="text" id="search-input">
+                    <input type="text" id="search-input" name="searchValue">
                     <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
 
@@ -285,60 +269,17 @@
             </div>
             <div class="list-area">
                 <table>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
+                	<c:forEach items="${voList}" var="vo">
+						<tr>
+                            <th hidden id="attendanceNo">${vo.no}</th>
+	                        <th id="member">${vo.memberNo}</th>
+	                        <th id="enter-time">${vo.presenceTime}</th>
+	                        <th id="out-time">${vo.leaveTime}</th>
+	                        <th id="status">${vo.status}</th>
+	                    </tr>                	
+                	</c:forEach>
                 </table>
             </div>
-            <br>
-            <br>
-            <br>
-
             <div class="number-area">
                 <a id="previous" href=""><</a>
                 <a href=""> 1 </a>
@@ -348,13 +289,25 @@
                 <a href=""> 5 </a>
                 <a id="after" href="">></a>
             </div>
-        </div>
+        </div>            
 	</main>
 
 	<footer>
 		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
     <script>
+
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
 
     </script>
 </body>

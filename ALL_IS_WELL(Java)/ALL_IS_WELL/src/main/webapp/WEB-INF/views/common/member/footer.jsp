@@ -9,13 +9,13 @@
 
   #footerDiv{
     width: 1920px;
-    height: 150px;
+    height: 40px;
     border-top: 0.5px solid darkgray;
 
   }
 
   .footer{
-      width: 80%;
+      width: 100%;
       height: 100%;
       box-sizing: border-box;
       margin-top: 20px;
@@ -36,7 +36,7 @@
     p ,i {
       margin-left: 10%;
       display: block;
-      font-size: 20px;
+      font-size: 14px;
       margin: 0;
       padding: 0;
     }
