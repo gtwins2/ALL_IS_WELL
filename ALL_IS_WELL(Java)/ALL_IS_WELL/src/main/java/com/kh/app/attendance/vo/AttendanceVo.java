@@ -11,4 +11,5 @@ public class AttendanceVo {
 	private String memberNo;
 	private String presenceTime;
 	private String leaveTime;
+	private String status;
 }

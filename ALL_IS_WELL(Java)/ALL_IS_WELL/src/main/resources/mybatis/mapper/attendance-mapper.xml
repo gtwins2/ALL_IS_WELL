@@ -23,4 +23,16 @@
 		FROM ATTENDANCE
 	</select>
 	
+	<!-- 관리자 근태 조회 -->
+	<select id="getAttendanceListAdmin" resultType="com.kh.app.attendance.vo.AttendanceVo">
+		SELECT 
+			NO,
+			MEMBER_NO,
+			PRESENCE_TIME,
+			LEAVE_TIME,
+			STATUS
+		FROM ATTENDANCE
+	</select>
+	
+	
 </mapper>

@@ -25,7 +25,7 @@ public class AttendanceDao {
 
 	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, AttendanceVo vo) {
 		
-		return sst.selectList(null, vo);
+		return sst.selectList("attendance.getAttendanceListAdmin", vo);
 	}
 
 }
