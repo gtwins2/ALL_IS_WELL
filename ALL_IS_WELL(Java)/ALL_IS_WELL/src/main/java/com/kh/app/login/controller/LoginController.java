@@ -30,7 +30,6 @@ public class LoginController {
 		System.out.println("1");
 		MemberVo loginMember = service.login(vo);
 		session.setAttribute("loginMember", loginMember);
-		
 		return "main/Mmain";
 	}
 	
