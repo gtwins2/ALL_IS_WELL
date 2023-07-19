@@ -4,36 +4,37 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.vo.ProceedingVo;
 
 public interface ProceedingDao {
 
-	//°Ô½Ã±Û ¸ñ·Ï				//board/list
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½				//board/list
 	List<ProceedingVo> list(SqlSessionTemplate sst , PageVo pv);
 	
 
-	//°Ô½Ã±Û ÀÛ¼º				//board/write
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½				//board/write
 	int write(SqlSessionTemplate sst , ProceedingVo vo);
 
 
-	//°Ô½Ã±Û »ó¼¼Á¶È¸(+Á¶È¸¼öÁõ°¡)	//board/detail
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½È¸(+ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)	//board/detail
 	ProceedingVo detail(SqlSessionTemplate sst , String no);
 
 	
-	//°Ô½Ã±Û ¼öÁ¤				//board/edit
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½				//board/edit
 	int edit(SqlSessionTemplate sst , ProceedingVo vo);
 
 	
-	//°Ô½Ã±Û »èÁ¦				//board/delete
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½				//board/delete
 	int delete(SqlSessionTemplate sst , ProceedingVo vo);
 	
 	
-	//Á¶È¸¼ö Áõ°¡
+	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int increaseHit(SqlSessionTemplate sst , String no);
 
 	
-	//ÀüÃ¼ °Ô½Ã±Û °¹¼ö Á¶È¸
+	//ï¿½ï¿½Ã¼ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	int getBoardCnt(SqlSessionTemplate sst);
 	
 }
