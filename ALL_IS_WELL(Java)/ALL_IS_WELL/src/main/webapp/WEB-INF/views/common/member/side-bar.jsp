@@ -25,7 +25,7 @@
     .menu {
         font-size: 20px;
         color: #ffffff;
-        padding: 21px 0;
+        padding: 13.5px 0;
         cursor: pointer;
         user-select: none;
         box-sizing: border-box;
@@ -41,7 +41,6 @@
         position: fixed;
         top: 100px;
         left: 0;
-        height: 750px;
         width: 150px;
         font-size: 18px;
         line-height: 1.6;
@@ -54,7 +53,7 @@
     }
 
     .sub-menu-item {
-        padding: 15px 0;
+        padding: 11px 0;
         font-size: 20px;
         text-align: center;
         cursor: pointer;
@@ -78,7 +77,6 @@
         position: fixed;
         top: 100px;
         left: 200px;
-        height: 750px;
         width: 150px;
         font-size: 20px;
         line-height: 1.6;
@@ -96,7 +94,7 @@
     }
 
     .third-sidebar div {
-        padding: 15px 0;
+        padding: 11px 0;
         font-size: 20px;
         text-align: center;
         cursor: pointer;
@@ -240,17 +238,7 @@
             </div>
         </div>
     </div>
-  <script>
-
-    document.addEventListener("Do",function(){
-        const sideB = document.querySelector("#side-bar");
-        const subM = document.querySelector(".sub-menu");
-
-        subMenu.style.height = sideBar.offsetHeight + "px";
-    })
-    
-
-    
+  <script> 
 
 
 
