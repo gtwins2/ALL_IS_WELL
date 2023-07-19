@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.app.admin.service.AdminService;
 import com.kh.app.admin.vo.AdminVo;
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
@@ -21,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class LoginController {
 
 	private final MemberService ms;
-	private final AdminService as;
+
 	
 	@GetMapping("login")
 	public String login() {
@@ -47,8 +46,6 @@ public class LoginController {
 	
 	@PostMapping("Alogin")
 	public String Alogin(AdminVo vo, HttpSession session) {
-		System.out.println(vo);
-		System.out.println(vo.getAdminId());
 		if(vo.getAdminId().equals("ADMIN") && vo.getAdminPwd().equals("1234")) {
 			return "main/Amain";
 		}
