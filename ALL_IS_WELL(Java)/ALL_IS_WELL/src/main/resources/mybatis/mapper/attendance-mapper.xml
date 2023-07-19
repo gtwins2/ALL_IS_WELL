@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="attendance">
 
-	<select id="getList" resultType="com.kh.app.attendance.vo.AttendanceVo">
+<!-- 	<select id="getList" resultType="com.kh.app.attendance.vo.AttendanceVo">
 		SELECT *
 		FROM ATTENDANCE
 		WHERE 
@@ -15,23 +15,25 @@
 		FROM ATTENDANCE A
 		JOIN MEMBER M ON M.NO = A.MEMBER_NO
 		WHERE M.NO = #{no};
-	</select>
+	</select>-->
 
 	<!-- 관리자 근태 조회(개수) -->
-	<select id="getAttendanceListAdminCnt" resultType="com.kh.app.attendance.vo.AttendanceVo">
+	<select id="getAttendanceListAdminCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM ATTENDANCE
-	</select>
+	</select> 
 	
 	<!-- 관리자 근태 조회 -->
 	<select id="getAttendanceListAdmin" resultType="com.kh.app.attendance.vo.AttendanceVo">
 		SELECT 
-			NO,
-			MEMBER_NO,
-			PRESENCE_TIME,
-			LEAVE_TIME,
-			STATUS
-		FROM ATTENDANCE
+		    A.NO,
+		    MEMBER_NO,
+		    M.NAME,
+		    PRESENCE_TIME,
+		    LEAVE_TIME,
+		    A.STATUS
+		FROM ATTENDANCE A
+		JOIN MEMBER M ON A.MEMBER_NO = M.NO
 	</select>
 	
 	

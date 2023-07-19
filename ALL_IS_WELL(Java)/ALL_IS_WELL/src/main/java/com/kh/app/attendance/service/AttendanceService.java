@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.app.attendance.dao.AttendanceDao;
 import com.kh.app.attendance.vo.AttendanceVo;
+import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,23 +20,27 @@ public class AttendanceService {
 	private final SqlSessionTemplate sst;
 	private final AttendanceDao dao;
 	
-	public List<AttendanceVo> getAttendanceList(AttendanceVo vo) {
-		
-		return dao.getAttendanceList(sst, vo);
-	}
-
-	public int getAttendanceListCnt() {
-		return dao.getAttendanceListCnt(sst);
-	}
+//	public List<AttendanceVo> getAttendanceList(AttendanceVo vo) {
+//		
+//		return dao.getAttendanceList(sst, vo);
+//	}
+//
+//	public int getAttendanceListCnt() {
+//		return dao.getAttendanceListCnt(sst);
+//	}
 
 	// 관리자 근태기록 조회(개수)
-	public int getAttendanceListAdminCnt() {
-		return dao.getAttendanceListAdminCnt(sst);
-	}
+//	public int getAttendanceListAdminCnt() {
+//		return dao.getAttendanceListAdminCnt(sst);
+//	}
 
 	// 관리자 근태기록 조회
-	public List<AttendanceVo> getAttendanceListAdmin(AttendanceVo vo) {
-		return dao.getAttendanceListAdmin(sst, vo);
+	public List<AttendanceVo> getAttendanceListAdmin(AttendanceVo vo, PageVo pv) {
+		return dao.getAttendanceListAdmin(sst, vo, pv);
+	}
+
+	public int getAdminAttendanceListCnt() {
+		return dao.getAdminAttendanceListCnt(sst);
 	}
 	
 }
