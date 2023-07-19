@@ -9,14 +9,22 @@
 </head>
 <style>
 
+body, *{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 1000px;
-    height: 700px;
-    border: 1px solid;
+    width: 99%;
+    height: 99%;
     margin: auto;
 }
+
+
+
 
 #div01{
     display: grid;
@@ -57,7 +65,9 @@ input{
     border-bottom:3px solid #FF8686;
     width: 80%;
     font-size: 30px;
+    height: 80%;
 }
+
 
 #login{
     width: 80%;
