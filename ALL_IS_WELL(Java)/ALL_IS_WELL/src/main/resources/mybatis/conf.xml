@@ -8,7 +8,7 @@
 </settings>
 
 <typeAliases>
-	
+	<typeAlias alias="ProceedingVo" type="com.kh.app.proceeding.vo.ProceedingVo"/>
 </typeAliases>
 <environments default="dev01">
 	<environment id="dev01">
@@ -16,7 +16,7 @@
 		<dataSource type="POOLED">
 			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
   			<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-  			<property name="username" value="C##FINAL"/>
+  			<property name="username" value="C##ALLISWELL"/>
   			<property name="password" value="1234"/>
 		</dataSource>
 	</environment>

@@ -307,14 +307,14 @@
                         <th>제목</th>
                         <th>등록일</th>
                         
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제21회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
+                        <c:forEach items="${voList}" var="vo">
+	                        <tr>
+	                            <td><input type="checkbox" name="choose"></td>
+	                            <td>${vo.title}</td>
+	                            <td>${vo.enrollDate}</td>
+	                        </tr>
+						</c:forEach>
+                        <!-- <tr>
                             <td><input type="checkbox" name="choose"></td>
                             <td>제20회의록</td>
                             <td>2023-07-15</td>
@@ -366,7 +366,7 @@
                             <td><input type="checkbox" name="choose"></td>
                             <td>제12회의록</td>
                             <td>2023-07-15</td>
-                        </tr>
+                        </tr> -->
 
 
 
