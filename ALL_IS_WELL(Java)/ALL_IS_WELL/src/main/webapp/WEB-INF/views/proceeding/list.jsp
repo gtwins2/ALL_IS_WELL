@@ -11,7 +11,7 @@
         <style>
             .main-area {
    				 width: 1200px;
-    			height: 600px;
+    			height: 1000px;
     			margin: auto;
     			margin-top: 20px; /* Add this line */
             }
@@ -300,7 +300,7 @@
                 <br>
                 <br>
 
-					<button id="sendRequest">글쓰기</button>
+					<button id="sendRequest" onclick="write();">글쓰기</button>
                 <div class="list-area">
                     <table>
                         <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
@@ -316,62 +316,7 @@
                         </tr>
                     </c:forEach>
 
-                        <!-- <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제20회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제19회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제18회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제17회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제16회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제15회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제14회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제13회의록</td>
-                            <td>2023-07-15</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>제12회의록</td>
-                            <td>2023-07-15</td>
-                        </tr> -->
-
-
-
+                        
 
                     </table>
                 </div>
@@ -381,13 +326,14 @@
 
                 <div class="number-area">
                     <a id="previous" href="">
-                        < </a>
+                         </a>
                             <a href=""> 1 </a>
                             <a href=""> 2 </a>
                             <a href=""> 3 </a>
                             <a href=""> 4 </a>
                             <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
+                            <a id="after" href=""> > 
+                         </a>
                 </div>
             </div>
 
@@ -405,6 +351,26 @@
                     checkbox.checked = selectAll.checked;
                 })
             }
+            
+            const sideBar = document.querySelector("#side-bar")
+            const subMenus = document.querySelectorAll(".sub-menu");
+            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+            subMenus.forEach(subMenu => {
+                subMenu.style.height = sideBar.offsetHeight + 'px';
+            });
+
+            thirdSidebars.forEach(thirdSidebar => {
+                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+            });
+            
+            var sendRequest = document.querySelector("#sendRequest");
+           	sendRequest.
+           	
+           	function write(){
+           		location.href="${root}/proceeding/write";
+           	}
+            
         </script>
     </body>
 

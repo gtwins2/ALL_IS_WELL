@@ -9,14 +9,22 @@
 </head>
 <style>
 
+body, *{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 1000px;
-    height: 700px;
-    border: 1px solid;
+    width: 99%;
+    height: 99%;
     margin: auto;
 }
+
+
+
 
 #div01{
     display: grid;
@@ -57,7 +65,9 @@ input{
     border-bottom:3px solid #FF8686;
     width: 80%;
     font-size: 30px;
+    height: 80%;
 }
+
 
 #login{
     width: 80%;
@@ -106,11 +116,11 @@ a{
             <div id="div02-1">
                 <div><img src="" alt=""></div>
             </div>
-            <form action="" id="div02-2">
-                <div><input type="text" placeholder="아이디를 입력하세요"></div>
-                <div><input type="text" placeholder="비밀번호를 입력하세요"></div>
-                <button id="login">로그인</button>
-                <div></div>
+             <form action="/app/member/Alogin" method="POST" id="div02-2">
+                <div><input type="text" placeholder="아이디를 입력하세요" name="adminId"></div>
+                <div><input type="password" placeholder="비밀번호를 입력하세요" name="adminPwd"></div>
+                <input type="submit" id="login" value="로그인">
+                <div><a href="#">아이디 찾기</a>&nbsp;ㅣ&nbsp;<a href="#">비밀번호 찾기</a></div>
             </form>
             
         </div>

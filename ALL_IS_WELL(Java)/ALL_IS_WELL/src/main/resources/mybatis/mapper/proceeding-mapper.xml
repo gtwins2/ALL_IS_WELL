@@ -10,4 +10,32 @@
    <select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
       SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING      
    </select>
+	<select id="getBoardCnt" resultType="int">
+		SELECT COUNT(NO) FROM PROCEEDING
+	</select>
+
+	<select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
+		SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING		
+	</select>
+	
+	<insert id="write">
+		INSERT INTO PROCEEDING
+		(
+			NO,
+			MEMBER_NO,
+			TITLE,
+			CONTENT,
+			DUE_DATE
+		)
+		VALUES
+		(
+			SEQ_PROCEEDING_NO.NEXTVAL,
+			loginMember.no,
+			#{title},
+			#{content},
+			(TO_TIMESTAMP(${DUE_DATE))
+		)
+	</insert>
+	
+	
 </mapper>

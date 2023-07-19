@@ -11,7 +11,7 @@
         <style>
             .main-area {
    				 width: 1200px;
-    			height: 600px;
+    			height: 1000px;
     			margin: auto;
     			margin-top: 20px; /* Add this line */
 }
@@ -190,11 +190,24 @@
 
             #content{
                 display: grid;
-                grid-template-columns: 300px 1620px;
+                grid-template-columns: 300px 1220px;
             }
             
             #title-area , #content-area {
             	font-size: 30px;
+            }
+            
+            #content2{
+				font-size: 30px;
+				width: 1198px;
+				height: 500px; 
+            }
+            
+            #content-area2{
+            	width: 919px;
+            	height: 300px;
+            	margin-top: -30px;
+            	margin-left: 70px;
             }
 
         </style>
@@ -223,8 +236,8 @@
                 <br>
                 <br>
 
-					<button id="sendRequest">작성하기</button>
-					<button id="sendBack">뒤로가기</button>
+					<button id="sendRequest" type="submit">작성하기</button>
+					<button id="sendBack" onclick="backPage();">뒤로가기</button>
                 <div class="list-area">
                     <table>
 
@@ -237,9 +250,11 @@
 					<br>
 					<br>
 					<br>
-					<div id="content-area">내용
-                        <textarea id="content-area" cols="60" rows="1"></textarea>
+					<div id="content2">내용
+					<div id="content-area">
+                        <textarea id="content-area2" cols="60" rows="10"></textarea>
                     </div>
+                    
 					<br>
 					<br>
 					<br>
@@ -256,19 +271,9 @@
                 <br>
                 <br>
 
-                <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
                 </div>
             </div>
 
-        </div>
 
         <footer>
             <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
@@ -282,6 +287,8 @@
                     checkbox.checked = selectAll.checked;
                 })
             }
+            
+            
         </script>
     </body>
 

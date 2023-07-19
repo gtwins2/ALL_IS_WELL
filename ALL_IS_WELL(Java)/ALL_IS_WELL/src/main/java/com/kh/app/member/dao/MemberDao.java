@@ -9,7 +9,6 @@ import com.kh.app.member.vo.MemberVo;
 public class MemberDao {
 
 	public MemberVo login(SqlSessionTemplate sst, MemberVo vo) {
-		System.out.println("3");
 		return sst.selectOne("member.login", vo);
 	}
 
