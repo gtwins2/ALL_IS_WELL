@@ -6,55 +6,51 @@
 <head>
 <meta charset="UTF-8">
 <title>수술 일정 등록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
    
-   #wrap{
-      width: 1920px;
-      height: 1500px;
-      display: grid;
-      grid-template-columns: 300px 1620px;
-   }
-   
-   .main-area {
-        width: 1200px;
-        height: 85%;
-        margin: auto;
-        margin-top: 100px;
-    }
-   
-   .title-area {
-   			width: 100%;
-   			height: 10%;
-            display: flex;
-            justify-content: space-between;
-        }
+	   #wrap{
+			width: 1920px;
+			height: 750px;
+			display: grid;
+			grid-template-columns: 150px 1770px;
+		}
+	   
+	   .main-area {
+	        width: 80%;
+        	margin: auto;
+            padding: 20px;
+	    }
+	   
+	   .title-area {
+	   			text-align: center;
+	            display: flex;
+	            justify-content: space-between;
+	        }
 
         #title {
-            font-size: 35px;
+            font-size: 28px;
             margin-top: 10px;
-            margin-left: 10px;
+            margin-left: 140px;
         }
 
-        #date {
-            font-size: 15px;
-            margin-top: 50px;
-            margin-right: 50px;
-        }
 
         .register-area {
+               margin: auto;
+        width: 80%;
+        height: 800px;
+        	height: 50%;
             margin: 0 auto;
-            width: 100%;
-            height: 70%;
             margin-top: 20px;
             background: #FFFFFF;
             border: 1px solid #C4C4C4;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 20px;
+             padding: 30px;
         }
 
         #registerForm {
-        	width: 100%;
-        	height: 100%;
+       
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
@@ -72,7 +68,7 @@
         .area span {
             width: 20%;
             margin-right: 10px;
-            font-size: 20px;
+            font-size: 15px;
         }
 
         .area input[type="text"],
@@ -110,12 +106,12 @@
 
         .area textarea {
             resize: none;
-            height: 600px;
+            height: 100%;
         }
 
         #people {
-            width: 550px;
-            height: 600px;
+            width: 50%;
+            height: 100%;
         }
 
         .btn-area {
@@ -123,15 +119,17 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-right: 10px;
+            margin-right: 140px;
+            margin-top: 30px;
         }
 
         #addBtn {
+        	
             padding: 10px 20px;
             background-color: #5A8CF2;
             border: none;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 15px;
             color: white;
             border-radius: 5px;
             cursor: pointer;
@@ -147,12 +145,12 @@
             background-color: #5A8CF2;
             border: none;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 15px;
             color: white;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-left: 30px;
+            margin-left: 20px;
         }
 
         #backBtn:hover {
@@ -305,10 +303,23 @@
 		}
 		
 		
-		    #closeBtn {
-		        background-color: #aaa;
-		    }
-		   
+	    #closeBtn {
+	        background-color: #aaa;
+	    }
+	    
+	    #searchBtn {
+	    	padding: 10px 20px;
+            background-color: #5A8CF2;
+            border: none;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+           
+	    }
+	   
 
 </style>
 </head>
@@ -319,58 +330,62 @@
    </header>
    
    <main id="wrap">
-      <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+   		<div>
+   			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+   		</div>
+      
 		
 		<div class="main-area">
 			<div class="title-area">
-            <div id="title">수술 일정 등록</div>
+                <div id="title">수술 일정 등록</div>
+           	</div>
+
+           	<div class="register-area">
+                <form action="" id="registerForm" method="POST">
+                    <div class="area">
+                        <span>수술명</span>
+                        <input type="text" name="operationName">
+                    </div>
+                    
+                    <div class="area">
+                        <span>환자이름</span>
+                        <input type="text" name="patientName">
+                    </div>
+                
+                    <div class="area">   
+                        <span>시작시간</span>
+                        <input type="datetime-local" name="startTime">
+                    </div>
+
+                    <div class="area">
+                        <span>종료시간</span>
+                        <input type="datetime-local" name="endTime">
+                    </div>
+
+                    <div class="area">
+                        <span>수술내용</span>
+                        <textarea name="" id="" cols="30" rows="10" name="operationRecord"></textarea>
+                    </div>
+
+                    <div class="area">
+                        <span>참여인원</span>
+                        <input type="text" name="people" id="people">
+                    </div>
+
+                
+                </form>
+            </div>    
            
+           	
+           	<div class="btn-area">
+            	<input type="submit" value="제출" id="addBtn">
+            	<button id="backBtn">뒤로가기</button>
+        	</div>
+           	
+           	
+           	
         </div>
-        <br>
-
-        <div class="register-area">
-            <form action="" id="registerForm" method="POST">
-                <div class="area">
-                    <span>수술명</span>
-                    <input type="text" name="operationName">
-                </div>
-                
-                <div class="area">
-                    <span>환자이름</span>
-                    <input type="text" name="patientName">
-                </div>
-               
-                <div class="area">   
-                    <span>시작시간</span>
-                    <input type="datetime-local" name="startTime">
-                </div>
-
-                <div class="area">
-                    <span>종료시간</span>
-                    <input type="datetime-local" name="endTime">
-                </div>
-
-                <div class="area">
-                    <span>수술내용</span>
-                    <textarea name="" id="" cols="30" rows="10" name="operationRecord"></textarea>
-                </div>
-
-                <div class="area">
-                    <span>참여인원</span>
-                    <input type="text" name="people" id="people">
-                </div>
-
-                
-            </form>
-        </div>
-        <br>
-        <br>
-
-        <div class="btn-area">
-            <input type="submit" value="제출" id="addBtn">
-            <button id="backBtn">뒤로가기</button>
-        </div>
-		</div>
+        
 		
     </main>
 
@@ -379,7 +394,7 @@
     <span class="close">&times;</span>
     <h2 id="modal-title">참여 인원 추가</h2>
     <br>
-    <form action="" class="search-area" >
+    <form action="" class="search-area" onsubmit="searchParticipants(); return false;">
         <label for="search" class="category-area">
             <select name="search" id="search">
                 <option value="name">성명</option>
@@ -387,8 +402,8 @@
             
 
         </label>
-        <input type="text" id="search-input" name="searchName" onsubmit="searchParticipants(); return false;">
-       <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <input type="text" id="search-input" name="searchName" >
+       	<input type="submit" value="검색" id="searchBtn">
     </form>
     <br>
     <br>
@@ -470,34 +485,77 @@
 	</script>
 	
 	<script type="text/javascript">
-	 function searchParticipants() {
-	        var searchInput = document.getElementById('search-input').value.toLowerCase();
-	        var resultContainer = document.querySelector('.result-container');
-	        var participants = [
-	            { name: '송준섭', department: '외과', position: '교수' },
-	        ];
+		document.getElementById('searchBtn').addEventListener('click', function (event) {
+		    event.preventDefault();
+		    searchParticipants();
+		});
+		
+		
+	
+	
+		function searchParticipants() {
+		    const modalSearch = document.querySelector('#search-input').value;
 
-	        
-	        resultContainer.innerHTML = '';
+		    if (modalSearch.length > 0) {
+		        $.ajax({
+		            url: "/app/operation/searchMember",
+		            type: "get",
+		            data: { name: modalSearch }, // Pass the search query as a parameter
+		            dataType: "json",
+		            success: function (data) {
+		                console.log(data);
+		                
+		                updateResultContainer(data);
+		                
+		            },
+		            error: function (error) {
+		                console.log(error);
+		                alert("검색 결과 전달 실패");
+		            }
+		        });
+		    }
+		}
+		
+		
+		function updateResultContainer(data) {
+		    const resultContainer = document.querySelector('.result-container');
 
-	        
-	        var filteredParticipants = participants.filter(function (participant) {
-	            return participant.name.toLowerCase().includes(searchInput);
-	        });
+		    
+		    resultContainer.innerHTML = '';
 
-	        // Populate the search results
-	        filteredParticipants.forEach(function (participant) {
-	            var resultRow = document.createElement('div');
-	            resultRow.classList.add('search-result');
-	            resultRow.innerHTML = `
-	                <div>${participant.name}</div>
-	                <div>${participant.department}</div>
-	                <div>${participant.position}</div>
-	                <input type="checkbox">
-	            `;
-	            resultContainer.appendChild(resultRow);
-	        });
-	    }
+		    
+		    data.forEach(result => {
+		        const name = result.name;
+		        const department = result.department;
+		        const position = result.position;
+
+		        
+		        const div = document.createElement('div');
+		        div.className = 'search-result';
+		        div.innerHTML = `
+		            <div>${name}</div>
+		            <div>${department}</div>
+		            <div>${position}</div>
+		            <input type="checkbox">
+		        `;
+
+		        resultContainer.appendChild(div);
+		    });
+		}
+	</script>
+	
+	<script type="text/javascript">
+		const sideBar = document.querySelector("#side-bar")
+	    const subMenus = document.querySelectorAll(".sub-menu");
+	    const thirdSidebars = document.querySelectorAll(".third-sidebar");
+	
+	    subMenus.forEach(subMenu => {
+	        subMenu.style.height = sideBar.offsetHeight + 'px';
+	    });
+	
+	    thirdSidebars.forEach(thirdSidebar => {
+	        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	    });
 	</script>
 	
 	
