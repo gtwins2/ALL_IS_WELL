@@ -9,6 +9,7 @@ public class AttendanceVo {
 	
 	private String no;
 	private String memberNo;
+	private String memberName;
 	private String presenceTime;
 	private String leaveTime;
 	private String status;

@@ -272,7 +272,7 @@
                 	<c:forEach items="${voList}" var="vo">
 						<tr>
                             <th hidden id="attendanceNo">${vo.no}</th>
-	                        <th id="member">${vo.memberNo}</th>
+	                        <th id="member">${vo.memberName}</th>
 	                        <th id="enter-time">${vo.presenceTime}</th>
 	                        <th id="out-time">${vo.leaveTime}</th>
 	                        <th id="status">${vo.status}</th>
@@ -281,13 +281,15 @@
                 </table>
             </div>
             <div class="number-area">
-                <a id="previous" href=""><</a>
-                <a href=""> 1 </a>
-                <a href=""> 2 </a>
-                <a href=""> 3 </a>
-                <a href=""> 4 </a>
-                <a href=""> 5 </a>
-                <a id="after" href="">></a>
+                <c:if test="${pv.currentPage > 1 }">
+                    <a onclick="pageMove('${pv.startPage}');"><</a>
+                </c:if>
+                <c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+					<a class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+				</c:forEach>
+                <c:if test="${pv.currentPage < pv.maxPage }">
+                    <a onclick="pageMove('${pv.endPage}');">></a>
+                </c:if>
             </div>
         </div>            
 	</main>
@@ -308,6 +310,17 @@
         thirdSidebars.forEach(thirdSidebar => {
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
+
+        function pageMove(i) {
+            location.href = "${root}/attendance/admin/list=" + i;
+        }
+
+        for (let btn of pageBtn) {
+            if (btn.innerHTML == '${pageVo.currentPage}') {
+                btn.style.backgroundColor = '#4998D1';
+                btn.style.color = 'white';
+            }
+        }
 
     </script>
 </body>
