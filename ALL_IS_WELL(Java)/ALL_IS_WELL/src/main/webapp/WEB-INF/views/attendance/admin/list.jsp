@@ -255,13 +255,13 @@
         <div class="main-area">
             <div class="title-area">
                 <span id="title">직원근태목록</span>
-                <form action="" class="search-area" method="post">
+                <form action="" class="search-area" method="get">
                     <label for="search" class="category-area">
                         <select name="search" id="search">
                             <option value="name">이름</option>
                         </select>
                     </label>
-                    <input type="text" id="search-input">
+                    <input type="text" id="search-input" name="searchValue">
                     <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
 
@@ -269,66 +269,15 @@
             </div>
             <div class="list-area">
                 <table>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
-                    <tr>
-                        <th id="member">지준경</th>
-                        <th id="enter-time">2023-07-02 00:00:00</th>
-                        <th id="out-time">2023-07-02 00:00:00</th>
-                        <th id="status">O</th>
-                    </tr>
+                	<c:forEach items="${voList}" var="vo">
+						<tr>
+                            <th hidden id="attendanceNo">${vo.no}</th>
+	                        <th id="member">${vo.memberNo}</th>
+	                        <th id="enter-time">${vo.presenceTime}</th>
+	                        <th id="out-time">${vo.leaveTime}</th>
+	                        <th id="status">${vo.status}</th>
+	                    </tr>                	
+                	</c:forEach>
                 </table>
             </div>
             <div class="number-area">

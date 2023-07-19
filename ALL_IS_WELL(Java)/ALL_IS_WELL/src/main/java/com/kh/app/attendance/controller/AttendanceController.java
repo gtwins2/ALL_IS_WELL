@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.app.attendance.service.AttendanceService;
 import com.kh.app.attendance.vo.AttendanceVo;
@@ -44,18 +45,21 @@ public class AttendanceController {
 	
 	//근태기록 조회(관리자)
 	@GetMapping("admin/list")
-	public void adminAttendanceList(AttendanceVo vo, Model model) {
+	public void adminAttendanceList(String search, String searchValue, AttendanceVo vo, Model model) {
 		
 		int listCount = as.getAttendanceListAdminCnt();
 		int currentPage = 1;
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
+		
+		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		List<AttendanceVo> voList = as.getAttendanceListAdmin(vo);
 		
 		model.addAttribute("voList", voList);
+		model.addAttribute("pv", pv);
 	}
 	
 }
