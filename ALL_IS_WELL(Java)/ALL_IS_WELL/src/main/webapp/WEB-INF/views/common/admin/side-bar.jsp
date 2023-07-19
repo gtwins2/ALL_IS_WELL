@@ -41,7 +41,6 @@
         position: fixed;
         top: 100px;
         left: 0;
-        height: 750px;
         width: 150px;
         font-size: 18px;
         line-height: 1.6;
@@ -78,7 +77,6 @@
         position: fixed;
         top: 100px;
         left: 200px;
-        height: 750px;
         width: 150px;
         font-size: 20px;
         line-height: 1.6;
@@ -241,6 +239,7 @@
         </div>
     </div>
   <script>
+
     document.querySelectorAll(".menu-item").forEach(function (menuItem) {
         const onClick = (element) => {
             if (!element.querySelector('a')) {

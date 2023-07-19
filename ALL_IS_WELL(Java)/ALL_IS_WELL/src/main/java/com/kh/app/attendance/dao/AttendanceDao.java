@@ -19,13 +19,13 @@ public class AttendanceDao {
 	}
 
 	//관리자 근태 조회(개수)
-//	public int getAttendanceListAdminCnt(SqlSessionTemplate sst) {
-//		return sst.selectOne("attendance.getAttendanceListAdminCnt");
-//	}
-//
-//	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, AttendanceVo vo) {
-//		
-//		return sst.selectList(null, vo);
-//	}
+	public int getAttendanceListAdminCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("attendance.getAttendanceListAdminCnt");
+	}
+
+	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, AttendanceVo vo) {
+		
+		return sst.selectList(null, vo);
+	}
 
 }

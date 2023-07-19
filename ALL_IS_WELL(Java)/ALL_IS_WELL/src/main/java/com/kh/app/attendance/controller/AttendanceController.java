@@ -26,6 +26,8 @@ public class AttendanceController {
 		
 //		String no = loginMember.get(no);
 		
+//		vo.setMemberNo(no);
+		
 		int listCount = as.getAttendanceListCnt();
 		int currentPage = 1;
 		int pageLimit = 5;
@@ -44,17 +46,16 @@ public class AttendanceController {
 	@GetMapping("admin/list")
 	public void adminAttendanceList(AttendanceVo vo, Model model) {
 		
+		int listCount = as.getAttendanceListAdminCnt();
+		int currentPage = 1;
+		int pageLimit = 5;
+		int boardLimit = 10;
 		
-//		int listCount = as.getAttendanceListAdminCnt();
-//		int currentPage = 1;
-//		int pageLimit = 5;
-//		int boardLimit = 10;
-//		
-//		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-//		
-//		List<AttendanceVo> voList = as.getAttendanceListAdmin(vo);
-//		
-//		model.addAttribute("voList", voList);
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<AttendanceVo> voList = as.getAttendanceListAdmin(vo);
+		
+		model.addAttribute("voList", voList);
 	}
 	
 }

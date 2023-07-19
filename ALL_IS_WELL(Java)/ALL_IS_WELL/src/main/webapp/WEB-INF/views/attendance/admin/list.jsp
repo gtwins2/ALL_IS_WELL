@@ -10,22 +10,29 @@
 	
 	#wrap{
 		width: 1920px;
-		height: 750px;
 		display: grid;
 		grid-template-columns: 150px 1770px;
 	}
-    
+
+    main{
+        min-height: 100%;
+    }
+
     .main-area {
         width: 70%;
-        height: 80%;
+        min-height: 80%;
         margin: auto;
     }
 
     .title-area {
+        margin: auto;
+        width: 80%;
         text-align: center;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     #writeApproval {
@@ -100,16 +107,6 @@
         font-weight: bold;
         font-size: 15px;
         margin-left: 2%;
-    }
-
-    .title-area {
-        margin: auto;
-        margin-bottom: 40px;
-        width: 80%;
-        text-align: center;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
     }
 
     #title {
@@ -219,6 +216,8 @@
 
     .number-area {
         text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .number-area a {
@@ -252,13 +251,11 @@
 	</header>
 	
 	<main id="wrap">
-        <div>
             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
-        </div>
         <div class="main-area">
             <div class="title-area">
                 <span id="title">직원근태목록</span>
-                <form action="" class="search-area">
+                <form action="" class="search-area" method="post">
                     <label for="search" class="category-area">
                         <select name="search" id="search">
                             <option value="name">이름</option>
@@ -350,6 +347,18 @@
 		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
     <script>
+
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
 
     </script>
 </body>

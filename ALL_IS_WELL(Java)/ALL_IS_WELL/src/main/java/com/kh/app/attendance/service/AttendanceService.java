@@ -29,13 +29,13 @@ public class AttendanceService {
 	}
 
 	// 관리자 근태기록 조회(개수)
-//	public int getAttendanceListAdminCnt() {
-//		return dao.getAttendanceListAdminCnt(sst);
-//	}
-//
-//	// 관리자 근태기록 조회
-//	public List<AttendanceVo> getAttendanceListAdmin(AttendanceVo vo) {
-//		return dao.getAttendanceListAdmin(sst, vo);
-//	}
+	public int getAttendanceListAdminCnt() {
+		return dao.getAttendanceListAdminCnt(sst);
+	}
+
+	// 관리자 근태기록 조회
+	public List<AttendanceVo> getAttendanceListAdmin(AttendanceVo vo) {
+		return dao.getAttendanceListAdmin(sst, vo);
+	}
 	
 }
