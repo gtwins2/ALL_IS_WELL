@@ -171,13 +171,13 @@
             </div>
             <div class="number-area">
                 <c:if test="${pv.currentPage > 1 }">
-                    <a class="pageBtn" onclick="pageMove('${pv.startPage - 1}');">‹</a>
+                    <a class="pageBtn" onclick="pageMove('${pv.currentPage - 1}');">‹</a>
                 </c:if>
                 <c:forEach begin="${pv.startPage}" end="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" var="i">
                     <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
                 </c:forEach>
                 <c:if test="${pv.currentPage < pv.maxPage }">
-                    <a class="pageBtn" onclick="pageMove('${pv.endPage + 1}');">›</a>
+                    <a class="pageBtn" onclick="pageMove('${pv.currentPage + 1}');">›</a>
                 </c:if>
             </div>
         </div>
