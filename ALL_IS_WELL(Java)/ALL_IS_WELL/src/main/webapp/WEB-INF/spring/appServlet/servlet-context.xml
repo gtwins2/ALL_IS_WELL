@@ -48,8 +48,6 @@
          <beans:bean class="com.kh.app.interceptor.KhInterceptor"></beans:bean>
       </interceptor>
    </interceptors> -->
-   
-  
 	
 	
 </beans:beans>
