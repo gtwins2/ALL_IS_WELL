@@ -13,4 +13,6 @@ public class OperationVo {
 	private String endDate;
 	private String status;
 	private String operationRecord;
+	private String operatingRoomStatus;
+	private String operatingRoomLocation;
 }

@@ -251,12 +251,14 @@
         #search-icon {
             color: gray;
         }
+        
+        
 
         .search-result {
 		  display: flex;
-		  justify-content: space-evenly;
+		  justify-content: space-between;
 		  align-items: center;
-		  padding: 10px;
+		  padding: 5px;
 
 		}
 
@@ -272,12 +274,20 @@
 		.result-title {
 		  font-weight: bold;
 		  font-size: 20px;
-		  text-align: center;
-		  padding: 10px;
+		 
+		  padding: 5px;
+		}
+		
+		.search-result-deco {
+			font-weight: normal;
+			font-size: 15px;
+			padding: 10px;
+			
 		}
 		
 		.result-area {
 		  display: flex;
+		  justify-content: center;
 		  justify-content: space-around;
 		  padding-bottom: 10px;
 		 
@@ -319,6 +329,8 @@
             transition: background-color 0.3s;
            
 	    }
+
+        
 	   
 
 </style>
@@ -369,7 +381,8 @@
 
                     <div class="area">
                         <span>참여인원</span>
-                        <input type="text" name="people" id="people">
+                        <textarea name="people" id="people" style="overflow: auto; resize: none;"></textarea>
+                        
                     </div>
 
                 
@@ -412,6 +425,7 @@
         <div class="result-title">이름</div>
         <div class="result-title">부서</div>
         <div class="result-title">직급</div>
+        <div></div>
     </div>
     <hr>
 	
@@ -419,26 +433,7 @@
 	
 	</div>
 	
-    <div class="search-result">
-        <div>송준섭</div>
-        <div>외과</div>
-        <div>교수</div>
-        <input type="Checkbox">
-    </div>
-
-    <div class="search-result">
-        <div>송준섭</div>
-        <div>외과</div>
-        <div>교수</div>
-        <input type="Checkbox">
-    </div>
-
-    <div class="search-result">
-        <div>송준섭</div>
-        <div>외과</div>
-        <div>교수</div>
-        <input type="Checkbox">
-    </div>
+    
 
    <br>
    <br>
@@ -474,6 +469,16 @@
         
         function closeModal() {
             modal.style.display = 'none';
+            
+            
+            // Reset the search form
+            document.getElementById('searchForm').reset();
+            
+            clearSearchResults();
+            
+            clearSearchInput();
+            
+            resetSelectedParticipants();
         }
 
      
@@ -481,10 +486,26 @@
 
         
         closeBtn.addEventListener('click', closeModal);
+        
+        function clearSearchResults() {
+            const resultContainer = document.querySelector('.result-container');
+            resultContainer.innerHTML = '';
+        }
+        
+        function clearSearchInput() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.value = ''; // You can set it to any default value you prefer
+        }
+        
+        function resetSelectedParticipants() {
+            selectedParticipants = [];
+        }
 
 	</script>
 	
 	<script type="text/javascript">
+	 var selectedParticipants = [];
+	
 		document.getElementById('searchBtn').addEventListener('click', function (event) {
 		    event.preventDefault();
 		    searchParticipants();
@@ -500,7 +521,7 @@
 		        $.ajax({
 		            url: "/app/operation/searchMember",
 		            type: "get",
-		            data: { name: modalSearch }, // Pass the search query as a parameter
+		            data: { name: modalSearch },
 		            dataType: "json",
 		            success: function (data) {
 		                console.log(data);
@@ -513,36 +534,97 @@
 		                alert("검색 결과 전달 실패");
 		            }
 		        });
+		    } else {
+		    	const resultContainer = document.querySelector('.result-container');
+		        resultContainer.innerHTML = '';
 		    }
 		}
 		
 		
-		function updateResultContainer(data) {
-		    const resultContainer = document.querySelector('.result-container');
+		
 
-		    
-		    resultContainer.innerHTML = '';
+		
+	    function updateResultContainer(data) {
+	        const resultContainer = document.querySelector('.result-container');
+	        resultContainer.innerHTML = '';
 
-		    
-		    data.forEach(result => {
-		        const name = result.name;
-		        const department = result.department;
-		        const position = result.position;
+	        // Create table rows with search results
+	        data.forEach(item => {
+	            const resultRow = document.createElement('div');
+	            resultRow.classList.add('search-result');
 
-		        
-		        const div = document.createElement('div');
-		        div.className = 'search-result';
-		        div.innerHTML = `
-		            <div>${name}</div>
-		            <div>${department}</div>
-		            <div>${position}</div>
-		            <input type="checkbox">
-		        `;
+	            // Name
+	            const nameColumn = document.createElement('div');
+	            nameColumn.classList.add('search-result-deco');
+	            nameColumn.textContent = item.name; // Assuming the object has a 'name' property
+	            resultRow.appendChild(nameColumn);
 
-		        resultContainer.appendChild(div);
+	            // Department
+	            const departmentColumn = document.createElement('div');
+	            departmentColumn.classList.add('search-result-deco');
+	            departmentColumn.textContent = item.departmentName; // Assuming the object has a 'department' property
+	            resultRow.appendChild(departmentColumn);
+
+	            // Position
+	            const positionColumn = document.createElement('div');
+	            positionColumn.classList.add('search-result-deco');
+	            positionColumn.textContent = item.positionName; // Assuming the object has a 'position' property
+	            resultRow.appendChild(positionColumn);
+
+	            // Checkbox for selecting the participant
+	            const checkboxColumn = document.createElement('div');
+	          /*   checkboxColumn.classList.add('search-result-deco'); */
+	            const checkbox = document.createElement('input');
+	            checkbox.type = 'checkbox';
+	            checkbox.name = 'participants';
+	            checkbox.id = 'checkbox_' + item.id;
+	            checkbox.value = item.no; 
+	            checkboxColumn.appendChild(checkbox);
+	            resultRow.appendChild(checkboxColumn);
+
+	            resultContainer.appendChild(resultRow);
+	            
+	            
+	            checkbox.addEventListener('change', function () {
+	                if (this.checked) {
+	                    // If checkbox is checked, add the participant's data to the array
+	                    selectedParticipants.push({
+	                    	no: item.no,
+	                        name: item.name,
+	                        position: item.positionName
+	                    });
+	                } else {
+	                    // If checkbox is unchecked, remove the participant's data from the array
+	                    selectedParticipants = selectedParticipants.filter(participant => participant.name !== item.name);
+	                }
+	            });
+	        });
+	    }
+	    
+		 // Event listener for the 확인 (Confirm) button in the modal
+		 const confirmBtn = document.querySelector('.modal-btn');
+		    confirmBtn.addEventListener('click', function () {
+		    	
+		    	
+		        // Update the "참여인원" input field with the selected participants' data
+		       const peopleTextarea = document.getElementById('people');
+    			peopleTextarea.value = selectedParticipants.map(participant => participant.name + ' (' + participant.position + ')').join('\n');
+
+
+                closeModal();
 		    });
-		}
-	</script>
+		    
+		    
+		    const 
+		    
+		    
+		 
+
+		</script>
+
+
+
+
 	
 	<script type="text/javascript">
 		const sideBar = document.querySelector("#side-bar")
