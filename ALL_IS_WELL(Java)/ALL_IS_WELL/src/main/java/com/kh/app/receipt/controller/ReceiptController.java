@@ -1,47 +1,73 @@
 package com.kh.app.receipt.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.app.patient.vo.PatientVo;
+import com.kh.app.receipt.service.ReceiptService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("receipt")
+@RequiredArgsConstructor
 public class ReceiptController {
 
-	//Á¢¼ö
+	private final ReceiptService rs; 
+	
+	//ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("regist")
 	public String regist() {
 		return "receipt/regist";
 	}
 	
-	//È¯ÀÚÁ¶È¸
+	//È¯ï¿½ï¿½ï¿½ï¿½È¸
 	@GetMapping("list")
-	public String list() {
+	public String list(Model model) {
+		
+		List<PatientVo> voList = rs.list();
+		model.addAttribute("voList" ,voList);
 		return "receipt/list";
 	}
 	
-	//Á¢¼ö³»¿ë
+	@PostMapping("list")
+	public String list(PatientVo vo, Model model) {
+		List<PatientVo> voList = rs.search(vo);
+		model.addAttribute("voList" ,voList);
+		System.out.println(voList);
+		
+		return "receipt/registContent";
+	}
+	
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("registContent")
 	public String registContent() {
 		return "receipt/registContent";
 	}
 	
-	//Á¢¼öÇÑ È¯ÀÚÁ¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ï¿½ï¿½È¸
 	@GetMapping("registList")
 	public String registList() {
 		return "receipt/registList";
 	}
 	
-	//È¯ÀÚÁ¤º¸¼öÁ¤
+	//È¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("infoUpdate")
 	public String infoUpdate() {
 		return "receipt/infoUpdate";
 	}
 	
-	//Áø·á±â·Ï
+	//ì ‘ìˆ˜
 	@GetMapping("diagnosis")
 	public String diagnosis() {
 		return "receipt/diagnosis";
 	}
+	
+	
 	
 }

@@ -9,6 +9,13 @@
         <title>환자조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
+        
+        #content{
+	width: 1920px;
+	height: 750px;
+	display: grid;
+	grid-template-columns: 150px 1770px;
+}
             .main-area {
    				 width: 1200px;
     			height: 600px;
@@ -187,11 +194,7 @@
                 border-color: lightgray;
             }
 
-            #content{
-                display: grid;
-                grid-template-columns: 300px 1620px;
-                height:1500px
-            }
+            
 
 #div01{
     font-family: 'Inter';
@@ -201,6 +204,11 @@
     line-height: 30px;
     color: #FFFFFF;
     background: #5A8CF2;
+}
+
+#div01:hover{
+	background-color: #555;
+	transition: 0.7s;
 }
         </style>
     </head>
@@ -236,12 +244,7 @@
 
                     
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-
+               
                 <div class="list-area">
                     <table>
                         <th>이름</th>
@@ -249,60 +252,18 @@
                         <th>성별</th>
                         <th>이메일</th>
                         <th></th>
-
+						<c:forEach items="${voList}" var="vo">
                         <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                            <td>남</td>
-                            <td>dnslrpdla@naver.com</td>
-                            <td><div id="div01">접수</div></td>
+                            <td id="td">${vo.no}</td>
+                            <td>${vo.name}</td>
+                            <td>${vo.registrationNumber}</td>
+                            <td>${vo.gender}</td>
+                            <td>${vo.email}</td>
+                            <td id="btn01"><button id="div01" onclick="next();" >접수</button></td>
                         </tr>
+						</c:forEach>
 
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
+                        
 
 
 
@@ -334,3 +295,36 @@
     </body>
 
     </html>
+    
+    <script>
+
+	const sideBar = document.querySelector("#side-bar")
+	const subMenus = document.querySelectorAll(".sub-menu");
+	const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+	subMenus.forEach(subMenu => {
+		subMenu.style.height = sideBar.offsetHeight + 'px';
+	});
+
+	thirdSidebars.forEach(thirdSidebar => {
+		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	});
+
+	const td = document.querySelector('#td');
+	const btn = document.querySelector('#div01');
+	const btn01 = document.querySelector('#btn01');
+	const table = document.querySelector('table');
+	btn.addEventListener('click', (event)=>{
+		//글번호 가져와서
+		const no = event.target.parentNode.parentNode.children[0].innerText;
+
+		//요청보내기
+		location.href='/app/receipt/registContent?no=' + no;
+
+
+	});
+
+    
+
+    
+</script>

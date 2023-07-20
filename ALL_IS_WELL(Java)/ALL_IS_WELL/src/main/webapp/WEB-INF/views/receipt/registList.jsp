@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>접수한 환자조회</title>
-        <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
-        <style>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>접수한 환자조회</title>
+<script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
+<style>
+#content{
+	width: 1920px;
+	height: 750px;
+	display: grid;
+	grid-template-columns: 150px 1770px;
+}
             .main-area {
    				 width: 1200px;
     			height: 600px;
@@ -187,11 +193,6 @@
                 border-color: lightgray;
             }
 
-            #content{
-                display: grid;
-                grid-template-columns: 300px 1620px;
-                height:1500px
-            }
 
 #div01{
     font-family: 'Inter';
@@ -203,134 +204,148 @@
     background: #5A8CF2;
 }
         </style>
-    </head>
+</head>
 
-    <body>
-        <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
-        </header>
-
-
-        <div id="content">
-            <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
-            </div>
+<body>
+    <header>
+        <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+    </header>
 
 
-            <div class="main-area">
-                <div class="title-area">
-                    <span id="title">접수한 환자 조회</span>
-
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="writer">작성자</option>
-                                <option value="title">제목</option>
-                            </select>
-
-
-                        </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </form>
-
-                    
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="list-area">
-                    <table>
-                        <th>이름</th>
-                        <th>생년월일</th>
-                        <th>성별</th>
-                        <th>이메일</th>
-                        <th></th>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                            <td>남</td>
-                            <td>dnslrpdla@naver.com</td>
-                            <td><div id="div01">진료</div></td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-
-
-
-                    </table>
-                </div>
-                <br>
-                <br>
-                <br>
-
-                <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
-                </div>
-            </div>
-
+    <div id="content">
+        <div id="wrap">
+            <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
         </div>
 
-        <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
-        </footer>
 
-        
-    </body>
+        <div class="main-area">
+            <div class="title-area">
+                <span id="title">접수한 환자 조회</span>
 
-    </html>
+                <form action="" class="search-area">
+                    <label for="search" class="category-area">
+                        <select name="search" id="search">
+                            <option value="writer">작성자</option>
+                            <option value="title">제목</option>
+                        </select>
+
+
+                    </label>
+                    <input type="text" id="search-input">
+                    <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </form>
+
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="list-area">
+                <table>
+                    <th>이름</th>
+                    <th>생년월일</th>
+                    <th>성별</th>
+                    <th>이메일</th>
+                    <th></th>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                        <td>남</td>
+                        <td>dnslrpdla@naver.com</td>
+                        <td><div id="div01">진료</div></td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2023-06-13</td>
+                    </tr>
+
+
+
+
+                </table>
+            </div>
+            <br>
+            <br>
+            <br>
+
+            <div class="number-area">
+                <a id="previous" href="">
+                    < </a>
+                        <a href=""> 1 </a>
+                        <a href=""> 2 </a>
+                        <a href=""> 3 </a>
+                        <a href=""> 4 </a>
+                        <a href=""> 5 </a>
+                        <a id="after" href=""> > </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+    </footer>
+
+    
+</body>
+
+</html>
+<script>
+
+	const sideBar = document.querySelector("#side-bar")
+	const subMenus = document.querySelectorAll(".sub-menu");
+	const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+	subMenus.forEach(subMenu => {
+		subMenu.style.height = sideBar.offsetHeight + 'px';
+	});
+
+	thirdSidebars.forEach(thirdSidebar => {
+		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	});
+</script>
