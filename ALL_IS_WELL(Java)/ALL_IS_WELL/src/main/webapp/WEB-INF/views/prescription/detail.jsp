@@ -14,10 +14,9 @@
 
 #content{
 	width: 1920px;
-	height: 1200px;
+	height: 750px;
 	display: grid;
-	grid-template-columns: 300px 1620px;
-	border-bottom: 1px ;
+	grid-template-columns: 150px 1770px;
 }
 
 #div01{
@@ -122,3 +121,17 @@ border: 1px solid #D1CECE;
 
 </body>
 </html>
+<script>
+
+	const sideBar = document.querySelector("#side-bar")
+	const subMenus = document.querySelectorAll(".sub-menu");
+	const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+	subMenus.forEach(subMenu => {
+		subMenu.style.height = sideBar.offsetHeight + 'px';
+	});
+
+	thirdSidebars.forEach(thirdSidebar => {
+		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	});
+</script>

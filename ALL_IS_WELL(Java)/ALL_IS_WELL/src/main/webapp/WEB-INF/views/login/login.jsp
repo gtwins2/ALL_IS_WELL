@@ -38,11 +38,11 @@ main{
     font-weight: 700;
     font-size: 50px;
     margin-top: 250px;
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 #div01-2{
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 
@@ -110,7 +110,7 @@ a{
         
         <div id="div02">
             <div id="div02-1">
-                <div><img src="" alt=""></div>
+                <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt="logo"></div>
             </div>
             <form action="/app/member/login" method="POST" id="div02-2">
                 <div><input type="text" placeholder="아이디를 입력하세요" name="id"></div>
