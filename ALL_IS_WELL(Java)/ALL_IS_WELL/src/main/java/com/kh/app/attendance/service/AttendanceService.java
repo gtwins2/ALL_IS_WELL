@@ -20,23 +20,18 @@ public class AttendanceService {
 	private final SqlSessionTemplate sst;
 	private final AttendanceDao dao;
 	
-//	public List<AttendanceVo> getAttendanceList(AttendanceVo vo) {
-//		
-//		return dao.getAttendanceList(sst, vo);
-//	}
-//
-//	public int getAttendanceListCnt() {
-//		return dao.getAttendanceListCnt(sst);
-//	}
+	public List<AttendanceVo> getAttendanceList(PageVo pv, String no) {
+		
+		return dao.getAttendanceList(sst, pv, no);
+	}
 
-	// 관리자 근태기록 조회(개수)
-//	public int getAttendanceListAdminCnt() {
-//		return dao.getAttendanceListAdminCnt(sst);
-//	}
+	public int getAttendanceListCnt(String no) {
+		return dao.getAttendanceListCnt(sst, no);
+	}
 
 	// 관리자 근태기록 조회
-	public List<AttendanceVo> getAttendanceListAdmin(AttendanceVo vo, PageVo pv) {
-		return dao.getAttendanceListAdmin(sst, vo, pv);
+	public List<AttendanceVo> getAttendanceListAdmin(PageVo pv) {
+		return dao.getAttendanceListAdmin(sst, pv);
 	}
 
 	public int getAdminAttendanceListCnt() {

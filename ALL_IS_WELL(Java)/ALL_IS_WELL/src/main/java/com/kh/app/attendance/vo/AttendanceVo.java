@@ -1,5 +1,7 @@
 package com.kh.app.attendance.vo;
 
+import java.sql.Date;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,7 +12,7 @@ public class AttendanceVo {
 	private String no;
 	private String memberNo;
 	private String memberName;
-	private String presenceTime;
-	private String leaveTime;
+	private Date presenceTime;
+	private Date leaveTime;
 	private String status;
 }

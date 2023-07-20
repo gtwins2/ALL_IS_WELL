@@ -12,17 +12,18 @@ import com.kh.app.page.vo.PageVo;
 @Repository
 public class AttendanceDao {
 
-//	public List<AttendanceVo> getAttendanceList(SqlSessionTemplate sst, AttendanceVo vo) {
-//		return sst.selectList("attendance.getList", vo);
-//	}
-//
-//	public int getAttendanceListCnt(SqlSessionTemplate sst) {
-//		return sst.selectOne("attendance.getAttendanceListCnt");
-//	}
-	
-	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, AttendanceVo vo, PageVo pv) {
+	public List<AttendanceVo> getAttendanceList(SqlSessionTemplate sst, PageVo pv, String no) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("attendance.getAttendanceListAdmin", vo, rb);
+		return sst.selectList("attendance.getAttendanceList", no, rb);
+	}
+
+	public int getAttendanceListCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("attendance.getAttendanceListCnt", no);
+	}
+	
+	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, PageVo pv) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("attendance.getAttendanceListAdmin", null, rb);
 	}
 
 	public int getAdminAttendanceListCnt(SqlSessionTemplate sst) {

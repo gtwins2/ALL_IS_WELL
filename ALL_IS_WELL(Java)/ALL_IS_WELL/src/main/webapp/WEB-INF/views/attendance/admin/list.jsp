@@ -240,6 +240,7 @@
 
     .number-area a:hover {
         color: #5A8CF2;
+        cursor: pointer;
     }
 
 </style>
@@ -282,13 +283,13 @@
             </div>
             <div class="number-area">
                 <c:if test="${pv.currentPage > 1 }">
-                    <a onclick="pageMove('${pv.startPage}');"><</a>
+                    <a class="pageBtn" onclick="pageMove('${pv.startPage - 1}');">‹</a>
                 </c:if>
-                <c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
-					<a class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-				</c:forEach>
+                <c:forEach begin="${pv.startPage}" end="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" var="i">
+                    <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+                </c:forEach>
                 <c:if test="${pv.currentPage < pv.maxPage }">
-                    <a onclick="pageMove('${pv.endPage}');">></a>
+                    <a class="pageBtn" onclick="pageMove('${pv.endPage + 1}');">›</a>
                 </c:if>
             </div>
         </div>            
@@ -311,15 +312,18 @@
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
 
-        function pageMove(i) {
-            location.href = "${root}/attendance/admin/list=" + i;
-        }
+        const pageBtn = document.querySelectorAll('.pageBtn');
 
         for (let btn of pageBtn) {
-            if (btn.innerHTML == '${pageVo.currentPage}') {
-                btn.style.backgroundColor = '#4998D1';
-                btn.style.color = 'white';
+            if (btn.innerHTML == '${pv.currentPage}') {
+                btn.style.color = '#d9d9d9';
             }
+        }
+
+        function pageMove(pageNumber) {
+            let url = new URL(window.location.href);
+            url.searchParams.set('page', pageNumber);
+            window.location.href = url.href;
         }
 
     </script>
