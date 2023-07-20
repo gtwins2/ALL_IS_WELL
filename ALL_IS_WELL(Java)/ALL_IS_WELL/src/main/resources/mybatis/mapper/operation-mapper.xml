@@ -12,4 +12,17 @@
 		ON M.DEPARTMENT_NO = D.NO 
 		WHERE M.NAME = #{name}
 	</select>
+	
+	<select id="getRoomCount" resultType="int">
+		SELECT COUNT(NO) FROM OPERATING_ROOM
+	</select>
+	
+	<select id="getRoomList" resultType="com.kh.app.operation.vo.OperationVo">
+		SELECT S.OPERATING_ROOM_NO AS OPERATING_ROOM_NO, R.LOCATION AS OPERATING_ROOM_LOCATION, 
+		S.PATIENT_NO AS PATIENT_NO, P.NAME AS NAME, 
+		R.STATUS AS OPERATING_ROOM_STATUS, S.STATUS AS STATUS 
+		FROM OPERATION_SCHEDULE S
+		JOIN OPERATING_ROOM R ON R.NO = S.OPERATING_ROOM_NO
+		JOIN PATIENT P ON P.NO = S.PATIENT_NO
+	</select>
 </mapper>
