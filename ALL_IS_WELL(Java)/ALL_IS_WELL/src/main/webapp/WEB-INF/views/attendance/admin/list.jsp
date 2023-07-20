@@ -281,15 +281,21 @@
                 	</c:forEach>
                 </table>
             </div>
+            <c:set var="range" value="2" /> 
+            <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
+            <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
+            <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
+
             <div class="number-area">
                 <c:if test="${pv.currentPage > 1 }">
-                    <a class="pageBtn" onclick="pageMove('${pv.startPage - 1}');">‹</a>
+                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
+                <c:if test="${pv.maxPage > 1 }"> 
+                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+                    </c:forEach>
                 </c:if>
-                <c:forEach begin="${pv.startPage}" end="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" var="i">
-                    <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-                </c:forEach>
                 <c:if test="${pv.currentPage < pv.maxPage }">
-                    <a class="pageBtn" onclick="pageMove('${pv.endPage + 1}');">›</a>
+                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
                 </c:if>
             </div>
         </div>            

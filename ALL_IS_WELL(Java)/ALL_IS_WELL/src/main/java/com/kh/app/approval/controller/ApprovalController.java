@@ -1,10 +1,20 @@
 package com.kh.app.approval.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import lombok.Getter;
+import com.kh.app.approval.service.ApprovalService;
+import com.kh.app.attendance.vo.AttendanceVo;
+import com.kh.app.member.vo.MemberVo;
+import com.kh.app.page.vo.PageVo;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -12,10 +22,26 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("approval")
 public class ApprovalController {
 
-	// 기안한 문서(h화면)
-	@GetMapping("draft_list")
-	public void dtaftList() {
-
+	private final ApprovalService as;
+	
+	// 기안한 문서(화면)
+	@GetMapping("draftList")
+	public void dtaftList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		String no = loginMember.getNo();
+		
+		int listCount = as.getAttendanceListCnt(no);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<AttendanceVo> voList = as.getAttendanceList(pv, no);
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList", voList);
+		
 	}
 
 	// 결재한 문서(화면)
