@@ -15,4 +15,28 @@ public class MailController {
 	public String receiveMailList() {
 		return "mail/receiveMailForm";
 	}
+	
+	//메일 상세조회(화면)
+	@GetMapping("mailDetail")
+	public String getMailDetail() {
+		return "mail/mailDetailForm";
+	}
+	
+	//메일 쓰레기통
+	@GetMapping("mailTrash")
+	public String getMailTrash() {
+		return "mail/mailTrashCan";
+	}
+	
+	//메일 보내기 리스트
+	@GetMapping("sendMailList")
+	public String sendMailList() {
+		return "mail/sendMailForm";
+	}
+	
+	//메일 작성(화면)
+	@GetMapping("writeMail")
+	public String writeMail() {
+		return "mail/writeMailForm";
+	}
 }
