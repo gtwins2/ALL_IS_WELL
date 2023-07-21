@@ -96,9 +96,13 @@ public class OperationController {
 		
 	}
 	
-	
-	
 	//수술 일정 목록 조회
+	@GetMapping("scheduleList")
+	public String getScheduleList() {
+		return "surgery/operationScheduleList";
+	}
+	
+	
 	
 	
 	

@@ -62,9 +62,6 @@
 
 
 
-            .list-area {
-                margin-top: 20px;
-            }
 
 
             .category-area {
