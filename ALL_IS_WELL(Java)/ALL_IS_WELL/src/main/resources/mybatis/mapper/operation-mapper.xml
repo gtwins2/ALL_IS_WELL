@@ -18,11 +18,32 @@
 	</select>
 	
 	<select id="getRoomList" resultType="com.kh.app.operation.vo.OperationVo">
-		SELECT S.OPERATING_ROOM_NO AS OPERATING_ROOM_NO, R.LOCATION AS OPERATING_ROOM_LOCATION, 
-		S.PATIENT_NO AS PATIENT_NO, P.NAME AS NAME, 
-		R.STATUS AS OPERATING_ROOM_STATUS, S.STATUS AS STATUS 
-		FROM OPERATION_SCHEDULE S
-		JOIN OPERATING_ROOM R ON R.NO = S.OPERATING_ROOM_NO
-		JOIN PATIENT P ON P.NO = S.PATIENT_NO
+		SELECT R.NO AS OPERATING_ROOM_NO,
+       R.LOCATION AS OPERATING_ROOM_LOCATION,
+       S.PATIENT_NO AS PATIENT_NO,
+       P.NAME AS NAME,
+       R.STATUS AS OPERATING_ROOM_STATUS,
+       S.STATUS AS STATUS
+		FROM OPERATING_ROOM R
+		LEFT JOIN OPERATION_SCHEDULE S ON R.NO = S.OPERATING_ROOM_NO
+		LEFT JOIN PATIENT P ON P.NO = S.PATIENT_NO
 	</select>
+	
+	<select id="getPatientNo" resultType="java.lang.String">
+		SELECT NO FROM PATIENT WHERE NAME = #{patientName}
+	</select>
+	
+	<insert id="registerOperation">
+		INSERT INTO OPERATION_SCHEDULE(NO, OPERATING_ROOM_NO, PATIENT_NO, OPERATION_NAME, START_DATE, STATUS, OPERATION_RECORD) 
+		VALUES(SEQ_OPERATION_SCHEDULE_NO.NEXTVAL, #{operatingRoomNo}, #{patientNo}, #{operationName}, #{startDate}, 'O', #{operationRecord});
+	</insert>
+	
+	<insert id="registerParticipants">
+	    <foreach collection="participantArr" item="participantNo" separator=";">
+	        INSERT INTO PARTICIPANT (NO, PARTICIPANT_NO, OPERATION_SCHEDULE_NO)
+	        VALUES (SEQ_PARTICIPANT_NO.NEXTVAL, #{participantNo}, SEQ_OPERATION_SCHEDULE_NO.CURRVAL)
+	    </foreach>
+	</insert>
+		
+
 </mapper>

@@ -1,6 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@
         .search-area input[type="text"] {
            padding: 5px;
            margin-right: 20px;
-           width: 630px;
+           width: 500px;
            height: 40px;
            border: 1px solid gray;
            border-radius: 10px;
@@ -116,7 +117,7 @@
       
         .select-area {
             width: 55%;
-           
+           height: 80%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
@@ -167,12 +168,12 @@
 
         
 
-        .number-area {
+       .number-area {
         text-align: center;
         margin-top: 20px;
         margin-bottom: 20px;
-    }
-
+	    }
+	
 	    .number-area a {
 	        display: inline-block;
 	        margin: 5px;
@@ -195,6 +196,7 @@
 	        color: #5A8CF2;
 	        cursor: pointer;
 	    }
+       
 	        
        
 
@@ -217,19 +219,7 @@
 </style>
 </head>
 <body>
-	<script type="text/javascript">
-	    const sideBar = document.querySelector("#side-bar")
-	    const subMenus = document.querySelectorAll(".sub-menu");
-	    const thirdSidebars = document.querySelectorAll(".third-sidebar");
 	
-	    subMenus.forEach(subMenu => {
-	        subMenu.style.height = sideBar.offsetHeight + 'px';
-	    });
-	
-	    thirdSidebars.forEach(thirdSidebar => {
-	        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
-	    });
-	</script>
 
    
    <header>
@@ -277,7 +267,7 @@
 
 	        <div class="select-area">
 
-                <c:set var="${roomList}" items="room">
+                <c:forEach items="${roomList}" var="room">
                     <!-- 수술실 상태가 O일 경우(사용중) -->
                     <c:if test="${room.status == 'O'}">
                         <div class="box">
@@ -290,15 +280,19 @@
                     </c:if>
 
                     <!-- 수술실 상태가 X일 경우(사용가능) -->
-                    <c:if test="${room.status == 'X'}">
+                    <c:if test="${room.status == 'X' || room.status == null}">
                         <div class="box">
                             <div>${room.operatingRoomLocation}</div>
                             
-                            <button class="statusBtn">사용 가능</button>
+                            <button class="statusBtn" id="okBtn" onclick="redirectToRegisterOperation(${room.operatingRoomNo})">사용 가능</button>
                         </div>
                     </c:if>
 
-                </c:set>
+                </c:forEach>
+                
+                
+                
+                
                 
 	            
 	
@@ -345,7 +339,8 @@
 
            
 
-          	<c:set var="range" value="2" /> 
+          	
+            <c:set var="range" value="2" /> 
             <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
             <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
             <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
@@ -362,7 +357,6 @@
                     <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
                 </c:if>
             </div>
-          	
           	
 
         	<br>
@@ -389,8 +383,37 @@
 	       url.searchParams.set('page', pageNumber);
 	       window.location.href = url.href;
 	   }
+	   
+	   //사용가능인 것만 수술 일정 등록할 수 있게
+	   function redirectToRegisterOperation(operatingRoomNo) {
+        // Append the operatingRoomNo as a query parameter to the URL
+        let url = "/app/operation/registerOperation?operatingRoomNo=" + operatingRoomNo;
+        window.location.href = url;
+    }
 
    </script>
+   
+   
+   <script type="text/javascript">
+	    const sideBar = document.querySelector("#side-bar")
+	    const subMenus = document.querySelectorAll(".sub-menu");
+	    const thirdSidebars = document.querySelectorAll(".third-sidebar");
+	
+	    subMenus.forEach(subMenu => {
+	        subMenu.style.height = sideBar.offsetHeight + 'px';
+	    });
+	
+	    thirdSidebars.forEach(thirdSidebar => {
+	        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	    });
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	</script>
 
    
 </body>

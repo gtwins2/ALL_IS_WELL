@@ -34,6 +34,18 @@ public class OperationService {
 	public List<OperationVo> getRoomList(PageVo pv) {
 		return dao.getRoomList(sst, pv);
 	}
+
+	public int registerOperation(OperationVo vo) {
+		return dao.registerOperation(sst, vo);
+	}
+
+	public int registerParticipants(String[] participantArr) {
+		return dao.registerParticipants(sst, participantArr);
+	}
+
+	public String getPatientNo(String patientName) {
+		return dao.getPatientNo(sst, patientName);
+	}
 	
 	
 	
