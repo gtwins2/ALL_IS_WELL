@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
     #btn1{
         width: 245px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 900px;
         margin-top: 150px;
         font-size: 25px;
@@ -47,7 +48,7 @@
     #btn3{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -55,7 +56,7 @@
     #btn4{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -63,7 +64,7 @@
     #btn5{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -71,7 +72,7 @@
     #btn6{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -79,7 +80,7 @@
     #btn7{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -87,7 +88,7 @@
     #btn8{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -95,7 +96,7 @@
     #btn9{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -103,7 +104,7 @@
     #btn10{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -111,7 +112,7 @@
     #btn11{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -119,7 +120,7 @@
     #btn12{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -127,7 +128,7 @@
     #btn13{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -135,7 +136,7 @@
     #btn2{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
@@ -154,7 +155,7 @@
     #btn3{
         width: 180px;
         height: 70px;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         margin-left: 600px;
         margin-top: 300px;
     }
@@ -273,12 +274,12 @@
 <body>
 
 	<header>
-		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
 	</header>
 	
 	<div id="wrap">
 		<div>
-			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</div>
 		
 		<div id="wrapper">
@@ -289,7 +290,28 @@
 		        
 		    </div>
 		
-		    <div id="box2">
+			<c:forEach items="${voList}" var="vo">
+                         <div id="box2">
+					        <div class="rightbox"></div>
+					        <div class="updown2"></div>
+					        <button type="button" class="btnClass" id="btn2">왜과</button>
+					        <br>
+					        <br>
+					        <div id="namearea">
+					            ${vo.mname}
+					            <br>
+					            ${vo.dname}
+					            <br>
+					            ${vo.position}
+					            <br>
+					            ${vo.phoneNumber}
+					            <br>
+					            ${vo.email}
+					        </div>
+					    </div>
+            </c:forEach>
+		
+		   	<div id="box2">
 		        <div class="rightbox"></div>
 		        <div class="updown2"></div>
 		        <button type="button" class="btnClass" id="btn2">일반외과</button>
@@ -472,7 +494,7 @@
         </div>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
 
 <script>
@@ -525,4 +547,4 @@
     
 
 </body>
-</html>
+</html> --%>

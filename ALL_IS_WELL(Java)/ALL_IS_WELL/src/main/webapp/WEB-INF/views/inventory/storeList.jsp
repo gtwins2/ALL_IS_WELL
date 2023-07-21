@@ -11,7 +11,7 @@
         <style>
             .main-area {
    				 width: 1200px;
-    			height: 600px;
+    			height: 1100px;
     			margin: auto;
     			margin-top: 20px; /* Add this line */
 }
