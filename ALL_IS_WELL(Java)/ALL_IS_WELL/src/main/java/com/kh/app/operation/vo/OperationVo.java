@@ -15,4 +15,5 @@ public class OperationVo {
 	private String operationRecord;
 	private String operatingRoomStatus;
 	private String operatingRoomLocation;
+	private String participantNumbers;
 }

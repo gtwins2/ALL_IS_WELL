@@ -39,6 +39,9 @@ public class OperationController {
 		
 		List<OperationVo> roomList = service.getRoomList(pv);
 		
+		log.info(roomList.toString());
+		
+		model.addAttribute("pv", pv);
 		model.addAttribute("roomList", roomList);
 		
 		return "surgery/operationRoomList";
@@ -56,13 +59,48 @@ public class OperationController {
 	
 	//수술 일정 등록
 	@PostMapping("registerOperation")
-	public void registerOperation(OperationVo vo) {
-		//데이터꺼내기
-		//데이터뭉치기
-		//
+	public String registerOperation(OperationVo vo) {
+		log.info(vo.toString());
+		
+		//환자 이름 검색해서 번호 가져오기
+		String patientNo = service.getPatientNo(vo.getPatientName());
+		
+		if(patientNo == null) {
+			throw new IllegalStateException("그런 환자는 없음...");
+		}
+		
+		vo.setPatientNo(patientNo);
+		
+		
+		int result = service.registerOperation(vo);
+		
+		String participants = vo.getParticipantNumbers();
+		
+		String[] participantArr = participants.split(",\\s*");
+		
+		int participantResult = service.registerParticipants(participantArr);
+		
+		log.info("result : {}" , result);
+		
+		if(result == 0) {
+			throw new IllegalStateException("수술 일정 등록 실패....");
+		}
+		
+		if(participantResult == 0) {
+			throw new IllegalStateException("수술 인원 등록 실패...");
+		}
+		
+		
+		return "redirect:/operation/roomList";
+		
+		
 	}
 	
+	
+	
 	//수술 일정 목록 조회
+	
+	
 	
 	
 	//수술 인원 이름 검색
@@ -83,6 +121,8 @@ public class OperationController {
 		
 		return voList; 
 	}
+	
+	
 	
 	
 }

@@ -353,35 +353,37 @@
            	</div>
 
            	<div class="register-area">
-                <form action="" id="registerForm" method="POST">
+                <form action="/app/operation/registerOperation" id="registerForm" method="POST">
                     <div class="area">
                         <span>수술명</span>
-                        <input type="text" name="operationName">
+                        <input type="text" name="operationName" required>
                     </div>
                     
                     <div class="area">
                         <span>환자이름</span>
-                        <input type="text" name="patientName">
+                        <input type="text" name="patientName" required>
                     </div>
                 
                     <div class="area">   
                         <span>시작시간</span>
-                        <input type="datetime-local" name="startTime">
+                        <input type="datetime-local" name="startDate" required>
                     </div>
 
                     <div class="area">
                         <span>종료시간</span>
-                        <input type="datetime-local" name="endTime">
+                        <input type="datetime-local" name="endDate">
                     </div>
 
                     <div class="area">
                         <span>수술내용</span>
-                        <textarea name="" id="" cols="30" rows="10" name="operationRecord"></textarea>
+                        <textarea name="" id="" cols="30" rows="10" name="operationRecord" required></textarea>
                     </div>
 
                     <div class="area">
                         <span>참여인원</span>
-                        <textarea name="people" id="people" style="overflow: auto; resize: none;"></textarea>
+                        <textarea name="people" id="people" style="overflow: auto; resize: none;" readonly required></textarea>
+                        <textarea name="participantNumbers" id="participantNumbers" style="display: none;"></textarea>
+                       	 <input type="hidden" name="operatingRoomNo" id="operatingRoomNoInput">
                         
                     </div>
 
@@ -392,7 +394,7 @@
            	
            	<div class="btn-area">
             	<input type="submit" value="제출" id="addBtn">
-            	<button id="backBtn">뒤로가기</button>
+            	<button id="backBtn" onclick="goBack();">뒤로가기</button>
         	</div>
            	
            	
@@ -610,12 +612,15 @@
 		       const peopleTextarea = document.getElementById('people');
     			peopleTextarea.value = selectedParticipants.map(participant => participant.name + ' (' + participant.position + ')').join('\n');
 
-
+    			
+    			
+    			const participantNumbers = document.querySelector("#participantNumbers");
+    			participantNumbers.value = selectedParticipants.map(participant => participant.no).join(',');
+    			
+    			
                 closeModal();
 		    });
 		    
-		    
-		    const 
 		    
 		    
 		 
@@ -638,6 +643,28 @@
 	    thirdSidebars.forEach(thirdSidebar => {
 	        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	    });
+	    
+	    //뒤로가기 버튼
+	    function goBack() {
+        	window.history.back();
+   	 	}
+	    
+	    //수술실 방 번호 넘겨받기
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const operatingRoomNo = urlParams.get('operatingRoomNo');
+	    document.getElementById('operatingRoomNoInput').value = operatingRoomNo;
+	    
+	    
+	    //제출하기
+	    const submitBtn = document.getElementById('addBtn');
+	    submitBtn.addEventListener('click', function (event) {
+	        event.preventDefault(); 
+	        document.getElementById('registerForm').submit();
+	        
+	        alert("제출 완료");
+	    });
+	    
+	   
 	</script>
 	
 	
