@@ -3,20 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="proceeding">
-   <!-- <select id="getBoardCnt" resultType="int">
+   <select id="getBoardCnt" resultType="int">
       SELECT COUNT(NO) FROM PROCEEDING
    </select>
 
    <select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
       SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING      
    </select>
-	<select id="getBoardCnt" resultType="int">
-		SELECT COUNT(NO) FROM PROCEEDING
-	</select>
-
-	<select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
-		SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING		
-	</select>
 	
 	<insert id="write">
 		INSERT INTO PROCEEDING
@@ -35,7 +28,7 @@
 			#{content},
 			(TO_TIMESTAMP(${DUE_DATE))
 		)
-	</insert> -->
+	</insert>
 	
 	
 </mapper>
