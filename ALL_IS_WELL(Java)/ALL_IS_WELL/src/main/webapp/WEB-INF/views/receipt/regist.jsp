@@ -24,7 +24,7 @@ position: absolute;
 width: 167px;
 height: 59px;
 left: 450px;
-top: 209px;
+top: 120px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
@@ -36,7 +36,7 @@ color: #000000;
 #div02{
 	position: absolute;
 	left: 439px;
-	top: 306px;
+	top: 170px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
@@ -60,6 +60,7 @@ color: #000000;
 #div02-1 > div:nth-child(2) >input{
 	border: 1px solid #B2B2B2;
 	width: 80%;
+	font-size: 20px;
 }
 
 #div02-2{
@@ -70,6 +71,7 @@ color: #000000;
 #div02-3 > input{
 	border: 1px solid #B2B2B2;
 	width: 100px;
+	font-size: 20px;
 }
 #div02-2 > div:nth-child(2){
 	text-align: left;
@@ -78,6 +80,7 @@ color: #000000;
 #div02-2 > div > input{
 	border: 1px solid #B2B2B2;
 	width: 320px;
+	font-size: 20px;
 }
 #div02-2 > div > textarea{
 	border: 1px solid #B2B2B2;
@@ -90,7 +93,7 @@ color: #000000;
 	width: 127.61px;
 	height: 47.83px;
 	left: 1455px;
-	top: 950px;
+	top: 785px;
 	background: #5A8CF2;
 	border-radius: 5px;
 	font-family: 'Inter';
@@ -111,6 +114,10 @@ color: #000000;
 #div04{
 	left: 1455px;
 }
+
+#search{
+	font-size: 20px;
+}
 </style>
 </head>
 <body>
@@ -125,28 +132,28 @@ color: #000000;
 		</div>
 		<main>
 			<div id="div01">접수</div>
-			<form action="" method="post">
+			<form action="/app/receipt/regist" method="post">
 				
 				<div id="div02">
 					<div id="div02-1">
 						<div>이름</div>
-						<div><input type="text"></div>
-						<div id="div02-3">남<input type="checkbox" name="" id="">여<input type="checkbox"></div>
+						<div><input type="text" name="name"></div>
+						<div id="div02-3">남<input type="checkbox" name="gender" value="M">여<input type="checkbox" name="gender" value="F"></div>
 					</div>
 					<div id="div02-1">
 						<div>주민번호</div>
-						<div><input type="text"></div>
+						<div><input type="text" name="registrationNumber"></div>
 						<div></div>
 					</div>
 					<div id="div02-1">
 						<div>휴대전화</div>
-						<div><input type="text"></div>
+						<div><input type="text" name="phoneNumber"></div>
 						<div></div>
 					</div>
 					<div id="div02-2">
 						<div>이메일</div>
 						<div>
-							<input type="text">@
+							<input type="text" name="email">&nbsp;@
 							<label for="search" class="category-area">
 								<select name="search" id="search">
 									<option value="naver">naver.com</option>
@@ -158,13 +165,13 @@ color: #000000;
 					</div>
 					<div id="div02-2">
 						<div>특이사항</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><textarea name="caution" id="" cols="30" rows="10"></textarea></div>
 					</div>
 				</div>
 				
 				<input type="submit" id="div03" value="작성"></input>
-				<input type="submit" id="div04" value="뒤로가기"></input>
 			</form>
+			<button id="div04"  onclick="history.back()">뒤로가기</button>
 		</main>
 	</div>
 

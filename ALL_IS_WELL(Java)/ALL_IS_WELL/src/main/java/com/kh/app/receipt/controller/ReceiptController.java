@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.app.patient.vo.PatientVo;
 import com.kh.app.receipt.service.ReceiptService;
+import com.kh.app.receipt.vo.ReceiptVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,21 @@ public class ReceiptController {
 	@GetMapping("regist")
 	public String regist() {
 		return "receipt/regist";
+	}
+	
+	@PostMapping("regist")
+	public String regist(PatientVo vo, Model model) {
+		
+		int result = rs.regist(vo);
+		
+		if(result != 1) {
+			return "error/404page";
+		}
+		
+		List<PatientVo> voList = rs.list();
+		model.addAttribute("voList" ,voList);
+		
+		return "receipt/list";
 	}
 	
 	//ȯ����ȸ
@@ -46,9 +62,24 @@ public class ReceiptController {
 	
 	//��������
 	@GetMapping("registContent")
-	public String registContent() {
+	public String registContent(PatientVo vo) {
 		return "receipt/registContent";
 	}
+	
+	@PostMapping("registContent")
+	public String registContent(ReceiptVo vo, Model model) {
+		
+		int result = rs.registContent(vo);
+		
+		if(result != 1) {
+			return "error/404page";
+		}
+		
+		List<PatientVo> voList = rs.list();
+		model.addAttribute("voList" ,voList);
+		return "receipt/list";
+	}
+	
 	
 	//������ ȯ����ȸ
 	@GetMapping("registList")
