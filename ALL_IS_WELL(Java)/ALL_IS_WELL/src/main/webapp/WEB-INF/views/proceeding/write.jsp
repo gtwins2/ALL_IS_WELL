@@ -219,6 +219,10 @@
         </header>
 
 
+	
+	
+
+	
         <div id="content">
             <div id="wrap">
                 <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
@@ -235,10 +239,9 @@
                 <br>
                 <br>
                 <br>
-
-					<button id="sendRequest" type="submit">작성하기</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
-                <div class="list-area">
+				<form action="${root}/proceeding/write" method="post">
+					
+					<div class="list-area">
                     <table>
 
 					<br>
@@ -255,6 +258,9 @@
                         <textarea id="content-area2" cols="60" rows="10"></textarea>
                     </div>
                     
+                    
+                    
+     
 					<br>
 					<br>
 					<br>
@@ -267,6 +273,11 @@
 
                     </table>
                 </div>
+					
+					<button id="sendRequest" type="submit">작성하기</button>
+                
+				</form> 
+					<button id="sendBack" onclick="backPage();">뒤로가기</button>
                 <br>
                 <br>
                 <br>
@@ -286,6 +297,10 @@
                 checkboxes.forEach((checkbox) => {
                     checkbox.checked = selectAll.checked;
                 })
+            }
+            
+            function backPage(){
+            	location.href = '${root}/common/member/home';
             }
             
             

@@ -1,20 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ERRORPAGE</title>
+<style>
+	#wrap{
+	width: 1200px;
+	height: 900px;
+	}
+	
+	#img{
+		width: 1900px;
+		height: 920px;
+	}
+</style>
 </head>
 <body>
 
 	<div id="wrap">
-		
-		<%--  <%@ include file="" %>  --%>
-		
 		<main>
-			<h1>페이지를 찾을 수 없습니다.</h1>
-			<h3>요청하신 URL을 다시 확인해주세요.</h3>
+		<img src="/app/resources/static/img/error/NOTFOUNDERROR.JPG" alt="404ERROR" id="img">
 		</main>
 	</div>
 

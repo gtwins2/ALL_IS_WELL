@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -190,30 +191,34 @@
 			}
 
             .number-area {
-                text-align: center;
-            }
+		        text-align: center;
+		        margin-top: 20px;
+		        margin-bottom: 20px;
+		    }
+		
+		    .number-area a {
+		        display: inline-block;
+		        margin: 5px;
+		        padding: 8px 12px;
+		        text-decoration: none;
+		        border: none;
+		        color: inherit;
+		        font-size: 15px;
+		    }
+		
+		    #previous {
+		        color: #5A8CF2;
+		    }
+		
+		    #after {
+		        color: #5A8CF2;
+		    }
+		
+		    .number-area a:hover {
+		        color: #5A8CF2;
+		        cursor: pointer;
+		    }
 
-            .number-area a {
-                display: inline-block;
-                margin: 5px;
-                padding: 8px 12px;
-                text-decoration: none;
-                border: none;
-                color: inherit;
-                font-size: 20px;
-            }
-
-            #previous {
-                color: #5A8CF2;
-            }
-
-            #after {
-                color: #5A8CF2;
-            }
-
-            .number-area a:hover {
-                color: #5A8CF2;
-            }
 
             .list-area th input[type="checkbox"] {
                 appearance: none;
@@ -300,7 +305,7 @@
                 <br>
                 <br>
 
-					<button id="sendRequest" onclick="write();">글쓰기</button>
+					<button id="sendRequest" onclick="sendRequest();">글쓰기</button>
                 <div class="list-area">
                     <table>
                         <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
@@ -324,17 +329,25 @@
                 <br>
                 <br>
 
-                <div class="number-area">
-                    <a id="previous" href="">
-                         </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > 
-                         </a>
-                </div>
+
+
+            <c:set var="range" value="2" /> 
+            <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
+            <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
+            <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
+
+            <div class="number-area">
+                <c:if test="${pv.currentPage > 1 }">
+                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
+                <c:if test="${pv.maxPage > 1 }"> 
+                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${pv.currentPage < pv.maxPage }">
+                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+                </c:if>
+            </div>
             </div>
 
         </div>
@@ -364,13 +377,27 @@
                 thirdSidebar.style.height = sideBar.offsetHeight + 'px';
             });
             
-            var sendRequest = document.querySelector("#sendRequest");
-           	sendRequest.
+            
            	
-           	function write(){
+           	function sendRequest(){
            		location.href="${root}/proceeding/write";
            	}
             
+           	
+            const pageBtn = document.querySelectorAll('.pageBtn');
+
+            for (let btn of pageBtn) {
+                if (btn.innerHTML == '${pv.currentPage}') {
+                    btn.style.color = '#d9d9d9';
+                }
+            }
+
+            function pageMove(pageNumber) {
+                let url = new URL(window.location.href);
+                url.searchParams.set('page', pageNumber);
+                window.location.href = url.href;
+            }
+
         </script>
     </body>
 

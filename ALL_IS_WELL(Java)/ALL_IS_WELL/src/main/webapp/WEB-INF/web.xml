@@ -3,6 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- 필터 -->
+	<filter>
+		<filter-name>doFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>doFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -31,11 +42,16 @@
 	</servlet-mapping>
 
 	<!-- 404page -->
-	<!-- <error-page>
+	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error/404page.jsp</location>
-	</error-page> -->
+	</error-page>
 
+	<!-- 500page -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error/500page.jsp</location>
+	</error-page>
 	
 
 </web-app>
