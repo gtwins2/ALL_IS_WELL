@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.page.vo.PageVo;
 
@@ -21,6 +22,11 @@ public class ApprovalDao {
 	public List<AttendanceVo> getAttendanceList(SqlSessionTemplate sst, PageVo pv, String no) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
 		return sst.selectList("approval.getAttendanceList", no, rb);
+	}
+
+	//휴가 작성 로직
+	public int writeVacation(SqlSessionTemplate sst, ApprovalVo vo) {
+		return sst.insert("approval.writeVacation", vo);
 	}
 
 }

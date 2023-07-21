@@ -10,16 +10,18 @@
 	
 	#wrap{
 		width: 1920px;
-		height: 1500px;
 		display: grid;
-		grid-template-columns: 300px 1620px;
+		grid-template-columns: 150px 1770px;
 	}
 
+    main{
+        min-height: 100%;
+    }
+
     .main-area {
-        width: 1200px;
-        height: 80%;
+        width: 70%;
+        min-height: 80%;
         margin: auto;
-        margin-top: 100px;
     }
 
     .title-area {
@@ -305,8 +307,17 @@
 		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
     <script>
-        const sideBar = document.querySelector("#side-bar");
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
 
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
     </script>
 </body>
 </html>

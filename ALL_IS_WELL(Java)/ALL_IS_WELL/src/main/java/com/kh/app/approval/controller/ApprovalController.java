@@ -2,20 +2,24 @@ package com.kh.app.approval.controller;
 
 import java.util.List;
 
+import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.app.approval.service.ApprovalService;
+import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,6 +33,9 @@ public class ApprovalController {
 	public void dtaftList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model, HttpSession session) {
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		/*
+		 * if(loginMember == null) { throw new LoginException(); }
+		 */
 		String no = loginMember.getNo();
 		
 		int listCount = as.getAttendanceListCnt(no);
@@ -39,8 +46,10 @@ public class ApprovalController {
 		
 		List<AttendanceVo> voList = as.getAttendanceList(pv, no);
 		
+		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
+	
 		
 	}
 
@@ -66,6 +75,24 @@ public class ApprovalController {
 	@GetMapping("writeVacation")
 	public void writeVacation() {
 		
+	}
+	
+	// 기안한 문서(휴가 작성)
+	@PostMapping("writeVacation")
+	public String writeVacation(ApprovalVo vo, Model model, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		String no = loginMember.getNo();
+		
+		vo.setNo(no);
+		
+		int result = as.writeVacation(vo);
+		
+		if(result != 1) {
+			return "";
+		}
+		
+		return "approval/draftList";
 	}
 
 	// 결재해야할 문서(출장 화면)

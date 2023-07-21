@@ -6,10 +6,42 @@
 	
 	<select id="getAttendanceListCnt" resultType="int">
 		SELECT COUNT(*)
-		FROM APPROVER
-		WHERE APPROVER_NO = #{no}
+		FROM APPROVAL_DOCUMENT
+		WHERE MEMBER_NO = #{no}
 	</select>
 	
-	<select id="getAttendanceList" resultType=""></select>
+	<select id="getAttendanceList" resultType="com.kh.app.approval.vo.ApprovalVo">
+	    SELECT
+	        AD.NO,
+	        AD.MEMBER_NO,
+	        AD.CREATE_DATE,
+	        AD.TITLE,
+	        M.NAME AS MEMBER_NAME,
+	        AD.STATUS
+	    FROM APPROVAL_DOCUMENT AD
+	    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
+	    JOIN APPROVER A ON M.NO = A.APPROVER_NO
+	    WHERE MEMBER_NO = #{no}
+	</select>
+	
+<!-- 	<insert id="writeVacation">
+		INSERT INTO
+		VACATION_APPROVAL_DOCUMENT
+		(
+			NO,
+			CONTENT,
+			USE_DATE,
+			START_DATE,
+			END_DATE
+		)
+		VALUES
+		(	
+			SEQ_VACATION_APPROVAL_DOCUMENT_NO.NEXTVAL,
+			#{content},
+			#{use_date},
+			#{start_date},
+			#{end_date}
+		)
+	</insert> -->
 	
 </mapper>
