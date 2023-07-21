@@ -115,12 +115,12 @@ hr{
 				
 				<div id="div02">
 					<div>
-						<div>제목</div>
-						<div><input type="text"></div>
+						<div>환자 이름</div>
+						<div><input type="text">${vo.no}</div>
 					</div>
 					<div>
-						<div>내용</div>
-						<div><input type="text"></div>
+						<div>증상</div>
+						<div><input type="text" name="symptom"></div>
 					</div>
 				</div>
 				

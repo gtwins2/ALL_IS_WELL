@@ -204,6 +204,7 @@
     line-height: 30px;
     color: #FFFFFF;
     background: #5A8CF2;
+    border: 0px;
 }
 
 #div01:hover{
@@ -254,7 +255,7 @@
                         <th></th>
 						<c:forEach items="${voList}" var="vo">
                         <tr>
-                            <td id="td">${vo.no}</td>
+                            <td hidden>${vo.no}</td>
                             <td>${vo.name}</td>
                             <td>${vo.registrationNumber}</td>
                             <td>${vo.gender}</td>
@@ -310,21 +311,19 @@
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
 
-	const td = document.querySelector('#td');
-	const btn = document.querySelector('#div01');
-	const btn01 = document.querySelector('#btn01');
-	const table = document.querySelector('table');
-	btn.addEventListener('click', (event)=>{
-		//글번호 가져와서
-		const no = event.target.parentNode.parentNode.children[0].innerText;
-
-		//요청보내기
-		location.href='/app/receipt/registContent?no=' + no;
-
-
-	});
-
+	const tr = document.querySelectorAll('tr');
+	const btn01 = document.querySelectorAll('button');
+    for(var i = 0; i < btn01.length; i++){
+        btn01[i].addEventListener('click', (event)=>{
+            const no = event.target.parentNode.parentNode.children[0].innerText;
+            location.href='/app/receipt/registContent?no=' + no;
+            console.log(event.target.parentNode.parentNode.children[0]);
+        
+      
+        });
+    }
+        
     
-
+   
     
 </script>

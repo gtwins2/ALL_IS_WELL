@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.app.patient.vo.PatientVo;
 import com.kh.app.receipt.dao.ReceiptDao;
+import com.kh.app.receipt.vo.ReceiptVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,14 @@ public class ReceiptService {
 
 	public List<PatientVo> list() {
 		return dao.list(sst);
+	}
+
+	public int regist(PatientVo vo) {
+		return dao.regist(sst, vo);
+	}
+
+	public int registContent(ReceiptVo vo) {
+		return dao.registContent(sst, vo);
 	}
 
 }
