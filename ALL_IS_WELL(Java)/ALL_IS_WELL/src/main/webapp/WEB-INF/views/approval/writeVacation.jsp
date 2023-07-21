@@ -7,29 +7,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-   
-   #wrap{
-      width: 1920px;
-      height: 1500px;
-      display: grid;
-      grid-template-columns: 300px 1620px;
-   }
-
-   .main-area {
-        width: 1200px;
-        height: 85%;
-        margin: auto;
-        margin-top: 100px;
+    #wrap {
+        width: 1920px;
+        display: grid;
+        grid-template-columns: 150px 1770px;
     }
 
-    #listBtnDiv{
+    main {
+        min-height: 100%;
+    }
+
+    .main-area {
+        width: 80%;
+        min-height: 80%;
+        margin: auto;
+    }
+
+    #listBtnDiv {
         text-align: right;
         padding-right: 10%;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
-    #listBtn{
+    #listBtn {
         width: 80px;
         font-size: 20px;
         color: white;
@@ -42,68 +43,73 @@
         font-weight: bold;
     }
 
-    #listBtn:hover{
+    #listBtn:hover {
         background-color: #555;
         transition: 0.7s;
     }
 
-    #vacation-application{
+    #vacation-application {
         width: 80%;
         height: 77%;
         border: 1px solid black;
         margin: auto;
     }
 
-    #title{
+    #title {
         padding-top: 50px;
         text-align: center;
-        font-size: 36px;
+        font-size: 20px;
     }
 
-    #contain-top{
+    #contain-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        margin-top: 150px;
+        margin-top: 50px;
     }
 
-    #info{
+    #info {
         border-collapse: collapse;
-        width: 300px;
-        height: 200px;
-        font-size: 20px;
+        width: 250px;
+        height: 150px;
+        font-size: 15px;
         margin-left: 100px;
         text-align: center;
     }
 
-    #approval{
+    #approval {
         border-collapse: collapse;
         text-align: center;
-        width: 600px;
-        height: 300px;
+        width: 550px;
+        height: 250px;
     }
 
-    #approval tr th{
-        font-size: 25px;
+    #approval tr th:first-child{
+        width: 40px;
     }
 
-    #approval-title{
+    #approval tr th {
+        font-size: 15px;
+    }
+
+    #approval-title {
         width: 185px;
         height: 40px;
     }
 
-    #stamp{
+    #stamp {
         border-bottom: none;
     }
 
-    #stamp td{
-        height: 180px;
+    #stamp td {
+        height: 140px;
     }
 
-    #reasonDiv{
+    #reasonDiv {
         margin: auto;
-        margin-top: 50px;
-        width: 1000px;
-        height: 500px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 80%;
+        height: 400px;
 
         border: 1px solid black;
 
@@ -112,31 +118,42 @@
         grid-template-rows: 1fr 9fr;
     }
 
-    #reasonDiv div:not(:nth-child(2), :nth-child(4)){
+    #reasonDiv div:not(:nth-child(2), :nth-child(4)) {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bold;
     }
 
-    .top, .top-side{
+    .top, .top-side {
         border-bottom: 1px solid black;
+        height: 80px;
     }
 
-    .top, .bottom{
+    .top, .bottom {
         border-right: 1px solid black;
     }
 
-    #buttonDiv{
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 80px;
+    .top-side {
+        display: flex;
+        align-items: center;
     }
 
-    #approvalBtn{
+    #start-date, #end-date {
+        font-size: 25px;
+        margin-left: 10px;
+    }
+
+    #buttonDiv {
+        text-align: right;
+        margin-right: 180px;
+        margin-top: 40px;
+    }
+
+    #approvalBtn {
         width: 100px;
         font-size: 20px;
         color: white;
@@ -149,59 +166,9 @@
         font-weight: bold;
     }
 
-    #approvalBtn:hover{
+    #approvalBtn:hover {
         background-color: #555;
         transition: 0.7s;
-    }
-
-    #refuseBtn{
-        width: 100px;
-        font-size: 20px;
-        color: black;
-        background-color: #C8C8C8;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    #refuseBtn:hover{
-        background-color: black;
-        color: white;
-        transition: 0.7s;
-    }
-
-    .jw-modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        padding-top: 100px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #modalContent {
-        width: 100%;
-        height: 400px;
-        border: 1px solid #ccc;
-        padding: 8px;
-        margin-bottom: 20px;
     }
 
     .button-container {
@@ -209,43 +176,6 @@
         justify-content: flex-end;
     }
 
-    #submitBtn{
-        width: 100px;
-        font-size: 20px;
-        color: white;
-        background-color: #5A8CF2;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    #submitBtn:hover{
-        background-color: #555;
-        transition: 0.7s;
-    }
-
-    #cancelBtn{
-        width: 100px;
-        font-size: 20px;
-        color: black;
-        background-color: #C8C8C8;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    #cancelBtn:hover{
-        background-color: black;
-        color: white;
-        transition: 0.7s;
-    }
 
 </style>
 </head>
@@ -261,7 +191,7 @@
         </div>
         <div id="main-area">
             <div id="listBtnDiv">
-                <button id="listBtn">목록</button>
+                <button id="listBtn" onclick="back();">목록</button>
             </div>
             <div id="vacation-application">
                 <div id="title">휴가신청서</div>
@@ -271,10 +201,6 @@
                             <tr>
                                 <th>문서번호</th>
                                 <td>150</td>
-                            </tr>
-                            <tr>
-                                <th>작성일자</th>
-                                <td>2023-07-05(월)</td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
@@ -312,22 +238,24 @@
                         </table>
                     </div>
                 </div>
-                <div id="reasonDiv">
-                    <div class="top">휴가기간</div>
-                    <div class="top-side">
-                        <input type="date" style="font-size: 25px; margin-left: 10px; margin-top: 5px;" id="start-date">
-                        ~~
-                        <input type="date" style="font-size: 25px;" id="end-date">
-                    </div>
-                    <div class="bottom">사유</div>
-                    <div class="bottom-side">
-                        <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;"></textarea>
+                <form action="${root}/approval/writeVacation" method="post">
+                    <div id="reasonDiv">
+                        <div class="top">휴가기간</div>
+                        <div class="top-side">
+                            <input type="date" style="font-size: 25px; margin-left: 10px; margin-top: 5px;" id="start-date">
+                            ~~
+                            <input type="date" style="font-size: 25px;" id="end-date">
+                        </div>
+                        <div class="bottom">사유</div>
+                        <div class="bottom-side">
+                            <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;"></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="buttonDiv">
-                <button id="approvalBtn">작성</button>
-            </div>
+                <div id="buttonDiv">
+                    <button id="approvalBtn" type="submit">작성</button>
+                </div>
+                </form>
         </div>
     </main>
     <footer>
@@ -335,6 +263,19 @@
     </footer>
 
     <script>
+
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
+
         const startDate = document.querySelector("#start-date");
         const endDate = document.querySelector("#end-date");
         const approvalBtn = document.querySelector("#approvalBtn");
@@ -352,11 +293,9 @@
             validateDates();
         });
 
-        const listBtn = document.querySelector("#listBtn");
-
-        listBtn.addEventListener("click", function(){
-            window.location.href = "/app/approval/draft_list";
-        });
+        function back(){
+            window.location.href = "${root}/approval/draftList";
+        }
 
     </script>
 

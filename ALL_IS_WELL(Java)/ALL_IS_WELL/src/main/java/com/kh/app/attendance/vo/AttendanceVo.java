@@ -2,11 +2,10 @@ package com.kh.app.attendance.vo;
 
 import java.sql.Date;
 
-import lombok.Builder;
 import lombok.Data;
+import oracle.sql.DATE;
 
 @Data
-@Builder
 public class AttendanceVo {
 	
 	private String no;
@@ -15,4 +14,10 @@ public class AttendanceVo {
 	private Date presenceTime;
 	private Date leaveTime;
 	private String status;
+	
+	//휴가문서
+	private String content;
+	private Date useDate;
+	private Date startDate;
+	private Date endDate;
 }

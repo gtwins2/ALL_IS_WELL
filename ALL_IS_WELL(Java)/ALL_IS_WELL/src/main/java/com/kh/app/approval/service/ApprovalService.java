@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.app.approval.dao.ApprovalDao;
+import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.page.vo.PageVo;
 
@@ -26,6 +27,11 @@ public class ApprovalService {
 
 	public List<AttendanceVo> getAttendanceList(PageVo pv, String no) {
 		return dao.getAttendanceList(sst, pv, no);
+	}
+
+	//휴가 작성 로직
+	public int writeVacation(ApprovalVo vo) {
+		return dao.writeVacation(sst, vo);
 	}
 
 }

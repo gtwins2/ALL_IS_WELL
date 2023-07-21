@@ -64,7 +64,7 @@
 <body>
     <div id="header">
         <div id="header-left">
-            <img src="/app/resources/static/img/logo/logo2.png" alt="로고">
+            <img src="/app/resources/static/img/logo/logo2.png" alt="로고" onclick="">
         </div>
         <div id="header-center">
 

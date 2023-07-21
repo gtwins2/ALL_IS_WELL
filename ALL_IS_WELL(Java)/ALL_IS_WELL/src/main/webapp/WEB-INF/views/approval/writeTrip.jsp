@@ -9,17 +9,19 @@
 <style>
    
    #wrap{
-      width: 1920px;
-      height: 1500px;
-      display: grid;
-      grid-template-columns: 300px 1620px;
-   }
+		width: 1920px;
+		display: grid;
+		grid-template-columns: 150px 1770px;
+	}
 
-   .main-area {
-        width: 1200px;
-        height: 85%;
+    main{
+        min-height: 100%;
+    }
+
+    .main-area {
+        width: 70%;
+        min-height: 80%;
         margin: auto;
-        margin-top: 100px;
     }
 
     #listBtnDiv{
@@ -335,6 +337,19 @@
     </footer>
 
     <script>
+
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
+
         const startDate = document.querySelector("#start-date");
         const endDate = document.querySelector("#end-date");
         const approvalBtn = document.querySelector("#approvalBtn");

@@ -15,6 +15,7 @@
 		FROM ATTENDANCE A
 		JOIN MEMBER M ON A.MEMBER_NO = M.NO
 		WHERE MEMBER_NO = #{no}
+		ORDER BY PRESENCE_TIME DESC
 	</select>
 	
 	<select id="getAttendanceListCnt" resultType="int">
@@ -34,12 +35,13 @@
 		SELECT 
 		    A.NO,
 		    MEMBER_NO,
-		    M.NAME,
+		    M.NAME AS MEMBER_NAME,
 		    PRESENCE_TIME,
 		    LEAVE_TIME,
 		    A.STATUS
 		FROM ATTENDANCE A
 		JOIN MEMBER M ON A.MEMBER_NO = M.NO
+		ORDER BY PRESENCE_TIME DESC
 	</select>
 	
 	

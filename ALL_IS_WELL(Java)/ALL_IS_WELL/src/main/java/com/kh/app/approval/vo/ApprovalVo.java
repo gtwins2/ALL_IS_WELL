@@ -1,15 +1,17 @@
 package com.kh.app.approval.vo;
 
-import lombok.Builder;
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
-@Builder
 public class ApprovalVo {
 
 	private String no;
+	private Date createDate;
 	private String memberNo;
-	private String createDate;
+	private String status;
 	private String title;
+	private String memberName;
 	
 }
