@@ -33,7 +33,8 @@ public class LoginController {
 		session.setAttribute("loginMember", loginMember);
 
 		if(loginMember == null) {
-			return "error/404page";
+			return "redirect:/member/login";
+			
 		}
 
 		return "main/Mmain";

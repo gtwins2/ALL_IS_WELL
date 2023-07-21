@@ -86,6 +86,10 @@ color: #000000;
 	border: 1px solid #B2B2B2;
 	width: 80%;
 	resize: none;
+	height: 150px;
+	font-size: 20px;
+	font-family: 'Inter';
+	font-style: normal;
 }
 
 #div03, #div04{

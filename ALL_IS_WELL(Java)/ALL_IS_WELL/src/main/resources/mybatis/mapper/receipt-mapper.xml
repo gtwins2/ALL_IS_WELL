@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="receipt">
+	<!-- 환자 조회 -->
 	<select id="selectList" resultType="com.kh.app.patient.vo.PatientVo">
 		SELECT 
 			NO
@@ -14,6 +15,11 @@
 			,CAUTION	
 		FROM PATIENT
 		
+	</select>
+	
+	<select id="getListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM PATIENT
 	</select>
 	
 	<select id="selectSearchList" resultType="com.kh.app.patient.vo.PatientVo">
@@ -30,6 +36,7 @@
 		OR GENDER=#{gender}		
 	</select>
 	
+	<!-- 환자 신규 등록 -->
 	<insert id="regist">
 		INSERT INTO PATIENT
 		(
@@ -51,12 +58,11 @@
 			,#{email}
 			,#{caution}
 		)
-		
-	
 	</insert>
 	
+	<!-- 환자 증상 내용 -->
 	<insert id="registContent">
-		INSERT INTO PATIENT
+		INSERT INTO RECEIPT
 		(
 			NO
 			,PATIENT_NO
@@ -64,9 +70,24 @@
 		)
 		VALUES
 		(
-			SEQ_PATIENT_NO.NEXTVAL
+			SEQ_RECEIPT_NO.NEXTVAL
 			,#{patientNo}
 			,#{symptom}
 		)
 	</insert>
+	
+	<!-- 환자 선택 -->
+	<select id="selectOneList" resultType="com.kh.app.patient.vo.PatientVo">
+		SELECT 
+			NO
+			,NAME
+			,GENDER
+			,REGISTRATION_NUMBER
+			,PHONE_NUMBER
+			,EMAIL
+			,CAUTION	
+		FROM PATIENT
+		WHERE NAME = #{name}
+		AND NO = #{no}
+	</select>
 </mapper>
