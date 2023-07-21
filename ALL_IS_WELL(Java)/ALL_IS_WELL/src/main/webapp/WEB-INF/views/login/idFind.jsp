@@ -9,12 +9,17 @@
 </head>
 <style>
 
+body, *{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 1000px;
-    height: 700px;
-    border: 1px solid;
+    width: 99%;
+    height: 99%;
     margin: auto;
 }
 
@@ -33,11 +38,11 @@ main{
     font-weight: 700;
     font-size: 50px;
     margin-top: 250px;
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 #div01-2{
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 
@@ -49,7 +54,7 @@ main{
 
 #div02-2{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr 0.5fr;
 }
 
 input{
@@ -57,6 +62,7 @@ input{
     border-bottom:3px solid #5A8CF2;
     width: 80%;
     font-size: 30px;
+    height: 80%;
 }
 
 #login{
@@ -149,13 +155,13 @@ a{
             <div id="div02-1">
                 <div><img src="" alt=""></div>
             </div>
-            <form action="#" id="div02-2">
+            <div id="div02-2">
                 <div><input type="text" placeholder="이름을 입력하세요"></div>
                 <div><input type="text" placeholder="이메일을 입력하세요"></div>
                 <div><input type="text" placeholder="전화번호를 입력하세요"></div>
-                <button id="login">아이디 찾기</button>
+                <button id="login"">아이디 찾기</button>
                 <div></div>
-            </form>
+            </div>
             
         </div>
 
@@ -179,8 +185,10 @@ a{
     const modal = document.querySelector('#modal');
     const body = document.querySelector('main');
 
-    login.addEventListener('click', () => {
-        modal.style.display = 'grid';
-        body.style. opacity = 0.5;
-      });
+
+        login.addEventListener('click', () => {
+            modal.style.display = 'grid';
+            body.style. opacity = 0.5;
+        });
+    
 </script>

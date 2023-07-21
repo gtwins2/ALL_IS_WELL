@@ -2,12 +2,18 @@ package com.kh.app.receipt.controller;
 
 import java.util.List;
 
+import javax.security.auth.login.LoginException;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.app.member.vo.MemberVo;
+import com.kh.app.page.vo.PageVo;
 import com.kh.app.patient.vo.PatientVo;
 import com.kh.app.receipt.service.ReceiptService;
 import com.kh.app.receipt.vo.ReceiptVo;
@@ -28,7 +34,8 @@ public class ReceiptController {
 	}
 	
 	@PostMapping("regist")
-	public String regist(PatientVo vo, Model model) {
+	public String regist(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, PatientVo vo) {
 		
 		int result = rs.regist(vo);
 		
@@ -36,25 +43,50 @@ public class ReceiptController {
 			return "error/404page";
 		}
 		
-		List<PatientVo> voList = rs.list();
+		int listCount = rs.getPatientListCnt();
+	    int pageLimit = 5;
+	    int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<PatientVo> voList = rs.list(pv);
+		model.addAttribute("pv", pv);
 		model.addAttribute("voList" ,voList);
 		
-		return "receipt/list";
+		return "redirect:/receipt/list";
 	}
 	
 	//ȯ����ȸ
 	@GetMapping("list")
-	public String list(Model model) {
+	public String list(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session) {
+		 
+		 MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		 if(loginMember == null) {
+			 
+		 }
+		 
+		 int listCount = rs.getPatientListCnt();
+	     int pageLimit = 5;
+	     int boardLimit = 10;
+	      
+	     PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<PatientVo> voList = rs.list();
+		List<PatientVo> voList = rs.list(pv);
+		model.addAttribute("pv", pv);
 		model.addAttribute("voList" ,voList);
+
 		return "receipt/list";
 	}
 	
 	@PostMapping("list")
 	public String list(PatientVo vo, Model model) {
-		List<PatientVo> voList = rs.search(vo);
+//		List<PatientVo> voList = rs.search(vo);
+//		model.addAttribute("voList" ,voList);
+		
+		List<PatientVo> voList = rs.selectOneList(vo);
 		model.addAttribute("voList" ,voList);
+		
 		System.out.println(voList);
 		
 		return "receipt/registContent";
@@ -62,22 +94,35 @@ public class ReceiptController {
 	
 	//��������
 	@GetMapping("registContent")
-	public String registContent(PatientVo vo) {
+	public String registContent() {
+		
 		return "receipt/registContent";
 	}
 	
 	@PostMapping("registContent")
-	public String registContent(ReceiptVo vo, Model model) {
-		
+	public String registContent(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, ReceiptVo vo) {
+		System.out.println("1");
 		int result = rs.registContent(vo);
-		
+		System.out.println("2");
 		if(result != 1) {
 			return "error/404page";
 		}
+
+		int listCount = rs.getPatientListCnt();
+	    int pageLimit = 5;
+	    int boardLimit = 10;
 		
-		List<PatientVo> voList = rs.list();
+	    System.out.println("3");
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+	    System.out.println("4");
+
+		List<PatientVo> voList = rs.list(pv);
 		model.addAttribute("voList" ,voList);
-		return "receipt/list";
+		model.addAttribute("pv", pv);
+	    System.out.println("5");
+
+		return "redirect:/receipt/registList";
 	}
 	
 	

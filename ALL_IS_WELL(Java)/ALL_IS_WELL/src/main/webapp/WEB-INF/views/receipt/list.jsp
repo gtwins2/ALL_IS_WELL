@@ -10,17 +10,17 @@
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
         
-        #content{
-	width: 1920px;
-	height: 750px;
-	display: grid;
-	grid-template-columns: 150px 1770px;
+#content{
+    width: 1920px;
+    height: 750px;
+    display: grid;
+    grid-template-columns: 150px 1770px;
 }
-            .main-area {
-   				 width: 1200px;
-    			height: 600px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
+
+.main-area {
+    width: 70%;
+    min-height: 80%;
+    margin: auto;
 }
 
             .title-area {
@@ -51,10 +51,6 @@
             }
 
 
-
-            .list-area {
-                margin-top: 20px;
-            }
 
 
             .category-area {
@@ -102,14 +98,11 @@
                 border-collapse: collapse;
                 width: 100%;
 
-
-                width: 100%;
-
             }
 
             .list-area th,
             .list-area td {
-                padding: 20px;
+                padding: 10px;
                 border-bottom: 1px solid #ddd;
                 text-align: center;
             }
@@ -117,7 +110,6 @@
             .list-area th {
                 font-size: 20px;
                 font-weight: normal;
-
             }
 
            
@@ -132,31 +124,34 @@
     overflow: hidden;
 }
 
-            .number-area {
-                text-align: center;
-            }
+.number-area {
+        text-align: center;
+        margin-top: -30px;
+}
 
-            .number-area a {
-                display: inline-block;
-                margin: 5px;
-                padding: 8px 12px;
-                text-decoration: none;
-                border: none;
-                color: inherit;
-                font-size: 20px;
-            }
+.number-area a {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border: none;
+    color: inherit;
+    font-size: 15px;
+}
 
-            #previous {
-                color: #5A8CF2;
-            }
+#previous {
+    color: #5A8CF2;
+}
 
-            #after {
-                color: #5A8CF2;
-            }
+#after {
+    color: #5A8CF2;
+}
 
-            .number-area a:hover {
-                color: #5A8CF2;
-            }
+.number-area a:hover {
+    color: #5A8CF2;
+    cursor: pointer;
+}
+
 
             .list-area th input[type="checkbox"] {
                 appearance: none;
@@ -211,6 +206,9 @@
 	background-color: #555;
 	transition: 0.7s;
 }
+
+
+
         </style>
     </head>
 
@@ -254,19 +252,22 @@
                         <th>이메일</th>
                         <th></th>
 						<c:forEach items="${voList}" var="vo">
-                        <tr>
-                            <td hidden>${vo.no}</td>
-                            <td>${vo.name}</td>
-                            <td>${vo.registrationNumber}</td>
-                            <td>${vo.gender}</td>
-                            <td>${vo.email}</td>
-                            <td id="btn01"><button id="div01" onclick="next();" >접수</button></td>
-                        </tr>
+                            
+                            <form action="/app/receipt/list" method="post">
+
+                                <tr>
+                                    <input type="text" value="${vo.no}" name="no">
+                                    <input type="text" value="${vo.name}" name="name">
+                                    <td hidden>${vo.no}</td>
+                                    <td>${vo.name}</td>
+                                    <td>${vo.registrationNumber}</td>
+                                    <td>${vo.gender}</td>
+                                    <td>${vo.email}</td>
+                                    <td id="btn01"><input type="submit" id="div01" value="접수"></input></td>
+                                </tr>
+                            </form>
+                                
 						</c:forEach>
-
-                        
-
-
 
                     </table>
                 </div>
@@ -274,15 +275,24 @@
                 <br>
                 <br>
 
+                
+                <c:set var="range" value="2" /> 
+                <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
+                <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
+                <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
+    
                 <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
+                    <c:if test="${pv.currentPage > 1 }">
+                        <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
+                    <c:if test="${pv.maxPage > 1 }"> 
+                        <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                            <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${pv.currentPage < pv.maxPage }">
+                        <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+                    </c:if>
+                    
                 </div>
             </div>
 
@@ -316,14 +326,28 @@
     for(var i = 0; i < btn01.length; i++){
         btn01[i].addEventListener('click', (event)=>{
             const no = event.target.parentNode.parentNode.children[0].innerText;
-            location.href='/app/receipt/registContent?no=' + no;
+            const name = event.target.parentNode.parentNode.children[1].innerText;
+            location.href='/app/receipt/registContent?no=' + no +"&name=" + name;
             console.log(event.target.parentNode.parentNode.children[0]);
         
       
         });
     }
         
-    
+    const pageBtn = document.querySelectorAll('.pageBtn');
+
+        for (let btn of pageBtn) {
+            if (btn.innerHTML == '${pv.currentPage}') {
+                btn.style.color = '#d9d9d9';
+            }
+        }
+
+        function pageMove(pageNumber) {
+            let url = new URL(window.location.href);
+            url.searchParams.set('page', pageNumber);
+            window.location.href = url.href;
+    }
+
    
     
 </script>

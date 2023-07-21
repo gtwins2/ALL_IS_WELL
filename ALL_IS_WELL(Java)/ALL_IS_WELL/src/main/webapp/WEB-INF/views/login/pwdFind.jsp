@@ -9,12 +9,17 @@
 </head>
 <style>
 
+body, *{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 1000px;
-    height: 700px;
-    border: 1px solid;
+    width: 99%;
+    height: 99%;
     margin: auto;
 }
 
@@ -33,11 +38,11 @@ main{
     font-weight: 700;
     font-size: 50px;
     margin-top: 250px;
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 #div01-2{
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 
@@ -52,7 +57,13 @@ main{
     grid-template-rows: 1fr 1fr 1fr 0.5fr;
 }
 
-
+input{
+    border: 0px;
+    border-bottom:3px solid #5A8CF2;
+    width: 80%;
+    font-size: 30px;
+    height: 80%;
+}
 
 #login{
     width: 80%;
@@ -166,12 +177,12 @@ input{
             <div id="div02-1">
                 <div><img src="" alt=""></div>
             </div>
-            <form action="#" id="div02-2">
+            <div id="div02-2">
                 <div><input type="password" placeholder="비밀번호"></div>
                 <div><input type="password" placeholder="비밀번호 재확인"></div>
                 <button id="login">비밀번호 재설정</button>
                 <div></div>
-            </form>
+            </div>
             
         </div>
     </main>

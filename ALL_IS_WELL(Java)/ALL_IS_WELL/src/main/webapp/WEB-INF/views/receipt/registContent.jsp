@@ -59,12 +59,14 @@ hr{
 	display: grid;
 	grid-template-columns: 1fr 8fr;
 	text-align: center;
-	line-height: 100px;
+	margin-top: 20px;
+
 }
 
 #div02 > div > div> input{
 	border: 1px solid #B2B2B2;
 	width: 80%;
+	
 }
 
 #div02 > div:nth-child(2) > div:nth-child(2) > input{height: 80%;}
@@ -111,15 +113,15 @@ hr{
 		<main>
 			<div id="div01">접수 내용</div>
 			<hr>
-			<form action="" method="post">
+			<form action="/app/receipt/registContent" method="post">
 				
 				<div id="div02">
 					<div>
 						<div>환자 이름</div>
-						<div><input type="text">${vo.no}</div>
+						<div><input type="text" value="${vo.no}" readonly></div>
 					</div>
 					<div>
-						<div>증상</div>
+						<div>증상${vo.name}</div>
 						<div><input type="text" name="symptom"></div>
 					</div>
 				</div>
