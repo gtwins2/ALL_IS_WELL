@@ -39,12 +39,48 @@ public class OperationService {
 		return dao.registerOperation(sst, vo);
 	}
 
-	public int registerParticipants(String[] participantArr) {
-		return dao.registerParticipants(sst, participantArr);
+	public int registerParticipants(List<Integer> participantList) {
+		return dao.registerParticipants(sst, participantList);
 	}
 
 	public String getPatientNo(String patientName) {
 		return dao.getPatientNo(sst, patientName);
+	}
+
+	public int updateRoom(OperationVo vo) {
+		return dao.updateRoom(sst, vo);
+	}
+
+	public int getScheduleListCount() {
+		return dao.getScheduleListCount(sst);
+	}
+
+	public List<OperationVo> getScheduleList(PageVo pv) {
+		return dao.getScheduleList(sst, pv);
+	}
+
+	public OperationVo goOperationDetail(String operationNo) {
+		return dao.goOperationDetail(sst, operationNo);
+	}
+
+	public List<Integer> selectParticipants(String operationNo) {
+        return dao.selectParticipants(sst, operationNo);
+    }
+
+	public int countParticipants(String operationNo) {
+		return dao.countParticipants(sst, operationNo);
+	}
+
+	public List<MemberVo> getParticipantNames(List<Integer> participants) {
+		return dao.getParticipantNames(sst, participants);
+	}
+
+	public int updateOperationDetail(OperationVo vo) {
+		return dao.updateOperationDetail(sst, vo);
+	}
+
+	public int updateRoomStatus(String operatingRoomNo) {
+		return dao.updateRoomStatus(sst, operatingRoomNo);
 	}
 	
 	

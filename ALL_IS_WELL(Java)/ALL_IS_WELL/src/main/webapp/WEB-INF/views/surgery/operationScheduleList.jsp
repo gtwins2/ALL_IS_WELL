@@ -115,40 +115,59 @@
 			.list-area th {
 			  font-size: 20px;
 			  font-weight: normal;
-			  text-align: center; /* Align header text to center */
+			  text-align: center;
+			  
 			}
 			
-			.list-area th:first-child,
-			.list-area td:first-child {
-			  width: 20%; /* Adjust width of the first column */
-			}
-			
-			.list-area th:last-child,
-			.list-area td:last-child {
-			  width: 20%; /* Adjust width of the last column */
-			}
-			
-			/* Align text in td elements to center and middle */
 			.list-area td {
-			  vertical-align: middle;
+				font-size: 15px;
+				text-align: center;
 			}
 			
-			/* Add left padding to the third column for better alignment */
-			.list-area td:nth-child(3) {
-			  padding-left: 10%;
+
+			.list-area tr:hover:not(#title) {
+			    background-color: #5A8CF2;
+			    color: white;
 			}
 			
-			.list-area td:nth-child(1) {
-				padding-left: 10%;
-			}
 			
-			/* Add right padding to the fourth column for better alignment */
-			.list-area td:nth-child(4) {
-			  padding-right: 10%;
-			}
+       .number-area {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+	    }
+	
+	    .number-area a {
+	        display: inline-block;
+	        margin: 5px;
+	        padding: 8px 12px;
+	        text-decoration: none;
+	        border: none;
+	        color: inherit;
+	        font-size: 15px;
+	    }
+	
+	    #previous {
+	        color: #5A8CF2;
+	    }
+	
+	    #after {
+	        color: #5A8CF2;
+	    }
+	
+	    .number-area a:hover {
+	        color: #5A8CF2;
+	        cursor: pointer;
+	    }
+       
+	        
+       
 
+      
 
-
+       
+			
+			
            
 </style>
 </head>
@@ -186,89 +205,45 @@
 
 			   <div class="list-area">
 				<table>
-					<th>수술명</th>
-					<th>환자명</th>
-					<th>실시일</th>
-					<th>종료일</th>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
+					<tr id="title">
+						<th>수술명</th>
+						<th>환자명</th>
+						<th>실시일</th>
+						<th>종료일</th>
+						<th>수술 상황</th>
 					</tr>
+					
+					<c:forEach items="${scheduleList}" var="schedule">
+						<tr class="operation-row" data-operation-no="${schedule.operationNo}">
+							
+							<td>${schedule.operationName}</td>
+							<td>${schedule.patientName}</td>
+							<td>${schedule.startDate}</td>
+							<td>${schedule.endDate}</td>
+							
+							<c:if test="${schedule.status == 'O'}">
+								<td>진행중</td>
+							</c:if>
+							
+							<c:if test="${schedule.status == 'X' || schedule.status == null}">
+								<td>종료</td>
+							</c:if>
+							
+						</tr>
+					</c:forEach>
+					
 	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-					<tr>
-						<td>간암수술</td>
-						<td>홍길동</td>
-						<td>2023-06-12</td>
-						<td>2023-06-13</td>
-					</tr>
-	
-	
+					
 	
 	
 				</table>
 			</div>
+			
+			<br>
+			
 
 
-			c:set var="range" value="2" /> 
+			<c:set var="range" value="2" /> 
             <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
             <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
             <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
@@ -285,6 +260,7 @@
                     <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
                 </c:if>
             </div>
+          	
           	
 
            	
@@ -327,8 +303,30 @@
 	    });
 	    
 	    
+	    $(document).ready(function() {
+	        
+	        $('.operation-row').click(function() {
+	          const operationNo = $(this).data('operation-no');
+	          
+	          window.location.href = "/app/operation/operationDetail?operationNo=" + operationNo;
+	        });
+	      });
 	    
-	   
+	    
+	    //페이징 처리
+	    const pageBtn = document.querySelectorAll('.pageBtn');
+		
+		   for (let btn of pageBtn) {
+		       if (btn.innerHTML == '${pv.currentPage}') {
+		           btn.style.color = '#d9d9d9';
+		       }
+		   }
+		
+		   function pageMove(pageNumber) {
+		       let url = new URL(window.location.href);
+		       url.searchParams.set('page', pageNumber);
+		       window.location.href = url.href;
+		   }
 	</script>
 	
 	

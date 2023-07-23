@@ -376,7 +376,7 @@
 
                     <div class="area">
                         <span>수술내용</span>
-                        <textarea name="" id="" cols="30" rows="10" name="operationRecord" required></textarea>
+                        <textarea id="" cols="30" rows="10" name="operationRecord" required></textarea>
                     </div>
 
                     <div class="area">
