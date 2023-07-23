@@ -35,15 +35,62 @@
 	
 	<insert id="registerOperation">
 		INSERT INTO OPERATION_SCHEDULE(NO, OPERATING_ROOM_NO, PATIENT_NO, OPERATION_NAME, START_DATE, STATUS, OPERATION_RECORD) 
-		VALUES(SEQ_OPERATION_SCHEDULE_NO.NEXTVAL, #{operatingRoomNo}, #{patientNo}, #{operationName}, #{startDate}, 'O', #{operationRecord});
+		VALUES(SEQ_OPERATION_SCHEDULE_NO.NEXTVAL, #{operatingRoomNo}, #{patientNo}, #{operationName}, TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD"T"HH24:MI'), #{status}, #{operationRecord})
 	</insert>
 	
-	<insert id="registerParticipants">
-	    <foreach collection="participantArr" item="participantNo" separator=";">
-	        INSERT INTO PARTICIPANT (NO, PARTICIPANT_NO, OPERATION_SCHEDULE_NO)
-	        VALUES (SEQ_PARTICIPANT_NO.NEXTVAL, #{participantNo}, SEQ_OPERATION_SCHEDULE_NO.CURRVAL)
-	    </foreach>
-	</insert>
-		
+	<insert id="registerParticipants"  parameterType="int">
+    
+        INSERT INTO PARTICIPANT (NO, PARTICIPANT_NO, OPERATION_SCHEDULE_NO)
+        VALUES   
+            (SEQ_PARTICIPANT_NO.NEXTVAL, #{value}, SEQ_OPERATION_SCHEDULE_NO.CURRVAL)
 
+    
+	</insert>
+	
+	<update id="updateRoom">
+		UPDATE OPERATING_ROOM SET STATUS = 'O' WHERE NO = #{operatingRoomNo}
+	</update>
+	
+	
+	<select id="getScheduleListCount" resultType="int">
+		SELECT COUNT(NO) FROM OPERATION_SCHEDULE
+	</select>
+	
+	<select id="getScheduleList" resultType="com.kh.app.operation.vo.OperationVo">
+		SELECT S.NO AS OPERATION_NO, S.OPERATION_NAME AS OPERATION_NAME, P.NAME AS PATIENT_NAME, S.STATUS AS STATUS, S.START_DATE, S.END_DATE FROM OPERATION_SCHEDULE S 
+		JOIN PATIENT P ON S.PATIENT_NO = P.NO ORDER BY S.NO DESC
+	</select>
+	
+	<select id="goOperationDetail" resultType="com.kh.app.operation.vo.OperationVo">
+		SELECT S.NO AS OPERATION_NO, S.OPERATION_NAME AS OPERATION_NAME, S.START_DATE, S.END_DATE, S.OPERATION_RECORD, P.NAME AS PATIENT_NAME, S.OPERATING_ROOM_NO 
+		FROM OPERATION_SCHEDULE S 
+		JOIN OPERATING_ROOM R ON S.OPERATING_ROOM_NO = R.NO 
+		JOIN PATIENT P 
+		ON S.PATIENT_NO = P.NO
+		 WHERE S.NO = #{operationNo}
+	</select>
+	
+	<select id="countParticipants" resultType="int">
+		SELECT COUNT(NO) FROM PARTICIPANT WHERE OPERATION_SCHEDULE_NO = #{operationNo}
+	</select>
+	
+	<select id="selectParticipants" resultType="int">
+   	 	SELECT PARTICIPANT_NO FROM PARTICIPANT WHERE OPERATION_SCHEDULE_NO = #{operationNo}
+	</select>
+	
+	<select id="getParticipantNames" resultType="com.kh.app.member.vo.MemberVo">
+		SELECT M.NAME AS NAME, P.NAME AS POSITION_NAME 
+		FROM MEMBER M 
+		JOIN POSITION P ON M.POSITION_NO = P.NO 
+		WHERE M.NO = #{i}
+	</select>
+
+
+	<update id="updateOperationDetail">
+		UPDATE OPERATION_SCHEDULE SET END_DATE = TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD"T"HH24:MI'), STATUS = #{status} WHERE NO = #{operationNo} 
+	</update>
+	
+	<update id="updateRoomStatus">
+		UPDATE OPERATING_ROOM SET STATUS = 'X' WHERE NO = #{operatingRoomNo}
+	</update>
 </mapper>
