@@ -87,7 +87,6 @@
 			,EMAIL
 			,CAUTION	
 		FROM PATIENT
-		WHERE NAME = #{name}
-		AND NO = #{no}
+		WHERE NO = #{no}
 	</select>
 </mapper>

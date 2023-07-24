@@ -153,42 +153,7 @@
 }
 
 
-            .list-area th input[type="checkbox"] {
-                appearance: none;
-                width: 20px;
-                height: 20px;
-                border: 2px solid #C4C4C4;
-                border-radius: 3px;
-                outline: none;
-                vertical-align: middle;
-                position: relative;
-                top: 2px;
-                cursor: pointer;
-            }
-
-            .list-area td input[type="checkbox"] {
-                appearance: none;
-                width: 20px;
-                height: 20px;
-                border: 2px solid #C4C4C4;
-                border-radius: 3px;
-                outline: none;
-                vertical-align: middle;
-                position: relative;
-                top: 2px;
-                cursor: pointer;
-            }
-
-            .list-area td input[type="checkbox"]:checked {
-                background-color: lightgray;
-                border-color: lightgray;
-            }
-
-            .list-area th input[type="checkbox"]:checked {
-                background-color: lightgray;
-                border-color: lightgray;
-            }
-
+           
             
 
 #div01{
@@ -256,8 +221,8 @@
                             <form action="/app/receipt/list" method="post">
 
                                 <tr>
-                                    <input type="text" value="${vo.no}" name="no">
-                                    <input type="text" value="${vo.name}" name="name">
+                                    <input type="text" value="${vo.no}" name="no" hidden>
+                                    <input type="text" value="${vo.name}" name="name" hidden>
                                     <td hidden>${vo.no}</td>
                                     <td>${vo.name}</td>
                                     <td>${vo.registrationNumber}</td>
