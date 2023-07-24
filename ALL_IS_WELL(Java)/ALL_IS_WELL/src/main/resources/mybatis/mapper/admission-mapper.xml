@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admission">
+	<select id="getRoomCount" resultType="int">
+		SELECT COUNT(NO) FROM INPATIENT
+	</select>
+	
+	<select id="getRoomList" resultType="com.kh.app.admission.vo.AdmissionVo">
+		SELECT NO, MAX_CAPACITY,INPATIENT_POSITION FROM INPATIENT
+	</select>
+	
+	
+	<select id="getNumberOfPatients" resultType="com.kh.app.admission.vo.AdmissionVo">
+		SELECT I.NO AS NO, COUNT(IL.PATIENT_NO) AS NUMBER_OF_PATIENTS
+		FROM INPATIENT I
+		LEFT JOIN INPATIENT_LIST IL ON I.NO = IL.INPATIENT_NO
+		GROUP BY I.NO
+	</select>
+	
+	<select id="searchPatient" resultType="com.kh.app.patient.vo.PatientVo">
+		SELECT 
+	    NO,
+	    NAME,
+	    GENDER,
+	    CASE
+	        WHEN gender = 'M' THEN RPAD(SUBSTR(registration_number, 1, 7) || '-1******', LENGTH(registration_number), '*')
+	        WHEN gender = 'F' THEN RPAD(SUBSTR(registration_number, 1, 7) || '-2******', LENGTH(registration_number), '*')
+	        ELSE registration_number
+	    END AS REGISTRATION_NUMBER,
+	    PHONE_NUMBER,
+	    EMAIL,
+	    CAUTION 
+	FROM 
+	    PATIENT 
+	WHERE 
+	    NAME = #{name}
+	</select>
+	
+	<insert id="registerPatient">
+		INSERT INTO ADMISSION_RECORD(NO, PATIENT_NO, INPATIENT_NO, REASON, ADMISSION_DATE)
+		VALUES(SEQ_ADMISSION_RECORD_NO.NEXTVAL, #{patientNo}, #{no}, #{reason}, TO_TIMESTAMP(#{admissionDate}, 'YYYY-MM-DD HH24:MI:SS'))
+	</insert>
+	
+	<insert id="insertInpatientList">
+		INSERT INTO INPATIENT_LIST(NO, INPATIENT_NO, PATIENT_NO) VALUES(SEQ_INPATIENT_LIST_NO.NEXTVAL, #{no}, #{patientNo}) 
+	</insert>
+</mapper>
