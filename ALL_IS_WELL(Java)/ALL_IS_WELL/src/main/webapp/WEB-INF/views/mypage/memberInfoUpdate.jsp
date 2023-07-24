@@ -123,6 +123,8 @@ border-radius: 5px;
 		
 		    <div id="div01">개인정보 수정</div>
 		    <hr>
+		    <form action="/app/memberInfoUpdate" method="post">
+		    
 		    <div id="div02">
 		        <div>
 		            <br> 이름<br> 주민번호<br>  전화번호<br>  
@@ -130,23 +132,27 @@ border-radius: 5px;
 		            비밀번호<br>  비밀번호 확인
 		        </div>
 		        <div>
-		            <br> <input type="text"><br> 
-		            <input type="text"><br> 
-		            <input type="text"><br> 
-		            <input type="text"><br> 
-		            <input type="text"><br> 
-		            <input type="text"><br> 
-		            <input type="password"><br> 
-		            <input type="password"><br> 
+		        	<input type="text" value="${loginMember.no}" name="no" hidden>
+		            <br> <input type="text" value="${loginMember.name}" name="name"><br> 
+		            <input type="text" value="${loginMember.registrationNumber}" name="registrationNumber"><br> 
+		            <input type="text" value="${loginMember.phoneNumber}" name="phoneNumber"><br> 
+		            <input type="text" value="${loginMember.officeNumber}" name="officeNumber"><br> 
+		            <input type="text" value="${loginMember.email}" name="email"><br> 
+		            <input type="text" value="${loginMember.id}" name="id"><br> 
+		            <input type="password" value="${loginMember.password}" name="password"><br> 
+		            <input type="password" ><br> 
+		            
 		        </div>
+		        
 		        <div>
 		            <div id="div02-1">qwe</div>
 		            <div id="div02-2">파일찾기</div>
 		        </div>
 		    </div>
 		
-		    <div id="div03">수정</div>
+		    <input type="submit" id="div03" value="수정"></div>
 		    <div id="div04">뒤로가기</div>
+		    </form>
 		</main>
 	</div>
 

@@ -58,6 +58,7 @@ h2{
     background: #5A8CF2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+	display: block;
 }
 
 #div02-1{
@@ -222,6 +223,16 @@ color: #000000;
     top: 885px;
 }
 
+#div07{
+	position: absolute;
+    width: 414px;
+    height: 117px;
+    left: 347px;
+    top: 1300px;
+    background: #5A8CF2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
 
 </style>
 <body>
@@ -237,12 +248,23 @@ color: #000000;
 		<main>
 			<!-- 프로필 -->
 		    <div id="div01"></div>
-			<h2>흉부외과 전문의<br><br>  ${loginMember.name} <br><br> 면허</h2>
+			<h2>흉부외과 전문의<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
 			<hr>
-		
+			<input type="text" value="${loginMember.no}" name="no" hidden>
 		    <!-- 출근 -->
-			<div id="div02"></div>
+		    
+		    <form action="/app/attend?no=${loginMember.no}" method="post" onclick="attend();">
+				<input type="submit" id="div02" ></input>
+		    </form>
 		    <h2 id="div02-1">출근</h2>
+		    
+			<c:if test="">
+		    
+		    <form action="/app/leave?no=${loginMember.no}" method="post">
+				<button type="submit" id="div07" onclick="attend();"></button>
+		    </form>
+		    <h2 id="div02-1">출근</h2>
+			</c:if>
 		
 		    <!-- 일정 -->
 		    <div id="div03"></div>
@@ -369,4 +391,14 @@ color: #000000;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	const btn01 = document.querySelector('#div02');
+	function attend(){
+		  
+		btn01.style.display = 'none';
+		 
+	}
+
+
+	
 </script>

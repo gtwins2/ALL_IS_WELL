@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+	
+	<!-- 출근 -->
+	<insert id="attend">
+		INSERT INTO ATTENDANCE
+		(
+			NO
+			,MEMBER_NO
+			,PRESENCE_TIME
+		)
+		VALUES
+		(
+			SEQ_ATTENDANCE_NO.NEXTVAL
+			,#{no}
+			,TO_TIMESTAMP(SYSDATE)
+		)
+	</insert>
+	
+	<update id="leave">
+		UPDATE ATTENDANCE
+		SET LEAVE_TIME = TO_TIMESTAMP(SYSDATE)
+		WHERE MEMBER_NO = #{no} 
+		AND NO IN (
+		    SELECT NO
+		    FROM ATTENDANCE
+		    ORDER BY NO DESC
+		    FETCH FIRST 1 ROW ONLY
+		)
+		
+	</update>
+	
+</mapper>

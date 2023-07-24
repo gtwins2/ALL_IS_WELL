@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+	
+	<update id="memberInfoUpdate">
+		UPDATE MEMBER
+		SET 
+		NAME = #{name},
+		ID = #{id},
+		PASSWORD = #{password},
+		EMAIL = #{email},
+		PHONE_NUMBER = #{phoneNumber},
+		OFFICE_NUMBER = #{officeNumber},
+		REGISTRATION_NUMBER = #{registrationNumber}
+		WHERE NO = #{no}
+	</update>	
+	
+</mapper>
