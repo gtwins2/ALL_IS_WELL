@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수술 일정 상세</title>
+<title>환자 입원 등록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<style>
-   
-	   #wrap{
+<style type="text/css">
+	 #wrap{
 			width: 1920px;
 			height: 750px;
 			display: grid;
@@ -51,8 +49,8 @@
 
         #registerForm {
        
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+           /*  display: grid;
+            grid-template-columns: repeat(2, 1fr); */
             gap: 20px;
             padding: 30px;
             row-gap: 50px;
@@ -331,13 +329,10 @@
 	    }
 
         
-	   
-
 </style>
 </head>
 <body>
-   
-   <header>
+	 <header>
       <%@include file="/WEB-INF/views/common/member/header.jsp" %>
    </header>
    
@@ -349,50 +344,35 @@
 		
 		<div class="main-area">
 			<div class="title-area">
-                <div id="title">수술 일정 상세</div>
+                <div id="title">환자 입원 접수</div>
            	</div>
 
            	<div class="register-area">
-                <form action="/app/operation/operationDetail" id="registerForm" method="POST">
+                <form action="/app/admission/registerPatient" id="registerForm" method="POST">
                     <div class="area">
-                        <span>수술명</span>
-                        <input type="text" name="operationName" value="${schedule.operationName}" readonly>
+                        <span>환자명</span>
+                        <input type="text" name="patientName" required id="patientName">
+                        <input type="hidden" name="patientNo" id="patientNo">
+                        <input type="hidden" name="no">
                     </div>
                     
-                    <div class="area">
-                        <span>환자이름</span>
-                        <input type="text" name="patientName" value="${schedule.patientName}" readonly>
-                    </div>
                 
                     <div class="area">   
-                        <span>시작시간</span>
-                        <input type="datetime-local" name="startDate" value="${schedule.startDate}" readonly>
+                        <span>입원날짜</span>
+                        <input type="datetime-local" name="admissionDate" required>
                     </div>
 
                     <div class="area">
-                        <span>종료시간</span>
-                        <c:if test="${empty schedule.endDate}">
-						    <input type="datetime-local" name="endDate">
-						</c:if>
-						<c:if test="${not empty schedule.endDate}">
-						    <input type="datetime-local" value="${schedule.endDate}" readonly>
-						</c:if>
-                   
+                        <span>퇴원날짜</span>
+                        <input type="datetime-local" name="dischargeDate">
                     </div>
 
                     <div class="area">
-                        <span>수술내용</span>
-                        <textarea id="" cols="30" rows="10" name="operationRecord" readonly>${schedule.operationRecord}</textarea>
+                        <span>입원 사유</span>
+                        <textarea id="" cols="30" rows="10" name="reason" required></textarea>
                     </div>
 
-                    <div class="area">
-                        <span>참여인원</span>
-                        <textarea name="people" id="people" style="overflow: auto; resize: none;" readonly>${voData }</textarea>
-                        <textarea name="participantNumbers" id="participantNumbers" style="display: none;" readonly></textarea>
-                         <input type="hidden" name="operatingRoomNo" value="${schedule.operatingRoomNo}" />
-                         <input type="hidden" name="operationNo" value="${schedule.operationNo}" />
-                        
-                    </div>
+                    
 
                 
                 </form>
@@ -400,7 +380,7 @@
            
            	
            	<div class="btn-area">
-            	<input type="submit" value="수정" id="addBtn">
+            	<input type="submit" value="접수" id="addBtn">
             	<button id="backBtn" onclick="goBack();">뒤로가기</button>
         	</div>
            	
@@ -411,8 +391,47 @@
 		
     </main>
 
+    <div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modal-title">환자 검색</h2>
+    <br>
+    <form action="" id="searchForm" class="search-area" onsubmit="searchPatients(); return false;">
+        <label for="search" class="category-area">
+            <select name="search" id="search">
+                <option value="name">성명</option>
+            </select>
+            
+
+        </label>
+        <input type="text" id="search-input" name="searchName" >
+       	<input type="submit" value="검색" id="searchBtn">
+    </form>
+    <br>
+    <br>
+
+    <div class="result-area">
+        <div class="result-title">이름</div>
+        <div class="result-title">주민등록번호</div>
+        <div></div>
+    </div>
+    <hr>
+	
+	<div class="result-container">
+	
+	</div>
+	
     
 
+   <br>
+   <br>
+   <br>
+
+    <div class="modal-btn-area">
+        <button class="modal-btn">확인</button>
+        <button class="modal-btn" id="closeBtn">취소</button>
+    </div>
+  </div>
 </div>
 
 
@@ -420,42 +439,194 @@
       <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
    </footer>
    
-   <script type="text/javascript">
-	   const sideBar = document.querySelector("#side-bar")
-	   const subMenus = document.querySelectorAll(".sub-menu");
-	   const thirdSidebars = document.querySelectorAll(".third-sidebar");
-	
-	   subMenus.forEach(subMenu => {
-	       subMenu.style.height = sideBar.offsetHeight + 'px';
-	   });
-	
-	   thirdSidebars.forEach(thirdSidebar => {
-	       thirdSidebar.style.height = sideBar.offsetHeight + 'px';
-	   });
-	   
-	
-	
-	   
-	   function submitForm() {
-	        document.getElementById('registerForm').submit();
-	    }
+   <script>
+   
+		   var modal = document.getElementById('modal');
+		   var patientName = document.getElementById('patientName');
+		   var closeBtn = document.getElementsByClassName('close')[0];
+		
+		   function openModal() {
+		       modal.style.display = 'block';
+		   }
+		
+		   function closeModal() {
+		       modal.style.display = 'none';
+		       document.getElementById('searchForm').reset();
+		       clearSearchResults();
+		       clearSearchInput();
+		       resetSelectedPatients();
+		   }
+		
+		   patientName.addEventListener('focus', openModal);
+		
+		   closeBtn.addEventListener('click', closeModal);
+		
+		   function clearSearchResults() {
+		       const resultContainer = document.querySelector('.result-container');
+		       resultContainer.innerHTML = '';
+		   }
+		
+		   function clearSearchInput() {
+		       const searchInput = document.getElementById('search-input');
+		       searchInput.value = '';
+		   }
+		
+		   function resetSelectedPatients() {
+		       selectedPatients = [];
+		   }
 
+
+	</script>
+	
+	<script type="text/javascript">
+	 var selectedPatients = [];
+	
+		document.getElementById('searchBtn').addEventListener('click', function (event) {
+		    event.preventDefault();
+		    searchPatients();
+		});
+		
+		
+	
+	
+		function searchPatients() {
+		    const modalSearch = document.querySelector('#search-input').value;
+
+		    if (modalSearch.length > 0) {
+		        $.ajax({
+		            url: "/app/admission/searchPatient",
+		            type: "get",
+		            data: { name: modalSearch },
+		            dataType: "json",
+		            success: function (data) {
+		                console.log(data);
+		                
+		                updateResultContainer(data);
+		                
+		            },
+		            error: function (error) {
+		                console.log(error);
+		                alert("검색 결과 전달 실패");
+		            }
+		        });
+		    } else {
+		    	const resultContainer = document.querySelector('.result-container');
+		        resultContainer.innerHTML = '';
+		    }
+		}
+		
+		
+		
+
+		
+		function updateResultContainer(data) {
+		    const resultContainer = document.querySelector('.result-container');
+		    resultContainer.innerHTML = '';
+
+		    data.forEach(item => {
+		      // Create a new div for each search result
+		      const resultRow = document.createElement('div');
+		      resultRow.classList.add('search-result');
+
+		      // 이름
+		      const nameColumn = document.createElement('div');
+		      nameColumn.classList.add('search-result-deco');
+		      nameColumn.textContent = item.name;
+		      resultRow.appendChild(nameColumn);
+
+		      // 주민등록번호
+		      const registrationNumberColumn = document.createElement('div');
+		      registrationNumberColumn.classList.add('search-result-deco');
+		      registrationNumberColumn.textContent = item.registrationNumber;
+		      resultRow.appendChild(registrationNumberColumn);
+
+		      // 체크박스 추가
+		      const checkboxColumn = document.createElement('div');
+		      const checkbox = document.createElement('input');
+		      checkbox.type = 'checkbox';
+		      checkbox.name = 'patientName';
+		      checkbox.id = 'checkbox_' + item.id;
+		      checkbox.value = item.name;
+		      checkboxColumn.appendChild(checkbox);
+		      resultRow.appendChild(checkboxColumn);
+
+		      resultContainer.appendChild(resultRow);
+
+		      checkbox.addEventListener('change', function () {
+		        if (this.checked) {
+		          selectedPatients.push({
+		            no: item.no,
+		            name: item.name,
+		          });
+		        } else {
+		          selectedPatients = selectedPatients.filter(patient => patient.name !== item.name);
+		        }
+		      });
+		    });
+		  }
+	    
+	    
+		 const confirmBtn = document.querySelector('.modal-btn');
+		 
+		 
+		 confirmBtn.addEventListener('click', function () {
+			    const checkedCheckbox = document.querySelector('input[name="patientName"]:checked');
+
+			    if (checkedCheckbox) {
+			        const selectedPatientName = checkedCheckbox.value;
+			        const selectedPatientNo = checkedCheckbox.id.split('_')[1];
+
+			        document.getElementById('patientName').value = selectedPatientName;
+			        document.getElementById('patientNo').value = selectedPatientNo;
+			    }
+
+			    closeModal();
+			});
+		    
+		    
+	        
+		 
+
+		</script>
+
+
+
+
+	
+	<script type="text/javascript">
+		const sideBar = document.querySelector("#side-bar")
+	    const subMenus = document.querySelectorAll(".sub-menu");
+	    const thirdSidebars = document.querySelectorAll(".third-sidebar");
+	
+	    subMenus.forEach(subMenu => {
+	        subMenu.style.height = sideBar.offsetHeight + 'px';
+	    });
+	
+	    thirdSidebars.forEach(thirdSidebar => {
+	        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	    });
+	    
 	    //뒤로가기 버튼
 	    function goBack() {
-	        window.history.back();
-	    }
-
+        	window.history.back();
+   	 	}
+	    
+	    //수술실 방 번호 넘겨받기
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const operatingRoomNo = urlParams.get('operatingRoomNo');
+	    document.getElementById('operatingRoomNoInput').value = operatingRoomNo;
+	    
+	    
 	    //제출하기
 	    const submitBtn = document.getElementById('addBtn');
-	    submitBtn.addEventListener('click', function(event) {
-	        event.preventDefault();
-	        submitForm(); 
-	        alert("수정 완료");
+	    submitBtn.addEventListener('click', function (event) {
+	        event.preventDefault(); 
+	        document.getElementById('registerForm').submit();
+	        
+	        alert("제출 완료");
 	    });
-   </script>
-   
- 
-	
-	
+	    
+	   
+	</script>
 </body>
 </html>
