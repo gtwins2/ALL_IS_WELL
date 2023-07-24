@@ -376,7 +376,6 @@
 						</c:if>
 						<c:if test="${not empty schedule.endDate}">
 						    <input type="datetime-local" value="${schedule.endDate}" readonly>
-						    <%-- <input type="hidden" name="endDate" value="${schedule.endDate}"> --%>
 						</c:if>
                    
                     </div>
