@@ -251,10 +251,10 @@
                             <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;"></textarea>
                         </div>
                     </div>
-                </div>
-                <div id="buttonDiv">
-                    <button id="approvalBtn" type="submit">작성</button>
-                </div>
+                    </div>
+                    <div id="buttonDiv">
+                        <button id="approvalBtn" type="submit">작성</button>
+                    </div>
                 </form>
         </div>
     </main>

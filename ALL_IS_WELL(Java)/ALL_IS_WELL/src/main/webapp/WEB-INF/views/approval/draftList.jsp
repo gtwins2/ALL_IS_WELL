@@ -41,7 +41,15 @@
     #writeBtn{
         text-align: right;
         margin-top: 20px;
-        margin-right: 20px;
+        margin-right: 10px;
+        display: flex;
+    }
+
+    #writeBtn form{
+        flex-direction: column;
+        margin-right: 10px;
+        align-items: center;
+        justify-content: center;
     }
 
     #writeApproval {
@@ -210,10 +218,16 @@
                 </form>
 
                 <div id="writeBtn">
-                    <button id="writeApproval" onclick="writeVacation();">휴가작성</button>
-                    <button id="writeApproval" onclick="writeTrip();">출장작성</button>
+                    <form action="/app/approval/vacationBtn" method="post">
+                        <button id="writeApproval" type="submit">휴가작성</button>
+                    </form>
+                    <form action="/app/approval/tripBtn" method="post">
+                        <button id="writeApproval" type="submit">출장작성</button>
+                    </form>
                     <c:if test="${loginMember.positionType eq 'N'}">
-                           <button id="writeApproval" onclick="writeInventory();">재고신청</button>
+                        <form action="/app/approval/inventoryBtn" method="post">
+                            <button id="writeApproval" type="submit">재고신청</button>
+                        </form>
                     </c:if>
                 </div>
             </div>
