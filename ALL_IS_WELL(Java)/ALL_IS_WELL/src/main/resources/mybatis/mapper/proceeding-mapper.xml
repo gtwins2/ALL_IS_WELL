@@ -11,24 +11,26 @@
       SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING      
    </select>
 	
-	<insert id="write">
+	<!-- <insert id="write">
 		INSERT INTO PROCEEDING
 		(
-			NO,
-			MEMBER_NO,
-			TITLE,
-			CONTENT,
-			DUE_DATE
+			NO
+			, MEMBER_NO
+			, TITLE
+			, CONTENT
+			, DUE_DATE
+			, ENROLL_DATE
 		)
 		VALUES
 		(
 			SEQ_PROCEEDING_NO.NEXTVAL,
-			loginMember.no,
+			#{memberNo},
 			#{title},
 			#{content},
-			(TO_TIMESTAMP(${DUE_DATE))
+			(TO_TIMESTAMP(#{dueDate})),
+			SYSDATE
 		)
-	</insert>
+	</insert> -->
 	
 	
 </mapper>

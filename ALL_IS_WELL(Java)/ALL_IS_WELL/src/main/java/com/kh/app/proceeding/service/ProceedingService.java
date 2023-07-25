@@ -2,27 +2,28 @@ package com.kh.app.proceeding.service;
 
 import java.util.List;
 
+import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.vo.ProceedingVo;
 
 public interface ProceedingService {
 
-	//°Ô½Ã±Û ¸ñ·Ï				//board/list
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½				//board/list
 	List<ProceedingVo> list(PageVo pv);
 	
-	//°Ô½Ã±Û ÀÛ¼º				//board/write
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½				//board/write
 	int write(ProceedingVo vo);
 	
-	//°Ô½Ã±Û »ó¼¼Á¶È¸			//board/detail
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½È¸			//board/detail
 	ProceedingVo detail(String no);
 	
-	//°Ô½Ã±Û ¼öÁ¤				//board/edit
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½				//board/edit
 	int edit(ProceedingVo vo);
 	
-	//°Ô½Ã±Û »èÁ¦				//board/delete
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½				//board/delete
 	int delete(ProceedingVo vo);
 	
-	//°Ô½Ã±Û ÀüÃ¼ °¹¼ö Á¶È¸
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	int getBoardCnt();
 	
 }

@@ -2,6 +2,9 @@ package com.kh.app.proceeding.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +18,12 @@ import com.kh.app.proceeding.service.ProceedingService;
 import com.kh.app.proceeding.vo.ProceedingVo;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("proceeding")
 @RequiredArgsConstructor
+@Slf4j
 public class ProceedingController {
 
 	private final ProceedingService service;
@@ -56,12 +61,20 @@ public class ProceedingController {
 	
 	//게시글 작성(결과 처리)
 	@PostMapping("write")
-	public String write(ProceedingVo vo) {
+	public String write(ProceedingVo vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		if(loginMember == null) {
+			return "redirect:/error/errorPage";
+		}
+		
+		vo.setMemberNo(loginMember.getNo());
+		log.info(loginMember.getNo());
 		int result = service.write(vo);
 		if(result != 1) {
 			return "redirect:/error/errorPage";
 		}
-		return "redirect:/proceeding/list";
+		return "redirect:/app/proceeding/list";
 		
 	}
 	

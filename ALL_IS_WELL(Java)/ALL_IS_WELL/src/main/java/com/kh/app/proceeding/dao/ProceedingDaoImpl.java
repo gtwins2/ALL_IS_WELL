@@ -11,9 +11,11 @@ import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.vo.ProceedingVo;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class ProceedingDaoImpl implements ProceedingDao{
 
 	@Override
