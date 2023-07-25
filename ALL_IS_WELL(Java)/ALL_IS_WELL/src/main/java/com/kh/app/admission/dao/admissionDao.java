@@ -53,4 +53,20 @@ public class admissionDao {
 	public int insertInpatientList(SqlSessionTemplate sst, AdmissionVo vo) {
 		return sst.insert("admission.insertInpatientList", vo);
 	}
+
+
+	public List<AdmissionVo> getScheduleList(SqlSessionTemplate sst, PageVo pv) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("admission.getScheduleList", null, rb);
+	}
+
+
+	public AdmissionVo goDetailAdmissionRecord(SqlSessionTemplate sst, String admissionRecordNo) {
+		return sst.selectOne("admission.goDetailAdmissionRecord", admissionRecordNo);
+	}
+
+
+	public int updateAdmissionRecord(SqlSessionTemplate sst, AdmissionVo vo) {
+		return sst.update("admission.updateAdmissionRecord", vo);
+	}
 }

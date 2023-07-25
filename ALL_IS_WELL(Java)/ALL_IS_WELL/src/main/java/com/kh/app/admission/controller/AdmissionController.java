@@ -85,12 +85,70 @@ public class AdmissionController {
 	}
 	
 	
+	//입원 기록 목록(화면)
 	@GetMapping("admissionRecord")
-	public String registerAdmission() {
+	public String registerAdmission(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model) {
+		int listCount = service.getRoomCount();
+		
+		int pageLimit = 5; 
+				
+		int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		//입원실 위치와 방번호, 최대수용인원 가져오기
+		List<AdmissionVo> scheduleList = service.getScheduleList(pv);
+		
+		
+		 log.info(scheduleList.toString());
+		 
+		 
+		model.addAttribute("pv", pv);
+		model.addAttribute("scheduleList", scheduleList);
+		
 		return "admission/admissionListForm";
 	}
 	
+	//입원 환자 기록 상세(화면)
+	@GetMapping("admissionDetail")
+	public String goDetailAdmissionRecord(String admissionRecordNo, Model model) {
+		
+		//입원기록 상세조회 가져오기
+		AdmissionVo vo = service.goDetailAdmissionRecord(admissionRecordNo);
+		
+		
+		log.info("입원기록 상세조회 "+vo.toString());
+		
+		model.addAttribute("vo", vo);
+		
+		
+		return "admission/admissionDetailForm";
+	}
+	
+	@PostMapping("admissionDetail")
+	public String goDetailAdmissionRecord(AdmissionVo vo) {
+		log.info("날짜가 잘 담겼는지 : "+vo.toString());
+		
+		int result = service.updateAdmissionRecord(vo);
+		
+		if(result != 1) {
+			throw new IllegalArgumentException("입원기록 업데이트 실패");
+		}
+		
+		return "redirect:/admission/admissionRecord";
+	}
+	
+	
+	
+	//입원 환자 등록(화면)
 	@GetMapping("registerPatient")
+	public String registerPatient() {
+		return "admission/registerPatient";
+	}
+	
+	
+	//입원 환자 등록
+	@PostMapping("registerPatient")
 	public String registerPatient(AdmissionVo vo) {
 		log.info(vo.toString());
 		
@@ -100,7 +158,7 @@ public class AdmissionController {
 		//방번호에 따른 입원실 명단 업데이트
 		int listResult = service.insertInpatientList(vo);
 		
-		if(result != 1) {
+		if(result != 1 && listResult != 1) {
 			throw new IllegalStateException("입원실 환자 등록 실패");
 		}
 		
