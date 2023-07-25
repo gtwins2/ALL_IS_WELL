@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -193,7 +193,7 @@
                 grid-template-columns: 300px 1220px;
             }
             
-            #title-area , #content-area {
+            #title-area , #content-area, #date-area {
             	font-size: 30px;
             }
             
@@ -208,6 +208,9 @@
             	height: 300px;
             	margin-top: -30px;
             	margin-left: 70px;
+            }
+            div > textarea{
+            	margin-left: 100px;
             }
 
         </style>
@@ -246,16 +249,19 @@
 
 					<br>
 					<br>
-					<div id="title-area">제목  <textarea id="title-area" cols="60" rows="1"></textarea></div>
+					<input type="text" value=${loginMember.no} hidden>
+					<div id="title-area">제목  <textarea id="title-area" cols="60" rows="1" value="title"></textarea></div>
 					
 					
 					<br>
 					<br>
+					<div id="title-area">회의예정일<textarea id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요"></textarea></div>
 					<br>
 					<br>
 					<div id="content2">내용
 					<div id="content-area">
                         <textarea id="content-area2" cols="60" rows="10"></textarea>
+
                     </div>
                     
                     
@@ -275,9 +281,10 @@
                 </div>
 					
 					<button id="sendRequest" type="submit">작성하기</button>
-                
-				</form> 
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+                
+				</form>
+				                    
                 <br>
                 <br>
                 <br>
@@ -307,4 +314,4 @@
         </script>
     </body>
 
-    </html>
+    </html> 
