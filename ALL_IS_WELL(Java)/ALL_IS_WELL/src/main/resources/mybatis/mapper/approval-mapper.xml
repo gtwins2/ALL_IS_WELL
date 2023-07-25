@@ -4,13 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approval">
 	
-	<select id="getAttendanceListCnt" resultType="int">
+	<select id="getApprovalListCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM APPROVAL_DOCUMENT
 		WHERE MEMBER_NO = #{no}
 	</select>
 	
-	<select id="getAttendanceList" resultType="com.kh.app.approval.vo.ApprovalVo">
+	<select id="getApprovalList" resultType="com.kh.app.approval.vo.ApprovalVo">
 	    SELECT
 	        AD.NO,
 	        AD.MEMBER_NO,
@@ -22,6 +22,7 @@
 	    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
 	    JOIN APPROVER A ON M.NO = A.APPROVER_NO
 	    WHERE MEMBER_NO = #{no}
+	    ORDER BY AD.NO DESC
 	</select>
 	
 <!-- 	<insert id="writeVacation">
@@ -43,5 +44,47 @@
 			#{end_date}
 		)
 	</insert> -->
+	
+	<!-- 출장 문서 생성 -->
+	<insert id="tripBtn">
+		INSERT INTO 
+		APPROVAL_DOCUMENT
+		(NO, MEMBER_NO, CREATE_DATE, TITLE)
+		VALUES
+		(SEQ_APPROVAL_DOCUMENT_NO.NEXTVAL, #{memberNo}, SYSDATE, '출장문서')
+	</insert>
+	
+	<select id="tripAfterInsert" resultType="com.kh.app.approval.vo.ApprovalBtnVo">
+		SELECT 
+			AD.NO,
+			AD.MEMBER_NO,
+			AD.CREATE_DATE,
+			AD.TITLE,
+			D.NAME AS DEPARTMENT_NAME
+		FROM APPROVAL_DOCUMENT AD
+		JOIN MEMBER M ON M.NO = AD.MEMBER_NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+		WHERE AD.NO = (SELECT MAX(NO) FROM APPROVAL_DOCUMENT WHERE MEMBER_NO = #{memberNo})
+	</select>
+	
+	<insert id="tripWrite">
+		INSERT INTO
+		BUSINESS_TRIP_APPROVAL_DOCUMENT
+		(
+			NO, 
+			APPROVAL_DOCUMENT_NO,
+			CONTENT,
+			START_DATE,
+			END_DATE
+		)
+		VALUES
+		(
+			SEQ_BUSINESS_TRIP_APPROVAL_DOCUMENT_NO.NEXTVAL,
+			#{approvalDocumentNo},
+			#{content},
+			#{startDate},
+			#{endDate}
+		)
+	</insert>
 	
 </mapper>
