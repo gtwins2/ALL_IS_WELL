@@ -1,32 +1,49 @@
 package com.kh.app.board.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.app.board.service.NoticeService;
+import com.kh.app.board.vo.NoticeVo;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("board")
+@RequiredArgsConstructor
 public class AboardController {
 
-	//°øÁö»çÇ×¸ñ·Ï
+	private final NoticeService ns;
+	
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¸ï¿½ï¿½
 	@GetMapping("noticeList")
 	public String noticeList() {
 		return "board/noticeList";
 	}
 	
-	//°øÁö»çÇ× ÀÛ¼ºÇÏ±â
+	@PostMapping("noticeList")
+	public String noticeList(NoticeVo vo) {
+		List<NoticeVo> voList = ns.noticeList(vo);
+		return "board/noticeList";
+	}
+	
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï±ï¿½
 	@GetMapping("noticeWrite")
 	public String noticeWrite() {
 		return "board/noticeWrite";
 	}
 	
-	//°øÁö»çÇ× ¼öÁ¤ÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	@GetMapping("noticeUpdate")
 	public String noticeUpdate() {
 		return "board/noticeUpdate";
 	}
 	
-	//°øÁö»çÇ× »ó¼¼ÆäÀÌÁö
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("noticeDetail")
 	public String noticeDetail() {
 		return "board/noticeDetail";
@@ -36,13 +53,13 @@ public class AboardController {
 	
 	
 	
-	//°ÇÀÇ»çÇ× ¸ñ·Ï(°ü¸®ÀÚ)
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	@GetMapping("suggestList")
 	public String suggestList() {
 		return "board/suggestList";
 	}
 	
-	//°ÇÀÇ»çÇ× »ó¼¼ÆäÀÌÁö(´ñ±ÛÀÛ¼º)
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Û¼ï¿½)
 	@GetMapping("suggestDetail")
 	public String suggestDetail() {
 		return "board/suggestDetail";
@@ -53,13 +70,13 @@ public class AboardController {
 	
 	
 	
-	//¹®ÀÇ»çÇ× ¸ñ·Ï
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@GetMapping("inquiryList")
 	public String inquiryList() {
 		return "board/inquiryList";
 	}
 	
-	//¹®ÀÇ»çÇ× »ó¼¼ÆäÀÌÁö(´ñ±ÛÁ¶È¸)
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½È¸)
 	@GetMapping("inquiryDetail")
 	public String inquiryDetail() {
 		return "board/inquiryDetail";
