@@ -56,6 +56,21 @@ public class AdmissionService {
 	public int insertInpatientList(AdmissionVo vo) {
 		return dao.insertInpatientList(sst, vo);
 	}
+
+
+	public List<AdmissionVo> getScheduleList(PageVo pv) {
+		return dao.getScheduleList(sst, pv);
+	}
+
+
+	public AdmissionVo goDetailAdmissionRecord(String admissionRecordNo) {
+		return dao.goDetailAdmissionRecord(sst, admissionRecordNo);
+	}
+
+
+	public int updateAdmissionRecord(AdmissionVo vo) {
+		return dao.updateAdmissionRecord(sst, vo);
+	}
 	
 	
 }

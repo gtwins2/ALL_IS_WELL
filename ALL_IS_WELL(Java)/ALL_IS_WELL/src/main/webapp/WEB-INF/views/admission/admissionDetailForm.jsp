@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>환자 입원 등록</title>
+<title>환자 입원 기록 상세</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style type="text/css">
 	 #wrap{
@@ -344,33 +344,39 @@
 		
 		<div class="main-area">
 			<div class="title-area">
-                <div id="title">환자 입원 접수</div>
+                <div id="title">환자 입원 기록 상세</div>
            	</div>
 
            	<div class="register-area">
-                <form action="/app/admission/registerPatient" id="registerForm" method="POST">
+                <form action="/app/admission/admissionDetail" id="registerForm" method="POST">
                     <div class="area">
                         <span>환자명</span>
-                        <input type="text" name="patientName" required id="patientName">
-                        <input type="hidden" name="patientNo" id="patientNo">
-                        <input type="hidden" name="no" id="roomNo">
+                        <input type="text" name="patientName" required value="${vo.patientName}" readonly>
+                        <input type="hidden" name="patientNo" id="patientNo" value="${vo.patientNo}">
+                        <input type="hidden" name="admissionRecordNo" id="admissionRecordNo" value="${vo.admissionRecordNo}">
                         
                     </div>
                     
                 
                     <div class="area">   
                         <span>입원날짜</span>
-                        <input type="datetime-local" name="admissionDate" id="admissionDate" required>
+                        <input type="datetime-local" name="admissionDate" id="admissionDate" readonly value="${vo.admissionDate}">
                     </div>
 
                     <div class="area">
-                        <span>퇴원날짜</span>
-                        <input type="datetime-local" name="dischargeDate">
-                    </div>
+					    <span>퇴원날짜</span>
+					    <c:if test="${empty vo.dischargeDate}">
+						    <input type="datetime-local" name="dischargeDate">
+						</c:if>
+						<c:if test="${not empty vo.dischargeDate}">
+						    <input type="datetime-local" value="${vo.dischargeDate}" readonly>
+						</c:if>
+					    
+					</div>
 
                     <div class="area">
                         <span>입원 사유</span>
-                        <textarea id="" cols="30" rows="10" name="reason" required></textarea>
+                        <textarea id="" cols="30" rows="10" name="reason" readonly>${vo.reason}</textarea>
                     </div>
 
                     
@@ -381,9 +387,14 @@
            
            	
            	<div class="btn-area">
-            	<input type="submit" value="접수" id="addBtn">
-            	<button id="backBtn" onclick="goBack();">뒤로가기</button>
-        	</div>
+			    
+			  
+		        <c:if test="${empty vo.dischargeDate}">
+			        <input type="submit" value="퇴원 처리" id="addBtn">
+			    </c:if>
+						    
+			    <button id="backBtn" onclick="goBack();">뒤로가기</button>
+			</div>
            	
            	
            	
@@ -392,205 +403,17 @@
 		
     </main>
 
-    <div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modal-title">환자 검색</h2>
-    <br>
-    <form action="" id="searchForm" class="search-area" onsubmit="searchPatients(); return false;">
-        <label for="search" class="category-area">
-            <select name="search" id="search">
-                <option value="name">성명</option>
-            </select>
-            
 
-        </label>
-        <input type="text" id="search-input" name="searchName" >
-       	<input type="submit" value="검색" id="searchBtn">
-    </form>
-    <br>
-    <br>
-
-    <div class="result-area">
-        <div class="result-title">이름</div>
-        <div class="result-title">주민등록번호</div>
-        <div></div>
-    </div>
-    <hr>
-	
-	<div class="result-container">
-	
-	</div>
-	
-    
-
-   <br>
-   <br>
-   <br>
-
-    <div class="modal-btn-area">
-        <button class="modal-btn">확인</button>
-        <button class="modal-btn" id="closeBtn">취소</button>
-    </div>
-  </div>
-</div>
 
 
    <footer>
       <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
    </footer>
    
-   <script>
-   
-		   var modal = document.getElementById('modal');
-		   var patientName = document.getElementById('patientName');
-		   var closeBtn = document.getElementsByClassName('close')[0];
-		
-		   function openModal() {
-		       modal.style.display = 'block';
-		   }
-		
-		   function closeModal() {
-		       modal.style.display = 'none';
-		       document.getElementById('searchForm').reset();
-		       clearSearchResults();
-		       clearSearchInput();
-		       resetSelectedPatients();
-		   }
-		
-		   patientName.addEventListener('focus', openModal);
-		
-		   closeBtn.addEventListener('click', closeModal);
-		
-		   function clearSearchResults() {
-		       const resultContainer = document.querySelector('.result-container');
-		       resultContainer.innerHTML = '';
-		   }
-		
-		   function clearSearchInput() {
-		       const searchInput = document.getElementById('search-input');
-		       searchInput.value = '';
-		   }
-		
-		   function resetSelectedPatients() {
-		       selectedPatients = [];
-		   }
-
-
-	</script>
+  
 	
-	<script type="text/javascript">
-	 var selectedPatients = [];
-	
-		document.getElementById('searchBtn').addEventListener('click', function (event) {
-		    event.preventDefault();
-		    searchPatients();
-		});
-		
-		
-	
-	
-		function searchPatients() {
-		    const modalSearch = document.querySelector('#search-input').value;
 
-		    if (modalSearch.length > 0) {
-		        $.ajax({
-		            url: "/app/admission/searchPatient",
-		            type: "get",
-		            data: { name: modalSearch },
-		            dataType: "json",
-		            success: function (data) {
-		                console.log(data);
-		                
-		                updateResultContainer(data);
-		                
-		            },
-		            error: function (error) {
-		                console.log(error);
-		                alert("검색 결과 전달 실패");
-		            }
-		        });
-		    } else {
-		    	const resultContainer = document.querySelector('.result-container');
-		        resultContainer.innerHTML = '';
-		    }
-		}
-		
-		
-		
-
-		
-		function updateResultContainer(data) {
-		    const resultContainer = document.querySelector('.result-container');
-		    resultContainer.innerHTML = '';
-
-		    data.forEach(item => {
-		      const resultRow = document.createElement('div');
-		      resultRow.classList.add('search-result');
-
-		      // 이름
-		      const nameColumn = document.createElement('div');
-		      nameColumn.classList.add('search-result-deco');
-		      nameColumn.textContent = item.name;
-		      resultRow.appendChild(nameColumn);
-
-		      // 주민등록번호
-		      const registrationNumberColumn = document.createElement('div');
-		      registrationNumberColumn.classList.add('search-result-deco');
-		      registrationNumberColumn.textContent = item.registrationNumber;
-		      resultRow.appendChild(registrationNumberColumn);
-
-		      // 체크박스 추가
-		      const checkboxColumn = document.createElement('div');
-		      const checkbox = document.createElement('input');
-		      checkbox.type = 'checkbox';
-		      checkbox.name = 'patientName';
-		      checkbox.id = 'checkbox_' + item.no;
-		      checkbox.value = item.name;
-		      checkboxColumn.appendChild(checkbox);
-		      resultRow.appendChild(checkboxColumn);
-
-		      resultContainer.appendChild(resultRow);
-
-		      checkbox.addEventListener('change', function () {
-		        if (this.checked) {
-		          selectedPatients.push({
-		            no: item.no,
-		            name: item.name,
-		          });
-		        } else {
-		          selectedPatients = selectedPatients.filter(patient => patient.name !== item.name);
-		        }
-		      });
-		    });
-		  }
-	    
-	    
-		 const confirmBtn = document.querySelector('.modal-btn');
-		 
-		 
-		 confirmBtn.addEventListener('click', function () {
-			    const checkedCheckbox = document.querySelector('input[name="patientName"]:checked');
-
-			    if (checkedCheckbox) {
-			        const selectedPatientName = checkedCheckbox.value;
-			        const selectedPatientNo = checkedCheckbox.id.split('_')[1];
-
-			        console.log('Selected Patient Name:', selectedPatientName);
-			        console.log('Selected Patient No:', selectedPatientNo);
-
-			        document.getElementById('patientName').value = selectedPatientName;
-			        document.getElementById('patientNo').value = selectedPatientNo;
-			     }
-
-			    closeModal();
-			});
-		    
-		    
-	        
-		 
-
-		</script>
+	 
 
 
 
@@ -609,10 +432,7 @@
 	        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	    });
 	    
-	    //뒤로가기 버튼
-	    function goBack() {
-        	window.history.back();
-   	 	}
+	   
 	    
 	    
 	    //입원실 방 번호 뽑아오기
@@ -634,12 +454,20 @@
 	        
 	        document.getElementById('registerForm').submit();
 	        
-	        alert("접수 완료");
+	        alert("퇴원 처리되었습니다.");
 	    });
 	    
 	    
+	</script>	  
+	
+	<script type="text/javascript">
+		 //뒤로가기 버튼
+	    function goBack() {
+	    	window.history.back();
+		 	}
+	</script>  
+	    
 	   
-	   
-	</script>
+
 </body>
 </html>

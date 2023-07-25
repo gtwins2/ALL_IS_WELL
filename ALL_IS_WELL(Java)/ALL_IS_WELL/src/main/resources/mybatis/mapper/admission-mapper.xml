@@ -40,10 +40,31 @@
 	
 	<insert id="registerPatient">
 		INSERT INTO ADMISSION_RECORD(NO, PATIENT_NO, INPATIENT_NO, REASON, ADMISSION_DATE)
-		VALUES(SEQ_ADMISSION_RECORD_NO.NEXTVAL, #{patientNo}, #{no}, #{reason}, TO_TIMESTAMP(#{admissionDate}, 'YYYY-MM-DD HH24:MI:SS'))
+		VALUES(SEQ_ADMISSION_RECORD_NO.NEXTVAL, #{patientNo}, #{no}, #{reason}, TO_TIMESTAMP(#{admissionDate}, 'YYYY-MM-DD"T"HH24:MI'))
 	</insert>
 	
 	<insert id="insertInpatientList">
 		INSERT INTO INPATIENT_LIST(NO, INPATIENT_NO, PATIENT_NO) VALUES(SEQ_INPATIENT_LIST_NO.NEXTVAL, #{no}, #{patientNo}) 
 	</insert>
+	
+	<select id="getScheduleList" resultType="com.kh.app.admission.vo.AdmissionVo">
+		SELECT R.NO AS ADMISSION_RECORD_NO, R.PATIENT_NO, P.NAME AS PATIENT_NAME, R.INPATIENT_NO AS NO, R.ADMISSION_DATE, R.DISCHARGE_DATE, I.INPATIENT_POSITION 
+		FROM ADMISSION_RECORD R 
+		JOIN INPATIENT I 
+		ON I.NO = R.INPATIENT_NO 
+		JOIN PATIENT P 
+		ON P.NO = R.PATIENT_NO
+	</select>
+	
+	<select id="goDetailAdmissionRecord" resultType="com.kh.app.admission.vo.AdmissionVo">
+		SELECT R.NO AS ADMISSION_RECORD_NO, R.PATIENT_NO, P.NAME AS PATIENT_NAME, R.INPATIENT_NO AS NO, R.REASON, R.ADMISSION_DATE, R.DISCHARGE_DATE 
+		FROM ADMISSION_RECORD R 
+		JOIN PATIENT P 
+		ON R.PATIENT_NO = P.NO 
+		WHERE R.NO = #{admissionRecordNo}
+	</select>
+	
+	<update id="updateAdmissionRecord">
+		UPDATE ADMISSION_RECORD SET DISCHARGE_DATE = TO_TIMESTAMP(#{dischargeDate}, 'YYYY-MM-DD"T"HH24:MI') WHERE NO = #{admissionRecordNo}
+	</update>
 </mapper>

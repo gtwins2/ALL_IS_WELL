@@ -239,8 +239,8 @@
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
                             <select name="search" id="search">
-                                <option value="writer">인원수</option>
-                                <option value="title">호수</option>
+                                <option value="numberOfPatients">인원수</option>
+                                <option value="address">호수</option>
                             </select>
                             
         
@@ -260,27 +260,19 @@
             <br>
             <hr>
 
-	        <div class="select-area">
-
-                <c:forEach items="${roomList}" var="room">
-                    
-                        <div class="box">
-                        	<input type="hidden" name="no" id="roomNo" value="${room.no}">
-                            <div>${room.inpatientPosition}</div>
-                            <div>${room.maxCapacity}인실</div>
-                            <button class="statusBtn">(${room.numberOfPatients}/${room.maxCapacity})</button>
-                        </div>
-
-
-           
-
-                </c:forEach>
-                
-                
-                
-	            
-	        </div>
-
+	      	<div class="select-area">
+			    <c:forEach items="${roomList}" var="room">
+			        <c:set var="activated" value="${room.numberOfPatients < room.maxCapacity}" />
+			        <div class="box">
+			            <input type="hidden" name="no" id="roomNo" value="${room.no}">
+			            <div>${room.inpatientPosition}</div>
+			            <div>${room.maxCapacity}인실</div>
+			            <button class="statusBtn ${activated ? 'activated' : ''}">
+			                (${room.numberOfPatients}/${room.maxCapacity})
+			            </button>
+			        </div>
+			    </c:forEach>
+			</div>
            
 
           	
@@ -348,7 +340,19 @@
 	    
 	    
 	    
-	    
+	    //수용인원이 더 적을 때만 버튼 활성화
+		 const statusBtns = document.querySelectorAll('.statusBtn');
+	    statusBtns.forEach(statusBtn => {
+	        statusBtn.addEventListener('click', function () {
+	            if (this.classList.contains('activated')) {
+	                const roomNo = this.parentElement.querySelector('#roomNo').value;
+	
+	                const url = '/app/admission/registerPatient?no='+roomNo;
+	
+	                window.location.href = url;
+	            }
+	        });
+	    });
 	    
 	    
 	    
