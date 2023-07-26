@@ -1,6 +1,7 @@
 package com.kh.app.proceeding.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.pool.AllConstPool;
@@ -30,19 +33,27 @@ public class ProceedingController {
 	
 	//회의록 목록 조회
 	@GetMapping("list")
-	public String proceeding(Model model) {
+	public String proceeding(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+			Model model, HttpSession session , @RequestParam Map<String , String> paramMap) {
 	
+//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+//		/*
+//		 * if(loginMember == null) { throw new LoginException(); }
+//		 */
+//		String no = loginMember.getNo();
+//		ProceedingVo vo = new ProceedingVo();
+//		vo.setMemberNo(no);
+		
 		int listCount = service.getBoardCnt();
-		int currentPage = 1;
-		int pageLimit = AllConstPool.PAGE_LIMIT;
-		int boardLimit = AllConstPool.BOARD_LIMIT;
-		
-		PageVo pv = new PageVo(listCount , currentPage , pageLimit , boardLimit);
-		
-		
-		List<ProceedingVo> voList  = service.list(pv);
+		int pageLimit = 5;
+		int boardLimit = 10;
+
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+
+		List<ProceedingVo> voList = service.list(pv, paramMap);
+
+		model.addAttribute("pv" , pv);
 		model.addAttribute("voList", voList);
-		
 		
 		return "proceeding/list";
 	}
@@ -71,10 +82,12 @@ public class ProceedingController {
 		vo.setMemberNo(loginMember.getNo());
 		log.info(loginMember.getNo());
 		int result = service.write(vo);
+		log.info(result + "");
 		if(result != 1) {
 			return "redirect:/error/errorPage";
 		}
-		return "redirect:/app/proceeding/list";
+		
+		return "redirect:/proceeding/list";
 		
 	}
 	

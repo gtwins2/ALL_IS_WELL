@@ -1,7 +1,7 @@
 package com.kh.app.proceeding.dao;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,9 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ProceedingDaoImpl implements ProceedingDao{
 
 	@Override
-	public List<ProceedingVo> list(SqlSessionTemplate sst, PageVo pv) {
+	public List<ProceedingVo> list(SqlSessionTemplate sst, PageVo pv , Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("proceeding.selectBoardList" , null , rb);
+		return sst.selectList("proceeding.selectBoardList" , paramMap , rb);
 	}
 
 	@Override

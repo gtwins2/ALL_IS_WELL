@@ -10,13 +10,22 @@
         <title>회의록목록</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-            .main-area {
-   				 width: 1200px;
-    			height: 1000px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
-            }
-
+        	#wrap{
+				width: 1920px;
+				display: grid;
+				grid-template-columns: 150px 1770px;
+			}
+		
+		    main{
+		        min-height: 100%;
+		    }
+		
+		    .main-area {
+		        width: 70%;
+		        min-height: 80%;
+		        margin: auto;
+		    }
+        
             .title-area {
                 text-align: center;
                 display: flex;
@@ -64,7 +73,7 @@
 
 
             .list-area {
-                margin-top: 20px;
+                top: -100px;
             }
 
 
@@ -256,10 +265,6 @@
                 border-color: lightgray;
             }
 
-            #content{
-                display: grid;
-                grid-template-columns: 300px 1620px;
-            }
 
         </style>
     </head>
@@ -269,34 +274,31 @@
             <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
         </header>
 
-
-        <div id="content">
-            <div id="wrap">
+	<main id="wrap">
+        		<div>
                 <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
-            </div>
+                </div>
 
 
             <div class="main-area">
                 <div class="title-area">
                     <span id="title">회의록목록</span>
 
-                    <form action="" class="search-area">
+                    <form action="" class="search-area" method="get">
                         <label for="search" class="category-area">
-                            <select name="search" id="search">
+                            <select id="search" name="searchType">
                                 <option value="title">제목</option>
-                                <option value="date">등록일</option>
-                                
+                                <option value="enroll_date">등록일</option>
                             </select>
 
 					
 
                         </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+	                        <input type="text" id="search-input" name="searchValue">
                         
-                    </form>
-                   
-
+                        <a href="http://127.0.0.1:8888/app/proceeding/list?page=1" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <input type="submit" value="검색">
+                    </form> 
 
                 </div>
                 <br>
@@ -308,10 +310,11 @@
 					<button id="sendRequest" onclick="sendRequest();">글쓰기</button>
                 <div class="list-area">
                     <table>
+                    <tr>
                         <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
                         <th>제목</th>
                         <th>등록일</th>
-                        
+                    </tr>
 
 					<c:forEach items="${voList}" var="vo">
                         <tr>
@@ -331,7 +334,7 @@
 
 
 
-            <c:set var="range" value="2" /> 
+            <c:set var="range" value="5" /> 
             <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
             <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
             <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
@@ -348,57 +351,65 @@
                     <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
                 </c:if>
             </div>
-            </div>
-
         </div>
+       </div>
+	</main>
 
-        <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
-        </footer>
+	<footer>
+		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+	</footer>
+    <script>
 
-        <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
 
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        const pageBtn = document.querySelectorAll('.pageBtn');
+
+        for (let btn of pageBtn) {
+            if (btn.innerHTML == '${pv.currentPage}') {
+                btn.style.color = '#d9d9d9';
             }
-            
-            const sideBar = document.querySelector("#side-bar")
-            const subMenus = document.querySelectorAll(".sub-menu");
-            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+        }
 
-            subMenus.forEach(subMenu => {
-                subMenu.style.height = sideBar.offsetHeight + 'px';
-            });
+        function pageMove(pageNumber) {
+            let url = new URL(window.location.href);
+            url.searchParams.set('page', pageNumber);
+            window.location.href = url.href;
+        }
+    
+        /* function detail() {
+            const bno = event.target.parentElement.querySelector("#approvalNo").innerText;
+            location.href = "${root}/approval/=" + bno;
 
-            thirdSidebars.forEach(thirdSidebar => {
-                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
-            });
-            
-            
-           	
-           	function sendRequest(){
-           		location.href="${root}/proceeding/write";
-           	}
-            
-           	
-            const pageBtn = document.querySelectorAll('.pageBtn');
+        }; */
 
-            for (let btn of pageBtn) {
-                if (btn.innerHTML == '${pv.currentPage}') {
-                    btn.style.color = '#d9d9d9';
-                }
-            }
+        function sendRequest(){
+       		location.href="${root}/proceeding/write";
+       	}
 
-            function pageMove(pageNumber) {
-                let url = new URL(window.location.href);
-                url.searchParams.set('page', pageNumber);
-                window.location.href = url.href;
-            }
-
-        </script>
-    </body>
-
-    </html>
+        const searchValueTag = document.querySelector("input[name=searchValue]");
+		searchValueTag.value = '${paramMap.searchValue}';
+		
+		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
+		const x = '${paramMap.searchType}';
+		console.log(x);
+		if(x == 'title'){
+			searchTypeTagArr[0].selected = true;			
+		}else if(x == '${paramMap.enroll_date}'){
+			searchTypeTagArr[1].selected = true;
+		}
+		
+		
+        
+    </script>
+</body>
+</html>

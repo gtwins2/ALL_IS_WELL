@@ -1,6 +1,7 @@
 package com.kh.app.proceeding.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -11,7 +12,7 @@ import com.kh.app.proceeding.vo.ProceedingVo;
 public interface ProceedingDao {
 
 	//�Խñ� ���				//board/list
-	List<ProceedingVo> list(SqlSessionTemplate sst , PageVo pv);
+	List<ProceedingVo> list(SqlSessionTemplate sst , PageVo pv, Map<String, String> paramMap);
 	
 
 	//�Խñ� �ۼ�				//board/write
