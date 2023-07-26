@@ -89,4 +89,40 @@
 		FROM PATIENT
 		WHERE NO = #{no}
 	</select>
+	
+	<select id="registList" resultType="com.kh.app.patient.vo.PatientVo">
+		SELECT 
+			R.NO
+			,NAME
+			,GENDER
+			,REGISTRATION_NUMBER
+			,PHONE_NUMBER
+			,EMAIL
+			,CAUTION
+            , R.SYMPTOM
+		FROM RECEIPT R
+		JOIN PATIENT P ON R.PATIENT_NO = P.NO
+	</select>
+	
+	<select id="infoUpdate" resultType="com.kh.app.patient.vo.PatientVo">
+		SELECT 
+			R.NO
+			,NAME
+			,GENDER
+			,REGISTRATION_NUMBER
+			,PHONE_NUMBER
+			,EMAIL
+			,CAUTION
+            , R.SYMPTOM
+		FROM RECEIPT R
+		JOIN PATIENT P ON R.PATIENT_NO = P.NO
+		WHERE R.NO = #{no}
+	</select>
+	
+	<!-- <update id="infoUpdateUpdate">
+		UPDATE RECEIPT
+		SET
+		
+	</update> -->
+	
 </mapper>

@@ -84,10 +84,8 @@ public class ReceiptController {
 //		List<PatientVo> voList = rs.search(vo);
 //		model.addAttribute("voList" ,voList);
 		
-		List<PatientVo> voList = rs.selectOneList(vo);
-		model.addAttribute("voList" ,voList);
-		
-		System.out.println(voList);
+		PatientVo voList = rs.selectOneList(vo);
+		model.addAttribute("vo" ,voList);
 		
 		return "receipt/registContent";
 	}
@@ -102,9 +100,7 @@ public class ReceiptController {
 	@PostMapping("registContent")
 	public String registContent(@RequestParam(name="page", required=false, defaultValue="1") 
 	int currentPage, Model model, HttpSession session, ReceiptVo vo) {
-		System.out.println("1");
 		int result = rs.registContent(vo);
-		System.out.println("2");
 		if(result != 1) {
 			return "error/404page";
 		}
@@ -113,14 +109,11 @@ public class ReceiptController {
 	    int pageLimit = 5;
 	    int boardLimit = 10;
 		
-	    System.out.println("3");
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-	    System.out.println("4");
 
-		List<PatientVo> voList = rs.list(pv);
+		List<PatientVo> voList = rs.registList(pv);
 		model.addAttribute("voList" ,voList);
 		model.addAttribute("pv", pv);
-	    System.out.println("5");
 
 		return "redirect:/receipt/registList";
 	}
@@ -128,14 +121,43 @@ public class ReceiptController {
 	
 	//������ ȯ����ȸ
 	@GetMapping("registList")
-	public String registList() {
+	public String registList(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, ReceiptVo vo) {
+		
+		int listCount = rs.getPatientListCnt();
+	    int pageLimit = 5;
+	    int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<PatientVo> voList = rs.registList(pv);
+		model.addAttribute("voList" ,voList);
 		return "receipt/registList";
+	}
+	
+	@PostMapping("registList")
+	public String registList() {
+		
+		
+		return "redirect:/receipt/infoUpdate";
 	}
 	
 	//ȯ����������
 	@GetMapping("infoUpdate")
-	public String infoUpdate() {
+	public String infoUpdate(PatientVo vo, Model model) {
+		PatientVo voList = rs.infoUpdate(vo);
+		model.addAttribute("vo" ,voList);
+		model.addAttribute("gender" ,voList.getGender());
 		return "receipt/infoUpdate";
+	}
+	
+	@PostMapping("infoUpdate")
+	public String infoUpdate(PatientVo vo) {
+		
+		int result = rs.infoUpdateUpdate(vo); 
+		
+		return "receipt/registList";
+		
 	}
 	
 	//접수

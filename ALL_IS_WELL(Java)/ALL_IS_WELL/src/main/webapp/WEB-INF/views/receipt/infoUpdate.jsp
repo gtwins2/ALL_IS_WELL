@@ -123,28 +123,38 @@ color: #000000;
 		</div>
 		<main>
 			<div id="div01">접수</div>
-			<form action="" method="post">
+			<form action="${root}/receipt/infoUpdate" method="post">
 				
 				<div id="div02">
 					<div id="div02-1">
+						<input type="text" value="${vo.no}" hidden>
 						<div>이름</div>
-						<div><input type="text"></div>
-						<div id="div02-3">남<input type="checkbox" name="" id="">여<input type="checkbox"></div>
+						<div><input type="text" value="${vo.name}"></div>
+						<div id="div02-3">
+							<c:if test="${gender == 'M'}">
+							남<input type="checkbox" name="" id="m" checked>
+							여<input type="checkbox" id="w" >
+							</c:if>
+							<c:if test="${gender == 'F'}">
+							남<input type="checkbox" name="" id="m">
+							여<input type="checkbox" id="w" checked>
+							</c:if>
+						</div>
 					</div>
 					<div id="div02-1">
 						<div>주민번호</div>
-						<div><input type="text"></div>
+						<div><input type="text" value="${vo.registrationNumber}"></div>
 						<div></div>
 					</div>
 					<div id="div02-1">
 						<div>휴대전화</div>
-						<div><input type="text"></div>
+						<div><input type="text" value="${vo.phoneNumer }" ></div>
 						<div></div>
 					</div>
 					<div id="div02-2">
 						<div>이메일</div>
 						<div>
-							<input type="text">@
+							<input type="text" value="${vo.email}">@
 							<label for="search" class="category-area">
 								<select name="search" id="search">
 									<option value="naver">naver.com</option>
@@ -156,7 +166,7 @@ color: #000000;
 					</div>
 					<div id="div02-2">
 						<div>특이사항</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><textarea name="" id="" cols="30" rows="10">${vo.symptom }</textarea></div>
 					</div>
 				</div>
 				
@@ -185,4 +195,5 @@ color: #000000;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
 </script>

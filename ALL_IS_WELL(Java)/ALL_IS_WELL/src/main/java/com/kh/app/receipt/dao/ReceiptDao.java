@@ -34,8 +34,21 @@ public class ReceiptDao {
 		return sst.selectOne("receipt.getListCnt");
 	}
 
-	public List<PatientVo> selectOneList(SqlSessionTemplate sst, PatientVo vo) {
+	public PatientVo selectOneList(SqlSessionTemplate sst, PatientVo vo) {
 		return sst.selectOne("receipt.selectOneList", vo);
+	}
+
+	public List<PatientVo> registList(SqlSessionTemplate sst, PageVo pv) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("receipt.registList", pv, rb);
+	}
+
+	public PatientVo infoUpdate(SqlSessionTemplate sst, PatientVo vo) {
+		return sst.selectOne("receipt.infoUpdate", vo);
+	}
+
+	public int infoUpdateUpdate(SqlSessionTemplate sst, PatientVo vo) {
+		return sst.update("receipt.infoUpdateUpdate", vo);
 	}
 
 }
