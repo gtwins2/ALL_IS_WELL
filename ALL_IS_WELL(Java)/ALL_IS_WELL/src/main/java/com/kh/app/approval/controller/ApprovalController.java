@@ -16,6 +16,7 @@ import com.kh.app.approval.service.ApprovalService;
 import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
+import com.kh.app.approval.vo.VacationApprovalVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
@@ -29,13 +30,15 @@ import oracle.jdbc.proxy.annotation.Post;
 public class ApprovalController {
 
 	private final ApprovalService as;
+	private MemberVo loginMember;
+	private ApprovalBtnVo avo;
 
 	// 기안한 문서(화면)
 	@GetMapping("draftList")
 	public void dtaftList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
 			Model model, HttpSession session) {
 
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		loginMember = (MemberVo) session.getAttribute("loginMember");
 		/*
 		 * if(loginMember == null) { throw new LoginException(); }
 		 */
@@ -74,100 +77,92 @@ public class ApprovalController {
 	}
 
 	// 휴가 작성 버튼 클릭 시
-	@PostMapping("vacationBtn")
-	public String vacationBtn() {
-
-//		int result = as.vacationBtn();
+//	@PostMapping("vacationBtn")
+//	public String vacationBtn(ApprovalBtnVo bvo, HttpSession session) {
 //
+//		loginMember = (MemberVo) session.getAttribute("loginMember");
+//		String no = loginMember.getNo();
+//		bvo.setMemberNo(no);
+//		
+//		int result = as.vacationBtn(bvo);
+//		ApprovalBtnVo updateBvo = as.getVacationApprovalBtnDateAfterInsert(bvo);
+//		session.setAttribute("bvo", updateBvo);
+//		
 //		if (result != 1) {
 //			return "errorPage";
 //		}
-
-		return "approval/writeVacation";
-	}
+//
+//		return "approval/writeVacation";
+//	}
 	
-	// 기안한 문서(휴가 작성)
-	@GetMapping("writeVacation")
-	public void writeVacation() {
+	// 휴가 작성(화면)
+//	@GetMapping("writeVacation")
+//	public void writeVacation() {
+//		
+//	}
 
-	}
-
 	// 기안한 문서(휴가 작성)
-//	@PostMapping("writeVacation")
-//	public String writeVacation(ApprovalVo vo, Model model, HttpSession session) {
+//	@GetMapping("writeVacation")
+//	public String writeVacation(VacationApprovalVo vvo, HttpSession session) {
 //
-//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-//		String no = loginMember.getNo();
-//
-//		vo.setNo(no);
-//
-//		int result = as.writeVacation(vo);
+//		loginMember = (MemberVo) session.getAttribute("loginMember");
+//		ApprovalBtnVo bvo = (ApprovalBtnVo) session.getAttribute("bvo");
+//		vvo.setApprovalDocumentNo(bvo.getNo());
+//		
+//		int result = as.vacation(vvo);
 //
 //		if (result != 1) {
-//			return "";
+//			return "error/errorPage";
 //		}
 //
 //		return "approval/draftList";
 //	}
 	
-	// 출장 작성 버튼 클릭 시
-	@PostMapping("tripBtn")
-	public String tripBtn(ApprovalBtnVo bvo, HttpSession session) {
-
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+	/* 출장 */
+	//출장 작성 버튼 클릭 시
+	@GetMapping("tripBtn")
+	public String tripBtn(HttpSession session, ApprovalBtnVo avo) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
 		String no = loginMember.getNo();
-		bvo.setMemberNo(no);
+		avo.setMemberNo(no);
 		
-		int result = as.tripBtn(bvo);
-		
-		ApprovalBtnVo updatedBvo = as.getApprovalBtnDateAfterInsert(bvo);
-		session.setAttribute("bvo", updatedBvo);
-				
-		if(result != 1) {
-			return "redirect:/errorPage";
-		}
-		
-		return "redirect:/approval/writeTrip";
-	}
-
-	// 출장 작성(출장 화면)
-	@GetMapping("trip")
-	public void trip(Model model, HttpSession session) {
-		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-				
-		model.addAttribute("loginMember", loginMember);
-		
+		ApprovalBtnVo updateAvo = as.getAfterInsert(avo);
+		session.setAttribute("avo", updateAvo);
+						
+		return "approval/writeTrip";
 	}
 	
-	// 출장 작성
-	@PostMapping("trip")
-	public String trip(BusinessTripApprovalVo vo, HttpSession session) {
+	//출장 작성 화면
+	@GetMapping("writeTrip")
+	public String writeTrip(Model model, HttpSession session) {
 		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		ApprovalBtnVo bvo = (ApprovalBtnVo) session.getAttribute("bvo");
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		avo = (ApprovalBtnVo) session.getAttribute("avo");
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("avo", avo);
 		
-		vo.setApprovalDocumentNo(bvo.getNo());
-		
-		int result = as.trip(vo);
+		return "approval/writeTrip";
+	}
+	
+	//출장 작성
+	@PostMapping("writeTrip")
+	public String writeTrip(BusinessTripApprovalVo bvo, HttpSession session) {
+		avo = (ApprovalBtnVo) session.getAttribute("avo");
 				
-		if(result != 1) {
+		boolean isSuccess = as.processTrip(avo, bvo);
+		if(!isSuccess) {
 			return "error/errorPage";
 		}
-		
 		return "redirect:/approval/draftList";
 	}
 
 	// 결재된 문서(출장 상세)
 	@GetMapping("detailTrip")
-	public void detailTrip() {
+	public void detailTrip(String no) {
+		ApprovalVo vo = as.detailTrip(no);
 		
-	}
-
-	// 기안한 문서(출장 작성)
-	@GetMapping("writeTrip")
-	public void writeTrip() {
-
+		
 	}
 
 	// 결재해야할 문서(재고)

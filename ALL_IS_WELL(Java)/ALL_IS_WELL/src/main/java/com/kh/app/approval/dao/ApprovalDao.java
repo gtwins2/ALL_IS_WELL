@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
+import com.kh.app.approval.vo.VacationApprovalVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.page.vo.PageVo;
 
@@ -26,21 +27,36 @@ public class ApprovalDao {
 		return sst.selectList("approval.getApprovalList", no, rb);
 	}
 
-	//휴가 작성 로직
-//	public int writeVacation(SqlSessionTemplate sst, ApprovalVo vo) {
-//		return sst.insert("approval.writeVacation", vo);
-//	}
+	
 
-	public int tripBtn(SqlSessionTemplate sst, ApprovalBtnVo bvo) {
-		return sst.insert("approval.tripBtn", bvo);
+	public int vacationBtn(SqlSessionTemplate sst, ApprovalBtnVo bvo) {
+		return sst.insert("approval.vacationBtn", bvo);
 	}
 
-	public ApprovalBtnVo getApprovalBtnDataAfterInsert(SqlSessionTemplate sst, ApprovalBtnVo bvo) {
-		return sst.selectOne("approval.tripAfterInsert", bvo);
+	public ApprovalBtnVo getVacationApprovalBtnDateAfterInsert(SqlSessionTemplate sst, ApprovalBtnVo bvo) {
+		return sst.selectOne("approval.vacationAfterInsert", bvo);
 	}
 
-	public int trip(SqlSessionTemplate sst, BusinessTripApprovalVo vo) {
-		return sst.insert("approval.tripWrite", vo);
+	public int vacation(SqlSessionTemplate sst, VacationApprovalVo vvo) {
+		return sst.insert("approval.vacationWrite", vvo);
 	}
+
+	/* 출장 */
+	public int tripBtn(SqlSessionTemplate sst, ApprovalBtnVo avo) {
+		return sst.insert("approval.tripBtn", avo);
+	}
+
+	public int writeTrip(SqlSessionTemplate sst, BusinessTripApprovalVo bvo) {
+		return sst.insert("approval.writeTrip", bvo);
+	}
+
+	public ApprovalBtnVo getAfterInsert(SqlSessionTemplate sst, ApprovalBtnVo avo) {
+		return sst.selectOne("approval.getAfterInsert", avo);
+	}
+
+	public ApprovalVo detailTrip(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approval.detailTrip", no);
+	}
+
 
 }

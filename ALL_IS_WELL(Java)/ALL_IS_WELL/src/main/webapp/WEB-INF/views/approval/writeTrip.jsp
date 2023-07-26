@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +77,10 @@
         text-align: center;
     }
 
+    #info th{
+        width: 100px;
+    }
+
     #approval {
         border-collapse: collapse;
         text-align: center;
@@ -101,7 +106,11 @@
     }
 
     #stamp td {
-        height: 140px;
+        height: 130px;
+    }
+
+    #date, #name{
+        height: 30px
     }
 
     #reasonDiv {
@@ -200,11 +209,11 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>${bvo.no}</td>
+                                <td>${avo.no}</td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>${bvo.departmentName}</td>
+                                <td>${avo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
@@ -225,20 +234,19 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr id="name">
-                                <td></td>
-                                <td></td>
+                            <tr id="date">
+                                <td><fmt:formatDate value="${avo.createDate}" pattern="MM-dd"/></td>                                <td></td>
                                 <td></td>
                             </tr>
-                            <tr id="date">
-                                <td></td>
+                            <tr id="name">
+                                <td>${loginMember.name}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <form action="${root}/approval/trip" method="post">
+                <form action="${root}/approval/writeTrip" method="post">
                     <div id="reasonDiv">
                         <div class="top">휴가기간</div>
                         <div class="top-side">
