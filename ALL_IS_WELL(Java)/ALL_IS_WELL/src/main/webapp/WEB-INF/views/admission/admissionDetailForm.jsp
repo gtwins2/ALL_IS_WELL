@@ -390,7 +390,8 @@
 			    
 			  
 		        <c:if test="${empty vo.dischargeDate}">
-			        <input type="submit" value="퇴원 처리" id="addBtn">
+		        	<button id="addBtn">퇴원 처리</button>
+			        <!-- <input type="submit" value="퇴원 처리" id="addBtn"> -->
 			    </c:if>
 						    
 			    <button id="backBtn" onclick="goBack();">뒤로가기</button>
@@ -435,21 +436,12 @@
 	   
 	    
 	    
-	    //입원실 방 번호 뽑아오기
-	    const urlParams = new URLSearchParams(window.location.search);
-
-		const roomNumber = urlParams.get('no');
-		
-		const roomNo = document.querySelector("#roomNo");
-		
-		roomNo.value = roomNumber;
-	   
+	 
 	    
 	    //제출하기
 	    const submitBtn = document.getElementById('addBtn');
 	    submitBtn.addEventListener('click', function (event) {
 	        event.preventDefault(); 
-	        
 	        
 	        
 	        document.getElementById('registerForm').submit();
@@ -464,7 +456,7 @@
 		 //뒤로가기 버튼
 	    function goBack() {
 	    	window.history.back();
-		 	}
+		 }
 	</script>  
 	    
 	   
