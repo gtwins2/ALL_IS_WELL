@@ -220,7 +220,7 @@
 	                    </thead>
                         <tbody>
 						<c:forEach items="${voList}" var="vo">
-                            <form action="/app/receipt/list" method="post">
+                            <form action="/app/receipt/registList" method="post">
 
                                 <tr>
                                     <input type="text" value="${vo.no}" name="no" hidden>
@@ -327,6 +327,6 @@
     		location.href='${root}/receipt/infoUpdate?no=' + no + "&name=" + name;
 
 
-    	});
+    	}); 
     
 </script>

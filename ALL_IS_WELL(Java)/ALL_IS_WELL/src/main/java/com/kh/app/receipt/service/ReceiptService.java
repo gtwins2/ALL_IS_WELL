@@ -55,4 +55,12 @@ public class ReceiptService {
 		return dao.infoUpdateUpdate(sst, vo);
 	}
 
+	public ReceiptVo selectRegistList(ReceiptVo vo) {
+		return dao.selectRegistList(sst, vo);
+	}
+
+	public int insertDiagnosis(ReceiptVo vo) {
+		return dao.insertDiagnosis(sst, vo);
+	}
+
 }

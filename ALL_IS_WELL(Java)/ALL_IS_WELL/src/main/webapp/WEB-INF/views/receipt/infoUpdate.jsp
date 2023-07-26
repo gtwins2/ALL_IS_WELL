@@ -148,7 +148,7 @@ color: #000000;
 					</div>
 					<div id="div02-1">
 						<div>휴대전화</div>
-						<div><input type="text" value="${vo.phoneNumer }" ></div>
+						<div><input type="text" value="${vo.phoneNumber }" ></div>
 						<div></div>
 					</div>
 					<div id="div02-2">
