@@ -39,8 +39,20 @@ public class ReceiptService {
 		return dao.getPatientListCnt(sst);
 	}
 
-	public List<PatientVo> selectOneList(PatientVo vo) {
+	public PatientVo selectOneList(PatientVo vo) {
 		return dao.selectOneList(sst, vo);
+	}
+
+	public List<PatientVo> registList(PageVo pv) {
+		return dao.registList(sst, pv);
+	}
+
+	public PatientVo infoUpdate(PatientVo vo) {
+		return dao.infoUpdate(sst, vo);
+	}
+
+	public int infoUpdateUpdate(PatientVo vo) {
+		return dao.infoUpdateUpdate(sst, vo);
 	}
 
 }

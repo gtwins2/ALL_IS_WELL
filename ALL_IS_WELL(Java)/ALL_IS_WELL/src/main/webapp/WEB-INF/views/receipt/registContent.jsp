@@ -118,10 +118,11 @@ hr{
 				<div id="div02">
 					<div>
 						<div>환자 이름</div>
-						<div><input type="text" value="${vo.no}" readonly></div>
+						<div><input type="text" value="${vo.no}" name="patientNo" hidden></div>
+						<div><input type="text" value="${vo.name}" readonly></div>
 					</div>
 					<div>
-						<div>증상${vo.name}</div>
+						<div>증상</div>
 						<div><input type="text" name="symptom"></div>
 					</div>
 				</div>
