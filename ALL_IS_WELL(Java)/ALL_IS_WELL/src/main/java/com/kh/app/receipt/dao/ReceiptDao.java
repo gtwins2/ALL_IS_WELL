@@ -51,4 +51,12 @@ public class ReceiptDao {
 		return sst.update("receipt.infoUpdateUpdate", vo);
 	}
 
+	public ReceiptVo selectRegistList(SqlSessionTemplate sst, ReceiptVo vo) {
+		return sst.selectOne("receipt.selectRegistList", vo);
+	}
+
+	public int insertDiagnosis(SqlSessionTemplate sst, ReceiptVo vo) {
+		return sst.insert("receipt.insertDiagnosis", vo);
+	}
+
 }

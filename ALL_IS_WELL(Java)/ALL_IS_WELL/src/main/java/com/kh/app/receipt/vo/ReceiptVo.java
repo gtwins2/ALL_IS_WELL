@@ -8,4 +8,5 @@ public class ReceiptVo {
 	private String patientNo;
 	private String symptom;
 	private String enrollDate;
+	private String medicalRecord;
 }

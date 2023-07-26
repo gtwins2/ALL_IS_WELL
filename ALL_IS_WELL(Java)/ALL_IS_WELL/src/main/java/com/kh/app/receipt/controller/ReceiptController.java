@@ -136,10 +136,11 @@ public class ReceiptController {
 	}
 	
 	@PostMapping("registList")
-	public String registList() {
+	public String registList(ReceiptVo vo, Model model) {
+		ReceiptVo voList = rs.selectRegistList(vo);
+		model.addAttribute("vo" ,voList);
 		
-		
-		return "redirect:/receipt/infoUpdate";
+		return "receipt/diagnosis";
 	}
 	
 	//ȯ����������
@@ -161,9 +162,17 @@ public class ReceiptController {
 	}
 	
 	//접수
-	@GetMapping("diagnosis")
-	public String diagnosis() {
-		return "receipt/diagnosis";
+//	@GetMapping("diagnosis")
+//	public String diagnosis() {
+//		return "receipt/diagnosis";
+//	}
+	
+	@PostMapping("diagnosis")
+	public String diagnosis(ReceiptVo vo) {
+		
+		int result = rs.insertDiagnosis(vo);
+		
+		return "receipt/registList";
 	}
 	
 	
