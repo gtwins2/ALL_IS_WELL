@@ -244,23 +244,23 @@
                 <br>
 				<form action="${root}/proceeding/write" method="post">
 					
-					<div class="list-area">
+				<div class="list-area">
                     <table>
 
 					<br>
 					<br>
 					<input type="text" value=${loginMember.no} hidden>
-					<div id="title-area">제목  <textarea id="title-area" cols="60" rows="1" value="title"></textarea></div>
+					<div id="title-area">제목  <textarea id="title-area" cols="60" rows="1" name="title"></textarea></div>
 					
 					
 					<br>
 					<br>
-					<div id="title-area">회의예정일<textarea id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요"></textarea></div>
+					<div id="title-area">회의예정일<textarea id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate"></textarea></div>
 					<br>
 					<br>
 					<div id="content2">내용
 					<div id="content-area">
-                        <textarea id="content-area2" cols="60" rows="10"></textarea>
+                        <textarea id="content-area2" cols="60" rows="10" name="content"></textarea>
 
                     </div>
                     

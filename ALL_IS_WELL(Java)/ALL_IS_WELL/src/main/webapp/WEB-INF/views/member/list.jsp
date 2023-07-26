@@ -9,12 +9,21 @@
         <title>회원목록조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-            .main-area {
-   				 width: 1200px;
-    			height: 1100px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
-            }
+            #wrap{
+				width: 1920px;
+				display: grid;
+				grid-template-columns: 150px 1770px;
+			}
+		
+		    main{
+		        min-height: 100%;
+		    }
+		
+		    .main-area {
+		        width: 70%;
+		        min-height: 80%;
+		        margin: auto;
+		    }
 
             .title-area {
                 text-align: center;
@@ -377,15 +386,27 @@
 					
                 <div class="list-area">
                     <table>
-                        <th><button type="button" class="btnClass" id="btn2">조회</button></th>
+                        <th>//////////</th>
                         <th>이름</th>
-                        <th>담당부서</th>
+                        <th style="font-size: medium;">담당부서</th>
                         <th>직급</th>
                         <th>전화번호</th>
                         <th>상태</th>
                         
+                        
+                        <c:forEach items="${voList}" var="vo">
+	                        <tr>
+	                        	<th><button type="button" class="btnClass" id="btn2">조회</button></th>
+	                            <th>${vo.name}</th>
+	                            <th>${vo.positionName}</th>
+	                            <th>${vo.positionType}</th>
+	                            <th>${vo.phoneNumber}</th>
+	                            <th>${vo.status}</th>
+	                        </tr>
+                    	</c:forEach>
+                        
 
-                        <tr>
+                        <!-- <tr>
                             <th><button type="button" class="btnClass" id="btn2">조회</button></th>
                             <td>심의사</td>
                             <td>흉부외과</td>
@@ -464,7 +485,7 @@
                             <td>교수</td>
                             <td>010-0000-0000</td>
                             <td>O</td>
-                        </tr>
+                        </tr> -->
 
 
 

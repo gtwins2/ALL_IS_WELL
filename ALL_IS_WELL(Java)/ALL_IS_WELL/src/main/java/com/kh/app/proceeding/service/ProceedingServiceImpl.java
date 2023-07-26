@@ -1,7 +1,7 @@
 package com.kh.app.proceeding.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ public class ProceedingServiceImpl implements ProceedingService{
 	private final SqlSessionTemplate sst;
 	
 	@Override
-	public List<ProceedingVo> list(PageVo pv) {
-		return dao.list(sst, pv);
+	public List<ProceedingVo> list(PageVo pv , Map<String, String> paramMap) {
+		return dao.list(sst, pv , paramMap);
 	}
 	@Override
 	public int write(ProceedingVo vo) {
@@ -45,7 +45,6 @@ public class ProceedingServiceImpl implements ProceedingService{
 	public int getBoardCnt() {
 		return dao.getBoardCnt(sst);
 	}
-	
-	
+		
 
 }

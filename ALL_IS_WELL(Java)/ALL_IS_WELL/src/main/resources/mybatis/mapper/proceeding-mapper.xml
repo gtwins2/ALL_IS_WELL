@@ -5,21 +5,27 @@
 <mapper namespace="proceeding">
    <select id="getBoardCnt" resultType="int">
       SELECT COUNT(NO) FROM PROCEEDING
+      <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
+	  WHERE ${searchType} LIKE '%${searchValue}%'
+	  </if>
    </select>
 
    <select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
-      SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING      
+      SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING
+      <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
+	  WHERE ${searchType} LIKE '%${searchValue.toString()}%'
+	  </if>
    </select>
 	
-	<!-- <insert id="write">
+	 <insert id="write">
 		INSERT INTO PROCEEDING
 		(
-			NO
-			, MEMBER_NO
-			, TITLE
-			, CONTENT
-			, DUE_DATE
-			, ENROLL_DATE
+			NO,
+			MEMBER_NO,
+			TITLE,
+			CONTENT,
+			DUE_DATE,
+			ENROLL_DATE
 		)
 		VALUES
 		(
@@ -30,7 +36,8 @@
 			(TO_TIMESTAMP(#{dueDate})),
 			SYSDATE
 		)
-	</insert> -->
+		
+	</insert> 
 	
 	
 </mapper>
