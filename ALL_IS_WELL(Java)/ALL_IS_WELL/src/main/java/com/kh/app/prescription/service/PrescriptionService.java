@@ -21,4 +21,8 @@ public class PrescriptionService {
 		return dao.list(sst);
 	}
 
+	public int write() {
+		return dao.write(sst);
+	}
+
 }

@@ -155,25 +155,10 @@ public class ReceiptController {
 	}
 	
 	@PostMapping("infoUpdate")
-	public String infoUpdate(PatientVo vo) {
+	public String infoUpdate(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, PatientVo vo) {
 		
 		int result = rs.infoUpdateUpdate(vo); 
-		
-		return "receipt/registList";
-		
-	}
-	
-	//접수
-//	@GetMapping("diagnosis")
-//	public String diagnosis() {
-//		return "receipt/diagnosis";
-//	}
-	
-	@PostMapping("diagnosis")
-	public String diagnosis(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session, ReceiptVo vo) {
-		
-		int result = rs.insertDiagnosis(vo);
 		
 		int listCount = rs.getPatientListCnt();
 	    int pageLimit = 5;
@@ -185,6 +170,21 @@ public class ReceiptController {
 		model.addAttribute("pv", pv);
 		
 		return "receipt/registList";
+		
+	}
+	
+
+	
+	@PostMapping("diagnosis")
+	public String diagnosis(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, ReceiptVo vo, PatientVo vo2) {
+		
+		int result = rs.insertDiagnosis(vo);
+		
+		PatientVo voList = rs.selectOneList(vo2);
+		model.addAttribute("vo" ,voList);
+		
+		return "prescription/write";
 	}
 	
 	

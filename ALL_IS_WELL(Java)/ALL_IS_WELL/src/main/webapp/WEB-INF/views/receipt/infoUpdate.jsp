@@ -127,34 +127,34 @@ color: #000000;
 				
 				<div id="div02">
 					<div id="div02-1">
-						<input type="text" value="${vo.no}" hidden>
+						<input type="text" value="${vo.no}" name="no" hidden>
 						<div>이름</div>
-						<div><input type="text" value="${vo.name}"></div>
+						<div><input type="text" value="${vo.name}" readonly="readonly"></div>
 						<div id="div02-3">
 							<c:if test="${gender == 'M'}">
-							남<input type="checkbox" name="" id="m" checked>
-							여<input type="checkbox" id="w" >
+							남<input type="checkbox" name="" id="m" checked readonly="readonly">
+							여<input type="checkbox" id="w" readonly="readonly">
 							</c:if>
 							<c:if test="${gender == 'F'}">
-							남<input type="checkbox" name="" id="m">
-							여<input type="checkbox" id="w" checked>
+							남<input type="checkbox" name="" id="m" readonly="readonly">
+							여<input type="checkbox" id="w" checked readonly="readonly">
 							</c:if>
 						</div>
 					</div>
 					<div id="div02-1">
 						<div>주민번호</div>
-						<div><input type="text" value="${vo.registrationNumber}"></div>
+						<div><input type="text" value="${vo.registrationNumber}" readonly="readonly"></div>
 						<div></div>
 					</div>
 					<div id="div02-1">
 						<div>휴대전화</div>
-						<div><input type="text" value="${vo.phoneNumber }" ></div>
+						<div><input type="text" value="${vo.phoneNumber }" readonly="readonly" ></div>
 						<div></div>
 					</div>
 					<div id="div02-2">
 						<div>이메일</div>
 						<div>
-							<input type="text" value="${vo.email}">@
+							<input type="text" value="${vo.email}" readonly="readonly">@
 							<label for="search" class="category-area">
 								<select name="search" id="search">
 									<option value="naver">naver.com</option>
@@ -166,7 +166,7 @@ color: #000000;
 					</div>
 					<div id="div02-2">
 						<div>특이사항</div>
-						<div><textarea name="" id="" cols="30" rows="10">${vo.symptom }</textarea></div>
+						<div><textarea name="symptom" id="" cols="30" rows="10">${vo.symptom }</textarea></div>
 					</div>
 				</div>
 				

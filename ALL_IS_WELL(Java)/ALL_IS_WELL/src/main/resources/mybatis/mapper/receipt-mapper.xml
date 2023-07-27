@@ -120,11 +120,12 @@
 		WHERE R.NO = #{no}
 	</select>
 	
-	<!-- <update id="infoUpdateUpdate">
-		UPDATE RECEIPT
-		SET
+	<update id="infoUpdateUpdate">
+		UPDATE RECEIPT SET
+	    SYMPTOM = #{symptom} 
+	    WHERE NO = #{no}
 		
-	</update> -->
+	</update>
 	
 	<select id="selectRegistList" resultType="com.kh.app.receipt.vo.ReceiptVo">
 		SELECT
