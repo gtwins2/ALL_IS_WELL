@@ -10,8 +10,8 @@ public class BusinessTripApprovalVo {
 	private String memberNo;
 	private String approvalDocumentNo;
 	private String content;
-	private DATE startDate;
-	private DATE endDate;
+	private String startDate;
+	private String endDate;
 	
 	private DATE createDate;
 }

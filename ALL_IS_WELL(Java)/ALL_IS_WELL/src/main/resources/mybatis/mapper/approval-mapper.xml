@@ -81,6 +81,13 @@
 		(SEQ_APPROVAL_DOCUMENT_NO.NEXTVAL, #{memberNo}, SYSDATE, '출장문서')
 	</insert>
 	
+	<select id="selectMostRecentApprovalDocument" resultType="com.kh.app.approval.vo.ApprovalBtnVo">
+	    SELECT * FROM APPROVAL_DOCUMENT
+	    WHERE MEMBER_NO = #{memberNo}
+	    ORDER BY CREATE_DATE DESC
+	    FETCH FIRST 1 ROWS ONLY
+	</select>
+	
 	<insert id="writeTrip">
 		INSERT INTO
 		BUSINESS_TRIP_APPROVAL_DOCUMENT
