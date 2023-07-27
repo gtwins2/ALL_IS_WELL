@@ -32,57 +32,50 @@ public class ApprovalService {
 		return dao.getApprovalList(sst, pv, no);
 	}
 
-	//휴가 작성 버튼 클릭 시
-	public int vacationBtn(ApprovalBtnVo bvo) {
-		return dao.vacationBtn(sst, bvo);
-	}
+//	//휴가 작성 버튼 클릭 시
+//	public int vacationBtn(ApprovalBtnVo bvo) {
+//		return dao.vacationBtn(sst, bvo);
+//	}
+//
+//	//휴가 작성 버튼 클릭시 데이터 옮기기
+//	public ApprovalBtnVo getVacationApprovalBtnDateAfterInsert(ApprovalBtnVo bvo) {
+//		return dao.getVacationApprovalBtnDateAfterInsert(sst, bvo);
+//	}
 
-	//휴가 작성 버튼 클릭시 데이터 옮기기
-	public ApprovalBtnVo getVacationApprovalBtnDateAfterInsert(ApprovalBtnVo bvo) {
-		return dao.getVacationApprovalBtnDateAfterInsert(sst, bvo);
-	}
-
-	//휴가 작성
-	public int vacation(VacationApprovalVo vvo) {
-		return dao.vacation(sst, vvo);
-	}
-
+//	//휴가 작성
+//	public int vacation(VacationApprovalVo vvo) {
+//		return dao.vacation(sst, vvo);
+//	}
 	
+	public BusinessTripApprovalVo detailTrip(String bno) {
+		return dao.detailTrip(sst, bno);
+	}
+
 	/* 출장 */
-	//출장 버튼 클릭
-	public int tripBtn(ApprovalBtnVo avo) {
-		return dao.tripBtn(sst, avo);
+	public int tripBtn(String no) {
+		return dao.tripBtn(sst, no);
 	}
 	
-	//출장 작성
-	private int writeTrip(BusinessTripApprovalVo bvo) {
+	public int writeTrip(BusinessTripApprovalVo bvo) {
 		return dao.writeTrip(sst, bvo);
 	}
 	
-	public ApprovalBtnVo getAfterInsert(ApprovalBtnVo avo) {
-		return dao.getAfterInsert(sst, avo);
-	}
-
-	public boolean processTrip(ApprovalBtnVo avo, BusinessTripApprovalVo bvo) {
-		// 첫 번째 메소드 호출: tripBtn
-        int tripBtnResult = tripBtn(avo);
+    public boolean processTrip(String no, BusinessTripApprovalVo bvo) {
+        // 첫 번째 메소드 호출: tripBtn
+        int tripBtnResult = tripBtn(no);
         
-        // 세 번째 메소드 호출 전 필요한 정보 설정: writeTrip
-        bvo.setApprovalDocumentNo(avo.getNo());
+        // 두 번째 메소드 호출 전 필요한 정보 설정: writeTrip
+        bvo.setApprovalDocumentNo(no);
         int writeTripResult = writeTrip(bvo);
-
+        
         // 결과 확인
         if (tripBtnResult != 1 || writeTripResult != 1) {
             throw new RuntimeException("Transaction failed");
-	    }
+        }
 
         // 모든 트랜잭션이 성공적으로 완료
         return true;
     }
-
-	public ApprovalVo detailTrip(String no) {
-		return dao.detailTrip(sst, no);
-	}
 
 
 

@@ -101,20 +101,7 @@
 		)
 	</insert>
 	
-	<select id="getAfterInsert" resultType="com.kh.app.approval.vo.ApprovalBtnVo">
-		SELECT 
-			AD.NO,
-			AD.MEMBER_NO,
-			AD.CREATE_DATE,
-			AD.TITLE,
-			D.NAME AS DEPARTMENT_NAME
-		FROM APPROVAL_DOCUMENT AD
-		JOIN MEMBER M ON M.NO = AD.MEMBER_NO
-		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
-		WHERE AD.NO = (SELECT MAX(NO) FROM APPROVAL_DOCUMENT WHERE MEMBER_NO = #{memberNo})
-	</select>
-	
-	<select id="detailTrip" resultType="com.kh.app.approval.vo.ApprovalBtnVo">
+	<select id="detailTrip" resultType="com.kh.app.approval.vo.BusinessTripApprovalVo">
 		SELECT 
 			AD.NO,
 			AD.MEMBER_NO,
@@ -124,7 +111,7 @@
 			BTAD.END_DATE
 		FROM APPROVAL_DOCUMENT AD
 		JOIN BUSINESS_TRIP_APPROVAL_DOCUMENT BTAD ON AD.NO = BTAD.APPROVAL_DOCUMENT_NO
-		WHERE AD.NO = #{no}
+		WHERE AD.NO = #{bno}
 	</select>
 	
 </mapper>

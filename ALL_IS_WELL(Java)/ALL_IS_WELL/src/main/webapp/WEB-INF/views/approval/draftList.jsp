@@ -218,14 +218,14 @@
                 </form>
 
                 <div id="writeBtn">
-                    <form action="/app/approval/vacationBtn" method="get">
+                    <form action="/app/approval/vacationBtn" method="post" >
                         <button id="writeApproval" type="submit">휴가작성</button>
                     </form>
-                    <form action="/app/approval/tripBtn" method="get">
+                    <form action="/app/approval/tripBtn" method="post">
                         <button id="writeApproval" type="submit">출장작성</button>
                     </form>
                     <c:if test="${loginMember.positionType eq 'N'}">
-                        <form action="/app/approval/inventoryBtn" method="get">
+                        <form action="/app/approval/inventoryBtn" method="post">
                             <button id="writeApproval" type="submit">재고신청</button>
                         </form>
                     </c:if>
@@ -246,7 +246,7 @@
                             <tr onclick="detail();">
                                 <td id="approvalNo" hidden>${vo.no}</td>
                                 <td>${vo.memberName}</td>
-                                <td>${vo.title}</td>
+                                <td id="approvalTitle">${vo.title}</td>
                                 <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
                                 <td>
                                     <button id="statusBtn" class="statusBtn" disabled>${vo.status}</button>
@@ -328,14 +328,15 @@
 
         function detail() {
             const bno = event.target.parentElement.querySelector("#approvalNo").innerText;
-            location.href = "${root}/approval/draftList?=" + bno;
-
+            const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
+            if(title === "출장문서"){
+                location.href = "${root}/approval/detailTrip?=" + bno;
+            } else if(title === "휴가문서"){
+                location.href = "${root}/approval/detailVacation?=" + bno;
+            } else if(title === "재고문서"){
+                location.href = "${root}/approval/detailInventory?=" + bno;
+            }
         };
-
-        function writeVacation() {
-            window.location.href = "${root}/approval/writeVacation";
-        }
-
     </script>
 </body>
 </html>

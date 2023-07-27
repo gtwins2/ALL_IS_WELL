@@ -209,15 +209,15 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>${avo.no}</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>${avo.departmentName}</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>${loginMember.name}</td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
@@ -235,11 +235,12 @@
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td><fmt:formatDate value="${avo.createDate}" pattern="MM-dd"/></td>                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td>${loginMember.name}</td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
