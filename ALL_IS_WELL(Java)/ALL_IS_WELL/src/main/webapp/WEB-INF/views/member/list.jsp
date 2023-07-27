@@ -341,15 +341,15 @@
     </head>
 
     <body>
+    
         <header>
             <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
-
-
-        <div id="content">
-            <div id="wrap">
+       
+	<main id="wrap">
+            <header>
                 <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
-            </div>
+            </header>
 
 
             <div class="main-area">
@@ -358,20 +358,21 @@
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="title">이름</option>
-                                <option value="department">담당부서</option>
-                                <option value="position">직급</option>
+                            <select name="searchType" id="search">
+                                <option value="name">이름</option>
+                                <option value="departmentName">담당부서</option>
+                                <option value="positionName">직급</option>
                                 <option value="phoneNumber">전화번호</option>
+                                <option value="status">상태</option>
                                 
                             </select>
 
 					
 
                         </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        
+                        <input type="text" id="search-input" name="searchValue">
+                        <a href="http://127.0.0.1:8888/app/member/list?page=1" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <input type="submit" value="검색">
                     </form>
                    
 
@@ -386,175 +387,124 @@
 					
                 <div class="list-area">
                     <table>
+                    <tr>
                         <th>//////////</th>
                         <th>이름</th>
-                        <th style="font-size: medium;">담당부서</th>
+                        <th>담당부서</th>
                         <th>직급</th>
                         <th>전화번호</th>
                         <th>상태</th>
-                        
-                        
+                    </tr>
                         <c:forEach items="${voList}" var="vo">
 	                        <tr>
-	                        	<th><button type="button" class="btnClass" id="btn2">조회</button></th>
+	                        	<th><button type="button" class="btnClass" id="btn2" onclick="detail(${vo.no});">조회</button></th>
 	                            <th>${vo.name}</th>
+	                            <th>${vo.departmentName}</th>
 	                            <th>${vo.positionName}</th>
-	                            <th>${vo.positionType}</th>
 	                            <th>${vo.phoneNumber}</th>
 	                            <th>${vo.status}</th>
 	                        </tr>
                     	</c:forEach>
-                        
-
-                        <!-- <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>
-                            <td>심의사</td>
-                            <td>흉부외과</td>
-                            <td>교수</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>곽의사</td>
-                            <td>신경외과</td>
-                            <td>교수</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>송의사</td>
-                            <td>내과</td>
-                            <td>교수</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>이간호</td>
-                            <td>산부인과</td>
-                            <td>수간호</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>박간호</td>
-                            <td>외과</td>
-                            <td>주임</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>오의사</td>
-                            <td>안과</td>
-                            <td>펠로우</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>공의사</td>
-                            <td>피부과</td>
-                            <td>펠로우</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>박간호</td>
-                            <td>성형외과</td>
-                            <td>인턴</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>심의사</td>
-                            <td>흉부외과</td>
-                            <td>교수</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr>
-
-                        <tr>
-                            <th><button type="button" class="btnClass" id="btn2">조회</button></th>                            <td>심의사</td>
-                            <td>흉부외과</td>
-                            <td>교수</td>
-                            <td>010-0000-0000</td>
-                            <td>O</td>
-                        </tr> -->
-
-
-
-
                     </table>
                 </div>
+                
                 <br>
                 <br>
                 <br>
 
                 <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
-                </div>
-            </div>
-
-            
+	                <c:if test="${pv.currentPage > 1 }">
+	                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
+	                <c:if test="${pv.maxPage > 1 }"> 
+	                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+	                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+	                    </c:forEach>
+	                </c:if>
+	                <c:if test="${pv.currentPage < pv.maxPage }">
+	                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+	                </c:if>
+            	</div>
 
 
         </div>
 
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <p>
-                이름 : 송준섭
-                <br>
-                직급 : 과장
-                <br>
-                부서 : 외과
-                <br>
-                전화번호 : 0100101010
-                <br>
-                이메일 : asdfa@naver.com
-              </p>
-            </div>
-        </div>
-
+	        <div id="myModal" class="modal">
+	            <div class="modal-content">
+	              <span class="close">&times;</span>
+	              <p>
+	                이름 : ${vo.name}
+	                <br>
+	                직급 : ${vo.departmentName}
+	                <br>
+	                부서 : ${vo.positionName}
+	                <br>
+	                전화번호 : ${vo.phoneNumber}
+	                <br>
+	                이메일 : ${vo.email}
+	              </p>
+	            </div>
+	        </div>
+	
+	</main>
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
 
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
+        const sideBar = document.querySelector("#side-bar")
+        const subMenus = document.querySelectorAll(".sub-menu");
+        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+        subMenus.forEach(subMenu => {
+            subMenu.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        thirdSidebars.forEach(thirdSidebar => {
+            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+        });
+
+        const pageBtn = document.querySelectorAll('.pageBtn');
+
+        for (let btn of pageBtn) {
+            if (btn.innerHTML == '${pv.currentPage}') {
+                btn.style.color = '#d9d9d9';
             }
+        }
 
-        // Get the modal
+        function pageMove(pageNumber) {
+            let url = new URL(window.location.href);
+            url.searchParams.set('page', pageNumber);
+            window.location.href = url.href;
+        }
+    
+        function detail(no) {
+            const detail = '${vo.no}';
+            location.href = "${root}/member/detail?no=" + detail;
+
+        };
+
+        const searchValueTag = document.querySelector("input[name=searchValue]");
+		searchValueTag.value = '${paramMap.searchValue}';
+		
+		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
+		const x = '${paramMap.searchType}';
+		if(x == 'title'){
+			searchTypeTagArr[0].selected = true;			
+		}else if(x == '${paramMap.enroll_date}'){
+			searchTypeTagArr[1].selected = true;
+		}
+		
+		//modal
+		//회원 번호 넘겨받기
+    	//const memberNo = document.getElementById('memberNoInput').value; 
+		
         var modal = document.getElementById("myModal");
-  
-        // Get the button that opens the modal
-        // var btn = document.querySelector("#btn2");
         var btns = document.querySelectorAll(".btnClass");
   
-  
-        // Get the <span> element that closes the modal
+      	
         
   
-        // When the user clicks on the button, open the modal
         for(i=0; i<13; i++){
 
             var span = document.getElementsByClassName("close")[0];
@@ -576,7 +526,11 @@
 
 
         }
-        </script>
+		
+        
+        
+        
+    </script>
     </body>
 
     </html>

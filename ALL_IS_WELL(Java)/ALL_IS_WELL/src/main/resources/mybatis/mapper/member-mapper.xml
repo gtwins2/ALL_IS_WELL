@@ -26,4 +26,63 @@
 		WHERE ID = #{id}
 		
 	</select>
+	
+	<select id="getBoardCnt" resultType="int">
+      SELECT COUNT(NO) FROM MEMBER
+      WHERE STATUS = 'O'
+      <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
+	  AND ${searchType} LIKE '%${searchValue}%'
+	  </if>
+   </select>
+
+   <select id="selectBoardList" resultType="com.kh.app.member.vo.MemberVo">
+      SELECT 
+
+		M.NO
+		,M.DEPARTMENT_NO
+		,M.POSITION_NO
+		,M.ID
+		,M.PASSWORD
+		,M.NAME
+		,M.STATUS
+		,M.POSITION_TYPE
+		,M.ENROLL_DATE
+		,M.REGISTRATION_NUMBER
+		,M.EMAIL
+		,M.PROFILE
+		,M.PHONE_NUMBER
+		,M.OFFICE_NUMBER
+		,M.LICENSE_NUMBER
+		,M.YEAR_SALARY
+		,M.SIGN
+		,D.NAME AS departmentName
+		,P.NAME AS positionName
+
+	  FROM MEMBER M
+	  JOIN DEPARTMENT D
+	  ON M.DEPARTMENT_NO = D.NO
+	  JOIN POSITION P
+	  ON M.POSITION_NO = P.NO
+      WHERE M.STATUS = 'O'
+      
+      <if test="searchType == 'name' and searchValue != '' and searchValue != null">		
+	  AND M.${searchType} LIKE '%${searchValue.toString()}%'
+	  </if>
+	  
+	  <if test="searchType == 'phoneNumber' and searchValue != '' and searchValue != null">		
+	  AND M.${searchType} LIKE '%${searchValue.toString()}%'
+	  </if>
+	  
+	  <if test="searchType == 'status' and searchValue != '' and searchValue != null">		
+	  AND M.${searchType} LIKE '%${searchValue.toString()}%'
+	  </if>
+      
+      <if test="searchType == 'departmentName' and searchValue != '' and searchValue != null">		
+	  AND D.NAME LIKE '%${searchValue.toString()}%'
+	  </if>
+      <if test="searchType == 'positionName' and searchValue != '' and searchValue != null">		
+	  AND P.NAME LIKE '%${searchValue.toString()}%'
+	  </if>
+	  
+   </select>
 </mapper>
