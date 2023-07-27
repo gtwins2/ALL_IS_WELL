@@ -31,7 +31,6 @@ public class ApprovalController {
 
 	private final ApprovalService as;
 	private MemberVo loginMember;
-	private ApprovalBtnVo avo;
 
 	// 기안한 문서(화면)
 	@GetMapping("draftList")
@@ -94,7 +93,7 @@ public class ApprovalController {
 //
 //		return "approval/writeVacation";
 //	}
-	
+
 	// 휴가 작성(화면)
 //	@GetMapping("writeVacation")
 //	public void writeVacation() {
@@ -117,52 +116,46 @@ public class ApprovalController {
 //
 //		return "approval/draftList";
 //	}
-	
+
 	/* 출장 */
-	//출장 작성 버튼 클릭 시
-	@GetMapping("tripBtn")
-	public String tripBtn(HttpSession session, ApprovalBtnVo avo) {
-		
+	// 출장 작성 버튼 클릭 시
+	@PostMapping("tripBtn")
+	public String tripBtn(HttpSession session) {
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		String no = loginMember.getNo();
-		avo.setMemberNo(no);
-		
-		ApprovalBtnVo updateAvo = as.getAfterInsert(avo);
-		session.setAttribute("avo", updateAvo);
-						
+				
 		return "approval/writeTrip";
 	}
 	
-	//출장 작성 화면
 	@GetMapping("writeTrip")
-	public String writeTrip(Model model, HttpSession session) {
+	public void writeTrip() {
 		
-		loginMember = (MemberVo) session.getAttribute("loginMember");
-		avo = (ApprovalBtnVo) session.getAttribute("avo");
-		model.addAttribute("loginMember", loginMember);
-		model.addAttribute("avo", avo);
-		
-		return "approval/writeTrip";
 	}
 	
-	//출장 작성
+	// 출장 작성
 	@PostMapping("writeTrip")
 	public String writeTrip(BusinessTripApprovalVo bvo, HttpSession session) {
-		avo = (ApprovalBtnVo) session.getAttribute("avo");
-				
-		boolean isSuccess = as.processTrip(avo, bvo);
-		if(!isSuccess) {
+		
+	    loginMember = (MemberVo) session.getAttribute("loginMember");
+	    String no = loginMember.getNo();
+		boolean isSuccess = as.processTrip(no, bvo);
+		if (!isSuccess) {
 			return "error/errorPage";
 		}
-		return "redirect:/approval/draftList";
+		
+		return "approval/draftList";
 	}
+	
 
 	// 결재된 문서(출장 상세)
 	@GetMapping("detailTrip")
-	public void detailTrip(String no) {
-		ApprovalVo vo = as.detailTrip(no);
-		
-		
+	public void detailTrip(String bno, Model model, HttpSession session) {
+
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+
+		BusinessTripApprovalVo bvo = as.detailTrip(bno);
+
+		model.addAttribute("bvo", bvo);
 	}
 
 	// 결재해야할 문서(재고)
