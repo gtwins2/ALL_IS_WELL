@@ -103,24 +103,26 @@ border: 1px solid #D1CECE;
 			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</nav>
 		<main>
-			<div id="div01">
-				<div id="div01-1">환자명<br><br>투약물<br><br>투약일수<br><br>
-					1회 투약량<br><br>용법<br><br>처방전내용</div>
-				<div id="div01-1">
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text" id="input">
+			<form action="${root}/prescription/write" method="post">
+				<div id="div01">
+					<div id="div01-1">환자명<br><br>투약물<br><br>투약일수<br><br>
+						1회 투약량<br><br>용법<br><br>처방전내용</div>
+					<div id="div01-1">
+						<input type="text" value="${vo.no}" name="no" hidden><br><br>
+						<input type="text" value="${vo.name}"><br><br>
+						<input type="text" name="medicine"><br><br>
+						<input type="text" name="totalDay"><br><br>
+						<input type="text" name="dose"><br><br>
+						<input type="text" name="usage"><br><br>
+					</div>
 				</div>
-			</div>
-
-			<div id="div02">처방전 작성</div>
-			<hr>
-
-			<div id="div03">작성</div>
-			<div id="div04">뒤로가기</div>
+	
+				<div id="div02">처방전 작성</div>
+				<hr>
+	
+				<input type="submit" id="div03" value="작성">
+				<div id="div04">뒤로가기</div>
+			</form>
 		</main>
 	</div>
 

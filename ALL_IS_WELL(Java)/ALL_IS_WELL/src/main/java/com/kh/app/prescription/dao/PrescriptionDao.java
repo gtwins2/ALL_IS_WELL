@@ -14,4 +14,8 @@ public class PrescriptionDao {
 		return sst.selectList("prescription.selectList");
 	}
 
+	public int write(SqlSessionTemplate sst) {
+		return sst.insert("prescription.write");
+	}
+
 }

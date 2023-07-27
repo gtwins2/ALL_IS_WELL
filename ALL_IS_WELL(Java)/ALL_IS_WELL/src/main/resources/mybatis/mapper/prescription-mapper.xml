@@ -17,5 +17,20 @@
 		
 	</select>
 	
+	<insert id="write">
+		INSERT INTO PRESCRIPTION
+		(
+			NO
+			MEDICINE
+			TOTAL_DAY
+			DOSE
+			USAGE
+		)
+		VALUES
+		(
+			
+		)
+		
+	</insert>
 	
 </mapper>

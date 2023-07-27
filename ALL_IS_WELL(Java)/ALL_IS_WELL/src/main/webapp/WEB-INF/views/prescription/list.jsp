@@ -218,7 +218,6 @@
                                     <input type="text" value="${vo.no}" name="no" hidden>
                                     <input type="text" value="${vo.name}" name="name" hidden>
                                     <td>${vo.name}</td>
-                                    <td>${vo.gender}</td>
                                     <td>2023-06-07</td>
                                 </tr>
                             </form>
