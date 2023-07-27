@@ -13,16 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.app.approval.service.ApprovalService;
-import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
-import com.kh.app.approval.vo.VacationApprovalVo;
-import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +30,7 @@ public class ApprovalController {
 
 	// 기안한 문서(화면)
 	@GetMapping("draftList")
-	public void dtaftList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+	public void draftList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
 			Model model, HttpSession session) {
 
 		loginMember = (MemberVo) session.getAttribute("loginMember");
@@ -118,32 +114,29 @@ public class ApprovalController {
 //	}
 
 	/* 출장 */
-	// 출장 작성 버튼 클릭 시
-	@PostMapping("tripBtn")
-	public String tripBtn(HttpSession session) {
-		loginMember = (MemberVo) session.getAttribute("loginMember");
-		String no = loginMember.getNo();
-				
-		return "approval/writeTrip";
-	}
-	
+	// 출장 화면
 	@GetMapping("writeTrip")
-	public void writeTrip() {
+	public void writeTrip(HttpSession session) throws Exception {
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		if(loginMember == null) {
+			throw new LoginException();
+		}
 		
 	}
 	
 	// 출장 작성
-	@PostMapping("writeTrip")
-	public String writeTrip(BusinessTripApprovalVo bvo, HttpSession session) {
-		
+	@PostMapping("writeTripData")
+	public String writeTripData(BusinessTripApprovalVo bvo, HttpSession session) {
 	    loginMember = (MemberVo) session.getAttribute("loginMember");
 	    String no = loginMember.getNo();
-		boolean isSuccess = as.processTrip(no, bvo);
+	    bvo.setMemberNo(no);
+	    
+		boolean isSuccess = as.processTrip(bvo);
 		if (!isSuccess) {
 			return "error/errorPage";
 		}
-		
-		return "approval/draftList";
+		System.out.println(4);
+		return "redirect:/approval/draftList";
 	}
 	
 

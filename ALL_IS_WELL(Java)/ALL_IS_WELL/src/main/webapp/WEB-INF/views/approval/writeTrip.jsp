@@ -247,7 +247,7 @@
                         </table>
                     </div>
                 </div>
-                <form action="${root}/approval/writeTrip" method="post">
+                <form action="${root}/approval/writeTripData" method="post">
                     <div id="reasonDiv">
                         <div class="top">휴가기간</div>
                         <div class="top-side">
@@ -260,11 +260,11 @@
                             <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;" name="content"></textarea>
                         </div>
                     </div>
-                    </div>
                     <div id="buttonDiv">
                         <button id="approvalBtn" type="submit">작성</button>
                     </div>
                 </form>
+           	</div>
         </div>
     </main>
     <footer>

@@ -20,10 +20,10 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class ApprovalService {
-	
+
 	private final ApprovalDao dao;
 	private final SqlSessionTemplate sst;
-	
+
 	public int getApprovalListCnt(String no) {
 		return dao.getApprovalListCnt(sst, no);
 	}
@@ -46,38 +46,40 @@ public class ApprovalService {
 //	public int vacation(VacationApprovalVo vvo) {
 //		return dao.vacation(sst, vvo);
 //	}
-	
+
 	public BusinessTripApprovalVo detailTrip(String bno) {
 		return dao.detailTrip(sst, bno);
 	}
 
 	/* 출장 */
-	public int tripBtn(String no) {
-		return dao.tripBtn(sst, no);
+	private int tripBtn(ApprovalBtnVo avo) {
+		return dao.tripBtn(sst, avo);
 	}
-	
-	public int writeTrip(BusinessTripApprovalVo bvo) {
+
+	private int writeTrip(BusinessTripApprovalVo bvo) {
 		return dao.writeTrip(sst, bvo);
 	}
-	
-    public boolean processTrip(String no, BusinessTripApprovalVo bvo) {
-        // 첫 번째 메소드 호출: tripBtn
-        int tripBtnResult = tripBtn(no);
-        
-        // 두 번째 메소드 호출 전 필요한 정보 설정: writeTrip
-        bvo.setApprovalDocumentNo(no);
-        int writeTripResult = writeTrip(bvo);
-        
-        // 결과 확인
-        if (tripBtnResult != 1 || writeTripResult != 1) {
-            throw new RuntimeException("Transaction failed");
-        }
-
-        // 모든 트랜잭션이 성공적으로 완료
-        return true;
-    }
 
 
+	public boolean processTrip(BusinessTripApprovalVo bvo) {
+		ApprovalBtnVo avo = new ApprovalBtnVo();
 
+		avo.setMemberNo(bvo.getMemberNo());
+		avo.setStartDate(bvo.getStartDate());
+		avo.setEndDate(bvo.getEndDate());
+
+		int tripBtnResult = tripBtn(avo);
+		
+		avo = dao.selectMostRecentApprovalDocument(sst, avo);
+
+		bvo.setApprovalDocumentNo(avo.getNo());
+		int writeTripResult = writeTrip(bvo);
+
+		if (tripBtnResult != 1 || writeTripResult != 1) {
+			throw new RuntimeException("Transaction failed");
+		}
+
+		return true;
+	}
 
 }

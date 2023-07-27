@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.page.vo.PageVo;
@@ -29,13 +30,16 @@ public class ApprovalDao {
 	}
 
 	/* 출장 */
-	public int tripBtn(SqlSessionTemplate sst, String no) {
-		return sst.insert("approval.tripBtn", no);
+	public int tripBtn(SqlSessionTemplate sst, ApprovalBtnVo avo) {
+		return sst.insert("approval.tripBtn", avo);
 	}
 
 	public int writeTrip(SqlSessionTemplate sst, BusinessTripApprovalVo bvo) {
 		return sst.insert("approval.writeTrip", bvo);
 	}
 
-
+	public ApprovalBtnVo selectMostRecentApprovalDocument(SqlSessionTemplate sst, ApprovalBtnVo avo) {
+	    return sst.selectOne("approval.selectMostRecentApprovalDocument", avo);
+	}
+	
 }
