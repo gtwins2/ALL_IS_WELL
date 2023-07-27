@@ -23,8 +23,8 @@
 position: absolute;
 width: 250px;
 height: 59px;
-left: 450px;
-top: 209px;
+left: 350px;
+top: 109px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
@@ -37,21 +37,21 @@ hr{
 	position: absolute;
 	width: 1620px;
 	height: 0px;
-	left: 300px;
-	top: 298px;
+	left: 150px;
+	top: 168px;
 	border: 1px solid #D1CECE;
 
 }
 
 #div02{
 	position: absolute;
-	left: 439px;
-	top: 306px;
+	left: 430px;
+	top: 206px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
  	width: 1200px;
-	height: 600px;
+	height: 550px;
 	margin: auto;
 	display: grid;
 	grid-template-rows: 1fr 2fr;
@@ -79,7 +79,7 @@ hr{
 	width: 127.61px;
 	height: 47.83px;
 	left: 1455px;
-	top: 950px;
+	top: 780px;
 	background: #5A8CF2;
 	border-radius: 5px;
 	font-family: 'Inter';

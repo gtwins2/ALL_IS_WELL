@@ -132,6 +132,8 @@ public class ReceiptController {
 		
 		List<PatientVo> voList = rs.registList(pv);
 		model.addAttribute("voList" ,voList);
+		model.addAttribute("pv", pv);
+		
 		return "receipt/registList";
 	}
 	
@@ -168,9 +170,19 @@ public class ReceiptController {
 //	}
 	
 	@PostMapping("diagnosis")
-	public String diagnosis(ReceiptVo vo) {
+	public String diagnosis(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, ReceiptVo vo) {
 		
 		int result = rs.insertDiagnosis(vo);
+		
+		int listCount = rs.getPatientListCnt();
+	    int pageLimit = 5;
+	    int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		List<PatientVo> voList = rs.registList(pv);
+		model.addAttribute("voList" ,voList);
+		model.addAttribute("pv", pv);
 		
 		return "receipt/registList";
 	}
