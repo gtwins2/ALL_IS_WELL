@@ -14,15 +14,10 @@ public interface MemberListDao {
 	List<MemberVo> list(SqlSessionTemplate sst , PageVo pv, Map<String, String> paramMap);
 	
 	//board/detail
-	MemberVo detail(SqlSessionTemplate sst , String no);
+	MemberVo getMemberByNo(SqlSessionTemplate sst , String no);
 
-	
-	//board/edit
-	int edit(SqlSessionTemplate sst , MemberVo vo);
-
-	
 	//board/delete
-	int delete(SqlSessionTemplate sst , MemberVo vo);
+	int delete(SqlSessionTemplate sst , String no);
 	
 	
 	//paging

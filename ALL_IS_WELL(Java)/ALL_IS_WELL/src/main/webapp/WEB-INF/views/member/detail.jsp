@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>회원목록조회</title>
+        <title>디테일</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             #wrap{
@@ -128,9 +128,6 @@
                 border-collapse: collapse;
                 width: 100%;
 
-
-                width: 100%;
-
             }
 
             .list-area th,
@@ -148,12 +145,12 @@
 
             .list-area th:first-child,
             .list-area td:first-child {
-                width: 30px;
+                width: 20px;
             }
 
             .list-area th:last-child,
             .list-area td:last-child {
-                width: 100px;
+                width: 30px;
             }
 
             .list-area td input[type="checkbox"] {
@@ -184,7 +181,12 @@
                 padding-left: 10%;
                 width: 200px;                
             }
-
+			
+			.list-area th:nth-child(3) {
+                padding-left: 9.5%;
+                width: 200px;                
+            }
+            
             .list-area th:nth-child(4) {
                 padding-left: 10%;
                 width: 200px;                
@@ -194,6 +196,19 @@
                 padding-left: 3%;
                 width: 200px;                
             }
+            .list-area th:nth-child(6) {
+                padding-left: 3%;
+                width: 200px;                
+            }
+	 		.list-area th:nth-child(7) {
+                width: 200px;                
+                padding-left: 3%;
+            }
+            .list-area th:nth-child(8) {
+                width: 200px;                
+                padding-left: 3%;
+            }
+
 
             .list-area td:nth-child(3) {
                 padding-left: 9.5%;
@@ -205,11 +220,6 @@
                 width: 200px;                
             }
             
-            .list-area th:nth-child(3) {
-                padding-left: 9.5%;
-                width: 200px;                
-            }
-
             .list-area td:nth-child(4) {
                 padding-left: 10%;
                 width: 200px;                
@@ -219,6 +229,7 @@
                 width: 200px;                
                 padding-left: 3%;
             }
+           
             
             .list-area td:nth-child(3) {
                 padding-left: 10%;
@@ -300,43 +311,6 @@
                 grid-template-columns: 300px 1620px;
             }
 
-            .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            }
-
-            /* Modal Content/Box */
-            .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            }
-
-            /* The Close Button */
-            .close {
-                color: #aaaaaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-                }
-
-            .close:hover,
-            .close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
         </style>
     </head>
 
@@ -350,32 +324,12 @@
             <header>
                 <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </header>
-	
-	
-			
+
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">직원 정보 조회</span>
+                    <span id="title">직원 상세 정보 조회</span>
 
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="searchType" id="search">
-                                <option value="name">이름</option>
-                                <option value="departmentName">담당부서</option>
-                                <option value="positionName">직급</option>
-                                <option value="phoneNumber">전화번호</option>
-                                <option value="status">상태</option>
-                                
-                            </select>
-
-					
-
-                        </label>
-                        <input type="text" id="search-input" name="searchValue">
-                        <a href="http://127.0.0.1:8888/app/member/list?page=1" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <input type="submit" value="검색">
-                    </form>
                    
 
 
@@ -387,79 +341,88 @@
                 <br>
 
 					
-                <div class="list-area">
-                    <table>
-                    <tr>
-                        <th>//////////</th>
-                        <th>이름</th>
-                        <th>담당부서</th>
-                        <th>직급</th>
-                        <th>전화번호</th>
-                        <th>상태</th>
-                    </tr>
-                        <c:forEach items="${voList}" var="vo">
-	                        <tr>
-	                        	<th><button type="button" class="btnClass" id="btn2" onclick="detail(${vo.no});">조회</button></th>
-	                            <th>${vo.name}</th>
-	                            <th>${vo.departmentName}</th>
-	                            <th>${vo.positionName}</th>
-	                            <th>${vo.phoneNumber}</th>
-	                            <th>${vo.status}</th>
-	                        </tr>
-                    	</c:forEach>
-                    </table>
+                <!-- <div class="list-area"> -->
+                
+                  <!-- Member 정보 출력을 위한 테이블 -->
+				<table>
+				  <thead>
+				    <tr>
+				      <th>사번</th>
+				      <th>소속 부서</th>
+				      <th>직급</th>
+				      <th>이름</th>
+				      <th>상태</th>
+				      <th>입사일</th>
+				      <th>주민등록번호</th>
+				      <th>이메일</th>
+				      <th>휴대폰번호</th>
+				      <th>사무실번호</th>
+				      <th>면허번호</th>
+				      <th>연봉</th>
+				      <th>프로필 사진</th>
+				      <th>서명 이미지</th>
+				      <th>삭제</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  
+				      <tr>
+				        <td>${vo.no}</td>
+				        <td>${vo.departmentName}</td>
+				        <td>${vo.positionName}</td>
+				        <td>${vo.name}</td>
+				        <td>${vo.status}</td>
+				        <td>${vo.enrollDate}</td>
+				        <td>${vo.registrationNumber}</td>
+				        <td>${vo.email}</td>
+				        <td>${vo.phoneNumber}</td>
+				        <td>${vo.officeNumber}</td>
+				        <td>${vo.licenseNumber}</td>
+				        <td>${vo.yearSalary}</td>
+				        <td><img src="${vo.profile}" alt="프로필사진" /></td>
+				        <td><img src="${vo.sign}" alt="서명이미지" /></td>
+				        <td><button class="deleteBtn" data-id="${vo.no}">삭제</button></td>
+				      </tr>
+				  </tbody>
+				</table>
+
+	<!-- 삭제 모달 -->
+	<div id="deleteModal" class="modal" style="display: none;">
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <p>사번: <span id="delNo"></span></p>
+	    <p>이름: <span id="delName"></span></p>
+	    <button id="deleteBtn">삭제하기</button>
+	  </div>
+	</div>
+
+
                 </div>
                 
                 <br>
                 <br>
                 <br>
 
-                <div class="number-area">
-	                <c:if test="${pv.currentPage > 1 }">
-	                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
-	                <c:if test="${pv.maxPage > 1 }"> 
-	                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-	                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-	                    </c:forEach>
-	                </c:if>
-	                <c:if test="${pv.currentPage < pv.maxPage }">
-	                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
-	                </c:if>
-            	</div>
-
-
         </div>
 
-	        <div id="myModal" class="modal">
-	            <div class="modal-content">
-	              <span class="close">&times;</span>
-	              <p>
-	                이름 : ${vo.name}
-	                <br>
-	                직급 : ${vo.departmentName}
-	                <br>
-	                부서 : ${vo.positionName}
-	                <br>
-	                전화번호 : ${vo.phoneNumber}
-	                <br>
-	                이메일 : ${vo.email}
-	              </p>
-	            </div>
-	        </div>
-	
 	</main>
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
-		<c:if test="${not empty message}">
-			<script>
-				alert("${message}");
-			</script>
-		</c:if>
+        <!-- <script>
+            var deleteNo = document.querySelector(".no");
 
+        function delete() {
+            location.href = "${root}/member/delete/" + deleteNo;
+            alert("해당 회원 삭제 요청이 완료되었습니다.");
+
+        };
+        
+        </script> -->
+        
         <script>
-
+        
         const sideBar = document.querySelector("#side-bar")
         const subMenus = document.querySelectorAll(".sub-menu");
         const thirdSidebars = document.querySelectorAll(".third-sidebar");
@@ -486,12 +449,7 @@
             window.location.href = url.href;
         }
     
-        function delete() {
-            const deleteNo = '${vo.no}';
-            location.href = "${root}/member/delete/" + deleteNo;
-            alert("해당 회원 삭제 요청이 완료되었습니다.");
-
-        };
+        
 
         const searchValueTag = document.querySelector("input[name=searchValue]");
 		searchValueTag.value = '${paramMap.searchValue}';
@@ -499,7 +457,7 @@
 		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
 		const x = '${paramMap.searchType}';
 		if(x == 'title'){
-			searchTypeTagArr[0].selected = true;			
+			searchTypeTagArr[0].selected = true;
 		}else if(x == '${paramMap.enroll_date}'){
 			searchTypeTagArr[1].selected = true;
 		}
@@ -508,13 +466,13 @@
 		//회원 번호 넘겨받기
     	//const memberNo = document.getElementById('memberNoInput').value; 
 		
-        var modal = document.getElementById("myModal");
-        var btns = document.querySelectorAll(".btnClass");
+        /* var modal = document.getElementById("myModal");
+        var btns = document.querySelectorAll(".btnClass"); */
   
       	
         
   
-        for(i=0; i<13; i++){
+        /* for(i=0; i<13; i++){
 
             var span = document.getElementsByClassName("close")[0];
 
@@ -529,7 +487,7 @@
           if (event.target == modal) {
             modal.style.display = "none";
           }
-        }
+        } */
 
         }
 
@@ -540,6 +498,48 @@
         
         
     </script>
+    <!-- AJAX 코드 -->
+<script>
+$(document).ready(function() {
+  // 삭제 버튼 클릭 시, 모달 띄우기
+  $(document).on("click", ".deleteBtn", function() {
+    var no = $(this).data("no");
+    $.ajax({
+      type: "GET",
+      url: "member/detail/" + no,
+      success: function(vo) {
+        $("#delNo").text(vo.no);
+        $("#delName").text(vo.name);
+        $("#deleteModal").css("display", "block");
+      },
+      error: function() {
+        alert("회원 정보를 불러오는데 실패하였습니다.");
+      }
+    });
+  });
+  
+  // 모달 닫기 버튼
+  $(document).on("click", ".close", function() {
+    $("#deleteModal").css("display", "none");
+  });
+  
+  // 삭제 버튼 클릭 시, 회원 정보 삭제 요청 보내기
+  $(document).on("click", "#deleteBtn", function() {
+    var no = $(this).data("no");
+    $.ajax({
+      type: "GET",
+      url: "member/delete/" + no,
+      success: function() {
+        alert("회원 정보가 삭제되었습니다.");
+        location.reload();
+      },
+      error: function() {
+        alert("회원 정보 삭제에 실패하였습니다.");
+      }
+    });
+  });
+});
+</script>
     </body>
 
     </html>

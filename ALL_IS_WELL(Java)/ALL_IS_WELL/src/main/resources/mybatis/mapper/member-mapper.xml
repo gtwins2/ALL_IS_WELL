@@ -35,7 +35,7 @@
 	  </if>
    </select>
 
-   <select id="selectBoardList" resultType="com.kh.app.member.vo.MemberVo">
+   <select id="selectMemberList" resultType="com.kh.app.member.vo.MemberVo">
       SELECT 
 
 		M.NO
@@ -85,4 +85,43 @@
 	  </if>
 	  
    </select>
+   
+   
+   <select id="getMemberByNo" resultType="com.kh.app.member.vo.MemberVo">
+   SELECT 
+		M.NO
+		,M.DEPARTMENT_NO
+		,M.POSITION_NO
+		,M.ID
+		,M.PASSWORD
+		,M.NAME
+		,M.STATUS
+		,M.POSITION_TYPE
+		,M.ENROLL_DATE
+		,M.REGISTRATION_NUMBER
+		,M.EMAIL
+		,M.PROFILE
+		,M.PHONE_NUMBER
+		,M.OFFICE_NUMBER
+		,M.LICENSE_NUMBER
+		,M.YEAR_SALARY
+		,M.SIGN
+		,D.NAME AS departmentName
+		,P.NAME AS positionName
+	
+		  FROM MEMBER M
+		  JOIN DEPARTMENT D
+		  ON M.DEPARTMENT_NO = D.NO
+		  JOIN POSITION P
+		  ON M.POSITION_NO = P.NO
+	     WHERE M.STATUS = 'O'
+	     AND M.NO = ${no}
+   </select>
+   
+   <update id="delete">
+	    UPDATE MEMBER
+		SET STATUS = 'X'
+		WHERE NO = ${no}
+   </update>
+   
 </mapper>

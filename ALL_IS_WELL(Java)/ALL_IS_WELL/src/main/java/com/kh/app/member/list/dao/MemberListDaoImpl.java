@@ -21,22 +21,17 @@ public class MemberListDaoImpl implements MemberListDao{@Override
 	
 	public List<MemberVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 	RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-	return sst.selectList("member.selectBoardList" , paramMap , rb);
+	return sst.selectList("member.selectMemberList" , paramMap , rb);
 	}
 
 	@Override
-	public MemberVo detail(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("member.getBoardByNo" , no);
+	public MemberVo getMemberByNo(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("member.getMemberByNo" , no);
 	}
 
 	@Override
-	public int edit(SqlSessionTemplate sst, MemberVo vo) {
-		return sst.update("member.edit" , vo);
-	}
-
-	@Override
-	public int delete(SqlSessionTemplate sst, MemberVo vo) {
-		return sst.delete("member.delete" , vo.getNo());
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("member.delete" , no);
 	}
 
 	@Override

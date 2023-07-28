@@ -28,16 +28,12 @@ public class MemberListServiceImpl implements MemberListService{
 		return dao.list(sst, pv , paramMap);
 	}
 	@Override
-	public MemberVo detail(String no) {
-		return dao.detail(sst, no);
+	public MemberVo getMemberByNo(String no) {
+		return dao.getMemberByNo(sst, no);
 	}
 	@Override
-	public int edit(MemberVo vo) {
-		return dao.edit(sst, vo);
-	}
-	@Override
-	public int delete(MemberVo vo) {
-		return dao.delete(sst, vo);
+	public int delete(String no) {
+		return dao.delete(sst, no);
 	}
 	@Override
 	public int getBoardCnt() {
