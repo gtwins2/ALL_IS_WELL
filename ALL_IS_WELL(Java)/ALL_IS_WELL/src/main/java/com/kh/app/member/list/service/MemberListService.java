@@ -12,17 +12,15 @@ public interface MemberListService {
 		List<MemberVo> list(PageVo pv, Map<String, String> paramMap);
 		
 		//member/detail
-		MemberVo detail(String no);
-		
-		//member/edit
-		int edit(MemberVo vo);
+		MemberVo getMemberByNo(String no);
 		
 		//member/delete
-		int delete(MemberVo vo);
+		int delete(String no);
 		
 		//페이징
 		int getBoardCnt();
 
+		
 }
 
 

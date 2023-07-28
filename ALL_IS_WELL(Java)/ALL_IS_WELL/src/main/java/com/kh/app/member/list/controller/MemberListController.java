@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.app.member.list.service.MemberListService;
 import com.kh.app.member.vo.MemberVo;
@@ -54,21 +56,28 @@ public class MemberListController {
 		return "member/list";
 	}
 	
-	@PostMapping("detail")
-	public String memberDetail() {
+	//게시글 상세조회			//board/detail
+	@GetMapping(value = {"detail/{no}" , "detail"})
+	public String detail(@PathVariable(value = "no" , required = false) String no, Model model) {
 		
+		MemberVo vo = service.getMemberByNo(no);
 		
-		
+		model.addAttribute("vo", vo);
 		return "member/detail";
 	}
 
 	
-//	//직원 삭제
-//	@PostMapping("delete")
-//	public String Delete() {
-//		
-//		return "member/delete";
-//	}
+	//직원 삭제
+	@GetMapping({"delete/{no}" , "delete"})
+	public String Delete(@PathVariable(value = "no" , required = false) String no, Model model) {
+		
+		int result = service.delete(no);
+		if(result != 1) {
+			model.addAttribute("message", "실패");
+		}
+		model.addAttribute("message", "성공");
+		return "redirect:/member/list";
+	}
 	
 }
 
