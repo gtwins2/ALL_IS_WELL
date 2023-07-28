@@ -362,31 +362,34 @@
 	    	    lang: "ko-KR",
 	    	    placeholder: '내용을 입력하세요',
 	    	    callbacks: {
-	    	        onImageUpload: function(files) {
-	    	          uploadSummernoteImageFile(files[0], this);
+	    	        onImageUpload : function(files) {
+	    	        	sendFile(files[0], this);
 	    	        }
 	    	      },
 	    	});
 	    });
 		
 		//섬머노트 이미지 파일 업로드
-		function uploadSummernoteImageFile(file, el) {
-			data = new FormData();
+		function sendFile(file, editor) {
+			var data = new FormData();
 			data.append("file", file);
-			$.ajax({
-				data: data,
-				type: 'POST',
-				url: '/app/mail/summernoteUpload',
-				contentType: false,
-				enctype: "multipart/form-data",
-				processData : false,
-				success: function(data) {
-					$(el).summernote('editor.insertImage', data.url);
-				}
-				
-				
-			});
+			console.log(file);
 			
+			$.ajax({
+				data : data,
+				type : 'POST',
+				url : '/app/mail/summernoteUpload',
+				contentType: false,
+				processData: false,
+				success: function(data) {
+					console.log(data);
+					console.log(editor);
+					$(editor).summernote("insertImage", data.url);
+				},
+				error: function(x) {
+					console.log(x);
+				}
+			});
 		}
 	   
 		
