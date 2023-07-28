@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ReceiptVo {
 	private String no;
+	private String rno;
 	private String name;
 	private String patientNo;
 	private String symptom;

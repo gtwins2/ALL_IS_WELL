@@ -129,10 +129,13 @@
 	
 	<select id="selectRegistList" resultType="com.kh.app.receipt.vo.ReceiptVo">
 		SELECT
-			NO
+			R.NO
+			,R.PATIENT_NO
 			,SYMPTOM
-		FROM RECEIPT
-		WHERE NO = #{no}
+            ,P.NAME
+		FROM RECEIPT R
+        JOIN PATIENT P ON P.NO= R.PATIENT_NO
+		WHERE R.NO = #{no}
 	</select>
 	
 	<insert id="insertDiagnosis">
@@ -144,7 +147,7 @@
 		)
 		VALUES
 		(
-			#{no}
+			#{rno}
 			,SYSDATE
 			,#{medicalRecord}
 		)

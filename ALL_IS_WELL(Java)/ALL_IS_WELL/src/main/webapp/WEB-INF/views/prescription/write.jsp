@@ -106,9 +106,9 @@ border: 1px solid #D1CECE;
 			<form action="${root}/prescription/write" method="post">
 				<div id="div01">
 					<div id="div01-1">환자명<br><br>투약물<br><br>투약일수<br><br>
-						1회 투약량<br><br>용법<br><br>처방전내용</div>
+						1회 투약량<br><br>용법
 					<div id="div01-1">
-						<input type="text" value="${vo.no}" name="no" hidden><br><br>
+						<input type="text" value="${vo.no}" name="no" hidden>
 						<input type="text" value="${vo.name}"><br><br>
 						<input type="text" name="medicine"><br><br>
 						<input type="text" name="totalDay"><br><br>

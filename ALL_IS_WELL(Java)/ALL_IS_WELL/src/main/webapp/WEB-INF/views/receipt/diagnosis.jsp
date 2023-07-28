@@ -118,7 +118,8 @@ hr{
 			<form action="${root}/receipt/diagnosis" method="post">
 				
 				<div id="div02">
-					<input type="text" value="${vo.no}" name="no" hidden>
+					<input type="text" value="${vo.no}" name="rno" hidden>
+					<input type="text" value="${vo.patientNo}" name="no" hidden>
 					<div>
 						<div>특이사항</div>
 						<div><input type="text" value="${vo.symptom}"></div>

@@ -177,11 +177,11 @@ public class ReceiptController {
 	
 	@PostMapping("diagnosis")
 	public String diagnosis(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session, ReceiptVo vo, PatientVo vo2) {
+	int currentPage, Model model, HttpSession session, ReceiptVo vo2, PatientVo vo) {
 		
-		int result = rs.insertDiagnosis(vo);
+		PatientVo voList = rs.selectOneList(vo);
+		int result = rs.insertDiagnosis(vo2);
 		
-		PatientVo voList = rs.selectOneList(vo2);
 		model.addAttribute("vo" ,voList);
 		
 		return "prescription/write";
