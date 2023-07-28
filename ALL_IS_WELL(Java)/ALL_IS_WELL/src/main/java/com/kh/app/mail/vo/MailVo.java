@@ -1,5 +1,9 @@
 package com.kh.app.mail.vo;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -18,5 +22,7 @@ public class MailVo {
 	private String receiverMailReceiverNo;
 	private String receiverMailStatus;
 	private String receiverMailYn;
+	private List<MultipartFile> attachments;
+	private String selectedMemberNumbers;
 }
 

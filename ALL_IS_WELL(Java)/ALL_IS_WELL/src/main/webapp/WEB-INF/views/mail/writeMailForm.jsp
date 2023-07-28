@@ -232,7 +232,7 @@
             <br>
             <br>
             
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="/app/mail/writeMail" method="post" enctype="multipart/form-data" id="sendForm">
                 <div class="receive-area">
                     <div>받는 사람</div>
                     <input type="checkbox" name="to-me">
@@ -248,7 +248,7 @@
 
                 <div class="title-area">
                     <div>제목</div>
-                    <input type="text" name="title">
+                    <input type="text" name="mailTitle">
                 </div>
                 <br>
                 <br>
@@ -256,7 +256,7 @@
 
                 <div class="file-area">
                     <div>파일 첨부</div>
-                    <input type="file" id="chooseFile" multiple></input>
+                    <input type="file" id="chooseFile" multiple name="attachments"></input>
                     <button type="button" id="deleteAll">모두 삭제</button>
                 </div>
                 <br>
@@ -265,7 +265,7 @@
 
 
                 <div class="content-area">
-                    <textarea id="summernote"></textarea>
+                    <textarea id="summernote" name="mailContent"></textarea>
                 </div>
             </form>
             
@@ -562,6 +562,29 @@
    
    $('#deleteAll').on('click', function() {
        deleteAllFiles();
+   });
+   
+   
+   //제출
+   document.getElementById("send").addEventListener("click", function() {
+       var form = document.querySelector("#sendForm");
+
+       var formData = new FormData(form);
+
+       var xhr = new XMLHttpRequest();
+
+       xhr.open("POST", form.action, true);
+
+       xhr.onload = function() {
+           if (xhr.status === 200) {
+               alert("Form submitted successfully!");
+           } else {
+               alert("Form submission failed!");
+           }
+       };
+
+       // Send the form data
+       xhr.send(formData);
    });
 </script>  
 </body>

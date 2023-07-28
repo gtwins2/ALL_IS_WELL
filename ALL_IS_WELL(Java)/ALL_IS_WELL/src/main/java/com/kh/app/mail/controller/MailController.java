@@ -1,14 +1,21 @@
 package com.kh.app.mail.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import javax.mail.Part;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -119,6 +126,10 @@ public class MailController {
 			//로그인 멤버 가져오기
 			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 			
+			log.info(vo.toString());
+			
+			vo.setSenderMailNo(loginMember.getNo());
+			
 			
 			String senderEmail = loginMember.getEmail();
 			
@@ -141,6 +152,17 @@ public class MailController {
 			mailSender.send(mimeMessage);
 			
 			
+			
+			 List<MultipartFile> attachments = vo.getAttachments();
+			 
+			 if (attachments != null && !attachments.isEmpty()) {
+		            for (MultipartFile attachment : attachments) {
+
+		                System.out.println("Attachment File Name: " + attachment.getOriginalFilename());
+		            }
+		        }
+			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -152,16 +174,16 @@ public class MailController {
 	//썸머노트 이미지파일 업로드
 	@PostMapping("summernoteUpload")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response) {
 		
 		
 		
-		JsonObject jsonObject = new JsonObject();
+		log.info(multipartFile.toString());
+		
+		
 		
 		//내부경로로 저장하기
-		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		
-		String fileRoot = contextRoot+"/resources/static/img/fileUpload/";
+		String path = request.getSession().getServletContext().getRealPath("/resources/upload/");
 		
 		//원래 파일이름
 		String originalFileName = multipartFile.getOriginalFilename();
@@ -172,30 +194,27 @@ public class MailController {
 		//저장될 파일명
 		String savedFileName = UUID.randomUUID()+extension;
 		
-		File targetFile = new File(fileRoot + savedFileName);
+		File targetFile = new File(path + savedFileName);
 		
 		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-			
-			jsonObject.addProperty("url", "/resources/static/img/fileUpload/");
-			
-			jsonObject.addProperty("responseCode", "success");
+			//서버에 저장
+			multipartFile.transferTo(targetFile);
+
 		} catch(IOException e) {
 			//저장된 파일 삭제
 			FileUtils.deleteQuietly(targetFile);
-			jsonObject.addProperty("responseCode", "error");
+
 			e.printStackTrace();
+			return "fail";
 		}
 		
-		String result = jsonObject.toString();
+		
 		
 		System.out.println("파일 잘 들어옴");
 		
-		log.info(result.toString());
+		
 		log.info(targetFile.toString());
 		
-		return result;
-	}
-	
+		return "ok";
+	}	
 }
