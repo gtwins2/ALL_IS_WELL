@@ -207,9 +207,11 @@
                
                 <div class="list-area">
                     <table>
-                        <th>이름</th>
-                        <th>성별</th>
-                        <th>등록날짜</th>
+                    	<thead>
+                        	<th>이름</th>
+                        	<th>등록날짜</th>
+                        </thead>
+                        <tbody>
 						<c:forEach items="${voList}" var="vo">
                             
                             <form action="/app/receipt/list" method="post">
@@ -223,6 +225,7 @@
                             </form>
                                 
 						</c:forEach>
+                        </tbody>
 
                     </table>
                 </div>
@@ -303,6 +306,17 @@
             window.location.href = url.href;
     }
 
-   
+      //환자정보가기
+        const tbody = document.querySelector('tbody');
+    	tbody.addEventListener('click', (event)=>{
+    		//글번호 가져와서
+    		const no = event.target.parentNode.children[0].innerText;
+    		const name = event.target.parentNode.children[1].innerText;
+
+    		//요청보내기
+    		location.href='${root}/prescription/detail?no=' + no + "&name=" + name;
+
+
+    	}); 
     
 </script>
