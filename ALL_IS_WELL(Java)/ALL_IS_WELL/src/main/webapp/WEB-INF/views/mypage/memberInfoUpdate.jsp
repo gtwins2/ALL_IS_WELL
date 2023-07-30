@@ -145,8 +145,8 @@ border-radius: 5px;
 		        </div>
 		        
 		        <div>
-		            <div id="div02-1">qwe</div>
-		            <div id="div02-2">파일찾기</div>
+		            <img id="div02-1" alt="${loginMember.profile}" src="/app/resources/static/img/${loginMember.profile}">
+		            <input type="file" id="div02-2" name="profile">
 		        </div>
 		    </div>
 		

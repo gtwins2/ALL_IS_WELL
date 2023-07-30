@@ -233,16 +233,18 @@
                         <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </form>
 
-                    <button id="sendMail">작성하기</button>
+                    <button id="sendMail" onclick="location.href='${root}/board/noticeWrite';">작성하기</button>
                 </div>
                 <br>
 
                 <div class="list-area">
                     <table>
+                    	<thead>
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성일</th>
-
+                        </thead>
+						<tbody>
                         <c:forEach items="${voList}" var="vo">
                             
 
@@ -253,6 +255,7 @@
                                 </tr>
                                 
 						</c:forEach>
+						</tbody>
 
 
 
@@ -298,4 +301,34 @@
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	//환자정보가기
+    const tbody = document.querySelector('tbody');
+	tbody.addEventListener('click', (event)=>{
+		//글번호 가져와서
+		const no = event.target.parentNode.children[0].innerText;
+		const title = event.target.parentNode.children[1].innerText;
+
+		//요청보내기
+		location.href='${root}/board/noticeDetail?no=' + no + "&title=" + title;
+
+
+	}); 
+	
+	const pageBtn = document.querySelectorAll('.pageBtn');
+
+    for (let btn of pageBtn) {
+        if (btn.innerHTML == '${pv.currentPage}') {
+            btn.style.color = '#d9d9d9';
+        }
+    }
+
+    function pageMove(pageNumber) {
+        let url = new URL(window.location.href);
+        url.searchParams.set('page', pageNumber);
+        window.location.href = url.href;
+	}
+    
+    
+    
 </script>

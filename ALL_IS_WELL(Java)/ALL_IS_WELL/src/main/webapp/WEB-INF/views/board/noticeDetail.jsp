@@ -120,6 +120,48 @@ textarea{
 	color: #FFFFFF;
 	border: 0px;
 }
+
+#div02{
+	position: absolute;
+	top: 1480px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 1420px;
+	height: 136px;
+	background: #FFFFFF;
+	margin-left: 200px;
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+}
+
+#div02 > div:nth-child(2){
+	line-height: 130px;
+}
+
+#textarea2{
+	width: 100%;
+	height: 136px;
+	font-size: 25px;
+	resize: none;
+}
+
+#div03{
+position: absolute;
+width: 1516px;
+
+left: 347px;
+top: 1800px;
+background: #D9D9D9;
+border-radius: 50px;
+
+}
+
+#div03-1{
+	display: grid;
+	grid-template-columns: 1fr 7fr 1fr;
+	margin-left: 60px;
+	margin-right: 50px;
+}
 </style>
 </head>
 <body>
@@ -140,7 +182,7 @@ textarea{
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="" id="" value="안녕하세요" readonly></div>
+						<div> <input type="text" name="" id="" value="${vo.title}" readonly></div>
 					</div>
 					<div>
 						<div>파일첨부</div>
@@ -148,12 +190,35 @@ textarea{
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10" readonly>안녕</textarea></div>
+						<div><textarea name="" id="" cols="30" rows="10" readonly>${vo.content}</textarea></div>
 					</div>
 				</div>
 			</form>
 
 			<button id="list">목록</button>
+
+			<form action="${root}/board/noticeDetail" method="post">
+				<div id="div02">
+					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
+					<input type="text" value="${loginMember.no}" name="writerNo" > 				
+					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
+					<div><button id="write">작성</button></div>
+				</div>
+			</form>
+
+			<div id="div03">
+				<c:forEach items="${voList2}" var="vo">
+                            
+
+	                 <div id="div03-1">
+	                     <div>${vo.no}</div>
+	                     <div>${vo.content}</div>
+	                     <div>${vo.enrollDate}</div>
+	                 </div>
+	                 
+                                
+				</c:forEach>
+			</div>
 
 		</main>
 	</div>

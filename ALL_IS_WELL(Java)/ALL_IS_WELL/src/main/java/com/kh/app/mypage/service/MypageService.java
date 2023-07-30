@@ -19,4 +19,5 @@ public class MypageService {
 		return dao.memberInfoUpdate(sst, vo);
 	}
 
+	
 }

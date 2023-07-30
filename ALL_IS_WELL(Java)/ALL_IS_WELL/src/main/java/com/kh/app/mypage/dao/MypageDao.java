@@ -12,4 +12,6 @@ public class MypageDao {
 		return sst.update("mypage.memberInfoUpdate", vo);
 	}
 
+
+
 }

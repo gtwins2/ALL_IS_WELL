@@ -114,14 +114,14 @@ textarea{
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<form action="">
+			<form action="${root}/board/noticeWrite" method="post">
 
-				<button id="sendMail">작성하기</button>
+				<input type="submit" id="sendMail" value="작성하기">
 				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="" id=""></div>
+						<div> <input type="text" name="title" id=""></div>
 					</div>
 					<div>
 						<div>파일첨부</div>
@@ -129,7 +129,7 @@ textarea{
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><textarea name="content" id="" cols="30" rows="10"></textarea></div>
 					</div>
 				</div>
 			</form>
