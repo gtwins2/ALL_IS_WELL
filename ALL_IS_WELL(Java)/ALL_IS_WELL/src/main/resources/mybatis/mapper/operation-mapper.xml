@@ -15,6 +15,9 @@
 	
 	<select id="getRoomCount" resultType="int">
 		SELECT COUNT(NO) FROM OPERATING_ROOM
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE STATUS LIKE '%${searchValue}%'		
+		</if>
 	</select>
 	
 	<select id="getRoomList" resultType="com.kh.app.operation.vo.OperationVo">
@@ -27,6 +30,9 @@
 		FROM OPERATING_ROOM R
 		LEFT JOIN OPERATION_SCHEDULE S ON R.NO = S.OPERATING_ROOM_NO
 		LEFT JOIN PATIENT P ON P.NO = S.PATIENT_NO
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE R.STATUS LIKE '%${searchValue}%'		
+		</if>
 	</select>
 	
 	<select id="getPatientNo" resultType="java.lang.String">
@@ -54,11 +60,19 @@
 	
 	<select id="getScheduleListCount" resultType="int">
 		SELECT COUNT(NO) FROM OPERATION_SCHEDULE
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE STATUS LIKE '%${searchValue}%'		
+		</if>
 	</select>
 	
 	<select id="getScheduleList" resultType="com.kh.app.operation.vo.OperationVo">
 		SELECT S.NO AS OPERATION_NO, S.OPERATION_NAME AS OPERATION_NAME, P.NAME AS PATIENT_NAME, S.STATUS AS STATUS, S.START_DATE, S.END_DATE FROM OPERATION_SCHEDULE S 
-		JOIN PATIENT P ON S.PATIENT_NO = P.NO ORDER BY S.NO DESC
+		JOIN PATIENT P ON S.PATIENT_NO = P.NO 
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE S.STATUS LIKE '%${searchValue}%'		
+		</if>
+		ORDER BY S.NO DESC
+		
 	</select>
 	
 	<select id="goOperationDetail" resultType="com.kh.app.operation.vo.OperationVo">

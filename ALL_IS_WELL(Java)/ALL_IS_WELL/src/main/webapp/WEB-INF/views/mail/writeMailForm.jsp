@@ -224,7 +224,8 @@
             <br>
             <br>
             <br>
-            <input type="submit" id="send" value="보내기"></input>
+            <button id="send" type="button">보내기</button>
+            
             <br>
             <br>
             <hr class="custom-hr">
@@ -238,7 +239,7 @@
                     <input type="checkbox" name="to-me">
                     <div id="me">나에게</div>
     
-                    <input type="text" name="receivePerson" id="receivePerson">
+                    <input type="text" name="receiverMailAddress" id="receivePerson">
         			<input type="hidden" name="selectedMemberNumbers" id="selectedMemberNumbers">
                     <button type="button" id="address" data-toggle="modal" data-target="#addressModal">주소록</button>
                 </div>
@@ -407,6 +408,12 @@
              searchResultDiv.empty();
 
              data.forEach(function(item) {
+            	//전체 회원 조회
+            	 const memberNo = item.no;
+             	
+            	 const hiddenInput = $('<input>').attr('type', 'hidden').attr('name', 'no').val(memberNo);
+            	searchResultDiv.append(hiddenInput);
+            	 
              	 // 이름
                  const name = item.name;
                  const resultName = $('<div>').text('이름: ' + name);
@@ -428,7 +435,8 @@
                  searchResultDiv.append(resultEmail);
 
                  // 버튼 추가
-                 const button = $('<button>').text('추가').addClass('add-email-button').data('email', email);;
+                 const button = $('<button>').text('추가').addClass('add-email-button').data('email', email).data('member-number', memberNo);
+
                  searchResultDiv.append(button);
                  
                  searchResultDiv.append('<br>');
@@ -460,11 +468,13 @@
                     data.forEach(function(item) {
                     	//회원번호
                     	const memberNo = item.no;
+                    	
                     	 const hiddenInput = $('<input>').attr('type', 'hidden').attr('name', 'no').val(memberNo);
                     	searchResultDiv.append(hiddenInput);
                     	 
                     	 // 이름
                         const name = item.name;
+                    	
                         const resultName = $('<div>').text('이름: ' + name);
                         searchResultDiv.append(resultName);
 
@@ -485,10 +495,26 @@
 
                         
                         // 버튼 추가
-                        const button = $('<button>').text('추가').addClass('add-email-button').data('email', email);
+                       const button = $('<button>').text('추가').addClass('add-email-button').data('email', email).data('member-number', memberNo);
                         searchResultDiv.append(button);
                         
                         searchResultDiv.append('<br>');
+                        
+                        
+                        
+                        $(document).on('click', '.add-email-button', function() {
+                            const emailButton = $(this);
+                            const email = emailButton.data('email');
+                            const memberNumber = emailButton.data('member-number');
+
+                            if (!selectedEmails.includes(email)) {
+                                selectedEmails.push(email);
+                                selectedMemberNumbers.push(memberNumber);
+                            }
+
+                            $('#receivePerson').val(selectedEmails.join(', '));
+                        });
+
                     });
                 },
                 error: function(error) {
@@ -499,44 +525,67 @@
     });
 	
 	
+  
+    
+    
     $(document).ready(function() {
-        const selectedEmails = new Set();
+        const selectedEmails = [];
+        const selectedMemberNumbers = [];
 
+       
+        
         $(document).on('click', '.add-email-button', function() {
-            const email = $(this).data('email');
+            const emailButton = $(this);
+            const email = emailButton.data('email');
+            const memberNumber = emailButton.data('member-number');
 
-            if (selectedEmails.has(email)) {
-                selectedEmails.delete(email);
-                $(this).removeClass('selected');
-                $('.selected-emails').find('div:contains("' + email + '")').remove();
-            } else {
-                selectedEmails.add(email);
-                $(this).addClass('selected');
-                $('.selected-emails').append($('<div>').text(email).append('<button class="delete-email-btn">&times;</button>'));
+            if (!selectedEmails.includes(email)) {
+                selectedEmails.push(email);
+                selectedMemberNumbers.push(memberNumber);
             }
+
+            $('#receivePerson').val(selectedEmails.join(', '));
+
+            toggleSelectedEmails(email);  
         });
 
+
+        // 선택된 이메일 삭제 버튼 클릭 이벤트
         $(document).on('click', '.delete-email-btn', function() {
             const email = $(this).prev().text();
-            selectedEmails.delete(email);
-            $('.add-email-button[data-email="' + email + '"]').removeClass('selected');
+            toggleSet(selectedEmails, email);
             $(this).parent().remove();
         });
-        
-        
-        $(document).on('click', '#choose', function() {
-            const emailArray = Array.from(selectedEmails);
-            const memberNumbersArray = Array.from(selectedMemberNumbers);
-            const emailString = emailArray.join(', ');
-            const memberNumbersString = memberNumbersArray.join(',');
 
-            $('#receivePerson').val(emailString);
-            $('#selectedMemberNumbers').val(memberNumbersString);
+        // 선택 버튼 클릭 이벤트
+        $(document).on('click', '#choose', function() {
+            $('#selectedMemberNumbers').val(selectedMemberNumbers.join(','));
 
             $('#addressModal').modal('hide');
-
         });
+
     });
+
+    function toggleArray(array, value) {
+        const index = array.indexOf(value);
+        if (index > -1) {
+            array.splice(index, 1); // Remove the value if it exists
+        } else {
+            array.push(value); // Add the value if it doesn't exist
+        }
+    }
+
+    function toggleSelectedEmails(email) {
+        const emailDiv = $('.selected-emails').find('div:contains("' + email + '")');
+        if (emailDiv.length > 0) {
+            emailDiv.remove();
+        } else {
+            $('.selected-emails').append($('<div>').text(email).append('<button class="delete-email-btn">&times;</button>'));
+        }
+    }
+
+    
+    
     
     //이메일이 나에게 체크되어있을 경우
    <%--  $(document).ready(function() {
@@ -557,7 +606,7 @@
         content_files = [];
         fileNum = 0;
         fileCount = 0;
-        $('#chooseFile').val(""); // Clear the file input field
+        $('#chooseFile').val("");
     }
    
    $('#deleteAll').on('click', function() {
@@ -566,26 +615,11 @@
    
    
    //제출
-   document.getElementById("send").addEventListener("click", function() {
-       var form = document.querySelector("#sendForm");
+  $('#send').on('click', function() {
+    $('#sendForm').submit();
+});
 
-       var formData = new FormData(form);
 
-       var xhr = new XMLHttpRequest();
-
-       xhr.open("POST", form.action, true);
-
-       xhr.onload = function() {
-           if (xhr.status === 200) {
-               alert("Form submitted successfully!");
-           } else {
-               alert("Form submission failed!");
-           }
-       };
-
-       // Send the form data
-       xhr.send(formData);
-   });
 </script>  
 </body>
 </html>

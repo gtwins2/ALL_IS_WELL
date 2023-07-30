@@ -121,4 +121,83 @@
 		WHERE AD.NO = #{bno}
 	</select>
 	
+	<!-- 휴가 문서 생성 -->
+	<insert id="vacationBtn">
+		INSERT INTO 
+		APPROVAL_DOCUMENT
+		(NO, MEMBER_NO, CREATE_DATE, TITLE)
+		VALUES
+		(SEQ_APPROVAL_DOCUMENT_NO.NEXTVAL, #{memberNo}, SYSDATE, '휴가문서')
+	</insert>
+	
+	<insert id="writeVacation">
+		INSERT INTO
+		VACATION_APPROVAL_DOCUMENT
+		(
+			NO, 
+			APPROVAL_DOCUMENT_NO,
+			CONTENT,
+			USE_DATE,
+			START_DATE,
+			END_DATE
+		)
+		VALUES
+		(
+			SEQ_VACATION_APPROVAL_DOCUMENT_NO.NEXTVAL,
+			#{approvalDocumentNo},
+			#{content},
+			TO_DATE(#{endDate}, 'YYYY-MM-DD') - TO_DATE(#{startDate}, 'YYYY-MM-DD')+1,
+			TO_DATE(#{startDate}, 'YYYY-MM-DD'),
+			TO_DATE(#{endDate}, 'YYYY-MM-DD')
+		)
+	</insert>
+	
+	<select id="detailVacation" resultType="com.kh.app.approval.vo.VacationApprovalVo">
+		SELECT 
+			AD.NO,
+			AD.MEMBER_NO,
+			AD.CREATE_DATE,
+			BTAD.CONTENT,
+			BTAD.START_DATE,
+			BTAD.END_DATE
+		FROM APPROVAL_DOCUMENT AD
+		JOIN BUSINESS_TRIP_APPROVAL_DOCUMENT BTAD ON AD.NO = BTAD.APPROVAL_DOCUMENT_NO
+		WHERE AD.NO = #{bno}
+	</select>
+	
+	<select id="getInventoryData" resultType="com.kh.app.inventory.vo.InventoryVo">
+		SELECT 
+		    I.NO,
+		    ITEM_NAME,
+		    CATEGORY_NO,
+		    INVENTORY_COUNT
+		FROM INVENTORY I
+		JOIN INVENTORY_CATEGORY IG ON I.CATEGORY_NO = IG.NO
+	</select>
+	
+	<insert id="inventoryBtn">
+		INSERT INTO 
+		APPROVAL_DOCUMENT
+		(NO, MEMBER_NO, CREATE_DATE, TITLE)
+		VALUES
+		(SEQ_APPROVAL_DOCUMENT_NO.NEXTVAL, #{memberNo}, SYSDATE, '재고신청')
+	</insert>
+	
+	<insert id="writeInventory">
+	    INSERT INTO
+	    INVENTORY_REQUEST_APPROVAL_DOCUMENT
+	    (
+	        NO, 
+	        APPROVAL_DOCUMENT_NO,
+	        CATEGORY_NO,
+	        COUNT
+	    )
+	    VALUES
+	    (
+	        SEQ_INVENTORY_REQUEST_APPROVAL_DOCUMENT_NO.NEXTVAL,
+	        #{approvalDocumentNo},
+	        #{categoryNo},
+	        #{count}
+	    )
+	</insert>
 </mapper>

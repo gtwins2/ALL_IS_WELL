@@ -12,6 +12,7 @@ import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.approval.vo.VacationApprovalVo;
 import com.kh.app.attendance.vo.AttendanceVo;
+import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
@@ -32,24 +33,7 @@ public class ApprovalService {
 		return dao.getApprovalList(sst, pv, no);
 	}
 
-//	//휴가 작성 버튼 클릭 시
-//	public int vacationBtn(ApprovalBtnVo bvo) {
-//		return dao.vacationBtn(sst, bvo);
-//	}
-//
-//	//휴가 작성 버튼 클릭시 데이터 옮기기
-//	public ApprovalBtnVo getVacationApprovalBtnDateAfterInsert(ApprovalBtnVo bvo) {
-//		return dao.getVacationApprovalBtnDateAfterInsert(sst, bvo);
-//	}
-
-//	//휴가 작성
-//	public int vacation(VacationApprovalVo vvo) {
-//		return dao.vacation(sst, vvo);
-//	}
-
-	public BusinessTripApprovalVo detailTrip(String bno) {
-		return dao.detailTrip(sst, bno);
-	}
+	
 
 	/* 출장 */
 	private int tripBtn(ApprovalBtnVo avo) {
@@ -71,15 +55,86 @@ public class ApprovalService {
 		int tripBtnResult = tripBtn(avo);
 		
 		avo = dao.selectMostRecentApprovalDocument(sst, avo);
-
 		bvo.setApprovalDocumentNo(avo.getNo());
+		
 		int writeTripResult = writeTrip(bvo);
 
 		if (tripBtnResult != 1 || writeTripResult != 1) {
-			throw new RuntimeException("Transaction failed");
+			throw new RuntimeException("출장 작성 트랜잭션 오류");
 		}
 
 		return true;
 	}
+	
+	public BusinessTripApprovalVo detailTrip(String bno) {
+		return dao.detailTrip(sst, bno);
+	}
+	
+	/* 휴가 */
+	private int vacationBtn(ApprovalBtnVo avo) {
+		return dao.vacationBtn(sst, avo);
+	}
+	
+	private int writeVacation(VacationApprovalVo vvo) {
+		return dao.writeVacation(sst, vvo);
+	}
 
+	public boolean processVacation(VacationApprovalVo vvo) {
+		ApprovalBtnVo avo = new ApprovalBtnVo();
+		
+		avo.setMemberNo(vvo.getMemberNo());
+		avo.setStartDate(vvo.getStartDate());
+		avo.setEndDate(vvo.getEndDate());
+		
+		int vacationBtnResult = vacationBtn(avo);
+		avo = dao.selectMostRecentApprovalDocument(sst, avo);
+		vvo.setApprovalDocumentNo(avo.getNo());
+
+		int writeVacationResult = writeVacation(vvo);
+		if(vacationBtnResult != 1 || writeVacationResult != 1) {
+			throw new RuntimeException("휴가 작성 트랜잭션 오류");
+		}
+		
+		return true;
+	}
+
+	/* 재고 */
+	public List<InventoryVo> getInventoryData() {
+		return dao.getInventoryData(sst);
+	}
+
+	private int inventoryBtn(ApprovalBtnVo avo) {
+		return dao.inventoryBtn(sst, avo);
+	}
+	
+	private int writeInventory(InventoryVo ivo) {
+		return dao.writeInventory(sst, ivo);
+	}
+	
+	public boolean processInventory(InventoryVo ivo) {
+		ApprovalBtnVo avo = new ApprovalBtnVo();
+			
+		avo.setMemberNo(ivo.getMemberNo());
+			
+		int inventoryBtnResult = inventoryBtn(avo);
+		avo = dao.selectMostRecentApprovalDocument(sst, avo);
+
+		if(ivo.getCategoryNoArr() != null && ivo.getCountArr() != null && ivo.getCategoryNoArr().size() == ivo.getCountArr().size()) {
+		    for (int i = 0; i < ivo.getCategoryNoArr().size(); i++) {
+		    	InventoryVo newIvo = new InventoryVo();
+		        newIvo.setApprovalDocumentNo(avo.getNo());
+		        newIvo.setCategoryNo(ivo.getCategoryNoArr().get(i));
+		        newIvo.setCount(ivo.getCountArr().get(i));
+		        int writeInventoryResult = writeInventory(newIvo);
+		        if (writeInventoryResult != 1 || inventoryBtnResult != 1) {
+		            throw new RuntimeException("재고 작성 트랜잭션 오류");
+		        }
+		    }
+		} else {
+		    throw new RuntimeException("categoryNoArr와 countArr의 길이가 일치하지 않거나 null입니다.");
+		}
+		return true;
+	}
+	
+	
 }
