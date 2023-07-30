@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +20,9 @@
 
     .main-area {
         width: 80%;
-        min-height: 80%;
+        min-height: 90%;
         margin: auto;
+        position: relative;
     }
 
     #listBtnDiv {
@@ -50,7 +52,7 @@
 
     #vacation-application {
         width: 80%;
-        height: 77%;
+        height: 82%;
         border: 1px solid black;
         margin: auto;
     }
@@ -74,6 +76,11 @@
         font-size: 15px;
         margin-left: 100px;
         text-align: center;
+        display: none;
+    }
+
+    #info th{
+        width: 100px;
     }
 
     #approval {
@@ -81,6 +88,7 @@
         text-align: center;
         width: 550px;
         height: 250px;
+        display: none;
     }
 
     #approval tr th:first-child{
@@ -101,7 +109,11 @@
     }
 
     #stamp td {
-        height: 140px;
+        height: 130px;
+    }
+
+    #date, #name{
+        height: 30px
     }
 
     #reasonDiv {
@@ -146,11 +158,11 @@
         font-size: 25px;
         margin-left: 10px;
     }
-
-    #buttonDiv {
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 40px;
+    
+    #buttonDiv{
+        text-align: right; 
+        margin-bottom: 50px;
+        margin-right: 150px;
     }
 
     #approvalBtn {
@@ -169,11 +181,6 @@
     #approvalBtn:hover {
         background-color: #555;
         transition: 0.7s;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
     }
 
 
@@ -200,15 +207,15 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>150</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>임상병리학과</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>김간호</td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
@@ -221,16 +228,16 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td ></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr id="name">
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="name">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -242,20 +249,20 @@
                     <div id="reasonDiv">
                         <div class="top">휴가기간</div>
                         <div class="top-side">
-                            <input type="date" style="font-size: 25px; margin-left: 10px; margin-top: 5px;" id="start-date">
+                            <input type="date" style="font-size: 25px; margin-left: 10px; margin-top: 5px;" id="start-date" name="startDate">
                             ~~
-                            <input type="date" style="font-size: 25px;" id="end-date">
+                            <input type="date" style="font-size: 25px;" id="end-date" name="endDate">
                         </div>
                         <div class="bottom">사유</div>
                         <div class="bottom-side">
-                            <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;"></textarea>
+                            <textarea style="width: 98%; height: 98%; font-size: 25px; resize: none; border: none; text-align: left;" name="content"></textarea>
                         </div>
-                    </div>
                     </div>
                     <div id="buttonDiv">
                         <button id="approvalBtn" type="submit">작성</button>
                     </div>
                 </form>
+           	</div>
         </div>
     </main>
     <footer>

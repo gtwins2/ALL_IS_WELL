@@ -6,8 +6,8 @@ import lombok.Data;
 public class VacationApprovalVo {
 
 	private String no;
+	private String MemberNo;
 	private String approvalDocumentNo;
-	private String no2;
 	private String content;
 	private String useDate;
 	private String startDate;

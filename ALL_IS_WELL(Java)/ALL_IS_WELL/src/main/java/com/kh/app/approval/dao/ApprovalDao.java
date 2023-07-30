@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
+import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.page.vo.PageVo;
 
 @Repository
@@ -40,6 +42,27 @@ public class ApprovalDao {
 
 	public ApprovalBtnVo selectMostRecentApprovalDocument(SqlSessionTemplate sst, ApprovalBtnVo avo) {
 	    return sst.selectOne("approval.selectMostRecentApprovalDocument", avo);
+	}
+
+	/* 휴가 */
+	public int vacationBtn(SqlSessionTemplate sst, ApprovalBtnVo avo) {
+		return sst.insert("approval.vacationBtn", avo);
+	}
+
+	public int writeVacation(SqlSessionTemplate sst, VacationApprovalVo vvo) {
+		return sst.insert("approval.writeVacation", vvo);
+	}
+
+	public List<InventoryVo> getInventoryData(SqlSessionTemplate sst) {
+		return sst.selectList("approval.getInventoryData");
+	}
+
+	public int inventoryBtn(SqlSessionTemplate sst, ApprovalBtnVo avo) {
+		return sst.insert("approval.inventoryBtn", avo);
+	}
+
+	public int writeInventory(SqlSessionTemplate sst, InventoryVo ivo) {
+		return sst.insert("approval.writeInventory", ivo);
 	}
 	
 }

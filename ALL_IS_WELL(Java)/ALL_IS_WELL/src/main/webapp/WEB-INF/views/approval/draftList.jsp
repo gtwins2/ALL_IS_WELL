@@ -218,14 +218,14 @@
                 </form>
 
                 <div id="writeBtn">
-                    <form action="/app/approval/vacationBtn" method="get" >
+                    <form action="/app/approval/writeVacation" method="get" >
                         <button id="writeApproval" type="submit">휴가작성</button>
                     </form>
                     <form action="/app/approval/writeTrip" method="get">
                         <button id="writeApproval" type="submit">출장작성</button>
                     </form>
                     <c:if test="${loginMember.positionType eq 'N'}">
-                        <form action="/app/approval/inventoryBtn" method="get">
+                        <form action="/app/approval/writeInventory" method="get">
                             <button id="writeApproval" type="submit">재고신청</button>
                         </form>
                     </c:if>

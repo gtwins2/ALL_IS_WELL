@@ -6,6 +6,7 @@ import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSuspensionNotSupportedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.app.approval.service.ApprovalService;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
+import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 
@@ -60,58 +63,36 @@ public class ApprovalController {
 	}
 
 	// 결재해야할 문서(휴가 화면)
-	@GetMapping("vacation")
-	public void vacation() {
-
+	@GetMapping("writeVacation")
+	public void writeVacation(HttpSession session) throws Exception {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		if(loginMember == null) {
+			throw new LoginException();
+		}
+		
+	}
+	
+	// 휴가 작성
+	@PostMapping("writeVacation")
+	public String writeVacation(VacationApprovalVo vvo, HttpSession session) { 
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+	    String no = loginMember.getNo();
+	    vvo.setMemberNo(no);
+	    
+		boolean isSuccess = as.processVacation(vvo);
+		if (!isSuccess) {
+			return "error/errorPage";
+		}
+		return "redirect:/approval/draftList";
 	}
 
 	// 결재된 문서(휴가 상세)
 	@GetMapping("detailVacation")
 	public void detailVacation() {
-
+		
 	}
 
-	// 휴가 작성 버튼 클릭 시
-//	@PostMapping("vacationBtn")
-//	public String vacationBtn(ApprovalBtnVo bvo, HttpSession session) {
-//
-//		loginMember = (MemberVo) session.getAttribute("loginMember");
-//		String no = loginMember.getNo();
-//		bvo.setMemberNo(no);
-//		
-//		int result = as.vacationBtn(bvo);
-//		ApprovalBtnVo updateBvo = as.getVacationApprovalBtnDateAfterInsert(bvo);
-//		session.setAttribute("bvo", updateBvo);
-//		
-//		if (result != 1) {
-//			return "errorPage";
-//		}
-//
-//		return "approval/writeVacation";
-//	}
-
-	// 휴가 작성(화면)
-//	@GetMapping("writeVacation")
-//	public void writeVacation() {
-//		
-//	}
-
-	// 기안한 문서(휴가 작성)
-//	@GetMapping("writeVacation")
-//	public String writeVacation(VacationApprovalVo vvo, HttpSession session) {
-//
-//		loginMember = (MemberVo) session.getAttribute("loginMember");
-//		ApprovalBtnVo bvo = (ApprovalBtnVo) session.getAttribute("bvo");
-//		vvo.setApprovalDocumentNo(bvo.getNo());
-//		
-//		int result = as.vacation(vvo);
-//
-//		if (result != 1) {
-//			return "error/errorPage";
-//		}
-//
-//		return "approval/draftList";
-//	}
 
 	/* 출장 */
 	// 출장 화면
@@ -125,8 +106,8 @@ public class ApprovalController {
 	}
 	
 	// 출장 작성
-	@PostMapping("writeTripData")
-	public String writeTripData(BusinessTripApprovalVo bvo, HttpSession session) {
+	@PostMapping("writeTrip")
+	public String writeTrip(BusinessTripApprovalVo bvo, HttpSession session) {
 	    loginMember = (MemberVo) session.getAttribute("loginMember");
 	    String no = loginMember.getNo();
 	    bvo.setMemberNo(no);
@@ -135,7 +116,6 @@ public class ApprovalController {
 		if (!isSuccess) {
 			return "error/errorPage";
 		}
-		System.out.println(4);
 		return "redirect:/approval/draftList";
 	}
 	
@@ -147,25 +127,42 @@ public class ApprovalController {
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 
 		BusinessTripApprovalVo bvo = as.detailTrip(bno);
+		
+		session.setAttribute("bvo", bvo);
 
 		model.addAttribute("bvo", bvo);
 	}
 
 	// 결재해야할 문서(재고)
-	@GetMapping("inventory")
-	public void inventory() {
-
+	@GetMapping("writeInventory")
+	public void inventory(Model model, HttpSession session) {
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		List<InventoryVo> iList = as.getInventoryData();
+				
+		model.addAttribute("iList", iList);
+		
+	}
+	
+	// 재고 작성
+	@PostMapping("writeInventory")
+	public String writeInventory(InventoryVo ivo, HttpSession session) {
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+	    String no = loginMember.getNo();
+	    ivo.setMemberNo(no);
+	    System.out.println(ivo.getCategoryNoArr());
+	    System.out.println(ivo.getCountArr());
+		boolean isSuccess = as.processInventory(ivo);
+		if (!isSuccess) {
+			return "error/errorPage";
+		}
+		return "redirect:/approval/draftList";
 	}
 
 	// 결재된 문서(재고 상세)
 	@GetMapping("detailInventory")
 	public void detailInventory() {
-
+		
 	}
 
-	// 기안한 문서(재고 작성)
-	@GetMapping("writeInventory")
-	public void writeInventory() {
-
-	}
 }
