@@ -27,14 +27,14 @@ public class AdmissionService {
 	
 	
 	//입원실 방 갯수 세기
-	public int getRoomCount() {
-		return dao.getRoomCount(sst);
+	public int getRoomCount(Map<String, String> paramMap) {
+		return dao.getRoomCount(sst, paramMap);
 	}
 
 
 	//입원실 목록 가져오기
-	public List<AdmissionVo> getRoomList(PageVo pv) {
-		return dao.getRoomList(sst, pv);
+	public List<AdmissionVo> getRoomList(PageVo pv, Map<String, String> paramMap) {
+		return dao.getRoomList(sst, pv, paramMap);
 	}
 
 
@@ -58,8 +58,8 @@ public class AdmissionService {
 	}
 
 
-	public List<AdmissionVo> getScheduleList(PageVo pv) {
-		return dao.getScheduleList(sst, pv);
+	public List<AdmissionVo> getScheduleList(PageVo pv, Map<String, String> paramMap) {
+		return dao.getScheduleList(sst, pv, paramMap);
 	}
 
 
@@ -70,6 +70,11 @@ public class AdmissionService {
 
 	public int updateAdmissionRecord(AdmissionVo vo) {
 		return dao.updateAdmissionRecord(sst, vo);
+	}
+
+
+	public int getScheduleCount(Map<String, String> paramMap) {
+		return dao.getScheduleCount(sst, paramMap);
 	}
 	
 	

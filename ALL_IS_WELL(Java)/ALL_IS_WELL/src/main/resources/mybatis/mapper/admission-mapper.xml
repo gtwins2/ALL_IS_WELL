@@ -5,10 +5,16 @@
 <mapper namespace="admission">
 	<select id="getRoomCount" resultType="int">
 		SELECT COUNT(NO) FROM INPATIENT
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE MAX_CAPACITY LIKE '%${searchValue}%'		
+		</if>
 	</select>
 	
 	<select id="getRoomList" resultType="com.kh.app.admission.vo.AdmissionVo">
 		SELECT NO, MAX_CAPACITY,INPATIENT_POSITION FROM INPATIENT
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE MAX_CAPACITY LIKE '%${searchValue}%'		
+		</if>
 	</select>
 	
 	
@@ -54,6 +60,9 @@
 		ON I.NO = R.INPATIENT_NO 
 		JOIN PATIENT P 
 		ON P.NO = R.PATIENT_NO
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE P.NAME LIKE '%${searchValue}%'		
+		</if>
 	</select>
 	
 	<select id="goDetailAdmissionRecord" resultType="com.kh.app.admission.vo.AdmissionVo">
@@ -67,4 +76,11 @@
 	<update id="updateAdmissionRecord">
 		UPDATE ADMISSION_RECORD SET DISCHARGE_DATE = TO_TIMESTAMP(#{dischargeDate}, 'YYYY-MM-DD"T"HH24:MI') WHERE NO = #{admissionRecordNo}
 	</update>
+	
+	<select id="getScheduleCount" resultType="int">
+		SELECT COUNT(A.NO) FROM ADMISSION_RECORD A JOIN PATIENT P ON P.NO = A.PATIENT_NO
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			WHERE P.NAME LIKE '%${searchValue}%'		
+		</if>
+	</select>
 </mapper>
