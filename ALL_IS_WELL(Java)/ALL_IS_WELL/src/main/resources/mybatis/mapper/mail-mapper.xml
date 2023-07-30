@@ -23,4 +23,64 @@
 		ON P.NO = M.POSITION_NO 
 		WHERE STATUS = 'O'
 	</select>
+	
+	<insert id="registerEmail">
+		INSERT INTO MAIL(NO, MAIL_TITLE, MAIL_CONTENT) VALUES(SEQ_MAIL_NO.NEXTVAL, #{mailTitle}, #{mailContent})
+	</insert>
+	
+	<insert id="registerSenderMail">
+		INSERT INTO SENDER_MAIL(NO, SENDER_NO, MAIL_NO) VALUES(SEQ_SENDER_MAIL_NO.NEXTVAL, #{senderNo}, SEQ_MAIL_NO.CURRVAL)
+	</insert>
+	
+	<insert id="registerReceiverMail">
+		INSERT INTO RECEIVER_MAIL(NO, RECEIVER_NO, MAIL_NO) VALUES(SEQ_RECEIVER_MAIL_NO.NEXTVAL, #{receiverNo}, SEQ_MAIL_NO.CURRVAL)
+	</insert>
+	
+	<insert id="registerAttachment">
+		INSERT INTO MAIL_ATTACHMENT(NO, MAIL_NO, ATTACH_NAME, FILE_PATH) VALUES(SEQ_MAIL_ATTACHMENT_NO.NEXTVAL, SEQ_MAIL_NO.CURRVAL, #{attachName}, #{filePath})
+	</insert>
+	
+	<select id="">
+		
+		
+	</select>
+	
+	<select id="getReceiveMailCount" resultType="int">
+		SELECT COUNT(R.NO) 
+		FROM RECEIVER_MAIL R 
+		JOIN MAIL M 
+		ON M.NO = R.MAIL_NO 
+		JOIN SENDER_MAIL S 
+		ON S.MAIL_NO = M.NO
+        JOIN MEMBER MR
+        ON MR.NO = S.SENDER_NO
+		WHERE R.RECEIVER_NO = #{receiverNo}
+		AND R.STATUS = 'O'
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			AND MR.NAME LIKE '%${searchValue}%'		
+		</if>
+		
+	</select>
+	
+	<select id="getReceiveMailList" resultType="com.kh.app.mail.vo.MailVo">
+		SELECT M.NO, M.MAIL_TITLE, M.MAIL_ENROLL_DATE, MR.NAME AS SENDER_NAME 
+		FROM MAIL M 
+		JOIN RECEIVER_MAIL R ON M.NO = R.NO 
+		JOIN SENDER_MAIL S ON S.NO = M.NO 
+		JOIN MEMBER MR 
+		ON MR.NO = S.SENDER_NO 
+		WHERE R.RECEIVER_NO = #{receiverNo}
+		AND R.STATUS = 'O'
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			AND MR.NAME LIKE '%${searchValue}%'		
+		</if>
+	</select>
+	
+	<update id="deleteReceiveMail">
+		UPDATE RECEIVER_MAIL SET STATUS = 'X' WHERE NO = #{mailNo}
+	</update>
+	
+	<!-- <select id="getMailDetail" resultType="com.kh.app.mail.vo.MailVo">
+		
+	</select> -->
 </mapper>
