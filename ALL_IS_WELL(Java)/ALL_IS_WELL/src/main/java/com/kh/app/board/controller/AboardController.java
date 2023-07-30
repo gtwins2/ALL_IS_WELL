@@ -12,6 +12,7 @@ import com.kh.app.board.service.InquiryService;
 import com.kh.app.board.service.NoticeService;
 import com.kh.app.board.service.SuggestService;
 import com.kh.app.board.vo.InquiryVo;
+import com.kh.app.board.vo.NoticeReplyVo;
 import com.kh.app.board.vo.NoticeVo;
 import com.kh.app.board.vo.SuggestVo;
 
@@ -48,7 +49,16 @@ public class AboardController {
 	//�������� �ۼ��ϱ�
 	@GetMapping("noticeWrite")
 	public String noticeWrite() {
+	
 		return "board/noticeWrite";
+	}
+	
+	@PostMapping("noticeWrite")
+	public String noticeWrite(NoticeVo vo) {
+		
+		int result = ns.noticeWrite(vo);
+		
+		return "redirect:/board/noticeList";
 	}
 	
 	//�������� �����ϱ�
@@ -59,8 +69,23 @@ public class AboardController {
 	
 	//�������� ��������
 	@GetMapping("noticeDetail")
-	public String noticeDetail() {
+	public String noticeDetail(NoticeVo vo, Model model, NoticeReplyVo vo2) {
+		NoticeVo voList = ns.noticeDetail(vo);
+		List<NoticeReplyVo> voList2 = ns.noticeReply(vo2);
+		
+		
+		model.addAttribute("voList2" ,voList2);
+		model.addAttribute("vo" ,voList);
+		
+		
 		return "board/noticeDetail";
+	}
+	
+	@PostMapping("noticeDetail")
+	public String noticeDetail(NoticeReplyVo vo) {
+		int result = ns.replyWrite(vo);
+		String no = vo.getNoticeNo();
+		return "redirect:/board/noticeDetail?no="+ no;
 	}
 	
 	

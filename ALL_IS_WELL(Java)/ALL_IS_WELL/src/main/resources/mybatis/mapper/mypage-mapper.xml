@@ -13,8 +13,11 @@
 		EMAIL = #{email},
 		PHONE_NUMBER = #{phoneNumber},
 		OFFICE_NUMBER = #{officeNumber},
-		REGISTRATION_NUMBER = #{registrationNumber}
+		REGISTRATION_NUMBER = #{registrationNumber},
+		PROFILE = #{profile}
 		WHERE NO = #{no}
 	</update>	
+	
+	
 	
 </mapper>
