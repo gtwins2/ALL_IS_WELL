@@ -162,7 +162,16 @@
        
 	        
        
-
+		.search-area > #search-icon {
+            display: inline-block;
+            padding: 5px 10px;
+            background : none;
+            border: none;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
       
 
        
@@ -189,15 +198,14 @@
 
 				<form action="" class="search-area">
 					<label for="search" class="category-area">
-						<select name="search" id="search">
-							<option value="writer">수술명</option>
-							<option value="title">환자명</option>
+						<select name="searchType" id="search">
+							<option value="status">수술상태</option>
 						</select>
 
 
 					</label>
-					<input type="text" id="search-input">
-					<a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<input type="text" id="search-input" name="searchValue">
+					 <button id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
 				</form>
            	</div>
 
@@ -327,6 +335,24 @@
 		       url.searchParams.set('page', pageNumber);
 		       window.location.href = url.href;
 		   }
+		   
+		   
+		   
+		   //검색 결과 유지
+			const searchValueTag = document.querySelector("input[name=searchValue]");
+			
+			
+			searchValueTag.value = '${paramMap.searchValue}';
+			
+			
+			const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
+			
+			const x = '${paramMap.searchType}';
+			
+			if(x == 'status') {
+				searchTypeTagArr[0].selected = true;
+			} 
+		    
 	</script>
 	
 	

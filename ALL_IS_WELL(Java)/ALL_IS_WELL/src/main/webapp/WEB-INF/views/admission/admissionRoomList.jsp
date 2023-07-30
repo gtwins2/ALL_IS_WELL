@@ -237,16 +237,16 @@
     
     
                     <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="numberOfPatients">인원수</option>
-                                <option value="address">호수</option>
+                        <label for="searchType" class="category-area">
+                            <select name="searchType" id="search">
+                                <option value="maxCapacity">인원수</option>
+                                
                             </select>
                             
         
                         </label>
-                        <input type="text" id="search-input">
-                       <button id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" id="search-input" name="searchValue">
+                       <button id="search-icon" ><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
 
             </div>
@@ -354,7 +354,20 @@
 	        });
 	    });
 	    
-	    
+	    //검색 결과 유지
+		const searchValueTag = document.querySelector("input[name=searchValue]");
+		
+		
+		searchValueTag.value = '${paramMap.searchValue}';
+		
+		
+		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
+		
+		const x = '${paramMap.searchType}';
+		
+		if(x == 'maxCapacity') {
+			searchTypeTagArr[0].selected = true;
+		} 
 	    
 	</script>
 

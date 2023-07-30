@@ -1,6 +1,7 @@
 package com.kh.app.operation.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,12 @@ public class OperationService {
 		return dao.searchName(sst, name);
 	}
 
-	public int getRoomCount() {
-		return dao.getRoomCount(sst);
+	public int getRoomCount(Map<String, String> paramMap) {
+		return dao.getRoomCount(sst, paramMap);
 	}
 
-	public List<OperationVo> getRoomList(PageVo pv) {
-		return dao.getRoomList(sst, pv);
+	public List<OperationVo> getRoomList(PageVo pv, Map<String, String> paramMap) {
+		return dao.getRoomList(sst, pv, paramMap);
 	}
 
 	public int registerOperation(OperationVo vo) {
@@ -51,12 +52,12 @@ public class OperationService {
 		return dao.updateRoom(sst, vo);
 	}
 
-	public int getScheduleListCount() {
-		return dao.getScheduleListCount(sst);
+	public int getScheduleListCount(Map<String, String> paramMap) {
+		return dao.getScheduleListCount(sst, paramMap);
 	}
 
-	public List<OperationVo> getScheduleList(PageVo pv) {
-		return dao.getScheduleList(sst, pv);
+	public List<OperationVo> getScheduleList(PageVo pv, Map<String, String> paramMap) {
+		return dao.getScheduleList(sst, pv, paramMap);
 	}
 
 	public OperationVo goOperationDetail(String operationNo) {

@@ -184,15 +184,15 @@
 
 				<form action="" class="search-area">
 					<label for="search" class="category-area">
-						<select name="search" id="search">
+						<select name="searchType" id="search">
 							<option value="name">환자명</option>
-							<option value="title">환자명</option>
+
 						</select>
 
 
 					</label>
-					<input type="text" id="search-input">
-					<a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<input type="text" id="search-input" name="searchValue">
+					<a href="" id="search-icon""><i class="fa-solid fa-magnifying-glass"></i></a>
 				</form>
            	</div>
 
@@ -409,6 +409,22 @@
 		       url.searchParams.set('page', pageNumber);
 		       window.location.href = url.href;
 		   }
+		   
+		   
+		   //검색 결과 유지
+			const searchValueTag = document.querySelector("input[name=searchValue]");
+			
+			
+			searchValueTag.value = '${paramMap.searchValue}';
+			
+			
+			const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
+			
+			const x = '${paramMap.searchType}';
+			
+			if(x == 'name') {
+				searchTypeTagArr[0].selected = true;
+			} 
 	</script>
   
 </body>

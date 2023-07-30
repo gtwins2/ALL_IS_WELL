@@ -2,7 +2,7 @@ package com.kh.app.admission.controller;
 
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,8 +33,8 @@ public class AdmissionController {
 	
 	//입원실 방 리스트(화면)
 	@GetMapping("roomList")
-	public String getRoomList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model) {
-		int listCount = service.getRoomCount();
+	public String getRoomList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model,  @RequestParam Map<String, String> paramMap) {
+		int listCount = service.getRoomCount(paramMap);
 		
 		int pageLimit = 5; 
 				
@@ -43,7 +43,7 @@ public class AdmissionController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		//입원실 위치와 방번호, 최대수용인원 가져오기
-		List<AdmissionVo> roomList = service.getRoomList(pv);
+		List<AdmissionVo> roomList = service.getRoomList(pv, paramMap);
 		
 		 List<AdmissionVo> numberOfPatients = service.getNumberOfPatients();
 
@@ -64,6 +64,7 @@ public class AdmissionController {
 		 
 		model.addAttribute("pv", pv);
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("paramMap", paramMap);
 		
 		
 		return "admission/admissionRoomList";
@@ -87,8 +88,8 @@ public class AdmissionController {
 	
 	//입원 기록 목록(화면)
 	@GetMapping("admissionRecord")
-	public String registerAdmission(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model) {
-		int listCount = service.getRoomCount();
+	public String registerAdmission(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model, @RequestParam Map<String, String> paramMap) {
+		int listCount = service.getScheduleCount(paramMap);
 		
 		int pageLimit = 5; 
 				
@@ -97,7 +98,7 @@ public class AdmissionController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		//입원실 위치와 방번호, 최대수용인원 가져오기
-		List<AdmissionVo> scheduleList = service.getScheduleList(pv);
+		List<AdmissionVo> scheduleList = service.getScheduleList(pv, paramMap);
 		
 		
 		 log.info(scheduleList.toString());
@@ -105,6 +106,7 @@ public class AdmissionController {
 		 
 		model.addAttribute("pv", pv);
 		model.addAttribute("scheduleList", scheduleList);
+		model.addAttribute("paramMap", paramMap);
 		
 		return "admission/admissionListForm";
 	}

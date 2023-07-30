@@ -13,6 +13,7 @@ public class MailVo {
 	private String mailContent;
 	private String mailEnrollDate;
 	private String senderMailNo;
+	private String receiverMailAddress;
 	private String receiverNo;
 	private String mailNo;
 	private String senderMailstatus;
@@ -24,5 +25,11 @@ public class MailVo {
 	private String receiverMailYn;
 	private List<MultipartFile> attachments;
 	private String selectedMemberNumbers;
+	private String senderNo;
+	private String filePath;
+	private String senderName;
+	private String receiverName;
+	private String receiverMail;
+	private String senderMail;
 }
 

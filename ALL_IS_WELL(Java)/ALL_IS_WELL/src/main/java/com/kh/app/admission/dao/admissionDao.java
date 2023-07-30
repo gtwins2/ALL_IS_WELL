@@ -21,15 +21,15 @@ public class admissionDao {
 	
 	
 	//방 갯수 세기
-	public int getRoomCount(SqlSessionTemplate sst) {
-		return sst.selectOne("admission.getRoomCount");
+	public int getRoomCount(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("admission.getRoomCount", paramMap);
 	}
 	
 	
 	//입원실 방 목록 가져오기
-	public List<AdmissionVo> getRoomList(SqlSessionTemplate sst, PageVo pv) {
+	public List<AdmissionVo> getRoomList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("admission.getRoomList", null, rb);
+		return sst.selectList("admission.getRoomList", paramMap, rb);
 	}
 
 
@@ -55,9 +55,9 @@ public class admissionDao {
 	}
 
 
-	public List<AdmissionVo> getScheduleList(SqlSessionTemplate sst, PageVo pv) {
+	public List<AdmissionVo> getScheduleList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("admission.getScheduleList", null, rb);
+		return sst.selectList("admission.getScheduleList", paramMap, rb);
 	}
 
 
@@ -68,5 +68,10 @@ public class admissionDao {
 
 	public int updateAdmissionRecord(SqlSessionTemplate sst, AdmissionVo vo) {
 		return sst.update("admission.updateAdmissionRecord", vo);
+	}
+
+
+	public int getScheduleCount(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("admission.getScheduleCount", paramMap);
 	}
 }

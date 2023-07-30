@@ -2,6 +2,7 @@ package com.kh.app.operation.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,13 +24,13 @@ public class OperationDao {
 		return sst.selectList("operation.searchMember", name);
 	}
 
-	public int getRoomCount(SqlSessionTemplate sst) {
+	public int getRoomCount(SqlSessionTemplate sst, Map<String, String> paramMap) {
 		return sst.selectOne("operation.getRoomCount");
 	}
 
-	public List<OperationVo> getRoomList(SqlSessionTemplate sst, PageVo pv) {
+	public List<OperationVo> getRoomList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("operation.getRoomList", null, rb);
+		return sst.selectList("operation.getRoomList", paramMap, rb);
 	}
 
 	public int registerOperation(SqlSessionTemplate sst, OperationVo vo) {
@@ -57,13 +58,13 @@ public class OperationDao {
 		return sst.update("operation.updateRoom", vo);
 	}
 
-	public int getScheduleListCount(SqlSessionTemplate sst) {
-		return sst.selectOne("operation.getScheduleListCount");
+	public int getScheduleListCount(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("operation.getScheduleListCount", paramMap);
 	}
 
-	public List<OperationVo> getScheduleList(SqlSessionTemplate sst, PageVo pv) {
+	public List<OperationVo> getScheduleList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("operation.getScheduleList", null, rb);
+		return sst.selectList("operation.getScheduleList", paramMap, rb);
 	}
 
 	public OperationVo goOperationDetail(SqlSessionTemplate sst, String operationNo) {
