@@ -39,9 +39,9 @@ public class OperationController {
 	
 	//수술실 방 리스트 조회(화면)
 	@GetMapping("roomList")
-	public String getRoomList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model) {
+	public String getRoomList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage,  Model model, @RequestParam Map<String, String> paramMap) {
 		
-		int listCount = service.getRoomCount();
+		int listCount = service.getRoomCount(paramMap);
 		
 		int pageLimit = 5; 
 				
@@ -49,12 +49,14 @@ public class OperationController {
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<OperationVo> roomList = service.getRoomList(pv);
+		List<OperationVo> roomList = service.getRoomList(pv, paramMap);
 		
 		log.info(roomList.toString());
 		
 		model.addAttribute("pv", pv);
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("paramMap", paramMap);
+		
 		
 		return "surgery/operationRoomList";
 	}
@@ -125,8 +127,8 @@ public class OperationController {
 	
 	//수술 일정 목록 조회
 	@GetMapping("scheduleList")
-	public String getScheduleList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model) {
-		int listCount = service.getScheduleListCount();
+	public String getScheduleList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model, @RequestParam Map<String, String> paramMap) {
+		int listCount = service.getScheduleListCount(paramMap);
 		
 		int pageLimit = 5; 
 				
@@ -134,13 +136,15 @@ public class OperationController {
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<OperationVo> scheduleList = service.getScheduleList(pv);
+		List<OperationVo> scheduleList = service.getScheduleList(pv, paramMap);
 		
 		log.info(scheduleList.toString());
 		
 		
 		model.addAttribute("pv", pv);
 		model.addAttribute("scheduleList", scheduleList);
+		model.addAttribute("paramMap", paramMap);
+		
 		
 		
 		return "surgery/operationScheduleList";

@@ -95,6 +95,7 @@
 
        #search-icon {
            color: gray;
+
        }
 
        
@@ -243,14 +244,13 @@
     
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="writer">작성자</option>
-                                <option value="title">제목</option>
+                            <select name="searchType" id="search">
+                                <option value="status">수술실 상태</option>
                             </select>
                             
         
                         </label>
-                        <input type="text" id="search-input">
+                        <input type="text" id="search-input" name="searchValue">
                        <button id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
 
@@ -409,8 +409,20 @@
 	    
 	    
 	    
-	    
-	    
+	    //검색 결과 유지
+		const searchValueTag = document.querySelector("input[name=searchValue]");
+		
+		
+		searchValueTag.value = '${paramMap.searchValue}';
+		
+		
+		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
+		
+		const x = '${paramMap.searchType}';
+		
+		if(x == 'status') {
+			searchTypeTagArr[0].selected = true;
+		} 
 	    
 	    
 	</script>
