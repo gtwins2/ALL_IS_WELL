@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#wrap {
+    #wrap {
         width: 1920px;
         display: grid;
         grid-template-columns: 150px 1770px;
@@ -20,8 +20,9 @@
 
     .main-area {
         width: 80%;
-        min-height: 80%;
+        min-height: 90%;
         margin: auto;
+        position: relative;
     }
 
     #listBtnDiv {
@@ -51,7 +52,7 @@
 
     #vacation-application {
         width: 80%;
-        height: 77%;
+        height: 82%;
         border: 1px solid black;
         margin: auto;
     }
@@ -75,6 +76,7 @@
         font-size: 15px;
         margin-left: 100px;
         text-align: center;
+        display: none;
     }
 
     #info th{
@@ -86,6 +88,7 @@
         text-align: center;
         width: 550px;
         height: 250px;
+        display: none;
     }
 
     #approval tr th:first-child{
@@ -155,11 +158,11 @@
         font-size: 25px;
         margin-left: 10px;
     }
-
-    #buttonDiv {
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 40px;
+    
+    #buttonDiv{
+        text-align: right; 
+        margin-bottom: 50px;
+        margin-right: 150px;
     }
 
     #approvalBtn {
@@ -178,11 +181,6 @@
     #approvalBtn:hover {
         background-color: #555;
         transition: 0.7s;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
     }
 
 
@@ -249,7 +247,7 @@
                 </div>
                 <form action="${root}/approval/writeTripData" method="post">
                     <div id="reasonDiv">
-                        <div class="top">휴가기간</div>
+                        <div class="top">출장기간</div>
                         <div class="top-side">
                             <input type="date" style="font-size: 25px; margin-left: 10px; margin-top: 5px;" id="start-date" name="startDate">
                             ~~
