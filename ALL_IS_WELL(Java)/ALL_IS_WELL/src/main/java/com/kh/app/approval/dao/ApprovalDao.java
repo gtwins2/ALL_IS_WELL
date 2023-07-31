@@ -10,7 +10,9 @@ import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.inventory.vo.InventoryVo;
+import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 
 @Repository
@@ -27,8 +29,8 @@ public class ApprovalDao {
 		return sst.selectList("approval.getApprovalList", no, rb);
 	}
 	
-	public BusinessTripApprovalVo detailTrip(SqlSessionTemplate sst, String bno) {
-		return sst.selectOne("approval.detailTrip", bno);
+	public BusinessTripApprovalVo detailTrip(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approval.detailTrip", no);
 	}
 
 	/* 출장 */
@@ -52,6 +54,10 @@ public class ApprovalDao {
 	public int writeVacation(SqlSessionTemplate sst, VacationApprovalVo vvo) {
 		return sst.insert("approval.writeVacation", vvo);
 	}
+	
+	public VacationApprovalVo detailVacation(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approval.detailVacation", no);
+	}
 
 	public List<InventoryVo> getInventoryData(SqlSessionTemplate sst) {
 		return sst.selectList("approval.getInventoryData");
@@ -63,6 +69,19 @@ public class ApprovalDao {
 
 	public int writeInventory(SqlSessionTemplate sst, InventoryVo ivo) {
 		return sst.insert("approval.writeInventory", ivo);
+	}
+	
+	public InventoryVo detailInventory(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approval.detailInventory", no);
+	}
+
+	public int getApproverListCnt(SqlSessionTemplate sst, ApproverVo vo) {
+		return sst.selectOne("approver.getApproverList", vo);
+	}
+
+	public List<ApproverVo> getApproverList(SqlSessionTemplate sst, PageVo pv, ApproverVo vo) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("approval.getApprovalList", vo, rb);
 	}
 	
 }

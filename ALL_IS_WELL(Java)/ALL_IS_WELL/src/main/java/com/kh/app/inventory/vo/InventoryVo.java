@@ -1,5 +1,6 @@
 package com.kh.app.inventory.vo;
 
+import java.sql.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -16,5 +17,9 @@ public class InventoryVo {
 	private int count;
 	private String inventoryCount;
 	private String approvalDocumentNo;
+	private Date createDate;
+	private String memberName;
+	private String departmentName;
+	private String sign;
 	
 }

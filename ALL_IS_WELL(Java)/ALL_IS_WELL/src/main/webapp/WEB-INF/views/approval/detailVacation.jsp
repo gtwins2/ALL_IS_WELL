@@ -1,39 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-   
-   #wrap{
-		width: 1920px;
-		display: grid;
-		grid-template-columns: 150px 1770px;
-	}
+    #wrap {
+        width: 1920px;
+        display: grid;
+        grid-template-columns: 150px 1770px;
+    }
 
-    main{
+    main {
         min-height: 100%;
     }
 
     .main-area {
-        width: 70%;
-        min-height: 80%;
+        width: 80%;
+        min-height: 100%;
         margin: auto;
     }
 
-    #listBtnDiv{
+    #listBtnDiv {
         text-align: right;
         padding-right: 10%;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
-    #listBtn{
-        width: 80px;
-        font-size: 20px;
+    #listBtn {
+        width: 60px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
@@ -44,68 +44,74 @@
         font-weight: bold;
     }
 
-    #listBtn:hover{
+    #listBtn:hover {
         background-color: #555;
         transition: 0.7s;
     }
 
-    #vacation-application{
+    #vacation-application {
         width: 80%;
-        height: 77%;
+        height: 900px;
         border: 1px solid black;
         margin: auto;
+        margin-bottom: 50px;
     }
 
-    #title{
+    #title {
         padding-top: 50px;
         text-align: center;
-        font-size: 36px;
+        font-size: 20px;
     }
 
-    #contain-top{
+    #contain-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        margin-top: 150px;
+        margin-top: 50px;
     }
 
-    #info{
+    #info {
         border-collapse: collapse;
-        width: 300px;
-        height: 200px;
-        font-size: 20px;
-        margin-left: 100px;
+        width: 250px;
+        height: 150px;
+        font-size: 15px;
+        margin-left: 150px;
         text-align: center;
     }
 
-    #approval{
+    #approval {
         border-collapse: collapse;
         text-align: center;
-        width: 600px;
-        height: 300px;
+        width: 550px;
+        height: 250px;
     }
 
-    #approval tr th{
-        font-size: 25px;
+    #approval tr th:first-child{
+        width: 40px;
     }
 
-    #approval-title{
+    #approval tr th {
+        font-size: 15px;
+    }
+
+    #approval-title {
         width: 185px;
         height: 40px;
     }
 
-    #stamp{
+    #stamp {
         border-bottom: none;
     }
 
-    #stamp td{
-        height: 180px;
+    #stamp td {
+        height: 140px;
     }
 
-    #reasonDiv{
+    #reasonDiv {
         margin: auto;
-        margin-top: 50px;
-        width: 1000px;
-        height: 500px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 80%;
+        height: 400px;
 
         border: 1px solid black;
 
@@ -114,65 +120,39 @@
         grid-template-rows: 1fr 9fr;
     }
 
-    #reasonDiv div{
+    #reasonDiv div:not(:nth-child(2), :nth-child(4)) {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-size: 25px;
+        font-size: 15px;
         font-weight: bold;
     }
 
-    .top, .top-side{
+    .top, .top-side {
         border-bottom: 1px solid black;
+        height: 80px;
     }
 
-    .top, .bottom{
+    .top, .bottom {
         border-right: 1px solid black;
     }
 
-    #buttonDiv{
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 80px;
+    .top-side {
+        display: flex;
+    }
+    
+    .top-side div{
+        margin-left: 20px;
     }
 
-    #approvalBtn{
-        width: 100px;
-        font-size: 20px;
-        color: white;
-        background-color: #5A8CF2;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
+    .bottom-side{
+        display: flex;
     }
 
-    #approvalBtn:hover{
-        background-color: #555;
-        transition: 0.7s;
-    }
-
-    #refuseBtn{
-        width: 100px;
-        font-size: 20px;
-        color: black;
-        background-color: #C8C8C8;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    #refuseBtn:hover{
-        background-color: #555;
-        color: white;
-        transition: 0.7s;
+    .bottom-side div{
+        margin-left: 20px;
     }
 
 </style>
@@ -189,7 +169,7 @@
         </div>
         <div id="main-area">
             <div id="listBtnDiv">
-                <button id="listBtn">목록</button>
+                <button id="listBtn" onclick="back();">목록</button>
             </div>
             <div id="vacation-application">
                 <div id="title">휴가신청서</div>
@@ -198,19 +178,19 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>150</td>
+                                <td>${vvo.no}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
-                                <td>2023-07-05(월)</td>
+                                <td><fmt:formatDate value="${vvo.createDate}" pattern="yyyy-MM-dd"/></td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>임상병리학과</td>
+                                <td>${vvo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>김간호</td>
+                                <td>${vvo.memberName}</td>
                             </tr>
                         </table>
                     </div>
@@ -223,17 +203,17 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td ></td>
+                                <td>${vvo.sign}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td></td>
+                                <td>${vvo.createDate}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td></td>
+                                <td>${vvo.memberName}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -242,9 +222,19 @@
                 </div>
                 <div id="reasonDiv">
                     <div class="top">휴가기간</div>
-                    <div class="top-side"></div>
+                    <div class="top-side">
+                        <div>
+                            <fmt:formatDate value="${vvo.startDate}" pattern="yyyy-MM-dd"/>
+                              ~   
+                            <fmt:formatDate value="${vvo.endDate}" pattern="yyyy-MM-dd"/>
+                        </div>
+                    </div>
                     <div class="bottom">사유</div>
-                    <div class="bottom-side"></div>
+                    <div class="bottom-side">
+                        <div>
+                            ${vvo.content}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -266,6 +256,10 @@
         thirdSidebars.forEach(thirdSidebar => {
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
+
+        function back(){
+            location.href = "${root}/approval/draftList";
+        }
    </script>
 </body>
 </html>

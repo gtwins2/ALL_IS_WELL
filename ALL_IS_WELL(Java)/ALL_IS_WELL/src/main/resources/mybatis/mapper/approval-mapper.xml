@@ -25,53 +25,6 @@
 	    ORDER BY AD.NO DESC
 	</select>
 	
-	<!-- 휴가 문서 생성 -->
-<!-- 	<insert id="vacationBtn">
-		INSERT INTO 
-		APPROVAL_DOCUMENT
-		(NO, MEMBER_NO, CREATE_DATE, TITLE)
-		VALUES
-		(SEQ_APPROVAL_DOCUMENT_NO.NEXTVAL, #{memberNo}, SYSDATE, '휴가문서')
-	</insert>
-	
-	<select id="vacationAfterInsert" resultType="com.kh.app.approval.vo.ApprovalBtnVo">
-		SELECT 
-			AD.NO,
-			AD.MEMBER_NO,
-			AD.CREATE_DATE,
-			AD.TITLE,
-			D.NAME AS DEPARTMENT_NAME
-		FROM APPROVAL_DOCUMENT AD
-		JOIN MEMBER M ON M.NO = AD.MEMBER_NO
-		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
-		WHERE AD.NO = (SELECT MAX(NO) FROM APPROVAL_DOCUMENT WHERE MEMBER_NO = #{memberNo})
-	</select>
-	
-	<insert id="writeVacation">
-		INSERT INTO
-		VACATION_APPROVAL_DOCUMENT
-		(
-			NO,
-			APPROVAL_DOCUMENT_NO,
-			NO2,
-			CONTENT,
-			USE_DATE,
-			START_DATE,
-			END_DATE
-		)
-		VALUES
-		(
-			SEQ_VACATION_APPROVAL_DOCUMENT_NO.NEXTVAL,
-			#{approvalDocumentNo},
-			#{no2},
-			#{content},
-			#{useDate},
-			#{startDate},
-			#{endDate}
-		)
-	</insert> -->
-	
-	
 	<!-- 출장 문서 생성 -->
 	<insert id="tripBtn">
 		INSERT INTO 
@@ -110,15 +63,20 @@
 	
 	<select id="detailTrip" resultType="com.kh.app.approval.vo.BusinessTripApprovalVo">
 		SELECT 
-			AD.NO,
-			AD.MEMBER_NO,
-			AD.CREATE_DATE,
-			BTAD.CONTENT,
-			BTAD.START_DATE,
-			BTAD.END_DATE
+		    AD.NO NO,
+		    AD.MEMBER_NO MEMBER_NO,
+		    AD.CREATE_DATE CREATE_DATE,
+		    BTAD.CONTENT CONTENT,
+		    BTAD.START_DATE START_DATE,
+		    BTAD.END_DATE END_DATE,
+		    M.NAME MEMBER_NAME,
+		    M.SIGN SIGN,
+		    D.NAME DEPARTMENT_NAME
 		FROM APPROVAL_DOCUMENT AD
+		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
 		JOIN BUSINESS_TRIP_APPROVAL_DOCUMENT BTAD ON AD.NO = BTAD.APPROVAL_DOCUMENT_NO
-		WHERE AD.NO = #{bno}
+		WHERE AD.NO = #{no}
 	</select>
 	
 	<!-- 휴가 문서 생성 -->
@@ -154,15 +112,20 @@
 	
 	<select id="detailVacation" resultType="com.kh.app.approval.vo.VacationApprovalVo">
 		SELECT 
-			AD.NO,
-			AD.MEMBER_NO,
-			AD.CREATE_DATE,
-			BTAD.CONTENT,
-			BTAD.START_DATE,
-			BTAD.END_DATE
+		    AD.NO NO,
+		    AD.MEMBER_NO MEMBER_NO,
+		    AD.CREATE_DATE CREATE_DATE,
+		    VAD.CONTENT CONTENT,
+		    VAD.START_DATE START_DATE,
+		    VAD.END_DATE END_DATE,
+		    M.NAME MEMBER_NAME,
+		    M.SIGN SIGN,
+		    D.NAME DEPARTMENT_NAME
 		FROM APPROVAL_DOCUMENT AD
-		JOIN BUSINESS_TRIP_APPROVAL_DOCUMENT BTAD ON AD.NO = BTAD.APPROVAL_DOCUMENT_NO
-		WHERE AD.NO = #{bno}
+		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+		JOIN VACATION_APPROVAL_DOCUMENT VAD ON AD.NO = VAD.APPROVAL_DOCUMENT_NO
+		WHERE AD.NO = #{no}
 	</select>
 	
 	<select id="getInventoryData" resultType="com.kh.app.inventory.vo.InventoryVo">
@@ -200,4 +163,24 @@
 	        #{count}
 	    )
 	</insert>
+	
+	<select id="detailInventory" resultType="com.kh.app.inventory.vo.InventoryVo">
+		SELECT 
+		    AD.NO NO,
+		    AD.MEMBER_NO MEMBER_NO,
+		    AD.CREATE_DATE CREATE_DATE,
+		    IC.ITEM_NAME ITEM_NAME,
+		    M.NAME MEMBER_NAME,
+		    M.SIGN SIGN,
+		    IRAD.COUNT COUNT,
+		    D.NAME DEPARTMENT_NAME
+		FROM APPROVAL_DOCUMENT AD
+		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+		JOIN INVENTORY_REQUEST_APPROVAL_DOCUMENT IRAD ON AD.NO = IRAD.APPROVAL_DOCUMENT_NO
+		JOIN INVENTORY_CATEGORY IC ON IC.NO = IRAD.CATEGORY_NO
+		JOIN INVENTORY I ON I.CATEGORY_NO = IC.NO
+		WHERE AD.NO = #{no}
+	</select>
+	
 </mapper>
