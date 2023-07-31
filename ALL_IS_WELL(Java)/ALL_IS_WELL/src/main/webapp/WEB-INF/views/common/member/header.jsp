@@ -79,7 +79,7 @@
             <div id="profile">
                 <img alt="프로필 사진" src="#">
                 <span>
-                    <a href="#">마이페이지</a> | <a href="#">로그아웃</a>
+                    <a href="${root}/mypageMember">마이페이지</a> | <a href="${root}/member/logout">로그아웃</a>
                 </span>
             </div>
         </div>

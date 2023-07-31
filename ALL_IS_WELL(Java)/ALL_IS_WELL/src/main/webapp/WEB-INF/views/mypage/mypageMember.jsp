@@ -17,9 +17,9 @@
 #div01{
 	position: absolute;
 	width: 539px;
-	height: 662px;
+	height: 600px;
 	left: 524px;
-	top: 281px;
+	top: 220px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
@@ -30,7 +30,7 @@
 	width: 260px;
 	height: 284px;
 	left: 674px;
-	top: 292px;
+	top: 240px;
 	background: url(1674030642.jpg);
 	border-radius: 50px;
 	border: 1px solid black;
@@ -40,7 +40,7 @@
 	width: 538.91px;
 	height: 0.65px;
 	left: 523.6px;
-	top: 584.74px;
+	top: 530px;
 	background: #000000;
 }
 #div01-2{
@@ -48,12 +48,12 @@
 	width: 479px;
 	height: 288px;
 	left: 554px;
-	top: 609px;
+	top: 540px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 32px;
-	line-height: 45px;
+	font-size: 24px;
+	line-height: 40px;
 	color: #000000;
 }
 #div01-2{
@@ -64,9 +64,9 @@
 #div01-3{
 	position: absolute;
 	width: 0px;
-	height: 306px;
+	height: 295px;
 	left: 705px;
-	top: 607px;
+	top: 530px;
 	border: 1px solid #000000;
 }
 
@@ -95,8 +95,8 @@
 	position: absolute;
 	width: 263px;
 	height: 48px;
-	left: 464px;
-	top: 170px;
+	left: 367px;
+	top: 125px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
@@ -107,10 +107,10 @@
 
 #hr01{
 	position: absolute;
-	width: 1594.69px;
+	width: 1770px;
 	height: 0px;
-	left: 306.65px;
-	top: 258.2px;
+	left: 150px;
+	top: 200px;
 	border: 1px solid #D1CECE;
 }
 
@@ -148,6 +148,12 @@
 	background: #5A8CF2;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 20px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 40px;
+	color: #FFFFFF;
+	text-align: center;
 }
 
 #div04-2 > h2{
@@ -158,6 +164,12 @@
 	font-size: 40px;
 	line-height: 48px;
 	color: #FFFFFF;
+}
+
+#div04-3{
+	position: absolute;
+	left: 1309px;
+	top: 700px;
 }
 
 #div05{
@@ -214,8 +226,12 @@
 			
 			 <!-- 서명 -->
 			 <div id="div04">서명 수정</div>
-			 <div id="div04-1"></div>
-			 <div id="div04-2"><h2>저장하기</h2></div>
+			 <img id="div04-1" alt="" src="/app/resources/static/sign/${loginMember.sign}">
+			 <form action="${root}/sign" method="post">
+			 <input type="text" value="${loginMember.no}" name="no" hidden>
+			 <input type="file" id="div04-3" name="sign">
+			 <input type="submit" id="div04-2" value="저장하기">
+			 </form>
 			 
 			 <!-- 잔여휴가 -->
 			 <div id="div05">
@@ -248,7 +264,7 @@
 	});
 	
 	function next(){
-		href="/app/mypage/";
+		location.href="/app/memberInfoUpdate";
 	}
 	
 </script>

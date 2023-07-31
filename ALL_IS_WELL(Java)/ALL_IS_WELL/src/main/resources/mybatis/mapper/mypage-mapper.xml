@@ -18,6 +18,11 @@
 		WHERE NO = #{no}
 	</update>	
 	
-	
+	<update id="sign">
+		UPDATE MEMBER
+		SET 
+		SIGN = #{sign}
+		WHERE NO = #{no}
+	</update>
 	
 </mapper>

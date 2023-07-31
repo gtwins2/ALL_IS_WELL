@@ -36,7 +36,13 @@ public class MypageController {
 		return "login/login";
 	}
 	
-
+	@PostMapping("sign")
+	public String sign(MemberVo vo) {
+		
+		int result = ms.sign(vo);
+		
+		return "mypage/mypageMember";
+	}
 	
 	
 }

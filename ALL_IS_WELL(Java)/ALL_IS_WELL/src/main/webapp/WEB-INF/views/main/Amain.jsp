@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <style>
-
+#content{
+		width: 1920px;
+		height: 750px;
+		display: grid;
+		grid-template-columns: 150px 1770px;
+	}
 
 
 #div01{    
