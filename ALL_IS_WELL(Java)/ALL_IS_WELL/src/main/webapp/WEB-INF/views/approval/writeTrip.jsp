@@ -245,7 +245,7 @@
                         </table>
                     </div>
                 </div>
-                <form action="${root}/approval/writeTripData" method="post">
+                <form action="${root}/approval/writeTrip" method="post">
                     <div id="reasonDiv">
                         <div class="top">출장기간</div>
                         <div class="top-side">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 
     .main-area {
         width: 80%;
-        min-height: 80%;
+        min-height: 100%;
         margin: auto;
     }
 
@@ -31,8 +32,8 @@
     }
 
     #listBtn {
-        width: 80px;
-        font-size: 20px;
+        width: 60px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
@@ -50,9 +51,10 @@
 
     #vacation-application {
         width: 80%;
-        height: 77%;
+        height: 900px;
         border: 1px solid black;
         margin: auto;
+        margin-bottom: 50px;
     }
 
     #title {
@@ -72,7 +74,7 @@
         width: 250px;
         height: 150px;
         font-size: 15px;
-        margin-left: 100px;
+        margin-left: 150px;
         text-align: center;
     }
 
@@ -124,7 +126,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-size: 20px;
+        font-size: 15px;
         font-weight: bold;
     }
 
@@ -139,41 +141,18 @@
 
     .top-side {
         display: flex;
-        align-items: center;
+    }
+    
+    .top-side div{
+        margin-left: 20px;
     }
 
-    #start-date, #end-date {
-        font-size: 25px;
-        margin-left: 10px;
-    }
-
-    #buttonDiv {
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 40px;
-    }
-
-    #approvalBtn {
-        width: 100px;
-        font-size: 20px;
-        color: white;
-        background-color: #5A8CF2;
-        size: 10px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    #approvalBtn:hover {
-        background-color: #555;
-        transition: 0.7s;
-    }
-
-    .button-container {
+    .bottom-side{
         display: flex;
-        justify-content: flex-end;
+    }
+
+    .bottom-side div{
+        margin-left: 20px;
     }
 
 </style>
@@ -198,17 +177,16 @@
                     <div id="document-info">
                         <table border="1" id="info">
                             <tr>
-                                ${bvo.title}
                                 <th>문서번호</th>
-                                <td>150</td>
+                                <td>${bvo.no}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
-                                <td></td>
+                                <td><fmt:formatDate value="${bvo.createDate}" pattern="yyyy-MM-dd"/></td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>${loginMember.departmentName}</td>
+                                <td>${bvo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
@@ -225,17 +203,17 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td ></td>
+                                <td>${bvo.sign}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td></td>
+                                <td>${bvo.createDate}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td></td>
+                                <td>${bvo.memberName}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -244,9 +222,19 @@
                 </div>
                 <div id="reasonDiv">
                     <div class="top">출장기간</div>
-                    <div class="top-side"></div>
+                    <div class="top-side">
+                        <div>
+                            <fmt:formatDate value="${bvo.startDate}" pattern="yyyy-MM-dd"/>
+                              ~   
+                            <fmt:formatDate value="${bvo.endDate}" pattern="yyyy-MM-dd"/>
+                        </div>
+                    </div>
                     <div class="bottom">사유</div>
-                    <div class="bottom-side"></div>
+                    <div class="bottom-side">
+                        <div>
+                            ${bvo.content}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -270,7 +258,7 @@
         });
 
         function back(){
-            window.location.href = "${root}/approval/draftList";
+            location.href = "${root}/approval/draftList";
         }
    </script>
 </body>

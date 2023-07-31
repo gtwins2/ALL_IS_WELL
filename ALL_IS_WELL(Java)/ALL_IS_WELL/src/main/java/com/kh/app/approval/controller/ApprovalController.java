@@ -17,6 +17,7 @@ import com.kh.app.approval.service.ApprovalService;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
@@ -58,8 +59,35 @@ public class ApprovalController {
 
 	// 결재한 문서(화면)
 	@GetMapping("list")
-	public void list() {
+	public void list(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+			Model model, HttpSession session) {
 
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		/*
+		 * if(loginMember == null) { throw new LoginException(); }
+		 */
+		
+		ApproverVo vo = new ApproverVo();
+		
+		String no = loginMember.getNo();
+		String departmentNo = loginMember.getDepartmentNo();
+		
+		vo.setDepartmentNo(departmentNo);
+		vo.setApproverNo(no);
+		
+
+		int listCount = as.getApproverListCnt(vo);
+		int pageLimit = 5;
+		int boardLimit = 10;
+
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+
+		List<ApproverVo> voList = as.getApproverList(pv, vo);
+
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList", voList);
+		
 	}
 
 	// 결재해야할 문서(휴가 화면)
@@ -89,8 +117,13 @@ public class ApprovalController {
 
 	// 결재된 문서(휴가 상세)
 	@GetMapping("detailVacation")
-	public void detailVacation() {
+	public void detailVacation(Model model, HttpSession session, String no) {
 		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		VacationApprovalVo vvo = as.detailVacation(no);
+		
+		model.addAttribute("vvo", vvo);
 	}
 
 
@@ -122,14 +155,12 @@ public class ApprovalController {
 
 	// 결재된 문서(출장 상세)
 	@GetMapping("detailTrip")
-	public void detailTrip(String bno, Model model, HttpSession session) {
-
-		loginMember = (MemberVo) session.getAttribute("loginMember");
-
-		BusinessTripApprovalVo bvo = as.detailTrip(bno);
+	public void detailTrip(Model model, HttpSession session, String no) {
 		
-		session.setAttribute("bvo", bvo);
-
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		BusinessTripApprovalVo bvo = as.detailTrip(no);
+				
 		model.addAttribute("bvo", bvo);
 	}
 
@@ -161,7 +192,13 @@ public class ApprovalController {
 
 	// 결재된 문서(재고 상세)
 	@GetMapping("detailInventory")
-	public void detailInventory() {
+	public void detailInventory(HttpSession session, Model model, String no) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		InventoryVo ivo = as.detailInventory(no);
+		
+		model.addAttribute("ivo", ivo);
 		
 	}
 

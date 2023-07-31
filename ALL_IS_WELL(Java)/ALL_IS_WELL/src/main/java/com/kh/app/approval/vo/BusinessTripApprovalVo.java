@@ -1,17 +1,21 @@
 package com.kh.app.approval.vo;
 
+import java.sql.Date;
+
 import lombok.Data;
-import oracle.sql.DATE;
 
 @Data
 public class BusinessTripApprovalVo {
 
 	private String no;
 	private String memberNo;
+	private String memberName;
 	private String approvalDocumentNo;
 	private String content;
-	private String startDate;
-	private String endDate;
+	private Date startDate;
+	private Date endDate;
+	private String departmentName;
+	private String sign;
 	
-	private DATE createDate;
+	private Date createDate;
 }

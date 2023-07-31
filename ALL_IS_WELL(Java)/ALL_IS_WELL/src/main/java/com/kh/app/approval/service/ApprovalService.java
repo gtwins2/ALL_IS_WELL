@@ -11,8 +11,10 @@ import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.inventory.vo.InventoryVo;
+import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
@@ -66,8 +68,8 @@ public class ApprovalService {
 		return true;
 	}
 	
-	public BusinessTripApprovalVo detailTrip(String bno) {
-		return dao.detailTrip(sst, bno);
+	public BusinessTripApprovalVo detailTrip(String no) {
+		return dao.detailTrip(sst, no);
 	}
 	
 	/* 휴가 */
@@ -134,6 +136,22 @@ public class ApprovalService {
 		    throw new RuntimeException("categoryNoArr와 countArr의 길이가 일치하지 않거나 null입니다.");
 		}
 		return true;
+	}
+
+	public VacationApprovalVo detailVacation(String no) {
+		return dao.detailVacation(sst, no);
+	}
+
+	public int getApproverListCnt(ApproverVo vo) {
+		return dao.getApproverListCnt(sst, vo);
+	}
+
+	public List<ApproverVo> getApproverList(PageVo pv, ApproverVo vo) {
+		return dao.getApproverList(sst, pv, vo);
+	}
+
+	public InventoryVo detailInventory(String no) {
+		return dao.detailInventory(sst, no);
 	}
 	
 	

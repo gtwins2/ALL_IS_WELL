@@ -327,14 +327,14 @@
         });
 
         function detail() {
-            const bno = event.target.parentElement.querySelector("#approvalNo").innerText;
+            const no = event.target.parentElement.querySelector("#approvalNo").innerText;
             const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
             if(title === "출장문서"){
-                location.href = "${root}/approval/detailTrip?=" + bno;
+                location.href = "${root}/approval/detailTrip?no=" + no;
             } else if(title === "휴가문서"){
-                location.href = "${root}/approval/detailVacation?=" + bno;
+                location.href = "${root}/approval/detailVacation?no=" + no;
             } else if(title === "재고문서"){
-                location.href = "${root}/approval/detailInventory?=" + bno;
+                location.href = "${root}/approval/detailInventory?no=" + no;
             }
         };
     </script>
