@@ -231,7 +231,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">회의록상세조회</span>
+                    <span id="title">회의록수정하기</span>
 
                 </div>
                 <br>
@@ -241,24 +241,21 @@
                 <br>
 
 				<div class="list-area">
+			<form action="${root}/proceeding/edit" method="post">
                     <table>
 
-					<br>
-					<br>
+					
 					<input type="hidden" value=${loginMember.no} >
-					<div id="title-area" >제목<textarea id="title-area" cols="60" rows="1" name="title"  readonly>${vo.title}</textarea></div>
+					<div id="title-area" >제목<textarea id="title-area" cols="60" rows="1" name="title">${vo.title}</textarea></div>
 					<br>					
 					<div id="title-area">작성자번호<textarea id="date-area" cols="60" rows="1"  name="memberNo" readonly>${vo.memberNo}</textarea></div>
 					<br>
 					<div id="title-area">작성일<textarea id="date-area" cols="60" rows="1"  name="enrollDate" readonly>${vo.enrollDate}</textarea></div>
 					<br>
-					<div id="title-area">수정일<textarea id="date-area" cols="60" rows="1"  name="modifyDate" readonly>${vo.modifyDate}</textarea></div>
-					<br>
-					<br>
 					<!-- <div id="content2">내용 -->
 					<div style="font-size:30px;">내용</div>
 					<div id="content-area">
-                        <textarea id="content-area2" cols="60" rows="10" name="content" readonly>${vo.content}</textarea>
+                        <textarea id="content-area2" cols="60" rows="10" name="content">${vo.content}</textarea>
 
                     </div>
                     
@@ -278,10 +275,9 @@
                     </table>
                 </div>
 					
-					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
-					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button type="submit" id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
-                
+                </form>
                 </div>
                 <br>
                 <br>

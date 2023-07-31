@@ -18,17 +18,12 @@ public interface ProceedingDao {
 	//�Խñ� �ۼ�				//board/write
 	int write(SqlSessionTemplate sst , ProceedingVo vo);
 
-
-	//�Խñ� ����ȸ(+��ȸ������)	//board/detail
-	ProceedingVo detail(SqlSessionTemplate sst , String no);
-
-	
 	//�Խñ� ����				//board/edit
 	int edit(SqlSessionTemplate sst , ProceedingVo vo);
 
 	
 	//�Խñ� ����				//board/delete
-	int delete(SqlSessionTemplate sst , ProceedingVo vo);
+	int delete(SqlSessionTemplate sst , String no);
 	
 	
 	//��ȸ�� ����
@@ -37,5 +32,8 @@ public interface ProceedingDao {
 	
 	//��ü �Խñ� ���� ��ȸ
 	int getBoardCnt(SqlSessionTemplate sst);
+
+
+	ProceedingVo getProceedingByNo(SqlSessionTemplate sst , String no);
 	
 }

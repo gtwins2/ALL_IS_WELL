@@ -16,16 +16,14 @@ public interface ProceedingService {
 	//�Խñ� �ۼ�				//board/write
 	int write(ProceedingVo vo);
 	
-	//�Խñ� ����ȸ			//board/detail
-	ProceedingVo detail(String no);
-	
 	//�Խñ� ����				//board/edit
 	int edit(ProceedingVo vo);
 	
-	//�Խñ� ����				//board/delete
-	int delete(ProceedingVo vo);
-	
 	//�Խñ� ��ü ���� ��ȸ
 	int getBoardCnt();
+
+	ProceedingVo getProceedingByNo(String no);
+
+	int delete(String no);
 	
 }

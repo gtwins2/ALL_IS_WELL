@@ -57,8 +57,8 @@ public class MemberListController {
 	}
 	
 	//게시글 상세조회			//board/detail
-	@GetMapping(value = {"detail/{no}" , "detail"})
-	public String detail(@PathVariable(value = "no" , required = false) String no, Model model) {
+	@GetMapping(value = {"detail/{no}"})
+	public String detail(@PathVariable(value = "no" , required = true) String no, Model model) {
 		
 		MemberVo vo = service.getMemberByNo(no);
 		
@@ -73,9 +73,9 @@ public class MemberListController {
 		
 		int result = service.delete(no);
 		if(result != 1) {
-			model.addAttribute("message", "실패");
+			model.addAttribute("message", "회원 탈퇴 실패");
 		}
-		model.addAttribute("message", "성공");
+		model.addAttribute("message", "회원 탈퇴 성공");
 		return "redirect:/member/list";
 	}
 	

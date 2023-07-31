@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.dao.ProceedingDao;
 import com.kh.app.proceeding.vo.ProceedingVo;
@@ -30,21 +31,20 @@ public class ProceedingServiceImpl implements ProceedingService{
 		return dao.write(sst, vo);
 	}
 	@Override
-	public ProceedingVo detail(String no) {
-		return dao.detail(sst, no);
+	public int getBoardCnt() {
+		return dao.getBoardCnt(sst);
+	}
+	@Override
+	public ProceedingVo getProceedingByNo(String no) {
+		return dao.getProceedingByNo(sst , no);
+	}
+	@Override
+	public int delete(String no) {
+		return dao.delete(sst, no);
 	}
 	@Override
 	public int edit(ProceedingVo vo) {
 		return dao.edit(sst, vo);
 	}
-	@Override
-	public int delete(ProceedingVo vo) {
-		return dao.delete(sst, vo);
-	}
-	@Override
-	public int getBoardCnt() {
-		return dao.getBoardCnt(sst);
-	}
-		
-
+	
 }
