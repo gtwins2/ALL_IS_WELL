@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.kh.app.board.dao.InquiryDao;
 import com.kh.app.board.dao.NoticeDao;
 import com.kh.app.board.vo.InquiryVo;
+import com.kh.app.board.vo.NoticeReplyVo;
+import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,8 +21,23 @@ public class InquiryService {
 	private final SqlSessionTemplate sst;; 
 	
 	
-	public List<InquiryVo> inquiryList(InquiryVo vo) {
-		return dao.inquiryList(sst, vo);
+	public List<InquiryVo> inquiryList(PageVo pv) {
+		return dao.inquiryList(sst, pv);
+	}
+
+
+	public int getListCnt() {
+		return dao.getListCnt(sst);
+	}
+
+
+	public InquiryVo inquiryDetail(InquiryVo vo) {
+		return dao.inquiryDetail(sst, vo);
+	}
+
+
+	public List<NoticeReplyVo> inquiryReply(NoticeReplyVo vo2) {
+		return dao.inquiryReply(sst, vo2);
 	}
 
 }

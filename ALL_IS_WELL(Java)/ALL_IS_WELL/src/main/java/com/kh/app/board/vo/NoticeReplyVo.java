@@ -11,6 +11,7 @@ public class NoticeReplyVo {
 	private String modifyDate;
 	private String noticeNo;
 	private String deleteYn;
-	
+	private String inquiryNo;
+	private String adminNo;
 	
 }

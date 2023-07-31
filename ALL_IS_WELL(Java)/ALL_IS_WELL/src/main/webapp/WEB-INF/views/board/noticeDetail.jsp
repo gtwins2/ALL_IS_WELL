@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 750px;
+	height: 1500px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -24,7 +24,7 @@
 	width: 115px;
 	height: 53px;
 	left: 367px;
-	top: 200px;
+	top: 125px;
 	background: #FF8686;
 	border-radius: 25px;
 	border: 0px;
@@ -43,19 +43,19 @@
 
 hr{
 	position: absolute;
-	width: 1617px;
+	width: 1770px;
 	height: 0px;
-	left: 303px;
-	top: 300px;
+	left: 150px;
+	top: 200px;
 	border: 1px solid #D1CECE;
 }
 
 #div01{
 	position: absolute;
 	width: 1617px;
-	height: 900px;
+	height: 700px;
 	left: 303px;
-	top: 340px;
+	top: 240px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 3fr;
 	
@@ -66,7 +66,6 @@ hr{
 }
 
 #div01 > div{
-
 	text-align: center;
 	display: grid;
 	grid-template-columns: 1fr 3fr;
@@ -87,6 +86,7 @@ hr{
 }
 
 #div01 > div:nth-child(1) > div > input{
+	border: 0px;
 	width:80%;
 	font-size: 25px;
 }
@@ -96,11 +96,14 @@ hr{
 	margin-left: 120px;
 }
 
-textarea{
+#textarea{
 	width:80%;
-	height: 400px;
+	height: 250px;
 	font-size: 25px;
 	resize: none;
+	border: 0px;
+	font-family: 'Inter';
+	font-style: normal;
 }
 
 #list{
@@ -108,7 +111,7 @@ textarea{
 	width: 115px;
 	height: 53px;
 	left: 1748px;
-	top: 1280px;
+	top: 880px;
 	background: #FF8686;
 	border-radius: 25px;
 	font-family: 'Inter';
@@ -123,7 +126,7 @@ textarea{
 
 #div02{
 	position: absolute;
-	top: 1480px;
+	top: 980px;
 	box-sizing: border-box;
 	position: absolute;
 	width: 1420px;
@@ -134,7 +137,7 @@ textarea{
 	grid-template-columns: 5fr 1fr;
 }
 
-#div02 > div:nth-child(2){
+#div02 > div:nth-child(4){
 	line-height: 130px;
 }
 
@@ -150,7 +153,7 @@ position: absolute;
 width: 1516px;
 
 left: 347px;
-top: 1800px;
+top: 1150px;
 background: #D9D9D9;
 border-radius: 50px;
 
@@ -161,6 +164,22 @@ border-radius: 50px;
 	grid-template-columns: 1fr 7fr 1fr;
 	margin-left: 60px;
 	margin-right: 50px;
+}
+
+#write{
+	width: 115px;
+	height: 53px;
+	background: #FF8686;
+	border-radius: 25px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+	color: #FFFFFF;
+	border: 0px;
+	margin-left: 60px;
 }
 </style>
 </head>
@@ -175,9 +194,8 @@ border-radius: 50px;
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<form action="">
 
-				<button id="sendMail">수정하기</button>
+				<button id="sendMail" onclick="update();">수정하기</button>
 				<hr>
 				<div id="div01">
 					<div>
@@ -190,17 +208,16 @@ border-radius: 50px;
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10" readonly>${vo.content}</textarea></div>
+						<div><textarea name="" id="textarea" cols="30" rows="10" readonly>${vo.content}</textarea></div>
 					</div>
 				</div>
-			</form>
 
 			<button id="list">목록</button>
 
 			<form action="${root}/board/noticeDetail" method="post">
 				<div id="div02">
 					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
-					<input type="text" value="${loginMember.no}" name="writerNo" > 				
+					<input type="text" value="${loginMember.no}" name="writerNo" hidden> 				
 					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
 					<div><button id="write">작성</button></div>
 				</div>
@@ -242,4 +259,8 @@ border-radius: 50px;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	function update() {
+		location.href="${root}/board/noticeUpdate?no="+ ${vo.no};
+	}
 </script>

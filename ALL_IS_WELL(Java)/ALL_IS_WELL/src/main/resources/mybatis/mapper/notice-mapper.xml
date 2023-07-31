@@ -79,4 +79,16 @@
 		)
 	</insert>
 	
+	<select id="getNoticeListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM NOTICE
+	</select>
+	
+	<insert id="noticeUpdate">
+		UPDATE NOTICE SET
+		TITLE = #{title}
+		,CONTENT = #{content}
+		WHERE NO = #{no}
+	</insert>
+	
 </mapper>
