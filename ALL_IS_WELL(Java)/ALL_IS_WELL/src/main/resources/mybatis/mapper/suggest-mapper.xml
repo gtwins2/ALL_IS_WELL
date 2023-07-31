@@ -16,6 +16,9 @@
 		FROM SUGGESTIONS
 		
 	</select>
-	
+	<select id="getListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM SUGGESTIONS
+	</select>
 	
 </mapper>

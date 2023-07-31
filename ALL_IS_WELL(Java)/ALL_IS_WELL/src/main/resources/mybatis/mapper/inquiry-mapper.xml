@@ -17,5 +17,34 @@
 		
 	</select>
 	
+	<select id="getListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM INQUIRY
+	</select>
 	
+	<select id="inquiryDetail" resultType="com.kh.app.board.vo.InquiryVo">
+		SELECT
+			NO
+			,MEMBER_NO
+			,TITLE
+			,CONTENT
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,INQUIRY_STATUS
+		FROM INQUIRY
+		WHERE NO = #{no}
+	</select>
+	
+	<select id="inquiryReply" resultType="com.kh.app.board.vo.NoticeReplyVo">
+		SELECT 
+			NO
+			,INQUIRY_NO
+			,ADMIN_NO
+			,CONTENT
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+		FROM INQUIRY_REPLY
+		WHERE INQUIRY_NO=#{no}
+	</select>
 </mapper>

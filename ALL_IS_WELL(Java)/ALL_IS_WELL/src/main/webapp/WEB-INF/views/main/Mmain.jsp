@@ -16,10 +16,10 @@
 	}
 #div01{    
     position: absolute;
-    width: 434px;
-    height: 680px;
-    left: 337px;
-    top: 213px;
+    width: 334px;
+    height: 480px;
+    left: 200px;
+    top: 113px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -27,10 +27,10 @@
 
 hr{
 	position: absolute;
-	width: 434px;
+	width: 334px;
 	height: 0.67px;
-	left: 337px;
-	top: 529.44px;
+	left: 200px;
+	top: 350px;
 	
 	background: #000000;
 }
@@ -38,12 +38,12 @@ h2{
 	position: absolute;
 	width: 311px;
 	height: 242px;
-	left: 399px;
-	top: 578px;
+	left: 220px;
+	top: 378px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 32px;
+	font-size: 20px;
 	line-height: 39px;
 	text-align: center;
 	color: #000000;
@@ -51,14 +51,20 @@ h2{
 
 #div02{    
     position: absolute;
-    width: 414px;
-    height: 117px;
-    left: 347px;
-    top: 997px;
+    width: 200px;
+    height: 75px;
+    left: 270px;
+    top: 650px;
     background: #5A8CF2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 	display: block;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 48px;
+	color: #FFFFFF;
 }
 
 #div02-1{
@@ -77,9 +83,9 @@ color: #FFFFFF;
 #div03{
 position: absolute;
 width: 426px;
-height: 961px;
-left: 829px;
-top: 204px;
+height: 661px;
+left: 720px;
+top: 113px;
 
 background: #FDFDFD;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -92,8 +98,8 @@ border-radius: 50px;
     border: 1px solid #9D9A9A;
 }
 #div03-1{
-    left: 827px;
-    top: 760px;  
+    left: 720px;
+    top: 460px;  
 }
 
 #div03-2, #div03-4, #div03-6, #div03-8{
@@ -102,51 +108,51 @@ border-radius: 50px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 35px;
+    font-size: 20px;
     color: #FFFFFF;
     text-align: center;
 }
 
 #div03-2{
-    width: 54px;
-    height: 54px;
-    left: 850px;
-    top: 790px;
+    width: 30px;
+    height: 30px;
+    left: 725px;
+    top: 470px;
 }
 
 #div03-3{
-    left: 827px;
-    top: 860px; 
+    left: 720px;
+    top: 510px; 
 }
 
 #div03-4{
-    width: 54px;
-    height: 54px;
-    left: 850px;
-    top: 890px;
+     width: 30px;
+    height: 30px;
+    left: 725px;
+    top: 520px;
 }
 
 #div03-5{
-    left: 827px;
-    top: 960px;  
+    left: 720px;
+    top: 560px;  
 }
 
 #div03-6{
-    width: 54px;
-    height: 54px;
-    left: 850px;
-    top: 990px;
+     width: 30px;
+    height: 30px;
+    left: 725px;
+    top: 570px;
 }
 
 #div03-7{
-    left: 827px;
-    top: 1060px;  
+    left: 720px;
+    top: 610px;  
 }
 #div03-8{
-    width: 54px;
-    height: 54px;
-    left: 850px;
-    top: 1090px;
+     width: 30px;
+    height: 30px;
+    left: 725px;
+    top: 620px;
 }
 
 #div04-1, #div05-1, #div06-1{
@@ -166,7 +172,7 @@ color: #FFFFFF;
 #div04, #div05, #div06{
 position: absolute;
 width: 515.26px;
-height: 300px;
+height: 240px;
 left: 1317px;
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -180,11 +186,11 @@ color: #000000;
 }
 
 #div04{
-    top: 190px;
+    top: 113px;
 }
 
 #div04-1{
-    top: 265px;
+    top: 170px;
 }
 
 #right{
@@ -194,14 +200,14 @@ color: #000000;
 #div04 > div{
     display: grid;
     grid-template-columns: 270px 240px;
-    line-height: 40px;
+    line-height: 50px;
 }
 #div04 > div > div, #div05 > div > div, #div06 > div > div{
     text-align: center;
 }
 
 #div05{
-    top: 500px;
+    top: 365px;
 }
 #div05 > div{
     display: grid;
@@ -209,10 +215,10 @@ color: #000000;
     line-height: 40px;
 }
 #div05-1{
-    top: 575px;
+    top: 430px;
 }
 #div06{
-    top: 810px;
+    top: 610px;
 }
 #div06 > div{
     display: grid;
@@ -220,18 +226,25 @@ color: #000000;
     line-height: 40px;
 }
 #div06-1{
-    top: 885px;
+    top: 670px;
 }
 
 #div07{
 	position: absolute;
-    width: 414px;
-    height: 117px;
-    left: 347px;
-    top: 1300px;
+    width: 200px;
+    height: 75px;
+    left: 270px;
+    top: 750px;
     background: #5A8CF2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+	display: block;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 48px;
+	color: #FFFFFF;
 }
 
 </style>
@@ -254,17 +267,12 @@ color: #000000;
 		    <!-- 출근 -->
 		    
 		    <form action="/app/attend?no=${loginMember.no}" method="post" onclick="attend();">
-				<input type="submit" id="div02" ></input>
+				<input type="submit" id="div02" value="출근" ></input>
 		    </form>
-		    <h2 id="div02-1">출근</h2>
-		    
-			<c:if test="">
 		    
 		    <form action="/app/leave?no=${loginMember.no}" method="post">
-				<button type="submit" id="div07" onclick="attend();"></button>
+				<button type="submit" id="div07" value="퇴근"></button>
 		    </form>
-		    <h2 id="div02-1">출근</h2>
-			</c:if>
 		
 		    <!-- 일정 -->
 		    <div id="div03"></div>
@@ -297,10 +305,7 @@ color: #000000;
 		            <div>체육대회 안내</div>
 		            <div>2023-06-08</div>
 		        </div>
-		        <div>
-		            <div>5월 급여지급 지연 안내</div>
-		            <div>2023-06-07</div>
-		        </div>
+		        
 		    </div>
 		    <!-- 공지사항 틀 -->
 		    <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
@@ -313,7 +318,7 @@ color: #000000;
 		            <div></div>
 		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
-		        <br><br>
+		        <br>
 		        <div>
 		            <div>휴가</div>
 		            <div>2023-06-22</div>
@@ -345,7 +350,7 @@ color: #000000;
 		            <div></div>
 		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
-		        <br><br>
+		        <br>
 		        <div>
 		            <div>휴가</div>
 		            <div>2023-06-22</div>

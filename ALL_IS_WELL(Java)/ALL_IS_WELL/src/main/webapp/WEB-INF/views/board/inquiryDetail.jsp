@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 750px;
+	height: 1500px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -24,7 +24,7 @@
 	width: 115px;
 	height: 53px;
 	left: 367px;
-	top: 200px;
+	top: 125px;
 	background: #FF8686;
 	border-radius: 25px;
 	border: 0px;
@@ -36,26 +36,26 @@
 	color: #FFFFFF;
 }
 
-#sendMail:hover, #file:hover, #list:hover, #write:hover {
+#sendMail:hover, #file:hover {
 	background-color: #555;
 	transition: 0.7s;
 }
 
 hr{
 	position: absolute;
-	width: 1617px;
+	width: 1770px;
 	height: 0px;
-	left: 303px;
-	top: 300px;
+	left: 150px;
+	top: 200px;
 	border: 1px solid #D1CECE;
 }
 
 #div01{
 	position: absolute;
 	width: 1617px;
-	height: 900px;
+	height: 700px;
 	left: 303px;
-	top: 340px;
+	top: 240px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 3fr;
 	
@@ -66,7 +66,6 @@ hr{
 }
 
 #div01 > div{
-
 	text-align: center;
 	display: grid;
 	grid-template-columns: 1fr 3fr;
@@ -87,9 +86,9 @@ hr{
 }
 
 #div01 > div:nth-child(1) > div > input{
+	border: 0px;
 	width:80%;
 	font-size: 25px;
-	border: 0px;
 }
 
 #div01 > div:nth-child(2) >  div:nth-child(2) {
@@ -97,9 +96,9 @@ hr{
 	margin-left: 120px;
 }
 
-#textarea1{
+#textarea{
 	width:80%;
-	height: 400px;
+	height: 250px;
 	font-size: 25px;
 	resize: none;
 	border: 0px;
@@ -112,7 +111,7 @@ hr{
 	width: 115px;
 	height: 53px;
 	left: 1748px;
-	top: 1280px;
+	top: 880px;
 	background: #FF8686;
 	border-radius: 25px;
 	font-family: 'Inter';
@@ -123,6 +122,48 @@ hr{
 	text-align: center;
 	color: #FFFFFF;
 	border: 0px;
+}
+
+#div02{
+	position: absolute;
+	top: 980px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 1420px;
+	height: 136px;
+	background: #FFFFFF;
+	margin-left: 200px;
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+}
+
+#div02 > div:nth-child(4){
+	line-height: 130px;
+}
+
+#textarea2{
+	width: 100%;
+	height: 136px;
+	font-size: 25px;
+	resize: none;
+}
+
+#div03{
+position: absolute;
+width: 1516px;
+
+left: 347px;
+top: 1150px;
+background: #D9D9D9;
+border-radius: 50px;
+
+}
+
+#div03-1{
+	display: grid;
+	grid-template-columns: 1fr 7fr 1fr;
+	margin-left: 60px;
+	margin-right: 50px;
 }
 
 #write{
@@ -139,41 +180,6 @@ hr{
 	color: #FFFFFF;
 	border: 0px;
 	margin-left: 60px;
-}
-
-#div02{
-	position: absolute;
-	top: 1480px;
-	box-sizing: border-box;
-	position: absolute;
-	width: 1420px;
-	height: 136px;
-	background: #FFFFFF;
-	margin-left: 200px;
-	display: grid;
-	grid-template-columns: 5fr 1fr;
-}
-
-#div02 > div:nth-child(2){
-	line-height: 130px;
-}
-
-#textarea2{
-	width: 100%;
-	height: 136px;
-	font-size: 25px;
-	resize: none;
-}
-
-#div03{
-position: absolute;
-width: 1516px;
-height: 173px;
-left: 347px;
-top: 1800px;
-background: #D9D9D9;
-border-radius: 50px;
-
 }
 </style>
 </head>
@@ -195,7 +201,7 @@ border-radius: 50px;
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="" id="" value="안녕하세요" readonly></div>
+						<div> <input type="text" name="" id="" value="${vo.title}" readonly></div>
 					</div>
 					<div>
 						<div>파일첨부</div>
@@ -203,22 +209,34 @@ border-radius: 50px;
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="textarea1" cols="30" rows="10" readonly>안녕</textarea></div>
+						<div><textarea name="" id="textarea" cols="30" rows="10" readonly>${vo.content}</textarea></div>
 					</div>
 				</div>
 			</form>
 
 			<button id="list">목록</button>
 
-			<form action="">
+			<form action="${root}/board/noticeDetail" method="post">
 				<div id="div02">
-					<div><textarea name="" id="textarea2" cols="30" rows="10"></textarea></div>
-					<div><button id="write"> 작성</button></div>
+					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
+					<input type="text" value="${loginMember.no}" name="writerNo" hidden> 				
+					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
+					<div><button id="write">작성</button></div>
 				</div>
 			</form>
 
 			<div id="div03">
+				<c:forEach items="${voList2}" var="vo">
+                            
 
+	                 <div id="div03-1">
+	                     <div>${vo.no}</div>
+	                     <div>${vo.content}</div>
+	                     <div>${vo.enrollDate}</div>
+	                 </div>
+	                 
+                                
+				</c:forEach>
 			</div>
 
 		</main>

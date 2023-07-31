@@ -24,7 +24,7 @@
 	width: 115px;
 	height: 53px;
 	left: 367px;
-	top: 200px;
+	top: 125px;
 	background: #FF8686;
 	border-radius: 25px;
 	border: 0px;
@@ -43,19 +43,19 @@
 
 hr{
 	position: absolute;
-	width: 1617px;
+	width: 1770px;
 	height: 0px;
-	left: 303px;
-	top: 300px;
+	left: 150px;
+	top: 200px;
 	border: 1px solid #D1CECE;
 }
 
 #div01{
 	position: absolute;
 	width: 1617px;
-	height: 900px;
+	height: 700px;
 	left: 303px;
-	top: 340px;
+	top: 240px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 3fr;
 	
@@ -66,7 +66,6 @@ hr{
 }
 
 #div01 > div{
-
 	text-align: center;
 	display: grid;
 	grid-template-columns: 1fr 3fr;
@@ -87,6 +86,7 @@ hr{
 }
 
 #div01 > div:nth-child(1) > div > input{
+	border: 0px;
 	width:80%;
 	font-size: 25px;
 }
@@ -96,10 +96,13 @@ hr{
 	margin-left: 120px;
 }
 
+
 textarea{
 	width:80%;
-	height: 400px;
+	height: 300px;
 	font-size: 25px;
+	font-family: 'Inter';
+	font-style: normal;
 }
 </style>
 </head>
@@ -114,14 +117,14 @@ textarea{
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<form action="">
-
+			<form action="${root}/board/noticeUpdate" method="post">
+				<input type="text" name="no" id="" value="${vo.no}" hidden>
 				<button id="sendMail">수정완료</button>
 				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="" id=""></div>
+						<div> <input type="text" name="title" id="" value="${vo.title}"></div>
 					</div>
 					<div>
 						<div>파일첨부</div>
@@ -129,7 +132,7 @@ textarea{
 					</div>
 					<div>
 						<div>내용</div>
-						<div><textarea name="" id="" cols="30" rows="10"></textarea></div>
+						<div><textarea name="content" id="" cols="30" rows="10">${vo.content}</textarea></div>
 					</div>
 				</div>
 			</form>

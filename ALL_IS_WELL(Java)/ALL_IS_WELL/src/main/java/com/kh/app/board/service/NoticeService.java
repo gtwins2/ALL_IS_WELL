@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.app.board.dao.NoticeDao;
 import com.kh.app.board.vo.NoticeReplyVo;
 import com.kh.app.board.vo.NoticeVo;
+import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +19,8 @@ public class NoticeService {
 	private final NoticeDao dao; 
 	private final SqlSessionTemplate sst;; 
 	
-	public List<NoticeVo> noticeList(NoticeVo vo) {
-		return dao.noticeList(sst, vo);
+	public List<NoticeVo> noticeList(PageVo pv) {
+		return dao.noticeList(sst, pv);
 	}
 
 	public NoticeVo noticeDetail(NoticeVo vo) {
@@ -36,6 +37,14 @@ public class NoticeService {
 
 	public int replyWrite(NoticeReplyVo vo) {
 		return dao.replyWrite(sst, vo);
+	}
+
+	public int getNoticeListCnt() {
+		return dao.getNoticeListCnt(sst);
+	}
+
+	public int noticeUpdate(NoticeVo vo) {
+		return dao.noticeUpdate(sst, vo);
 	}
 
 	
