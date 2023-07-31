@@ -11,9 +11,10 @@
    </select>
 
    <select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
-      SELECT NO, MEMBER_NO, TITLE, CONTENT, DUE_DATE, ENROLL_DATE, COMPLETION_DATE FROM PROCEEDING
+      SELECT NO, MEMBER_NO, TITLE, CONTENT, ENROLL_DATE, MODIFY_DATE FROM PROCEEDING
+      WHERE STATUS = 'O'
       <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
-	  WHERE ${searchType} LIKE '%${searchValue.toString()}%'
+	  AND ${searchType} LIKE '%${searchValue.toString()}%'
 	  </if>
    </select>
 	
@@ -24,8 +25,8 @@
 			MEMBER_NO,
 			TITLE,
 			CONTENT,
-			DUE_DATE,
-			ENROLL_DATE
+			ENROLL_DATE,
+			STATUS
 		)
 		VALUES
 		(
@@ -33,11 +34,41 @@
 			#{memberNo},
 			#{title},
 			#{content},
-			(TO_TIMESTAMP(#{dueDate})),
-			SYSDATE
+			SYSDATE,
+			'O'
 		)
 		
 	</insert> 
 	
+	
+	 <select id="getProceedingByNo" resultType="com.kh.app.proceeding.vo.ProceedingVo">
+	 
+	 	SELECT
+			NO,
+			MEMBER_NO,
+			TITLE,
+			CONTENT,
+			ENROLL_DATE,
+			MODIFY_DATE,
+			STATUS
+		FROM PROCEEDING
+		WHERE NO = ${no}
+	 
+	 </select>
+	 
+	 <update id="delete">
+	    UPDATE PROCEEDING
+		SET STATUS = 'X'
+		WHERE NO = ${no}
+   </update>
+   
+   <update id="edit">
+	    UPDATE PROCEEDING
+		SET
+			TITLE = #{vo.title},
+			CONTENT = #{vo.content},
+			MODIFY_DATE = SYSDATE
+		WHERE NO = ${vo.no}
+   </update>
 	
 </mapper>

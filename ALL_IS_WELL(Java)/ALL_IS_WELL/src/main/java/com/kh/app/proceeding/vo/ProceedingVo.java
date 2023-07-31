@@ -9,8 +9,8 @@ public class ProceedingVo {
 	private String memberNo;
 	private String title;
 	private String content;
-	private String dueDate;
 	private String enrollDate;
-	private String completionDate;
+	private String modifyDate;
+	private String status;
 	
 }

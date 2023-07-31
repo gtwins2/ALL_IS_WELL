@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,11 +59,20 @@ public class ProceedingController {
 		return "proceeding/list";
 	}
 	
-	//회의록 상세 조회
-	@GetMapping("detail")
-	public String proceedingDetail() {
-		return "proceeding/detail";
-	}
+	//회의록 상세조회
+		@GetMapping(value = {"detail/{no}"})
+		public String detail(@PathVariable(value = "no" , required = true) String no, Model model) {
+			
+			/*
+			 * HttpSession session = req.getSession(); MemberVo loginMember = (MemberVo)
+			 * session.getAttribute("loginMember");
+			 */
+			
+			ProceedingVo vo = service.getProceedingByNo(no);
+			
+			model.addAttribute("vo", vo);
+			return "proceeding/detail";
+		}
 	
 	//게시글 작성(화면)
 	@GetMapping("write")
@@ -72,7 +82,7 @@ public class ProceedingController {
 	
 	//게시글 작성(결과 처리)
 	@PostMapping("write")
-	public String write(ProceedingVo vo, HttpServletRequest req) {
+	public String write(ProceedingVo vo, HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		if(loginMember == null) {
@@ -84,11 +94,46 @@ public class ProceedingController {
 		int result = service.write(vo);
 		log.info(result + "");
 		if(result != 1) {
+			model.addAttribute("message", "회의록 작성 실패");
 			return "redirect:/error/errorPage";
 		}
-		
+		model.addAttribute("message", "회의록 작성 성공");
 		return "redirect:/proceeding/list";
 		
 	}
+	
+	//게시글 삭제 처리
+	@PostMapping({"delete/{no}"})
+	public String delete(@PathVariable(value = "no" , required = true) String no, Model model) {
+		
+		int result = service.delete(no);
+		if(result != 1) {
+			model.addAttribute("message", "회의록 삭제 실패");
+		}
+		model.addAttribute("message", "회의록 삭제 성공");
+		return "redirect:/proceeding/list";
+	}
+	
+	//게시글 수정 화면
+	@GetMapping({"edit/{no}"})
+	public String edit(@PathVariable(value = "no" , required = true) String no, Model model) {
+		ProceedingVo vo = service.getProceedingByNo(no);
+		model.addAttribute("vo", vo);
+		
+		return "proceeding/edit";
+	}
+
+	
+	/*
+	 * //게시글 수정 화면
+	 * 
+	 * @PostMapping({"edit/{no}"}) public String edit2(@PathVariable(value = "no" ,
+	 * required = true) String no, Model model) { ProceedingVo vo =
+	 * service.edit(no); model.addAttribute("vo", vo);
+	 * 
+	 * return "proceeding/edit"; }
+	 */
+	
+	
 	
 }

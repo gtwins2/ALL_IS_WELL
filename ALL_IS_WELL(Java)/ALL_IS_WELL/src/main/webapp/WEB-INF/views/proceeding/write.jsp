@@ -249,7 +249,7 @@
 
 					<br>
 					<br>
-					<input type="text" value=${loginMember.no} hidden>
+					<input type="hidden" value=${loginMember.no} >
 					<div id="title-area">제목  <textarea id="title-area" cols="60" rows="1" name="title"></textarea></div>
 					
 					
@@ -258,7 +258,7 @@
 					<div id="title-area">회의예정일<textarea id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate"></textarea></div>
 					<br>
 					<br>
-					<div id="content2">내용
+					<!-- <div id="content2">내용 -->
 					<div id="content-area">
                         <textarea id="content-area2" cols="60" rows="10" name="content"></textarea>
 
@@ -298,13 +298,6 @@
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
-
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
-            }
             
             function backPage(){
             	location.href = '${root}/common/member/home';

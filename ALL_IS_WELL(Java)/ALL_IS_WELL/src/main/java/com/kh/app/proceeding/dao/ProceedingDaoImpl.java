@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.vo.ProceedingVo;
 
@@ -30,21 +31,6 @@ public class ProceedingDaoImpl implements ProceedingDao{
 	}
 
 	@Override
-	public ProceedingVo detail(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("proceeding.getBoard" , no);
-	}
-
-	@Override
-	public int edit(SqlSessionTemplate sst, ProceedingVo vo) {
-		return sst.update("proceeding.edit" , vo);
-	}
-
-	@Override
-	public int delete(SqlSessionTemplate sst, ProceedingVo vo) {
-		return sst.delete("proceeding.delete" , vo.getNo());
-	}
-
-	@Override
 	public int increaseHit(SqlSessionTemplate sst, String no) {
 		return sst.update("proceeding.increaseHit" , no);
 	}
@@ -52,6 +38,21 @@ public class ProceedingDaoImpl implements ProceedingDao{
 	@Override
 	public int getBoardCnt(SqlSessionTemplate sst) {
 		return sst.selectOne("proceeding.getBoardCnt");
+	}
+
+	@Override
+	public ProceedingVo getProceedingByNo(SqlSessionTemplate sst , String no) {
+		return sst.selectOne("proceeding.getProceedingByNo" , no);
+	}
+
+	@Override
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.delete("proceeding.delete" , no);
+	}
+
+	@Override
+	public int edit(SqlSessionTemplate sst, ProceedingVo vo) {
+		return sst.update("proceeding.edit" , vo);
 	}
 
 }
