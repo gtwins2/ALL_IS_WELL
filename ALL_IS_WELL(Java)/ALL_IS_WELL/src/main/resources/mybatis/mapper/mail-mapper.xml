@@ -40,10 +40,6 @@
 		INSERT INTO MAIL_ATTACHMENT(NO, MAIL_NO, ATTACH_NAME, FILE_PATH) VALUES(SEQ_MAIL_ATTACHMENT_NO.NEXTVAL, SEQ_MAIL_NO.CURRVAL, #{attachName}, #{filePath})
 	</insert>
 	
-	<select id="">
-		
-		
-	</select>
 	
 	<select id="getReceiveMailCount" resultType="int">
 		SELECT COUNT(R.NO) 
@@ -65,8 +61,8 @@
 	<select id="getReceiveMailList" resultType="com.kh.app.mail.vo.MailVo">
 		SELECT M.NO, M.MAIL_TITLE, M.MAIL_ENROLL_DATE, MR.NAME AS SENDER_NAME 
 		FROM MAIL M 
-		JOIN RECEIVER_MAIL R ON M.NO = R.NO 
-		JOIN SENDER_MAIL S ON S.NO = M.NO 
+		JOIN RECEIVER_MAIL R ON M.NO = R.MAIL_NO 
+		JOIN SENDER_MAIL S ON S.MAIL_NO = M.NO 
 		JOIN MEMBER MR 
 		ON MR.NO = S.SENDER_NO 
 		WHERE R.RECEIVER_NO = #{receiverNo}
@@ -74,13 +70,98 @@
 		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
 			AND MR.NAME LIKE '%${searchValue}%'		
 		</if>
+		ORDER BY M.NO DESC
 	</select>
 	
 	<update id="deleteReceiveMail">
-		UPDATE RECEIVER_MAIL SET STATUS = 'X' WHERE NO = #{mailNo}
+		UPDATE RECEIVER_MAIL SET STATUS = 'X' WHERE MAIL_NO = #{mailNo}
 	</update>
 	
-	<!-- <select id="getMailDetail" resultType="com.kh.app.mail.vo.MailVo">
-		
-	</select> -->
+	<select id="getMailDetail" resultType="com.kh.app.mail.vo.MailVo">
+		SELECT M.NO, M.MAIL_TITLE, M.MAIL_CONTENT, M.MAIL_ENROLL_DATE, S.SENDER_NO, SENDER.NAME AS SENDER_NAME, RECEIVER.NAME AS RECEIVER_NAME, S.STATUS AS SENDER_MAIL_STATUS, R.RECEIVER_NO, R.STATUS AS RECEIVER_MAIL_STATUS, R.MAIL_YN AS RECEIVER_MAIL_YN, A.NO AS MAIL_ATTACHMENT_NO, A.ATTACH_NAME, A.FILE_PATH, SENDER.EMAIL AS SENDER_MAIL, RECEIVER.EMAIL AS RECEIVER_MAIL
+		FROM MAIL M 
+		LEFT JOIN SENDER_MAIL S ON S.MAIL_NO = M.NO 
+		LEFT JOIN RECEIVER_MAIL R ON M.NO = R.MAIL_NO 
+		LEFT JOIN MAIL_ATTACHMENT A ON A.MAIL_NO = M.NO
+		LEFT JOIN MEMBER SENDER ON SENDER.NO = S.SENDER_NO
+		LEFT JOIN MEMBER RECEIVER ON RECEIVER.NO = R.RECEIVER_NO
+		WHERE M.NO = #{no}
+	</select>
+	
+	<update id="deleteSendMail">
+		UPDATE SENDER_MAIL SET STATUS = 'X' WHERE MAIL_NO = #{mailNo}
+	</update>
+	
+	<select id="getSendMailCount" resultType="int">
+		SELECT COUNT(S.NO) 
+		FROM SENDER_MAIL S 
+		JOIN MAIL M 
+		ON M.NO = S.MAIL_NO 
+		JOIN RECEIVER_MAIL R 
+		ON R.MAIL_NO = M.NO
+        JOIN MEMBER MR
+        ON MR.NO = S.SENDER_NO
+		WHERE S.SENDER_NO = #{senderNo}
+		AND S.STATUS = 'O'
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			AND MR.NAME LIKE '%${searchValue}%'		
+		</if>
+	</select>
+	
+	<select id="getSendMailList" resultType="com.kh.app.mail.vo.MailVo">
+		SELECT M.NO, M.MAIL_TITLE, M.MAIL_ENROLL_DATE, MR.NAME AS RECEIVER_NAME 
+		FROM MAIL M 
+		JOIN RECEIVER_MAIL R ON M.NO = R.MAIL_NO 
+		JOIN SENDER_MAIL S ON S.MAIL_NO = M.NO 
+		JOIN MEMBER MR 
+		ON MR.NO = R.RECEIVER_NO 
+		WHERE S.SENDER_NO = #{senderNo}
+		AND S.STATUS = 'O'
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			AND MR.NAME LIKE '%${searchValue}%'		
+		</if>
+		ORDER BY M.NO DESC
+	</select>
+	
+	<delete id="deleteReceiverMail">
+		DELETE FROM RECEIVER_MAIL WHERE MAIL_NO = #{mailNo}
+	</delete>
+	
+	
+	<delete id="deleteSenderMail">
+		DELETE FROM SENDER_MAIL WHERE MAIL_NO = #{mailNo}
+	</delete>
+	
+	
+	<delete id="deleteMail">
+		DELETE FROM MAIL WHERE NO = #{mailNo}
+	</delete>
+	
+	<delete id="deleteMailAttachment">
+		DELETE FROM MAIL_ATTACHMENT WHERE MAIL_NO = #{mailNo}
+	</delete>
+	
+	<select id="getMailTrashCount" resultType="int">
+		SELECT COUNT(R.NO) 
+		FROM RECEIVER_MAIL R 
+		JOIN MAIL M 
+		ON M.NO = R.MAIL_NO 
+		JOIN SENDER_MAIL S 
+		ON S.MAIL_NO = M.NO
+        JOIN MEMBER MR
+        ON MR.NO = S.SENDER_NO
+		WHERE R.RECEIVER_NO = #{receiverNo}
+		AND R.STATUS = 'X'
+	</select>
+	
+	<select id="getMailTrashList" resultType="com.kh.app.mail.vo.MailVo">
+		SELECT M.NO, M.MAIL_TITLE, M.MAIL_ENROLL_DATE, MR.NAME AS SENDER_NAME 
+		FROM MAIL M 
+		JOIN RECEIVER_MAIL R ON M.NO = R.MAIL_NO 
+		JOIN SENDER_MAIL S ON S.MAIL_NO = M.NO 
+		JOIN MEMBER MR 
+		ON MR.NO = S.SENDER_NO 
+		WHERE R.RECEIVER_NO = 2
+		AND R.STATUS = 'X'
+	</select>
 </mapper>

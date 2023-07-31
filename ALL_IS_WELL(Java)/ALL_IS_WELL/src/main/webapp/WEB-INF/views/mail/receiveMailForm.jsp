@@ -12,7 +12,7 @@
    
     #wrap{
 			width: 1920px;
-			height: 800px;
+			height: 900px;
 			display: grid;
 			grid-template-columns: 150px 1770px;
 		}
@@ -186,6 +186,7 @@
                 font-weight: bold;
                 font-size: 15px;
                 margin-left: 190px;
+                cursor: pointer;
             }
             
              .list-area th input[type="checkbox"] {
@@ -442,7 +443,8 @@
 	        $('.receiveList-row').click(function (e) {
 	            // 클릭한 요소가 not-clickable 클래스를 가진 요소가 아니라면
 	            if (!$(e.target).hasClass('not-clickable')) {
-	            	const receiveMailNo = $(this).data('receiveMailNo');
+	            	const receiveMailNo = $(this).attr('data-receiveMail-no');
+	            	console.log("넘어갈 번호: " + receiveMailNo);
 
 	                window.location.href = "/app/mail/mailDetail?no=" + receiveMailNo;
 	            }

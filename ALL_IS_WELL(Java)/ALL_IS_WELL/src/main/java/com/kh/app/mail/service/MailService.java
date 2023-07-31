@@ -71,7 +71,7 @@ public class MailService {
 
 
 
-	public List<OperationVo> getReceiveMailList(PageVo pv, Map<String, String> paramMap) {
+	public List<MailVo> getReceiveMailList(PageVo pv, Map<String, String> paramMap) {
 		return dao.getReceiveMailList(sst, pv, paramMap);
 	}
 
@@ -85,6 +85,60 @@ public class MailService {
 
 	public MailVo getMailDetail(String no) {
 		return dao.getMailDetail(sst, no);
+	}
+
+
+
+	public int deleteSendMail(String mailNo) {
+		return dao.deleteSendMail(sst, mailNo);
+	}
+
+
+
+	public int getSendMailCount(Map<String, String> paramMap) {
+		return dao.getSendMailCount(sst, paramMap);
+	}
+
+
+
+	public List<MailVo> getSendMailList(PageVo pv, Map<String, String> paramMap) {
+		return dao.getSendMailList(sst, pv, paramMap);
+	}
+
+
+
+	public int deleteReceiverMail(String mailNo) {
+		return dao.deleteReceiverMail(sst, mailNo);
+	}
+
+
+
+	public int deleteSenderMail(String mailNo) {
+		return dao.deleteSenderMail(sst, mailNo);
+	}
+
+
+
+	public int deleteMail(String mailNo) {
+		return dao.deleteMail(sst,  mailNo);
+	}
+
+
+
+	public int getMailTrashCount(String receiverNo) {
+		return dao.getMailTrashCount(sst, receiverNo);
+	}
+
+
+
+	public List<MailVo> getMailTrashList(PageVo pv, String receiverNo) {
+		return dao.getMailTrashList(sst, pv, receiverNo);
+	}
+
+
+
+	public int deleteMailAttachment(String mailNo) {
+		return dao.deleteMailAttachment(sst, mailNo);
 	}
 	
 }

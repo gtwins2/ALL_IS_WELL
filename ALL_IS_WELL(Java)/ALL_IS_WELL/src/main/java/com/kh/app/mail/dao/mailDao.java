@@ -50,7 +50,7 @@ public class mailDao {
 		return sst.selectOne("mail.getReceiveMailCount", paramMap);
 	}
 
-	public List<OperationVo> getReceiveMailList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
+	public List<MailVo> getReceiveMailList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
 		return sst.selectList("mail.getReceiveMailList", paramMap, rb);
 	}
@@ -62,5 +62,45 @@ public class mailDao {
 	public MailVo getMailDetail(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("mail.getMailDetail", no);
 	}
+
+	public int deleteSendMail(SqlSessionTemplate sst, String mailNo) {
+		return sst.update("mail.deleteSendMail", mailNo);
+	}
+
+	public int getSendMailCount(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("mail.getSendMailCount", paramMap);
+	}
+
+	public List<MailVo> getSendMailList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("mail.getSendMailList", paramMap, rb);
+	}
+
+	public int deleteReceiverMail(SqlSessionTemplate sst, String mailNo) {
+		return sst.delete("mail.deleteReceiverMail", mailNo);
+	}
+
+	public int deleteSenderMail(SqlSessionTemplate sst, String mailNo) {
+		return sst.delete("mail.deleteSenderMail", mailNo);
+	}
+
+	public int deleteMail(SqlSessionTemplate sst, String mailNo) {
+		return sst.delete("mail.deleteMail", mailNo);
+	}
+
+	public int getMailTrashCount(SqlSessionTemplate sst, String receiverNo) {
+		return sst.selectOne("mail.getMailTrashCount", receiverNo);
+	}
+
+	public List<MailVo> getMailTrashList(SqlSessionTemplate sst, PageVo pv, String receiverNo) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("mail.getMailTrashList", pv, rb);
+	}
+
+	public int deleteMailAttachment(SqlSessionTemplate sst, String mailNo) {
+		return sst.delete("mail.deleteMailAttachment", mailNo);
+	}
+
+	
 
 }

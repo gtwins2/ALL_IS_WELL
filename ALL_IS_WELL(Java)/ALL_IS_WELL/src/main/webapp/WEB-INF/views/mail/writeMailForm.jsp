@@ -266,7 +266,7 @@
 
 
                 <div class="content-area">
-                    <textarea id="summernote" name="mailContent"></textarea>
+                    <textarea id="mailContent" name="mailContent" ></textarea>
                 </div>
             </form>
             
@@ -354,7 +354,7 @@
 		//썸머노트
 	    $(document).ready(function() {
 	    	//여기 아래 부분
-	    	$('#summernote').summernote({
+	    	$('#mailContent').summernote({
 	    	    height: 800,
 	    	    width: 950,
 	    	    minHeight: null,
@@ -383,9 +383,20 @@
 				contentType: false,
 				processData: false,
 				success: function(data) {
+					if(data.result === 'ok') {
+						var saveFileName = data.saveFileName;
+						
+						var path = 'http://127.0.0.1:8888/app/resources/upload/';
+						var imageSrc = path + saveFileName;
+						
+						console.log(imageSrc);
+						$('#mailContent').summernote('insertImage', imageSrc);
+					} else {
+						console.log("에러 메시지 : 이미지 업로드에 실패");
+					}
+					
 					console.log(data);
 					console.log(editor);
-					$(editor).summernote("insertImage", data.url);
 				},
 				error: function(x) {
 					console.log(x);
