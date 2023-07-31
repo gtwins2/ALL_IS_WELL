@@ -19,5 +19,9 @@ public class MypageService {
 		return dao.memberInfoUpdate(sst, vo);
 	}
 
+	public int sign(MemberVo vo) {
+		return dao.sign(sst, vo);
+	}
+
 	
 }

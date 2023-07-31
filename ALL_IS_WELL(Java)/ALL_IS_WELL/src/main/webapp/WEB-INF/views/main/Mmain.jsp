@@ -25,6 +25,14 @@
     border-radius: 50px;
 }
 
+#div01-1{
+	position: absolute;
+    width: 334px;
+    height: 240px;
+	left: 200px;
+    top: 113px;
+}
+
 hr{
 	position: absolute;
 	width: 334px;
@@ -261,6 +269,7 @@ color: #000000;
 		<main>
 			<!-- 프로필 -->
 		    <div id="div01"></div>
+		    <div id="div01-1"><img src="${root}/resources/static/img/logo/logo2.png" alt="" width="100%" height="100%"></div>
 			<h2>흉부외과 전문의<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
 			<hr>
 			<input type="text" value="${loginMember.no}" name="no" hidden>
@@ -271,7 +280,7 @@ color: #000000;
 		    </form>
 		    
 		    <form action="/app/leave?no=${loginMember.no}" method="post">
-				<button type="submit" id="div07" value="퇴근"></button>
+				<input type="submit" id="div07" value="퇴근">
 		    </form>
 		
 		    <!-- 일정 -->

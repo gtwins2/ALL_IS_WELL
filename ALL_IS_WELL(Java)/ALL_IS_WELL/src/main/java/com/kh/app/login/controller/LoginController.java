@@ -21,6 +21,10 @@ public class LoginController {
 
 	private final MemberService ms;
 
+	@GetMapping("logout")
+	public String logout() {
+		return "login/logout";
+	}
 	
 	@GetMapping("login")
 	public String login() {

@@ -12,6 +12,10 @@ public class MypageDao {
 		return sst.update("mypage.memberInfoUpdate", vo);
 	}
 
+	public int sign(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.update("mypage.sign", vo);
+	}
+
 
 
 }
