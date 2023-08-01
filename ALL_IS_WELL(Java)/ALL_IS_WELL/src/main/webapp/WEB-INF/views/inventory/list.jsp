@@ -265,9 +265,11 @@
         </header>
 
 
-        <div id="content">
-            <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+         <main id="wrap">
+         <header>
+             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+         </header>
+	        <div id="content">
             </div>
 
 
@@ -304,92 +306,47 @@
                 <div class="list-area">
                     <table>
                         <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
+                        <th></th>
                         <th>종류</th>
                         <th>개수</th>
                         
 
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                           <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                           <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                           <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" name="choose"></td>
-                            <td>메스</td>
-                            <td>100</td>
-                        </tr>
-
-
-
+                        <c:forEach items="${voList}" var="vo">
+						<tr>
+							<td></td>
+							<td><button type="button" class="btnClass" id="btn2"
+									onclick="detail(${vo.itemName});">조회</button></td>
+							<td>${vo.itemName}</td>
+							<td>${vo.inventoryCount}</td>
+						</tr>
+					</c:forEach>
 
                     </table>
                 </div>
-                <br>
-                <br>
-                <br>
+                <c:set var="range" value="5" />
+			<c:set var="startPage"
+				value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
+			<c:set var="endPage"
+				value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
+			<c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
 
-                <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
-                </div>
-            </div>
-
-        </div>
+			<div class="number-area">
+				<c:if test="${pv.currentPage > 1 }">
+					<a class="pageBtn"
+						onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>
+				</c:if>
+				<c:if test="${pv.maxPage > 1 }">
+					<c:forEach begin="${startPage}" end="${endPage}" var="i">
+						<a class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+					</c:forEach>
+				</c:if>
+				<c:if test="${pv.currentPage < pv.maxPage }">
+					<a class="pageBtn"
+						onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+				</c:if>
+			</div>
+		</div>
+	</main>
 
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>

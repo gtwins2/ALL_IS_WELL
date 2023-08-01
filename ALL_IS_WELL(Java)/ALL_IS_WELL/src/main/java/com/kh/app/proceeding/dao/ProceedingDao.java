@@ -15,6 +15,9 @@ public interface ProceedingDao {
 	List<ProceedingVo> list(SqlSessionTemplate sst , PageVo pv, Map<String, String> paramMap);
 	
 
+	//��ü �Խñ� ���� ��ȸ
+	int getBoardCnt(SqlSessionTemplate sst);
+	
 	//�Խñ� �ۼ�				//board/write
 	int write(SqlSessionTemplate sst , ProceedingVo vo);
 
@@ -30,8 +33,6 @@ public interface ProceedingDao {
 	int increaseHit(SqlSessionTemplate sst , String no);
 
 	
-	//��ü �Խñ� ���� ��ȸ
-	int getBoardCnt(SqlSessionTemplate sst);
 
 
 	ProceedingVo getProceedingByNo(SqlSessionTemplate sst , String no);

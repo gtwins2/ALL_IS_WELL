@@ -276,7 +276,7 @@
 		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
 	</header>
 	
-	<div id="wrap">
+	<main id="wrap">
 		<div>
 			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</div>
@@ -289,21 +289,36 @@
 		        
 		    </div>
 		
+	<%-- 	<c:forEach items="${voList}" var="vo">
 		    <div id="box2">
 		        <div class="rightbox"></div>
 		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">일반외과</button>
+		        <button type="button" class="btnClass" id="btn2">${vo.dname}</button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+		            ${vo.mname}
+		            <br>
+		            부   팀장   이현철
+		        </div>
+		    </div>
+		</c:forEach> --%>
+
+
+		     <div id="box2">
+                <div class="rightbox"></div>
+		        <div class="updown2"></div>
+		        <button type="button" class="btnClass" id="btn2">일반내과</button>
 		        <br>
 		        <br>
 		        <div id="namearea">
 		            정   과장   송준섭
 		            <br>
 		            부   팀장   이현철
-		        </div>
+		        </div>		        
 		    </div>
-		
-
-		    <div id="box2">
+		    
+		     <div id="box2">
                 <div class="centerbox"></div>
 		        <div class="updown2"></div>
                 <div class="updownall"></div>
@@ -451,7 +466,6 @@
 		            부   팀장   이현철
 		        </div>		        
             </div>
-		
 		</div>
 	
         <div id="myModal" class="modal">
@@ -470,7 +484,8 @@
               </p>
             </div>
         </div>
-
+        
+</main>
 	<footer>
 		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
