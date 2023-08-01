@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,19 +30,35 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     #title {
-        font-size: 35px;
+        font-size: 20px;
+    }
+
+    #writeBtn{
+        text-align: right;
+        margin-top: 20px;
+        margin-right: 10px;
+        display: flex;
+    }
+
+    #writeBtn form{
+        flex-direction: column;
+        margin-right: 10px;
+        align-items: center;
+        justify-content: center;
     }
 
     #writeApproval {
-        font-size: 20px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
         border: none;
-        padding: 10px 15px;
+        padding: 5px 8px;
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
@@ -102,16 +119,7 @@
         color: gray;
     }
 
-    #delete-button {
-        color: #5A8CF2;
-        font-weight: bold;
-        font-size: 15px;
-        margin-left: 2%;
-    }
-
     .list-area {
-        margin-top: 20px;
-
         background: #FFFFFF;
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -125,13 +133,13 @@
 
     .list-area th,
     .list-area td {
-        padding: 20px;
+        padding: 15px;
         border-bottom: 1px solid #ddd;
         text-align: center;
     }
 
     .list-area th {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: normal;
     }
 
@@ -142,6 +150,8 @@
 
     .number-area {
         text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .number-area a {
@@ -151,7 +161,7 @@
         text-decoration: none;
         border: none;
         color: inherit;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #previous {
@@ -164,6 +174,7 @@
 
     .number-area a:hover {
         color: #5A8CF2;
+        cursor: pointer;
     }
 
     #statusBtn{
@@ -173,6 +184,10 @@
         border-radius: 20px;
         background-color: #A7A7A7;
         color: white;
+    }
+    
+    #list-area table tbody tr:hover{
+        background-color: #F0F0F0;
     }
 
 </style>
@@ -197,108 +212,59 @@
                             <option value="writer">문서종류</option>
                             <option value="title">제목</option>
                         </select>
-
-
                     </label>
                     <input type="text" id="search-input">
                     <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
 
-                <button id="writeApproval">문서 작성하기</button>
+                <div id="writeBtn">
+                
+                </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <span id="delete-button">삭제</span>
-
             <div class="list-area">
                 <table>
-                    <tr>
-                        <th id="writer">작성자</th>
-                        <th id="content">제목</th>
-                        <th id="enrollDate">작성일</th>
-                        <th id="status">상태</th>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>홍길동</td>
-                        <td>출장신청서</td>
-                        <td>2023-06-13</td>
-                        <td>
-                            <button id="statusBtn" disabled>대기</button>
-                        </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th id="writer">작성자</th>
+                            <th id="content">제목</th>
+                            <th id="enrollDate">작성일</th>
+                            <th id="status">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${voList}" var="vo">
+                            <c:if test="${vo.memberName ne loginMember.name}">
+                                <tr onclick="detail();">
+                                    <td id="approvalNo" >${vo.no}</td>
+                                    <td>${vo.memberName}</td>
+                                    <td id="approvalTitle">${vo.title}</td>
+                                    <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
+                                    <td>
+                                        <button id="statusBtn" class="statusBtn" disabled>${vo.status}</button>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                    </tbody>
                 </table>
             </div>
-            <br>
-            <br>
-            <br>
+
+            <c:set var="range" value="2" /> 
+            <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
+            <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
+            <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
 
             <div class="number-area">
-                <a id="previous" href=""><</a>
-                <a href=""> 1 </a>
-                <a href=""> 2 </a>
-                <a href=""> 3 </a>
-                <a href=""> 4 </a>
-                <a href=""> 5 </a>
-                <a id="after" href="">></a>
+                <c:if test="${pv.currentPage > 1 }">
+                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
+                <c:if test="${pv.maxPage > 1 }"> 
+                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${pv.currentPage < pv.maxPage }">
+                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+                </c:if>
             </div>
         </div>
 	</main>
@@ -318,6 +284,53 @@
         thirdSidebars.forEach(thirdSidebar => {
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
+
+        const pageBtn = document.querySelectorAll('.pageBtn');
+
+        for (let btn of pageBtn) {
+            if (btn.innerHTML == '${pv.currentPage}') {
+                btn.style.color = '#d9d9d9';
+            }
+        }
+
+        function pageMove(pageNumber) {
+            let url = new URL(window.location.href);
+            url.searchParams.set('page', pageNumber);
+            window.location.href = url.href;
+        }
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            const statusBtns = document.querySelectorAll(".statusBtn");
+
+            statusBtns.forEach(function (statusBtn) {
+                const status = statusBtn.textContent;
+                if (status === "A") {
+                    statusBtn.innerHTML = "승인";
+                    statusBtn.style.backgroundColor = "#119F30";
+                } else if (status === "R") {
+                    statusBtn.innerHTML = "반려";
+                    statusBtn.style.backgroundColor = "#EC3C3C";
+                } else if (status === "W") {
+                    statusBtn.innerHTML = "대기";
+                    statusBtn.style.backgroundColor = "#A7A7A7";
+                } else if (status === "F") {
+                    statusBtn.innerHTML = "1차 승인";
+                    statusBtn.style.backgroundColor = "#DECD37";
+                }
+            });
+        });
+
+        function detail() {
+            const no = event.target.parentElement.querySelector("#approvalNo").innerText;
+            const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
+            if(title === "출장문서"){
+                location.href = "${root}/approval/trip?no=" + no;
+            } else if(title === "휴가문서"){
+                location.href = "${root}/approval/vacation?no=" + no;
+            } else if(title === "재고신청문서"){
+                location.href = "${root}/approval/inventory?no=" + no;
+            }
+        };
     </script>
 </body>
 </html>

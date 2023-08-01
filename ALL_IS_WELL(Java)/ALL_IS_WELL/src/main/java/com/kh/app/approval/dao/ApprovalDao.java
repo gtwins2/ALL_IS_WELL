@@ -74,14 +74,27 @@ public class ApprovalDao {
 	public InventoryVo detailInventory(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("approval.detailInventory", no);
 	}
+	
+	public List<InventoryVo> detailInventoryItems(SqlSessionTemplate sst, String no) {
+		return sst.selectList("approval.detailInventoryItems", no);
+	}
 
 	public int getApproverListCnt(SqlSessionTemplate sst, ApproverVo vo) {
-		return sst.selectOne("approver.getApproverList", vo);
+		return sst.selectOne("approver.getApproverListCnt", vo);
 	}
 
 	public List<ApproverVo> getApproverList(SqlSessionTemplate sst, PageVo pv, ApproverVo vo) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("approval.getApprovalList", vo, rb);
+		return sst.selectList("approver.getApproverList", vo, rb);
+	}
+
+	//반려
+	public int refuseUpdateStatus(SqlSessionTemplate sst, ApproverVo vo) {
+		return sst.update("approver.refuseUpdateStatus", vo);
+	}
+	
+	public int refuseInsertApprover(SqlSessionTemplate sst, ApproverVo vo) {
+		return sst.insert("approver.refuseInsertApprover", vo);
 	}
 	
 }

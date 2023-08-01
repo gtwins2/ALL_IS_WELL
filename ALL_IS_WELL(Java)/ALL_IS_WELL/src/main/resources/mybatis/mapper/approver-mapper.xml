@@ -2,13 +2,55 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="approval">
+<mapper namespace="approver">
 
-	<select id="getApproverListCnt" resultType="com.kh.app.approver.vo.ApproverVo">
+	<select id="getApproverListCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM APPROVAL_DOCUMENT AD
 		JOIN MEMBER M ON M.NO = AD.MEMBER_NO
 		WHERE M.DEPARTMENT_NO = #{departmentNo}
 	</select>
+	
+	<select id="getApproverList" resultType="com.kh.app.approver.vo.ApproverVo">
+		SELECT
+	        AD.NO NO,
+	        AD.MEMBER_NO MEMBER_NO,
+	        AD.CREATE_DATE CREATE_DATE,
+	        AD.TITLE TITLE,
+	        M.NAME AS MEMBER_NAME,
+	        AD.STATUS STATUS
+	    FROM APPROVAL_DOCUMENT AD
+	    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
+	    JOIN APPROVER A ON M.NO = A.APPROVER_NO
+	    WHERE DEPARTMENT_NO = #{departmentNo}
+	    ORDER BY AD.NO DESC
+	</select>
+	
+	<update id="refuseUpdateStatus">
+		UPDATE APPROVAL_DOCUMENT SET STATUS = 'R'
+		WHERE NO = #{approvalDocumentNo}
+	</update>
+
+	<insert id="refuseInsertApprover">
+		INSERT INTO
+		APPROVER
+		(
+			NO,
+			APPROVAL_DOCUMENT_NO,
+			APPROVER_NO,
+			APPROVAL_DATE,
+			REASON,
+			STATUS
+		)
+		VALUES
+		(
+			SEQ_APPROVER_NO.NEXTVAL,
+			#{approvalDocumentNo},
+			#{approverNo},
+			SYSDATE,
+			#{reason},
+			'R'
+		)
+	</insert>
 
 </mapper>

@@ -322,6 +322,9 @@
                 } else if (status === "W") {
                     statusBtn.innerHTML = "대기";
                     statusBtn.style.backgroundColor = "#A7A7A7";
+                } else if (status === "F") {
+                    statusBtn.innerHTML = "1차 승인";
+                    statusBtn.style.backgroundColor = "#EC3C3C";
                 }
             });
         });
@@ -333,7 +336,7 @@
                 location.href = "${root}/approval/detailTrip?no=" + no;
             } else if(title === "휴가문서"){
                 location.href = "${root}/approval/detailVacation?no=" + no;
-            } else if(title === "재고문서"){
+            } else if(title === "재고신청"){
                 location.href = "${root}/approval/detailInventory?no=" + no;
             }
         };

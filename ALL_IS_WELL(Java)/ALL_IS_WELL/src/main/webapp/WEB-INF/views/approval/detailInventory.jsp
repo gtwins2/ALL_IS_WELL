@@ -51,7 +51,6 @@
 
     #vacation-application {
         width: 80%;
-        height: 900px;
         border: 1px solid black;
         margin: auto;
         margin-bottom: 50px;
@@ -108,7 +107,7 @@
 
     #inventory-div{
         margin-top: 100px;
-        height: 600px;
+        margin-bottom: 50px;
     }
 
     #inventory-table{
@@ -116,11 +115,15 @@
         font-size: 15px;
         margin: auto;
         width: 90%;
-        height: 70%;
     }
 
     #inventory-table th:first-child{
         width: 80px;
+    }
+
+    #inventory-table tr th:first-child, td:first-child{
+        height: 30px;
+        text-align: center;
     }
 
 </style>
@@ -194,10 +197,10 @@
                             <th>품목명</th>
                             <th>개수</th>
                         </tr>
-                        <c:forEach items="${ivo}" var="ivo">
+                        <c:forEach items="${voList}" var="vo">
                             <tr>
-                                <td>${ivo.itemName}</td>
-                                <td>${ivo.count}</td>
+                                <td>${vo.itemName}</td>
+                                <td>${vo.count}</td>
                             </tr>
                         </c:forEach>
                     </table>
