@@ -145,7 +145,7 @@ border-radius: 5px;
 		        </div>
 		        
 		        <div>
-		            <img id="div02-1" alt="${loginMember.profile}" src="/app/resources/static/sign/${loginMember.profile}">
+		            <img id="div02-1" alt="${loginMember.profile}" src="/app/resources/static/profile/${loginMember.profile}">
 		            <input type="file" id="div02-2" name="profile">
 		        </div>
 		    </div>
