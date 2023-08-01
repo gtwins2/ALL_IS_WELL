@@ -23,6 +23,7 @@
 	<update id="leave">
 		UPDATE ATTENDANCE
 		SET LEAVE_TIME = TO_TIMESTAMP(SYSDATE)
+			,STATUS = 'X'
 		WHERE MEMBER_NO = #{no} 
 		AND NO IN (
 		    SELECT NO

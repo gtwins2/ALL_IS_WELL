@@ -92,18 +92,18 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 250px;
+    width: 450px;
     height: 250px;
-    border: 1px solid black;
+    border: 0px solid black;
 }
 
 #modal{
     position: absolute;
     top: 0px;
-    left: 41%;
-    width: 300px;
-    height: 100px;
-    display: none;
+    left: 37%;
+    width: 500px;
+    height: 200px;
+    display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     border: 1px solid black;
     
@@ -140,7 +140,9 @@ a{
 }
 
 #modalBtn{
-    margin-right: 10px;
+	width: 200px;
+	height: 50px;
+    margin-right: 25px;
 }
 </style>
 <body>
@@ -153,30 +155,34 @@ a{
         
         <div id="div02">
             <div id="div02-1">
-                <div><img src="" alt=""></div>
+                <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt="logo"></div>
             </div>
+            <form action="/app/member/idFind" method="post">
             <div id="div02-2">
-                <div><input type="text" placeholder="이름을 입력하세요"></div>
-                <div><input type="text" placeholder="이메일을 입력하세요"></div>
-                <div><input type="text" placeholder="전화번호를 입력하세요"></div>
-                <button id="login"">아이디 찾기</button>
+                <div><input type="text" placeholder="이름을 입력하세요" name="name"></div>
+                <div><input type="text" placeholder="이메일을 입력하세요" name="email"></div>
+                <div><input type="text" placeholder="전화번호를 입력하세요" name="phoneNumber"></div>
+                <input type="submit" id="login" value="아이디 찾기">
                 <div></div>
             </div>
+            </form>
             
         </div>
 
         
     </main>
 
+	<c:if test="${vo.id != null }">
     <div id="modal">
         <div>아이디 찾기</div>
-        <div>회원님의 아이디는 입니다</div>
+        <div>회원님의 아이디는 ${vo.id} 입니다</div>
         <div>
-            <button id="modalBtn">로그인</button>
-            <button id="modalBtn">비밀번호 찾기</button>
+            <button id="modalBtn" onclick="login2()">로그인</button>
+            <button id="modalBtn" onclick="pwd()">비밀번호 찾기</button>
         </div>
 
     </div>
+	</c:if>
 </body>
 </html>
 
@@ -185,10 +191,19 @@ a{
     const modal = document.querySelector('#modal');
     const body = document.querySelector('main');
 
-
-        login.addEventListener('click', () => {
-            modal.style.display = 'grid';
-            body.style. opacity = 0.5;
-        });
+	if(${vo.id != null}){
+		 modal.style.display = 'grid';
+         body.style.opacity = 0.5;
+         
+         function login2() {
+      		location.href = "/app/member/login";	
+      	}
+         
+         function pwd() {
+     		location.href = "/app/member/pwdFind";	
+     	}
+	}
     
+	
+	
 </script>

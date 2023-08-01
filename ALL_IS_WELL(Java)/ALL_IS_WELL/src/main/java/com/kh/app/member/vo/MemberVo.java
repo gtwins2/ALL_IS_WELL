@@ -9,6 +9,7 @@ public class MemberVo {
 	private String positionNo;
 	private String id;
 	private String password;
+	private String password2;
 	private String name;
 	private String status;
 	private String positionType;

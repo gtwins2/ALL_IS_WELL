@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 
 *, body{
@@ -160,12 +161,12 @@ color: #000000;
 							<input type="text" id="user_email">&nbsp;<span id="middle">@</span>
 							<label for="search" class="category-area">
 								<select name="search" id="search">
-									<option value="naver">naver.com</option>
-									<option value="gmail">gmail.com</option>
-									<option value="nate">nate.com</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="nate.com">nate.com</option>
 								</select>
 							</label>	 
-							<input type="text" name="email" id="totalemail">
+							<input type="hidden" name="email" id="totalemail" value="">
 						</div>
 					</div>
 					<div id="div02-2">
@@ -200,7 +201,7 @@ color: #000000;
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
 	
-	$("#user_email").blur(function(){
+	$("#user_email").change(function(){
 		email();	
 	});
 	

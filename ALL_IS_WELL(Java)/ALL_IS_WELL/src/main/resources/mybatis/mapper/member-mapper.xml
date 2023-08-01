@@ -24,8 +24,34 @@
 			,SIGN
 		FROM MEMBER
 		WHERE ID = #{id}
+		AND PASSWORD = #{password}
 		
 	</select>
+	
+	<select id="idFind" resultType="MemberVo">
+   		SELECT
+   			NO
+			,DEPARTMENT_NO
+			,POSITION_NO
+			,ID
+			,PASSWORD
+			,NAME
+			,STATUS
+			,POSITION_TYPE
+			,ENROLL_DATE
+			,REGISTRATION_NUMBER
+			,EMAIL
+			,PROFILE
+			,PHONE_NUMBER
+			,OFFICE_NUMBER
+			,LICENSE_NUMBER
+			,YEAR_SALARY
+			,SIGN
+   		FROM MEMBER
+   		WHERE NAME = #{name}
+   		AND EMAIL = #{email}
+   		AND PHONE_NUMBER = #{phoneNumber}
+   </select>
 	
 	<select id="getBoardCnt" resultType="int">
       SELECT COUNT(NO) FROM MEMBER
@@ -123,5 +149,7 @@
 		SET STATUS = 'X'
 		WHERE NO = ${no}
    </update>
+   
+   
    
 </mapper>
