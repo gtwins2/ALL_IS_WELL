@@ -157,7 +157,7 @@ color: #000000;
 					<div id="div02-2">
 						<div>이메일</div>
 						<div>
-							<input type="text" name="email">&nbsp;@
+							<input type="text" id="user_email">&nbsp;<span id="middle">@</span>
 							<label for="search" class="category-area">
 								<select name="search" id="search">
 									<option value="naver">naver.com</option>
@@ -165,6 +165,7 @@ color: #000000;
 									<option value="nate">nate.com</option>
 								</select>
 							</label>	 
+							<input type="text" name="email" id="totalemail">
 						</div>
 					</div>
 					<div id="div02-2">
@@ -198,4 +199,21 @@ color: #000000;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	$("#user_email").blur(function(){
+		email();	
+	});
+	
+	$("#search").change(function(){
+		email();	
+	});
+
+	function email() {
+		const email = $("#user_email").val();
+		const middle = $("#middle").text();
+		const address = $("#search").val();
+		if(email != "" && address != "") {
+			$("#totalemail").val(email+middle+address);
+		}
+	};
 </script>
