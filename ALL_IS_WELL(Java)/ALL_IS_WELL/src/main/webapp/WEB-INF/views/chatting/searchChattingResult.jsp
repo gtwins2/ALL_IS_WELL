@@ -1,33 +1,40 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채팅 검색 결과</title>
+<title>채팅 추가하기</title>
 <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
-<style>
-   * {
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
 
+        body {
+            box-sizing: border-box;
+        }
+        
+
         .main-wrap {
             box-sizing: border-box;
-            width: 600px;
-            height: 800px;
+            width: 450px;
+            height: 600px;
             background-color: white;
-            border: 1px solid black;
+           
             position: relative; /* Added position relative */
         }
 
         .search-area {
             margin-top: 20px;
-            margin-left: 60px;
+            margin-left: 80px;
             position: relative;
-            width: 600px;
+            width: 350px;
+             
         }
 
         #search {
@@ -50,13 +57,13 @@
         .detail-area {
             display: flex;
             align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid lightgray;
+            padding: 13px;
+            /* border-bottom: 1px solid lightgray; */
         }
 
         .profile-image {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -69,13 +76,13 @@
         }
 
         #status {
-            width: 60px;
-            height: 20px;
+            width: 50px;
+            height: 15px;
             background-color: #5A8CF2;
             color: white;
             border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 11px;
+            font-weight: normal;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -86,83 +93,123 @@
 
         #name {
             font-weight: normal;
-            font-size: 18px;
+            font-size: 15px;
         }
 
         #date {
-            font-size: 12px;
+            font-size: 10px;
         }
 
+        #conversationButton {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            border: none;
+            border-radius: 50px;
+            background: #5A8CF2;
+            font-size: 24px;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            box-shadow: 0px 5px 15px gray;
+            cursor: pointer;
+            position: fixed;
+        }
 
-        .number-area {
-            margin-top: 30px;
-    display: flex;
-    flex-direction: center;
-    justify-content: space-evenly;
-}
-
-.number-area a {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-
-    transition: background-color 0.3s ease;
-}
+      
 
 
-#plus:hover {
-    background-color: #555;
-}
+		#conversationButton:hover {
+		    background-color: #555;
+		}
+		
+			#line {
+				color: lightgray;
+			}
 
-#addBtn {
-    border: none;
-    border-radius: 5px;
-    background-color: #5A8CF2;
-    color: white;
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-#addBtn:hover {
-    background-color: #555;
-}
-   
-</style>
+    
+    </style>
 </head>
 <body>
-   <div class="main-wrap">
-        <form action="">
+	<div class="main-wrap">
+        <form action="/app/chatting/searchMember" method="GET">
             <div class="search-area">
                 <i class="fa-solid fa-magnifying-glass" id="icon"></i>
-                <input id="search" type="search">
+                <input id="search" type="search" placeholder="이름 검색" name="searchValue">
             </div>
         </form>
         
         <br>
-        <hr>
+        <hr class="line">
     
         <div class="list-area">
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
+        	<c:forEach items="${chatList}" var="list">
+        		<div class="detail-area">
+                <img src="/app/resources/static/profile/${list.receiverProfile}" alt="" class="profile-image">
                 <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
+                	<c:if test="${list.receiverAttendanceStatus eq 'O'}">
+                		 <div id="status">출근</div>
+                	</c:if>
+                	
+                	<c:if test="${list.receiverAttendanceStatus eq 'X' or empty list.receiverAttendanceStatus}">
+                		 <div id="status">출근 전</div>
+                	</c:if>
+                   
+                    <div id="name">${list.receiverName}(${list.receiverDepartmentName} ${list.receiverPositionName})</div>
+                    
+                    <button id="conversationButton">대화하기</button>
                 </div>
-                <button id="addBtn">대화하기</button>
+                
             </div>
-        </div>
+        	</c:forEach>
+            
 
-        <div class="number-area">
-            <a href=""><i class="fa-solid fa-arrow-left" style="color: #ababab;"></i></a>
-            <a href=""><i class="fa-solid fa-arrow-right" style="color: #ababab;"></i></a>
-        </div>
-
+            
+        </div>       
     </div>
-  
+    
+    <script type="text/javascript">
+	    $(document).ready(function () {
+	        // 검색 입력창의 입력 이벤트 처리
+	        $("#search").on("input", function () {
+	            var searchInput = $(this).val();
+	
+	            // 서버에 문자열 쿼리를 전송
+	            $.ajax({
+	                url: "/app/chatting/searchMember", // 검색 결과를 반환하는 라우트 변경
+	                type: "GET",
+	                data: { searchInput: searchInput },
+	                success: function (data) {
+	                    // 응답 처리, 대화 목록을 업데이트하거나 필터링
+	                    updateConversationList(data);
+	                },
+	                error: function (error) {
+	                    console.error("Error :", error);
+	                },
+	            });
+	        });
+	    });
+
+    // 채팅 목록을 새 결과로 업데이트하는 함수
+    function updateConversationList(searchResults) {
+        var listArea = $(".list-area");
+
+        listArea.empty(); // 현재 목록 지우기
+
+        // 응답 데이터를 기반으로 목록 업데이트 (UPDATED)
+        $.each(searchResults, function (index, result) {
+            listArea.append(`
+                <div class="detail-area">
+                    <img src="/app/resources/static/profile/${result.receiverProfile}" alt="" class="profile-image">
+                    <div class="details">
+                        // ... 기존의 채팅 상세 내용이 들어갈 위치
+                    </div>
+                </div>
+            `);
+        });
+    }
+    </script>
+   
 </body>
 </html>

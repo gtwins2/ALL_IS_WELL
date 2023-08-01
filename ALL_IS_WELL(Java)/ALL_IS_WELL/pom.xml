@@ -238,6 +238,13 @@
 		
 		<!-- 메일 발송 기능을 위한 dependency 추가 END-->
 		
+		
+		<!-- 웹소켓 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
