@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,18 +21,19 @@
 
         .main-wrap {
             box-sizing: border-box;
-            width: 600px;
-            height: 800px;
+            width: 450px;
+            height: 600px;
             background-color: white;
-            border: 1px solid black;
+           
             position: relative; /* Added position relative */
         }
 
         .search-area {
             margin-top: 20px;
-            margin-left: 60px;
+            margin-left: 80px;
             position: relative;
-            width: 600px;
+            width: 350px;
+             
         }
 
         #search {
@@ -54,13 +56,13 @@
         .detail-area {
             display: flex;
             align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid lightgray;
+            padding: 13px;
+            /* border-bottom: 1px solid lightgray; */
         }
 
         .profile-image {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -73,13 +75,13 @@
         }
 
         #status {
-            width: 60px;
-            height: 20px;
+            width: 50px;
+            height: 15px;
             background-color: #5A8CF2;
             color: white;
             border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 11px;
+            font-weight: normal;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -90,11 +92,11 @@
 
         #name {
             font-weight: normal;
-            font-size: 18px;
+            font-size: 15px;
         }
 
         #date {
-            font-size: 12px;
+            font-size: 10px;
         }
 
         #plus {
@@ -112,28 +114,15 @@
             font-weight: bold;
             box-shadow: 0px 5px 15px gray;
             cursor: pointer;
+            position: fixed;
         }
 
-        .number-area {
-            margin-top: 30px;
-    display: flex;
-    flex-direction: center;
-    justify-content: space-evenly;
-}
-
-.number-area a {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-
-    transition: background-color 0.3s ease;
-}
+      
 
 
-#plus:hover {
-    background-color: #555;
-}
+		#plus:hover {
+		    background-color: #555;
+		}
 
     
     </style>
@@ -151,76 +140,38 @@
         <hr>
     
         <div class="list-area">
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
+        	<c:forEach items="${chatList}" var="list">
+        		<div class="detail-area">
+                <img src="/app/resources/static/profile/${list.receiverProfile}" alt="" class="profile-image">
                 <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
+                	<c:if test="${list.receiverAttendanceStatus eq 'O'}">
+                		 <div id="status">출근</div>
+                	</c:if>
+                	
+                	<c:if test="${list.receiverAttendanceStatus eq 'X' or empty list.receiverAttendanceStatus}">
+                		 <div id="status">출근 전</div>
+                	</c:if>
+                   
+                    <div id="name">${list.receiverName}(${list.receiverDepartmentName} ${list.receiverPositionName})</div>
                 </div>
-                <div id="date">2023-06-26 12:08</div>
+                
             </div>
+        	</c:forEach>
+            
 
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
-                <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
-                </div>
-                <div id="date">2023-06-26 12:08</div>
-            </div>
-
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
-                <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
-                </div>
-                <div id="date">2023-06-26 12:08</div>
-            </div>
-
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
-                <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
-                </div>
-                <div id="date">2023-06-26 12:08</div>
-            </div>
-
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
-                <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
-                </div>
-                <div id="date">2023-06-26 12:08</div>
-            </div>
-
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
-                <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
-                </div>
-                <div id="date">2023-06-26 12:08</div>
-            </div>
-
-            <div class="detail-area">
-                <img src="" alt="" class="profile-image">
-                <div class="details">
-                    <div id="status">출근 전</div>
-                    <div id="name">김간호(소아과 주임간호사)</div>
-                </div>
-                <div id="date">2023-06-26 12:08</div>
-            </div>
+            
         </div>
 
-        <div class="number-area">
-            <a href=""><i class="fa-solid fa-arrow-left" style="color: #ababab;"></i></a>
-            <a href=""><i class="fa-solid fa-arrow-right" style="color: #ababab;"></i></a>
-        </div>
+        
 
         <button id="plus"><i class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
     </div>
+    
+    <script type="text/javascript">
+    	const plusButton = document.querySelector("#plus");
+    	plusButton.addEventListener("click", function(){
+    		location.href = "/app/chatting/chattingResult";
+    	});
+    </script>
 </body>
 </html>
