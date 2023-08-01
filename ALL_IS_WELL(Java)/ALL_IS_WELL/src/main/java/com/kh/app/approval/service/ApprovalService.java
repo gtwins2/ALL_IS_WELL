@@ -81,6 +81,10 @@ public class ApprovalService {
 		return dao.writeVacation(sst, vvo);
 	}
 
+	public VacationApprovalVo detailVacation(String no) {
+		return dao.detailVacation(sst, no);
+	}
+	
 	public boolean processVacation(VacationApprovalVo vvo) {
 		ApprovalBtnVo avo = new ApprovalBtnVo();
 		
@@ -137,10 +141,15 @@ public class ApprovalService {
 		}
 		return true;
 	}
-
-	public VacationApprovalVo detailVacation(String no) {
-		return dao.detailVacation(sst, no);
+	
+	public InventoryVo detailInventory(String no) {
+		return dao.detailInventory(sst, no);
 	}
+
+	public List<InventoryVo> detailInventoryItems(String no) {
+		return dao.detailInventoryItems(sst, no);
+	}
+
 
 	public int getApproverListCnt(ApproverVo vo) {
 		return dao.getApproverListCnt(sst, vo);
@@ -150,9 +159,27 @@ public class ApprovalService {
 		return dao.getApproverList(sst, pv, vo);
 	}
 
-	public InventoryVo detailInventory(String no) {
-		return dao.detailInventory(sst, no);
+	//반려 버튼(status update)
+	private int refuseUpdateStatus(ApproverVo vo) {
+		return dao.refuseUpdateStatus(sst, vo);
 	}
 	
+	//반려 버튼(approver 테이블 insert)
+	private int refuseInsertApprover(ApproverVo vo) {
+		return dao.refuseInsertApprover(sst, vo);
+	}
+	
+	public boolean processRefuse(ApproverVo vo) {
+		
+		int insertResult = refuseInsertApprover(vo);		
+		int updateResult = refuseUpdateStatus(vo);
+		
+		if(insertResult != 1 || updateResult != 1) {
+			throw new RuntimeException("반려 실패");
+		}
+		
+		return true;
+		
+	}
 	
 }

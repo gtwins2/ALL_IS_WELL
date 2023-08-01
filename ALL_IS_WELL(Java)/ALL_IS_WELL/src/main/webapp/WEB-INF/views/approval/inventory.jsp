@@ -1,39 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-   
-   #wrap{
-		width: 1920px;
-		display: grid;
-		grid-template-columns: 150px 1770px;
-	}
+    #wrap {
+        width: 1920px;
+        display: grid;
+        grid-template-columns: 150px 1770px;
+    }
 
-    main{
+    main {
         min-height: 100%;
     }
 
     .main-area {
-        width: 70%;
-        min-height: 80%;
+        width: 80%;
+        min-height: 100%;
         margin: auto;
     }
 
-    #listBtnDiv{
+    #listBtnDiv {
         text-align: right;
         padding-right: 10%;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
-    #listBtn{
-        width: 80px;
-        font-size: 20px;
+    #listBtn {
+        width: 60px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
@@ -44,163 +45,92 @@
         font-weight: bold;
     }
 
-    #listBtn:hover{
+    #listBtn:hover {
         background-color: #555;
         transition: 0.7s;
     }
 
-    #vacation-application{
+    #vacation-application {
         width: 80%;
-        height: 77%;
         border: 1px solid black;
         margin: auto;
+        margin-bottom: 50px;
     }
 
-    #title{
+    #title {
         padding-top: 50px;
         text-align: center;
-        font-size: 36px;
+        font-size: 20px;
     }
 
-    #contain-top{
+    #contain-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        margin-top: 150px;
+        margin-top: 50px;
     }
 
-    #info{
+    #info {
         border-collapse: collapse;
-        width: 300px;
-        height: 200px;
-        font-size: 20px;
-        margin-left: 100px;
+        width: 250px;
+        height: 150px;
+        font-size: 15px;
+        margin-left: 150px;
         text-align: center;
     }
 
-    #approval{
+    #approval {
         border-collapse: collapse;
         text-align: center;
-        width: 600px;
-        height: 300px;
+        width: 550px;
+        height: 250px;
     }
 
-    #approval tr th{
-        font-size: 25px;
+    #approval tr th:first-child{
+        width: 40px;
     }
 
-    #approval-title{
+    #approval tr th {
+        font-size: 15px;
+    }
+
+    #approval-title {
         width: 185px;
         height: 40px;
     }
 
-    #stamp{
+    #stamp {
         border-bottom: none;
     }
 
-    #stamp td{
-        height: 180px;
-    }
-
-    #reasonDiv{
-        margin: auto;
-        margin-top: 50px;
-        width: 1000px;
-        height: 500px;
-
-        border: 1px solid black;
-
-        display: grid;
-        grid-template-columns: 2fr 9fr;
-        grid-template-rows: 1fr 9fr;
-    }
-
-    #reasonDiv div{
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-size: 25px;
-        font-weight: bold;
-    }
-
-    .top, .top-side{
-        border-bottom: 1px solid black;
-    }
-
-    .top, .bottom{
-        border-right: 1px solid black;
-    }
-
-    #buttonDiv{
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 80px;
+    #stamp td {
+        height: 140px;
     }
 
     #inventory-div{
         margin-top: 100px;
-        height: 600px;
+        margin-bottom: 50px;
     }
 
     #inventory-table{
         border-collapse: collapse;
-        font-size: 20px;
+        font-size: 15px;
         margin: auto;
-        width: 90%;
-        height: 70%;
+        width: 75%;
     }
 
     #inventory-table th:first-child{
         width: 80px;
     }
 
-    input[type=number]{
-        height: 20px;
-    }
-
-    .add-btn {
-        background-color: #C8C8C8;
-        border: none;
-        color: white;
-        text-align: right;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 0px 2px;
-        cursor:pointer;
-        border-radius: 4px;
-        padding: 4px 8px;
-    }
-
-    .add-btn:hover{
-        background-color: #909090;
-        transition: 0.7ss;
-    }
-
-    .subtract-btn {
-        background-color: #C8C8C8;
-        border: none;
-        color: white;
-        text-align: right;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        margin: 0px 2px;
-        cursor:pointer;
-        border-radius: 4px;
-        padding: 4px 8px;
-    }
-
-    .subtract-btn:hover{
-        background-color: #909090;
-        transition: 0.7ss;
+    #inventory-table tr th:first-child, td:first-child{
+        height: 30px;
+        text-align: center;
     }
 
     #buttonDiv{
         text-align: right;
         margin-right: 180px;
-        margin-top: 80px;
+        margin-bottom: 50px;
     }
 
     #approvalBtn{
@@ -276,7 +206,7 @@
         justify-content: flex-end;
     }
 
-    #submitBtn{
+    #submitBtn, #approvalSubmitBtn{
         width: 100px;
         font-size: 20px;
         color: white;
@@ -290,12 +220,12 @@
         margin-right: 10px;
     }
 
-    #submitBtn:hover{
+    #submitBtn:hover, #approvalSubmitBtn:hover{
         background-color: #555;
         transition: 0.7s;
     }
 
-    #cancelBtn{
+    #cancelBtn, #approvalCancelBtn{
         width: 100px;
         font-size: 20px;
         color: black;
@@ -308,7 +238,7 @@
         font-weight: bold;
     }
 
-    #cancelBtn:hover{
+    #cancelBtn:hover, #approvalCancelBtn:hover{
         background-color: black;
         color: white;
         transition: 0.7s;
@@ -337,19 +267,19 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>150</td>
+                                <td>${ivo.no}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
-                                <td>2023-07-05(월)</td>
+                                <td>${ivo.createDate}</td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>임상병리학과</td>
+                                <td>${ivo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>김간호</td>
+                                <td>${ivo.memberName}</td>
                             </tr>
                         </table>
                     </div>
@@ -362,17 +292,17 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td ></td>
+                                <td>${ivo.sign}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td></td>
+                                <td>${ivo.createDate}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td></td>
+                                <td>${ivo.memberName}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -385,94 +315,12 @@
                             <th>품목명</th>
                             <th>개수</th>
                         </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; position: relative;">
-                                <select style="position: absolute; left: 50%; transform: translateX(-50%);" disabled>
-                                    <option value="">가위</option>
-                                </select>
-                            </td>
-                            <td style="text-align: left; padding-left: 10px;">
-                                <input type="number" name="inventoryNum" value="1" disabled>
-                                <button class="subtract-btn" onclick="disableSelectAndInput(this)" style="display: none; position: static">-</button>
-                            </td>
-                        </tr>                    
+                        <c:forEach items="${voList}" var="vo">
+                            <tr>
+                                <td>${vo.itemName}</td>
+                                <td>${vo.count}</td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>
@@ -482,11 +330,21 @@
             </div>
             <div id="myModal" class="jw-modal">
                 <div class="modal-content">
-                    <div style="font-size: 35px; font-weight: bold;">MEMO</div>
+                    <div style="font-size: 35px; font-weight: bold;">반려</div>
                     <div contenteditable="true" id="modalContent"></div>
                     <div class="button-container">
-                        <button id="submitBtn">제출</button>
+                        <button id="submitBtn">작성</button>
                         <button id="cancelBtn">취소</button>
+                    </div>
+                </div>
+            </div>
+            <div id="approvalMyModal" class="jw-modal">
+                <div class="modal-content">
+                    <div style="font-size: 35px; font-weight: bold;">승인</div>
+                    <div contenteditable="true" id="approvalModalContent"></div>
+                    <div class="button-container">
+                        <button id="approvalSubmitBtn">작성</button>
+                        <button id="approvalCancelBtn">취소</button>
                     </div>
                 </div>
             </div>
@@ -513,23 +371,29 @@
 
         // 버튼과 모달 요소 선택하기
         const approvalBtn = document.getElementById("approvalBtn");
+        const refuseBtn = document.getElementById("refuseBtn");
         const myModal = document.getElementById("myModal");
         const submitBtn = document.getElementById("submitBtn");
         const cancelBtn = document.getElementById("cancelBtn");
+        const approvalSubmitBtn = document.getElementById("approvalSubmitBtn");
+        const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
         // 버튼 클릭 시 모달 열기
         approvalBtn.addEventListener("click", () => {
-            myModal.style.display = "block";
+            approvalMyModal.style.display = "block";
         });
 
-        // 제출 버튼 클릭 시 경로 이동
-        submitBtn.addEventListener("click", () => {
-            window.location.href = "your_destination_path"; // 수정하세요!
+        refuseBtn.addEventListener("click", () => {
+            myModal.style.display = "block";
         });
 
         // 취소 버튼 클릭 시 모달 닫기
         cancelBtn.addEventListener("click", () => {
             myModal.style.display = "none";
+        });
+
+        cancelBtn.addEventListener("click", () => {
+            approvalMyModal.style.display = "none";
         });
 
         // 모달 바깥쪽 클릭 시 모달 닫기
@@ -538,6 +402,35 @@
                 myModal.style.display = "none";
             }
         };
+
+        window.onclick = (event) => {
+            if (event.target === approvalMyModal) {
+                approvalMyModal.style.display = "none";
+            }
+        };
+
+        document.querySelector("#submitBtn").addEventListener('click', function(){
+            let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
+            let modalContent = document.getElementById("modalContent").innerText;
+
+            $.ajax({
+                type : 'post',
+                url : '${root}/approval/refuse',
+                data : {
+                    no : documentNo,
+                    reason : modalContent
+                },
+                success : function(){
+                    console.log(documentNo)
+                    console.log(modalContent)
+                    location.href = "/app/approval/list";
+                },
+                error : function(error){
+                    console.log("error", error);
+                }
+            })
+        });
+
     </script>
 
 </body>

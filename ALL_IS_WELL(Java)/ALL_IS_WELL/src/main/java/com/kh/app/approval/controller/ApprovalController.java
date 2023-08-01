@@ -57,7 +57,7 @@ public class ApprovalController {
 
 	}
 
-	// 결재한 문서(화면)
+	// 결재해야할 문서(화면 (직급이 D1인 사람))
 	@GetMapping("list")
 	public void list(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
 			Model model, HttpSession session) {
@@ -71,11 +71,12 @@ public class ApprovalController {
 		
 		String no = loginMember.getNo();
 		String departmentNo = loginMember.getDepartmentNo();
+		String positionNo = loginMember.getPositionNo();
 		
 		vo.setDepartmentNo(departmentNo);
+		vo.setPositionNo(positionNo);
 		vo.setApproverNo(no);
-		
-
+				
 		int listCount = as.getApproverListCnt(vo);
 		int pageLimit = 5;
 		int boardLimit = 10;
@@ -83,12 +84,51 @@ public class ApprovalController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		List<ApproverVo> voList = as.getApproverList(pv, vo);
-
+		
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
 		
 	}
+	
+	//재고 신청 문서 결재 화면
+	@GetMapping("inventory")
+	public void inventory(HttpSession session, Model model, String no) { 
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		InventoryVo ivo = as.detailInventory(no);
+		List<InventoryVo> voList = as.detailInventoryItems(no);		
+		
+		model.addAttribute("ivo", ivo);
+		model.addAttribute("voList", voList);
+		
+	}
+	
+	//반려 선택
+	@PostMapping("refuse")
+	public String refuse(String no, String reason, HttpSession session) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		ApproverVo vo = new ApproverVo();
+		vo.setApprovalDocumentNo(no);
+		vo.setReason(reason);
+		vo.setApproverNo(loginMember.getNo());
+		vo.setApproverName(loginMember.getName());
+		vo.setPositionNo(loginMember.getPositionNo());
+		vo.setDepartmentNo(loginMember.getDepartmentNo());
+		
+		boolean result = as.processRefuse(vo);
+		
+		if(!result) {
+			return "error/errorPage";
+		}
+		
+		return "redirect:/approval/list";
+	}
+	
+	/*  */
 
 	// 결재해야할 문서(휴가 화면)
 	@GetMapping("writeVacation")
@@ -197,8 +237,10 @@ public class ApprovalController {
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		InventoryVo ivo = as.detailInventory(no);
+		List<InventoryVo> voList = as.detailInventoryItems(no);		
 		
 		model.addAttribute("ivo", ivo);
+		model.addAttribute("voList", voList);
 		
 	}
 
