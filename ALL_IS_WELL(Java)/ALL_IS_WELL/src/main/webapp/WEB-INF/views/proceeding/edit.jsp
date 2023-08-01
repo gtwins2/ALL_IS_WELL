@@ -241,7 +241,7 @@
                 <br>
 
 				<div class="list-area">
-			<form action="${root}/proceeding/edit" method="post">
+			<form action="${root}/proceeding/edit/${vo.no}" method="post" >
                     <table>
 
 					
@@ -275,8 +275,10 @@
                     </table>
                 </div>
 					
-					<button type="submit" id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button type="submit" id="sendRequest">수정완료</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					<!-- <button id="sendRequest" onclick="edit();">수정하기</button> -->
+					
                 </form>
                 </div>
                 <br>
@@ -302,10 +304,6 @@
             
             function del(no){
             	location.href = "${root}/proceeding/delete/" + no
-            }
-            
-            function edit(no){
-            	location.href = "${root}/proceeding/edit/" + no
             }
             
         </script>

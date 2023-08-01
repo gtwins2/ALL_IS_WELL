@@ -2,46 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="proceeding">
+<mapper namespace="inventory">
    <select id="getBoardCnt" resultType="int">
-      SELECT COUNT(NO) FROM PROCEEDING
+      SELECT COUNT(NO) FROM INVENTORY
       <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
 	  WHERE ${searchType} LIKE '%${searchValue}%'
 	  </if>
    </select>
 
-   <select id="selectBoardList" resultType="com.kh.app.proceeding.vo.ProceedingVo">
-      SELECT NO, MEMBER_NO, TITLE, CONTENT, ENROLL_DATE, MODIFY_DATE FROM PROCEEDING
-      WHERE STATUS = 'O'
+   <select id="selectBoardList" resultType="com.kh.app.inventory.vo.InventoryVo">
+      SELECT
+    I.NO, I.CATEGORY_NO, I.INVENTORY_COUNT, IC.ITEM_NAME 
+    FROM INVENTORY I
+    JOIN INVENTORY_CATEGORY IC
+    ON IC.NO = I.CATEGORY_NO
       <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
 	  AND ${searchType} LIKE '%${searchValue.toString()}%'
 	  </if>
    </select>
 	
-	 <insert id="write">
-		INSERT INTO PROCEEDING
-		(
-			NO,
-			MEMBER_NO,
-			TITLE,
-			CONTENT,
-			ENROLL_DATE,
-			STATUS
-		)
-		VALUES
-		(
-			SEQ_PROCEEDING_NO.NEXTVAL,
-			#{memberNo},
-			#{title},
-			#{content},
-			SYSDATE,
-			'O'
-		)
-		
-	</insert> 
-	
-	
-	 <select id="getProceedingByNo" resultType="com.kh.app.proceeding.vo.ProceedingVo">
+	<select id="getInventoryByNo" resultType="com.kh.app.inventory.vo.InventoryVo">
 	 
 	 	SELECT
 			NO,
@@ -55,7 +35,17 @@
 		WHERE NO = ${no}
 	 
 	 </select>
-	 
+	  <!-- 
+	  SELECT
+    I.NO, I.CATEGORY_NO, I.INVENTORY_COUNT, IC.ITEM_NAME, AST.STATUS, A.APPROVAL_DATE
+    FROM INVENTORY I
+    JOIN INVENTORY_CATEGORY IC ON IC.NO = I.CATEGORY_NO
+    JOIN INVENTORY_REQUEST_APPROVAL_DOCUMENT IRAD ON IC.NO = IRAD.CATEGORY_NO
+    JOIN APPROVAL_DOCUMENT AD ON IRAD.APPROVAL_DOCUMENT_NO = AD.NO
+    JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
+    JOIN APPROVAL_STATUS AST ON AST.NO = A.APPROVAL_STATUS_NO;
+	  
+	  
 	 <update id="delete">
 	    UPDATE PROCEEDING
 		SET STATUS = 'X'
@@ -69,6 +59,6 @@
 			CONTENT = #{content},
 			MODIFY_DATE = SYSDATE
 		WHERE NO = ${no}
-   </update>
+   </update> -->
 	
 </mapper>

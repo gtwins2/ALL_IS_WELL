@@ -1,5 +1,7 @@
 package com.kh.app.proceeding.controller;
 
+import java.net.http.HttpRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -8,16 +10,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.pool.AllConstPool;
+import com.kh.app.proceeding.dao.ProceedingDao;
 import com.kh.app.proceeding.service.ProceedingService;
 import com.kh.app.proceeding.vo.ProceedingVo;
 
@@ -122,7 +127,22 @@ public class ProceedingController {
 		
 		return "proceeding/edit";
 	}
+	
+	//게시글 수정 처리
+	@PostMapping("edit/{no}")
+	public String edit2(@PathVariable(value = "no" , required = true) String no, Model model, ProceedingVo vo) {
 
+		int result = service.edit(vo);
+		log.info(result + "");
+		if(result != 1) {
+			model.addAttribute("message", "회의록 수정 실패");
+			return "redirect:/error/errorPage";
+		}
+		model.addAttribute("message", "회의록 수정 성공");
+		return "redirect:/proceeding/list";
+		
+	}
+    }
 	
 	/*
 	 * //게시글 수정 화면
@@ -133,7 +153,3 @@ public class ProceedingController {
 	 * 
 	 * return "proceeding/edit"; }
 	 */
-	
-	
-	
-}
