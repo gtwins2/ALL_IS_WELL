@@ -32,8 +32,12 @@ public class MypageController {
 	public String memberInfoUpdate(MemberVo vo) {
 		
 		int result = ms.memberInfoUpdate(vo);
-		
-		return "login/login";
+		System.out.println(vo.getPassword2());
+		System.out.println(vo.getPassword());
+		if(vo.getPassword().equals(vo.getPassword2())) {
+			return "login/login";
+		}
+		return "mypage/passwordError";
 	}
 	
 	@PostMapping("sign")
@@ -41,7 +45,7 @@ public class MypageController {
 		
 		int result = ms.sign(vo);
 		
-		return "mypage/mypageMember";
+		return "redirect:/mypageMember";
 	}
 	
 	

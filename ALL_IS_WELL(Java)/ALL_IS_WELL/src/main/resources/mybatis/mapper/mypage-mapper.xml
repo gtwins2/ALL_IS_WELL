@@ -16,6 +16,7 @@
 		REGISTRATION_NUMBER = #{registrationNumber},
 		PROFILE = #{profile}
 		WHERE NO = #{no}
+		AND #{password} = #{password2}
 	</update>	
 	
 	<update id="sign">

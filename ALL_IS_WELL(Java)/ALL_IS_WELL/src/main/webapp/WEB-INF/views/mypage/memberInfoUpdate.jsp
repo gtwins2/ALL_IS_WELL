@@ -16,25 +16,25 @@
 
 #div01{
     position: absolute;
-    width: 263px;
-    height: 48px;
-    left: 412px;
-    top: 161px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 48px;
-    color: #000000;
+	width: 263px;
+	height: 48px;
+	left: 367px;
+	top: 125px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 48px;
+	color: #000000;
 }
 
 hr{
     position: absolute;
-    width: 1594.69px;
-    height: 0px;
-    left: 305.65px;
-    top: 258.2px;
-    border: 1px solid #D1CECE;
+	width: 1770px;
+	height: 0px;
+	left: 150px;
+	top: 200px;
+	border: 1px solid #D1CECE;
 }
 
 #div02{
@@ -42,7 +42,7 @@ hr{
     width: 1302px;
     height: 550px;
     left: 406px;
-    top: 298px;
+    top: 220px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -74,12 +74,10 @@ hr{
 }
 
 #div02-2{
-    width: 122px;
+    width: 300px;
     height: 45px;
     background: #5A8CF2;
     border-radius: 5px;
-    margin-left: 160px;
-    text-align: center;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -94,9 +92,15 @@ position: absolute;
 width: 92px;
 height: 53.07px;
 left: 1450px;
-top: 870px;
+top: 780px;
 background: #5A8CF2;
 border-radius: 5px;
+border: 0px;
+font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
 }
 
 #div04{
@@ -104,9 +108,15 @@ position: absolute;
 width: 92px;
 height: 53.07px;
 left: 1609px;
-top: 870px;
+top: 780px;
 background: #5A8CF2;
 border-radius: 5px;
+border: 0px;
+font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
 }
 </style>
 <body>
@@ -139,19 +149,19 @@ border-radius: 5px;
 		            <input type="text" value="${loginMember.officeNumber}" name="officeNumber"><br> 
 		            <input type="text" value="${loginMember.email}" name="email"><br> 
 		            <input type="text" value="${loginMember.id}" name="id"><br> 
-		            <input type="password" value="${loginMember.password}" name="password"><br> 
-		            <input type="password" ><br> 
+		            <input type="password" id="password" value="${loginMember.password}" name="password"><br> 
+		            <input type="password" id="password2" value="${loginMember.password}" name="password2"><br> 
 		            
 		        </div>
 		        
 		        <div>
 		            <img id="div02-1" alt="${loginMember.profile}" src="/app/resources/static/profile/${loginMember.profile}">
-		            <input type="file" id="div02-2" name="profile">
+		            <input type="file" id="div02-2" name="profile" width="200px">
 		        </div>
 		    </div>
 		
-		    <input type="submit" id="div03" value="수정"></div>
-		    <div id="div04">뒤로가기</div>
+		    <input type="submit" id="div03" value="수정">
+		    <button id="div04">뒤로가기</button>
 		    </form>
 		</main>
 	</div>
@@ -176,4 +186,22 @@ border-radius: 5px;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	const password = document.querySelctor('#password');
+	const password2 = document.querySelctor('#password2');
+	
+	$("#password").change(function(){
+		email();	
+	});
+	
+	$("#password2").change(function(){
+		email();	
+	});
+
+	function email() {
+		
+		if(password != password2) {
+			$("#totalemail").val(email+middle+address);
+		}
+	};
 </script>

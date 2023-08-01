@@ -10,19 +10,18 @@ import com.kh.app.member.vo.MemberVo;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
 
-	private SqlSessionTemplate sst;
-	private MemberDao dao;
-	
-	@Autowired
-	public MemberService(SqlSessionTemplate sst, MemberDao dao) {
-		this.sst = sst;
-		this.dao = dao;
-	}
+	private final SqlSessionTemplate sst;
+	private final MemberDao dao;
 	
 	public MemberVo login(MemberVo vo) {
 		return dao.login(sst,vo);
+	}
+
+	public MemberVo idFind(MemberVo vo) {
+		return dao.idFind(sst, vo);
 	}
 
 }

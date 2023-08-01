@@ -12,4 +12,8 @@ public class MemberDao {
 		return sst.selectOne("member.login", vo);
 	}
 
+	public MemberVo idFind(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.selectOne("member.idFind", vo);
+	}
+
 }

@@ -92,9 +92,10 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 250px;
+    width: 450px;
     height: 250px;
-    border: 1px solid black;
+    border: 0px solid black;
+    
 }
 
 
