@@ -9,7 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> -->
 <style>
     * {
         margin: auto;
@@ -71,7 +70,7 @@
         </div>
         <div id="header-right">
             <div id="messenger">
-                <img alt="메신저" src="#">
+                <img alt="메신저">
             </div>
             <div id="mail">
                 <img alt="메일" src="#">
@@ -84,5 +83,18 @@
             </div>
         </div>
     </div>
+    
+    
+    
+    <script>
+		document.addEventListener('DOMContentLoaded', function() {
+		    var messengerIcon = document.querySelector('#messenger img');
+		    if (messengerIcon) {
+		      messengerIcon.addEventListener('click', function() {
+		        window.open('/app/chatting/chattingList', 'chattingList', 'width=460,height=600');
+		      });
+		    }
+		});
+		</script>
 </body>
 </html>
