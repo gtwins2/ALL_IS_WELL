@@ -55,13 +55,18 @@ public class PrescriptionController {
 //	public String write() {
 //		return "prescription/write";
 //	}
+	@GetMapping("write")
+	public String write() {
+		return "prescription/write";
+	}
+	
 	
 	@PostMapping("write")
 	public String write(@RequestParam(name="page", required=false, defaultValue="1") 
 	int currentPage, Model model, HttpSession session, PrescriptionVo vo) {
 		
-		int result = ps.write(vo);
 		int result2 = ps.insertPL(vo);
+		int result = ps.write(vo);
 		
 		int listCount = ps.getPrescriptionListCnt(vo);
 	    int pageLimit = 5;
