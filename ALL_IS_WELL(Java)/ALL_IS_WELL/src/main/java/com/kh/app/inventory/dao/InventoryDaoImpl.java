@@ -29,6 +29,13 @@ public class InventoryDaoImpl implements InventoryDao{@Override
 		return sst.selectOne("inventory.getBoardCnt");
 	}
 
+	@Override
+	public List<InventoryVo> storeList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("inventory.selectStoreList" , paramMap , rb);
+	}
+
+	
 	
 	
 }
