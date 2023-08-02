@@ -18,45 +18,39 @@
 	</select>
 	
 	<insert id="write">
-		INSERT INTO PRESCRIPTION
+		INSERT INTO PRESCRIPTION_LIST
 		(
 			NO
+			,PRESCRIPTION_NO
 			,MEDICINE
 			,TOTAL_DAY
 			,DOSE
 			,USAGE
+			,NAME
 		)
 		VALUES
 		(
-			SEQ_PRESCRIPTION_NO.NEXTVAL
+			SEQ_PRESCRIPTION_LIST_NO.NEXTVAL
+			,#{patientNo}
 			,#{medicine}
 			,#{totalDay}
 			,#{dose}
 			,#{usage}
+			,#{name}
 		)
 		
 	</insert>
 	
 	<insert id="insertPL">
-		INSERT INTO PRESCRIPTION_LIST
+		INSERT INTO PRESCRIPTION
 	    (
-		    NO
-		    ,PATIENT_NO
-		    ,PRESCRIPTION_NO
-		    )
+		   NO
+		   ,PATIENT_NO
+		)
 	    VALUES
 	    (
-	    SEQ_PRESCRIPTION_LIST_NO.NEXTVAL
-		    ,#{no}
-		    ,(SELECT NO 
-		      FROM 
-		      (
-		      SELECT NO 
-		      FROM PRESCRIPTION
-		      WHERE ROWNUM = 1
-		      ORDER BY NO DESC
-		      )
-		    )
+	    	SEQ_PRESCRIPTION_NO.NEXTVAL
+		    ,#{patientNo}
 	    )
 	</insert>
 	
@@ -67,20 +61,25 @@
 	
 	<select id="PrescriptionList" resultType="com.kh.app.patient.vo.PatientVo">
 		SELECT 
-		PS.NO
+		NO
 		,NAME
-		,GENDER
-		,REGISTRATION_NUMBER
-		,PHONE_NUMBER
-		,EMAIL
-		,CAUTION
-		FROM PRESCRIPTION PS
-		JOIN PRESCRIPTION_LIST PL ON PL.PRESCRIPTION_NO = PS.NO
-		JOIN PATIENT P ON P.NO = PL.PATIENT_NO
+		
+		FROM PRESCRIPTION_LIST 
+		
 	</select>
 	
-	<select id="detail">
-		
+	<select id="detail" resultType="com.kh.app.prescription.vo.PrescriptionVo">
+		SELECT
+		NO
+		,PRESCRIPTION_NO
+		,MEDICINE
+		,TOTAL_DAY
+		,DOSE
+		,USAGE
+		,NAME
+		FROM PRESCRIPTION_LIST
+		WHERE NO = #{no}
+		AND NAME = #{name}
 	</select>
 	
 </mapper>

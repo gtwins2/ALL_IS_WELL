@@ -219,6 +219,7 @@
                                 <tr>
                                     <input type="text" value="${vo.no}" name="no" hidden>
                                     <input type="text" value="${vo.name}" name="name" hidden>
+                                    <td hidden>${vo.no}</td>
                                     <td>${vo.name}</td>
                                     <td>2023-06-07</td>
                                 </tr>

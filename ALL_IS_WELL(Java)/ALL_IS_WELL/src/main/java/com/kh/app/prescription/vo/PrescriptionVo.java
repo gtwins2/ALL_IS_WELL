@@ -9,4 +9,12 @@ public class PrescriptionVo {
 	private String totalDay;
 	private String dose;
 	private String usage;
+	private String name;
+	private String gender;
+	private String registrationNumber;
+	private String phoneNumber;
+	private String email;
+	private String caution;
+	private String symptom;
+	private String patientNo;
 }
