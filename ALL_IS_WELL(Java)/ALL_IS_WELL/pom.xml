@@ -76,6 +76,12 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
+<!-- 인증번호 -->
+<dependency>
+    <groupId>net.nurigo</groupId>
+    <artifactId>sdk</artifactId>
+    <version>4.3.0</version>
+</dependency>
 
 		<!-- @Inject -->
 		<dependency>
