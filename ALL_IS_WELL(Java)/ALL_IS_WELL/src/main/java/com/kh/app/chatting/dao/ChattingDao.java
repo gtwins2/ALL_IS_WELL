@@ -1,6 +1,7 @@
 package com.kh.app.chatting.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,10 @@ public class ChattingDao {
 
 	public List<MemberVo> searchMember(SqlSessionTemplate sst, String searchInput) {
 		return sst.selectList("chatting.searchMember", searchInput);
+	}
+
+
+	public int createNewChatRoom(SqlSessionTemplate sst, Map<String, String> memberMap) {
+		return sst.insert("chatting.createNewChatRoom", memberMap);
 	}
 }
