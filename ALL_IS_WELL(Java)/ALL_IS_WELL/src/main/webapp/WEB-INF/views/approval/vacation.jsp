@@ -1,37 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-   
-   #wrap{
-		width: 1920px;
-		display: grid;
-		grid-template-columns: 150px 1770px;
-	}
+    #wrap {
+        width: 1920px;
+        display: grid;
+        grid-template-columns: 150px 1770px;
+    }
 
-    main{
+    main {
         min-height: 100%;
     }
 
     .main-area {
-        width: 70%;
-        min-height: 80%;
+        width: 80%;
+        min-height: 100%;
         margin: auto;
+        position: relative;
     }
 
-    #listBtnDiv{
+    #listBtnDiv {
         text-align: right;
         padding-right: 10%;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
-    #listBtn{
+    #listBtn {
         width: 80px;
         font-size: 20px;
         color: white;
@@ -44,101 +46,137 @@
         font-weight: bold;
     }
 
-    #listBtn:hover{
+    #listBtn:hover {
         background-color: #555;
         transition: 0.7s;
     }
 
-    #vacation-application{
+    #vacation-application {
         width: 80%;
-        height: 77%;
+        height: 85%;
         border: 1px solid black;
         margin: auto;
     }
 
-    #title{
+    #title {
         padding-top: 50px;
         text-align: center;
-        font-size: 36px;
+        font-size: 20px;
     }
 
-    #contain-top{
+    #contain-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        margin-top: 150px;
+        margin-top: 50px;
     }
 
-    #info{
+    #info {
         border-collapse: collapse;
-        width: 300px;
-        height: 200px;
-        font-size: 20px;
-        margin-left: 100px;
+        width: 250px;
+        height: 150px;
+        font-size: 15px;
+        margin-left: 150px;
         text-align: center;
     }
 
-    #approval{
+    #info th{
+        width: 100px;
+    }
+
+    #approval {
         border-collapse: collapse;
         text-align: center;
-        width: 600px;
-        height: 300px;
+        width: 550px;
+        height: 250px;
     }
 
-    #approval tr th{
-        font-size: 25px;
+    #approval tr th:first-child{
+        width: 40px;
     }
 
-    #approval-title{
+    #approval tr th {
+        font-size: 15px;
+    }
+
+    #approval-title {
         width: 185px;
         height: 40px;
     }
 
-    #stamp{
+    #stamp {
         border-bottom: none;
     }
 
-    #stamp td{
-        height: 180px;
+    #stamp td {
+        height: 130px;
     }
 
-    #reasonDiv{
+    #date, #name{
+        height: 30px
+    }
+
+    #reasonDiv {
         margin: auto;
-        margin-top: 50px;
-        width: 1000px;
-        height: 500px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 80%;
+        height: 400px;
 
         border: 1px solid black;
 
         display: grid;
-        grid-template-columns: 2fr 9fr;
+        grid-template-columns: 1fr 9fr;
         grid-template-rows: 1fr 9fr;
     }
 
-    #reasonDiv div{
+    #reasonDiv div:not(:nth-child(2), :nth-child(4)) {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-size: 25px;
+        font-size: 15px;
         font-weight: bold;
+        width: 150px;
     }
 
-    .top, .top-side{
-        border-bottom: 1px solid black;
+    .top, .top-side {
+        border-bottom: 0.5px solid black;
+        height: 80px;
     }
 
-    .top, .bottom{
-        border-right: 1px solid black;
+    .top, .bottom {
+        border-right: 0.5px solid black;
     }
 
+    .top-side {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 20px;
+    }
+
+    .bottom-side {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 20px;
+        height: 200px;
+    }
+
+    #start-date, #end-date {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    
     #buttonDiv{
         text-align: right;
         margin-right: 180px;
-        margin-top: 80px;
+        margin-top: 20px;
+        margin-bottom: 50px;
     }
 
-    #approvalBtn{
+    #approvalBtn {
         width: 100px;
         font-size: 20px;
         color: white;
@@ -151,7 +189,7 @@
         font-weight: bold;
     }
 
-    #approvalBtn:hover{
+    #approvalBtn:hover {
         background-color: #555;
         transition: 0.7s;
     }
@@ -188,7 +226,7 @@
         background-color: rgba(0, 0, 0, 0.4);
     }
 
-    .modal-content {
+    .modal-content{
         background-color: #fefefe;
         margin: auto;
         padding: 20px;
@@ -198,7 +236,7 @@
         flex-direction: column;
     }
 
-    #modalContent {
+    #modalContent, #approvalModalContent {
         width: 100%;
         height: 400px;
         border: 1px solid #ccc;
@@ -211,7 +249,7 @@
         justify-content: flex-end;
     }
 
-    #submitBtn{
+    #submitBtn, #approvalSubmitBtn{
         width: 100px;
         font-size: 20px;
         color: white;
@@ -225,12 +263,12 @@
         margin-right: 10px;
     }
 
-    #submitBtn:hover{
+    #submitBtn:hover, #approvalSubmitBtn:hover{
         background-color: #555;
         transition: 0.7s;
     }
 
-    #cancelBtn{
+    #cancelBtn, #approvalCancelBtn{
         width: 100px;
         font-size: 20px;
         color: black;
@@ -243,7 +281,7 @@
         font-weight: bold;
     }
 
-    #cancelBtn:hover{
+    #cancelBtn:hover, #approvalCancelBtn:hover{
         background-color: black;
         color: white;
         transition: 0.7s;
@@ -263,7 +301,7 @@
         </div>
         <div id="main-area">
             <div id="listBtnDiv">
-                <button id="listBtn">목록</button>
+                <button id="listBtn" onclick="back();">목록</button>
             </div>
             <div id="vacation-application">
                 <div id="title">휴가신청서</div>
@@ -272,19 +310,19 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>150</td>
+                                <td>${vvo.no}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
-                                <td>2023-07-05(월)</td>
+                                <td>${vvo.createDate}</td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>임상병리학과</td>
+                                <td>${vvo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>김간호</td>
+                                <td>${vvo.memberName}</td>
                             </tr>
                         </table>
                     </div>
@@ -297,17 +335,17 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td ></td>
+                                <td>${vvo.sign}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td></td>
+                                <td>${vvo.createDate}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td></td>
+                                <td>${vvo.memberName}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -316,23 +354,40 @@
                 </div>
                 <div id="reasonDiv">
                     <div class="top">휴가기간</div>
-                    <div class="top-side"></div>
+                    <div class="top-side">
+                        ${vvo.startDate}  ~ ${vvo.endDate}
+                    </div>
                     <div class="bottom">사유</div>
-                    <div class="bottom-side"></div>
+                    <div class="bottom-side">
+                        ${vvo.content}
+                    </div>
                 </div>
             </div>
-            <div id="buttonDiv">
-                <button id="approvalBtn">승인</button>
-                <button id="refuseBtn">반려</button>
+            <c:if test="${vvo.status == 'W'}">
+                <div id="buttonDiv">
+                    <button id="approvalBtn">승인</button>
+                    <button id="refuseBtn">반려</button>
+                </div>
+            </c:if>
+            <div id="buttonDiv"></div>
+            <div id="myModal" class="jw-modal">
+                <div class="modal-content">
+                    <div style="font-size: 35px; font-weight: bold;">MEMO</div>
+                    <div contenteditable="true" id="modalContent"></div>
+                    <div class="button-container">
+                        <button id="submitBtn">제출</button>
+                        <button id="cancelBtn">취소</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="myModal" class="jw-modal">
-            <div class="modal-content">
-                <div style="font-size: 35px; font-weight: bold;">MEMO</div>
-                <div contenteditable="true" id="modalContent"></div>
-                <div class="button-container">
-                    <button id="submitBtn">제출</button>
-                    <button id="cancelBtn">취소</button>
+            <div id="approvalMyModal" class="jw-modal">
+                <div class="modal-content">
+                    <div style="font-size: 35px; font-weight: bold;">승인</div>
+                    <div contenteditable="true" id="approvalModalContent"></div>
+                    <div class="button-container">
+                        <button id="approvalSubmitBtn">작성</button>
+                        <button id="approvalCancelBtn">취소</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -356,26 +411,35 @@
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
 
+        function back(){
+            window.location.href = "${root}/approval/list";
+        }
 
         // 버튼과 모달 요소 선택하기
         const approvalBtn = document.getElementById("approvalBtn");
+        const refuseBtn = document.getElementById("refuseBtn");
         const myModal = document.getElementById("myModal");
         const submitBtn = document.getElementById("submitBtn");
         const cancelBtn = document.getElementById("cancelBtn");
+        const approvalSubmitBtn = document.getElementById("approvalSubmitBtn");
+        const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
         // 버튼 클릭 시 모달 열기
         approvalBtn.addEventListener("click", () => {
-            myModal.style.display = "block";
+            approvalMyModal.style.display = "block";
         });
 
-        // 제출 버튼 클릭 시 경로 이동
-        submitBtn.addEventListener("click", () => {
-            window.location.href = "your_destination_path"; // 수정하세요!
+        refuseBtn.addEventListener("click", () => {
+            myModal.style.display = "block";
         });
 
         // 취소 버튼 클릭 시 모달 닫기
         cancelBtn.addEventListener("click", () => {
             myModal.style.display = "none";
+        });
+
+        approvalCancelBtn.addEventListener("click", () => {
+            approvalMyModal.style.display = "none";
         });
 
         // 모달 바깥쪽 클릭 시 모달 닫기
@@ -384,6 +448,58 @@
                 myModal.style.display = "none";
             }
         };
+
+        window.onclick = (event) => {
+            if (event.target === approvalMyModal) {
+                approvalMyModal.style.display = "none";
+            }
+        };
+
+        //반려 시 작동
+        document.querySelector("#submitBtn").addEventListener('click', function(){
+            let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
+            let modalContent = document.getElementById("modalContent").innerText;
+
+            $.ajax({
+                type : 'post',
+                url : '${root}/approval/refuse',
+                data : {
+                    no : documentNo,
+                    reason : modalContent
+                },
+                success : function(){
+                    console.log(documentNo)
+                    console.log(modalContent)
+                    location.href = "/app/approval/list";
+                },
+                error : function(error){
+                    console.log("error", error);
+                }
+            })
+        });
+
+        //승인 시 작동
+        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+            let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
+            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
+
+            $.ajax({
+                type : 'post',
+                url : '${root}/approval/approval',
+                data : {
+                    no : documentNo,
+                    reason : approvalModalContent
+                },
+                success : function(){
+                    console.log(documentNo)
+                    console.log(approvalModalContent)
+                    location.href = "/app/approval/list";
+                },
+                error : function(error){
+                    console.log("error", error);
+                }
+            })
+        })
     </script>
 
 </body>

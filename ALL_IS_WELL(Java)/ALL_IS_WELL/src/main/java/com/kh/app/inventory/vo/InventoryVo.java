@@ -21,5 +21,7 @@ public class InventoryVo {
 	private String memberName;
 	private String departmentName;
 	private String sign;
+	private String status;
+	private Date approvalDate;
 	
 }

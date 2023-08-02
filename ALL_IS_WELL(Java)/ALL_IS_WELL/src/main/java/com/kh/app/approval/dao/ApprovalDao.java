@@ -96,5 +96,13 @@ public class ApprovalDao {
 	public int refuseInsertApprover(SqlSessionTemplate sst, ApproverVo vo) {
 		return sst.insert("approver.refuseInsertApprover", vo);
 	}
+
+	public int approvalUpdateStatus(SqlSessionTemplate sst, ApproverVo vo) {
+		return sst.update("approver.approvalUpdateStatus", vo);
+	}
+
+	public int approvalInsertApprover(SqlSessionTemplate sst, ApproverVo vo) {
+		return sst.insert("approver.approvalInsertApprover", vo);
+	}
 	
 }

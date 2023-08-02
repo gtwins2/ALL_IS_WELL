@@ -28,8 +28,8 @@
     #listBtnDiv {
         text-align: right;
         padding-right: 10%;
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     #listBtn {
@@ -193,7 +193,7 @@
         flex-direction: column;
     }
 
-    #modalContent {
+    #modalContent, #approvalModalContent {
         width: 100%;
         height: 400px;
         border: 1px solid #ccc;
@@ -243,6 +243,12 @@
         color: white;
         transition: 0.7s;
     }
+    
+    .rejected {
+      font-size: 1.5em; 
+      font-weight: bold; 
+      color: red;
+    }
 
 </style>
 </head>
@@ -258,7 +264,7 @@
         </div>
         <div id="main-area">
             <div id="listBtnDiv">
-                <button id="listBtn">목록</button>
+                <button id="listBtn" onclick="back();">목록</button>
             </div>
             <div id="vacation-application">
                 <div id="title">재고신청서</div>
@@ -293,17 +299,26 @@
                             </tr>
                             <tr id="stamp">
                                 <td>${ivo.sign}</td>
-                                <td></td>
+                                <td>
+                                    <c:choose>
+                                    <c:when test="${ivo.status == 'R'}">
+                                        <span class="rejected">반려</span>
+                                    </c:when>
+                                    <c:when test="${ivo.status == 'F'}">
+                                        ${vo.sign}
+                                    </c:when>
+                                    </c:choose>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td>${ivo.createDate}</td>
-                                <td></td>
+                                <td><fmt:formatDate value="${ivo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <td><fmt:formatDate value="${vo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
                                 <td>${ivo.memberName}</td>
-                                <td></td>
+                                <td>${vo.approverName}</td>
                                 <td></td>
                             </tr>
                         </table>
@@ -324,10 +339,12 @@
                     </table>
                 </div>
             </div>
-            <div id="buttonDiv">
-                <button id="approvalBtn">승인</button>
-                <button id="refuseBtn">반려</button>
-            </div>
+            <c:if test="${ivo.status == 'W'}">
+                <div id="buttonDiv">
+                    <button id="approvalBtn">승인</button>
+                    <button id="refuseBtn">반려</button>
+                </div>
+            </c:if>
             <div id="myModal" class="jw-modal">
                 <div class="modal-content">
                     <div style="font-size: 35px; font-weight: bold;">반려</div>
@@ -369,6 +386,10 @@
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
 
+        function back(){
+            window.location.href = "${root}/approval/list";
+        }
+
         // 버튼과 모달 요소 선택하기
         const approvalBtn = document.getElementById("approvalBtn");
         const refuseBtn = document.getElementById("refuseBtn");
@@ -392,7 +413,7 @@
             myModal.style.display = "none";
         });
 
-        cancelBtn.addEventListener("click", () => {
+        approvalCancelBtn.addEventListener("click", () => {
             approvalMyModal.style.display = "none";
         });
 
@@ -409,6 +430,7 @@
             }
         };
 
+        //반려 시 작동
         document.querySelector("#submitBtn").addEventListener('click', function(){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
             let modalContent = document.getElementById("modalContent").innerText;
@@ -430,6 +452,29 @@
                 }
             })
         });
+
+        //승인 시 작동
+        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+            let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
+            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
+
+            $.ajax({
+                type : 'post',
+                url : '${root}/approval/approval',
+                data : {
+                    no : documentNo,
+                    reason : approvalModalContent
+                },
+                success : function(){
+                    console.log(documentNo)
+                    console.log(approvalModalContent)
+                    location.href = "/app/approval/list";
+                },
+                error : function(error){
+                    console.log("error", error);
+                }
+            })
+        })
 
     </script>
 

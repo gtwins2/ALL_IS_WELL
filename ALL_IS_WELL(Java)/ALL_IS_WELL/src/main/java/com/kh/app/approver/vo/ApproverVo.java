@@ -17,6 +17,7 @@ public class ApproverVo {
 	private String status;
 	private String title;
 	private Date createDate;
-	private String approvalDate;
+	private Date approvalDate;
 	private String reason;
+	private String sign;
 }
