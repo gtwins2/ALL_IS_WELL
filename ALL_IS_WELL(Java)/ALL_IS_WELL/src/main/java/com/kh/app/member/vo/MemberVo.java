@@ -24,4 +24,5 @@ public class MemberVo {
 	private String sign;
 	private String departmentName;
 	private String positionName;
+	private String attendanceStatus;
 }

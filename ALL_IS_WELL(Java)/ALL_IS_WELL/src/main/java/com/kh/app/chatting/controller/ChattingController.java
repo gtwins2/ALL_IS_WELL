@@ -1,6 +1,8 @@
 package com.kh.app.chatting.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -61,6 +63,33 @@ public class ChattingController {
 	public ResponseEntity<List<MemberVo>> searchMember(@RequestParam String searchInput) {
 		List<MemberVo> searchList = service.searchMember(searchInput); 
 		
+		
+		// attendanceStatus가 null인 경우 기본 값을 'X'로 설정
+	    for (MemberVo member : searchList) {
+	        if (member.getAttendanceStatus() == null) {
+	            member.setAttendanceStatus("X");
+	        }
+	    }
+		
+		log.info(searchList.toString());
+		
+		
 		 return ResponseEntity.ok(searchList);
+	}
+	
+	@GetMapping("createNewChatRoom")
+	public String createNewChatRoom(@RequestParam String receiverNo, HttpSession session) {
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		String senderNo = loginMember.getNo();
+		
+		Map<String, String> memberMap = new HashMap<>();
+		memberMap.put("senderNo", senderNo);
+		memberMap.put("receiverNo", receiverNo);
+		
+		//채팅방 생성
+		int result = service.createNewChatRoom(memberMap);
+		
+		
 	}
 }	

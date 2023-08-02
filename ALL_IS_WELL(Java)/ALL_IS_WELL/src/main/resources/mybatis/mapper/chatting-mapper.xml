@@ -29,7 +29,19 @@
 		  AND RECEIVER_STATUS = 'O'
 	</select>
 	
-	<!-- <select id="searchMember" resultType="com.kh.app.member.vo.MemberVo">
+	<select id="searchMember" resultType="com.kh.app.member.vo.MemberVo">
+		SELECT M.NO, M.NAME, D.NAME AS DEPARTMENT_NAME, P.NAME AS POSITION_NAME, A.STATUS AS ATTENDANCE_STATUS 
+		FROM MEMBER M 
+		JOIN DEPARTMENT D 
+		ON D.NO = M.DEPARTMENT_NO 
+		JOIN POSITION P 
+		ON P.NO = M.POSITION_NO
+        LEFT OUTER JOIN ATTENDANCE A
+        ON M.NO = A.MEMBER_NO 
+		 WHERE M.NAME =  #{searchInput}
+	</select>
+	
+	<!-- <insert id="createNewChatRoom">
 		
-	</select> -->
+	</insert> -->
 </mapper>

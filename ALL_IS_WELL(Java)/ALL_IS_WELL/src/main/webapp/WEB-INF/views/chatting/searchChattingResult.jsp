@@ -101,20 +101,18 @@
         }
 
         #conversationButton {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 30px;
             bottom: 20px;
-            right: 20px;
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             background: #5A8CF2;
-            font-size: 24px;
+            font-size: 13px;
             color: white;
-            padding: 12px;
+            /* padding: 15px 15px; */
             font-weight: bold;
-            box-shadow: 0px 5px 15px gray;
+           
             cursor: pointer;
-            position: fixed;
         }
 
       
@@ -191,24 +189,39 @@
 	        });
 	    });
 
-    // 채팅 목록을 새 결과로 업데이트하는 함수
-    function updateConversationList(searchResults) {
-        var listArea = $(".list-area");
+	    function updateConversationList(searchResults) {
+	        var listArea = $(".list-area");
 
-        listArea.empty(); // 현재 목록 지우기
+	        listArea.empty(); // 현재 목록 지우기
 
-        // 응답 데이터를 기반으로 목록 업데이트 (UPDATED)
-        $.each(searchResults, function (index, result) {
-            listArea.append(`
-                <div class="detail-area">
-                    <img src="/app/resources/static/profile/${result.receiverProfile}" alt="" class="profile-image">
-                    <div class="details">
-                        // ... 기존의 채팅 상세 내용이 들어갈 위치
-                    </div>
-                </div>
-            `);
-        });
-    }
+	        // 응답 데이터를 기반으로 목록 업데이트 (UPDATED)
+	        $.each(searchResults, function (index, result) {
+	            console.log(result.name);
+	            console.log(result.departmentName);
+	            console.log(result.attendanceStatus);
+
+	            // 요소 생성
+	            var detailArea = $('<div>').addClass('detail-area');
+	            var profileImage = $('<img>').addClass('profile-image').attr('src', '/app/resources/static/profile/' + result.profile);
+	            var details = $('<div>').addClass('details');
+	            var statusElement = result.attendanceStatus === "O" ? $('<div>').attr('id', 'status').text('출근') : $('<div>').attr('id', 'status').text('출근 전');
+	            var nameElement = $('<div>').attr('id', 'name').text(result.name + '(' + result.departmentName + ' ' + result.positionName + ')');
+	            var conversationButton = $('<button>').attr('id', 'conversationButton').addClass('conversation-btn').attr('data-no', result.no).text('대화하기');
+	            
+	            // 요소 조립
+	            details.append(statusElement).append(nameElement);
+	            detailArea.append(profileImage).append(details).append(conversationButton);
+	            listArea.append(detailArea);
+	        });
+
+	        // 대화하기 버튼에 이벤트 리스너 추가
+	        $(".conversation-btn").on("click", function () {
+	            var no = $(this).data("no");
+	            location.href = "/app/chatting/createNewChatRoom?receiverNo" + no;
+	        });
+	    }
+
+
     </script>
    
 </body>
