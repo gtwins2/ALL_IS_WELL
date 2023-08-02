@@ -16,6 +16,7 @@ public class BusinessTripApprovalVo {
 	private Date endDate;
 	private String departmentName;
 	private String sign;
+	private String status;
 	
 	private Date createDate;
 }
