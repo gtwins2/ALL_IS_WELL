@@ -1,6 +1,7 @@
 package com.kh.app.chatting.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,17 @@ public class ChattingService {
 	public List<MemberVo> searchMember(String searchInput) {
 		return dao.searchMember(sst, searchInput);
 	}
+
+
+
+
+
+
+	public int createNewChatRoom(Map<String, String> memberMap) {
+		return dao.createNewChatRoom(sst, memberMap);
+	}
+
+
+
+	
 }

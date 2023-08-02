@@ -27,13 +27,15 @@
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
  	width: 1200px;
-	height: 600px;
+	height: 450px;
 	margin: auto;
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 }
 
 #div01 > div{text-align: center;}
+
+#div01-1{line-height: 50px;}
 
 #div01 > div > input{
 	width: 80%;
@@ -46,8 +48,8 @@
 	position: absolute;
 	width: 299px;
 	height: 48px;
-	left: 412px;
-	top: 161px;
+	left: 367px;
+	top: 125px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
@@ -57,12 +59,12 @@
 }
 
 hr{
-position: absolute;
-width: 1594.69px;
-height: 0px;
-left: 305.65px;
-top: 258.2px;
-border: 1px solid #D1CECE;
+	position: absolute;
+	width: 1770px;
+	height: 0px;
+	left: 150px;
+	top: 200px;
+	border: 1px solid #D1CECE;
 }
 
 #div03{
@@ -70,7 +72,7 @@ border: 1px solid #D1CECE;
 	width: 127.61px;
 	height: 47.83px;
 	left: 1455px;
-	top: 950px;
+	top: 780px;
 	background: #5A8CF2;
 	border-radius: 5px;
 	font-family: 'Inter';
@@ -97,21 +99,20 @@ border: 1px solid #D1CECE;
 		<main>
 			<div id="div01">
 				<div id="div01-1">환자명<br><br>투약물<br><br>투약일수<br><br>
-					1회 투약량<br><br>용법<br><br>처방전내용</div>
+					1회 투약량<br><br>용법<br><br></div>
 				<div id="div01-1">
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text"><br><br>
-					<input type="text" id="input">
+					<input type="text" value="${vo.name}"readonly><br><br>
+					<input type="text" value="${vo.medicine}"readonly><br><br>
+					<input type="text" value="${vo.totalDay}"readonly><br><br>
+					<input type="text" value="${vo.dose}"readonly><br><br>
+					<input type="text" value="${vo.usage}" readonly="readonly"><br><br>
 				</div>
 			</div>
 
 			<div id="div02">처방전 상세조회</div>
 			<hr>
 
-			<div id="div03">뒤로가기</div>
+			<div id="div03" onclick="back()" >뒤로가기</div>
 		</main>
 	</div>
 
@@ -134,4 +135,8 @@ border: 1px solid #D1CECE;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	function back() {
+  		location.href = "/app/prescription/list";	
+  	}
 </script>

@@ -57,7 +57,7 @@ main{
     grid-template-rows: 1fr 1fr 1fr 0.5fr;
 }
 
-input{
+#input{
     border: 0px;
     border-bottom:3px solid #5A8CF2;
     width: 80%;
@@ -104,10 +104,18 @@ a{
     width: 500px;
     height: 200px;
     display: none;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 3fr;
     border: 1px solid black;
+    background-color: #5A8CF2;
     
-    
+}
+
+
+#modal > form{
+	display: grid;
+	grid-template-rows: 1fr 1fr ;
+	background-color: #FFFFFF;
+	height: 120px;
 }
 
 #modal > div:nth-child(1){
@@ -119,7 +127,6 @@ a{
     color: #FFFFFF;
     display: flex;
     align-items: center;
-    padding-left: 5px;
 }
 
 #modal > div:nth-child(2){
@@ -129,32 +136,16 @@ a{
     font-style: normal;
     font-size: 15px;
     background-color: #FFFFFF;
-    padding-left: 5px;
 }
 
-#modal > div:nth-child(3){
-    display: flex;
-    align-items: center;
-    font-family: 'Inter';
-    font-style: normal;
-    background-color: #FFFFFF;
-    padding-left: 5px;
-}
 
-#modal > div:nth-child(4){
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    background-color: #FFFFFF;
-    padding-left: 5px;
-}
 
 #modalBtn{
     width: 200px;
 	height: 50px;
-    margin-right: 25px;
+	margin-left: 30px
 }
-input{
+#input{
     border: 0px;
     border-bottom:3px solid #5A8CF2;
     width: 80%;
@@ -163,6 +154,10 @@ input{
 #modalInput{
     font-size: 20px;
     border: 1px solid black;
+    width: 85%;
+    margin-left: 30px;
+    height: 80%;
+    
 }
 
 
@@ -179,8 +174,8 @@ input{
                 <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt=""></div>
             </div>
             <div id="div02-2">
-                <div><input type="password" placeholder="비밀번호" name="password"></div>
-                <div><input type="password" placeholder="비밀번호 재확인" name="password2"></div>
+                <div><input type="password" placeholder="비밀번호" name="password" id="input"></div>
+                <div><input type="password" placeholder="비밀번호 재확인" name="password2" id="input"></div>
                 <button id="login">비밀번호 재설정</button>
                 <div></div>
             </div>
@@ -190,11 +185,14 @@ input{
      <div id="modal">
         <div>비밀번호 재설정</div>
         <div>휴대전화로 전송된 인증번호를 입력하세요.</div>
-        <div><input type="text" id="modalInput"></div>
+        <form action="/app/member/certification" method="post">
+        <input type="password" placeholder="비밀번호" name="password" id="input">
+        <div><input type="text" id="modalInput" name="number"></div>
         <div>
-            <button id="modalBtn">확인</button>
-            <button id="modalBtn" onclick="cancel()">취소</button>
+            <input type="submit" id="modalBtn" value="확인">
         </div>
+        </form>
+            <button id="modalBtn" onclick="cancel()">취소</button>
 
     </div>
 </body>

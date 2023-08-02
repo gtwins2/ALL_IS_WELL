@@ -27,15 +27,16 @@
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
  	width: 1200px;
-	height: 600px;
+	height: 400px;
 	margin: auto;
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 }
 
-#div01 > div{text-align: center;}
+#div01 > div{text-align: center;line-height:40px;}
 
 #div01 > div > input{
+
 	width: 80%;
 	border: 1px solid #B2B2B2;
 }
@@ -70,7 +71,7 @@ border: 1px solid #D1CECE;
 	width: 127.61px;
 	height: 47.83px;
 	left: 1455px;
-	top: 950px;
+	top: 780px;
 	background: #5A8CF2;
 	border-radius: 5px;
 	font-family: 'Inter';
@@ -81,6 +82,7 @@ border: 1px solid #D1CECE;
 	text-align: center;
 	color: #FFFFFF;
 	line-height: 50px;
+	border: 0px;
 }
 
 #div03{
@@ -107,21 +109,21 @@ border: 1px solid #D1CECE;
 				<div id="div01">
 					<div id="div01-1">환자명<br><br>투약물<br><br>투약일수<br><br>
 						1회 투약량<br><br>용법
+					</div>
 					<div id="div01-1">
-						<input type="text" value="${vo.no}" name="no" hidden>
-						<input type="text" value="${vo.name}"><br><br>
+						<input type="text" value="${vo.no}" name="patientNo" hidden>
+						<input type="text" value="${vo.name}" name="name"><br><br>
 						<input type="text" name="medicine"><br><br>
 						<input type="text" name="totalDay"><br><br>
 						<input type="text" name="dose"><br><br>
 						<input type="text" name="usage"><br><br>
 					</div>
 				</div>
-	
 				<div id="div02">처방전 작성</div>
 				<hr>
 	
 				<input type="submit" id="div03" value="작성">
-				<div id="div04">뒤로가기</div>
+				<div id="div04" onclick="back()">뒤로가기</div>
 			</form>
 		</main>
 	</div>
@@ -145,4 +147,8 @@ border: 1px solid #D1CECE;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	function back() {
+		window.history.back();
+  	}
 </script>

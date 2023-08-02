@@ -179,7 +179,7 @@
 
     #statusBtn{
         box-sizing: border-box;
-        width: 50px;
+        width: 60px;
         height: 30px;
         border-radius: 20px;
         background-color: #A7A7A7;
@@ -235,7 +235,7 @@
                         <c:forEach items="${voList}" var="vo">
                             <c:if test="${vo.memberName ne loginMember.name}">
                                 <tr onclick="detail();">
-                                    <td id="approvalNo" >${vo.no}</td>
+                                    <td id="approvalNo" hidden>${vo.no}</td>
                                     <td>${vo.memberName}</td>
                                     <td id="approvalTitle">${vo.title}</td>
                                     <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>

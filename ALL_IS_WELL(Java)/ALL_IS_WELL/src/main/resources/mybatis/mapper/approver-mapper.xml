@@ -9,6 +9,7 @@
 		FROM APPROVAL_DOCUMENT AD
 		JOIN MEMBER M ON M.NO = AD.MEMBER_NO
 		WHERE M.DEPARTMENT_NO = #{departmentNo}
+		AND M.NO != #{no}
 	</select>
 	
 	<select id="getApproverList" resultType="com.kh.app.approver.vo.ApproverVo">
@@ -23,6 +24,7 @@
 	    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
 	    JOIN APPROVER A ON M.NO = A.APPROVER_NO
 	    WHERE DEPARTMENT_NO = #{departmentNo}
+	    AND M.NO != #{approverNo}
 	    ORDER BY AD.NO DESC
 	</select>
 	
@@ -50,6 +52,33 @@
 			SYSDATE,
 			#{reason},
 			'R'
+		)
+	</insert>
+
+	<update id="approvalUpdateStatus">
+		UPDATE APPROVAL_DOCUMENT SET STATUS = 'F'
+		WHERE NO = #{approvalDocumentNo}
+	</update>
+
+	<insert id="approvalInsertApprover">
+		INSERT INTO
+		APPROVER
+		(
+			NO,
+			APPROVAL_DOCUMENT_NO,
+			APPROVER_NO,
+			APPROVAL_DATE,
+			REASON,
+			STATUS
+		)
+		VALUES
+		(
+			SEQ_APPROVER_NO.NEXTVAL,
+			#{approvalDocumentNo},
+			#{approverNo},
+			SYSDATE,
+			#{reason},
+			'F'
 		)
 	</insert>
 

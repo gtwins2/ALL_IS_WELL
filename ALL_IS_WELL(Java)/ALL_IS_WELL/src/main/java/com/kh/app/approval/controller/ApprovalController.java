@@ -76,7 +76,11 @@ public class ApprovalController {
 		vo.setDepartmentNo(departmentNo);
 		vo.setPositionNo(positionNo);
 		vo.setApproverNo(no);
-				
+		
+		if(!"1".equals(positionNo)) {
+			throw new RuntimeException("결제권자가 아님");
+		}
+		
 		int listCount = as.getApproverListCnt(vo);
 		int pageLimit = 5;
 		int boardLimit = 10;
@@ -97,12 +101,39 @@ public class ApprovalController {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		InventoryVo ivo = as.detailInventory(no);
+		ApproverVo vo = new ApproverVo();
+		vo.setApproverNo(loginMember.getNo());
+		vo.setApproverName(loginMember.getName());
+		vo.setSign(loginMember.getSign());
+		
+		InventoryVo ivo = as.detailApprovalInventory(no);
+		vo.setApprovalDate(ivo.getApprovalDate());
+		
 		List<InventoryVo> voList = as.detailInventoryItems(no);		
 		
+		model.addAttribute("vo",vo);
 		model.addAttribute("ivo", ivo);
 		model.addAttribute("voList", voList);
 		
+	}
+	
+	//휴가 신청 문서 결재 화면
+	@GetMapping("vacation")
+	public void vacation(HttpSession session, Model model, String no) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		ApproverVo vo = new ApproverVo();
+		vo.setApproverNo(loginMember.getNo());
+		vo.setApproverName(loginMember.getName());
+		vo.setSign(loginMember.getSign());
+		
+		VacationApprovalVo vvo = as.detailApprovalVacation(no);
+		System.out.println(vvo);
+		vo.setApprovalDate(vvo.getApprovalDate());
+		
+		model.addAttribute("vvo", vvo);
+		model.addAttribute("vo", vo);
 	}
 	
 	//반려 선택
@@ -120,6 +151,29 @@ public class ApprovalController {
 		vo.setDepartmentNo(loginMember.getDepartmentNo());
 		
 		boolean result = as.processRefuse(vo);
+		
+		if(!result) {
+			return "error/errorPage";
+		}
+		
+		return "redirect:/approval/list";
+	}
+	
+	//승인 선택
+	@PostMapping("approval")
+	public String approval(String no, String reason, HttpSession session) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		ApproverVo vo = new ApproverVo();
+		vo.setApprovalDocumentNo(no);
+		vo.setReason(reason);
+		vo.setApproverNo(loginMember.getNo());
+		vo.setApproverName(loginMember.getName());
+		vo.setPositionNo(loginMember.getPositionNo());
+		vo.setDepartmentNo(loginMember.getDepartmentNo());
+		
+		boolean result = as.processApproval(vo);
 		
 		if(!result) {
 			return "error/errorPage";

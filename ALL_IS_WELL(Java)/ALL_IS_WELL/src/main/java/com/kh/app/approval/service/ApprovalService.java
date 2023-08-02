@@ -182,4 +182,26 @@ public class ApprovalService {
 		
 	}
 	
+	//승인 버튼(status update)
+	private int approvalUpdateStatus(ApproverVo vo) {
+		return dao.approvalUpdateStatus(sst, vo);
+	}
+	
+	//승인 버튼(approver 테이블 insert)
+	private int approvalInsertApprover(ApproverVo vo) {
+		return dao.approvalInsertApprover(sst, vo);
+	}
+
+	public boolean processApproval(ApproverVo vo) {
+		
+		int insertResult = approvalInsertApprover(vo);
+		int updateResult = approvalUpdateStatus(vo);
+		
+		if(insertResult != 1 || updateResult != 1) {
+			throw new RuntimeException("승인 실패");
+		}
+		
+		return true;
+	}
+	
 }
