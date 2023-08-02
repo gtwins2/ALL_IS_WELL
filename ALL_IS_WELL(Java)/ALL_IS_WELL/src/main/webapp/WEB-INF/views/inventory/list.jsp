@@ -9,6 +9,11 @@
         <title>재고조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
+        #wrap {
+	width: 1920px;
+	display: grid;
+	grid-template-columns: 150px 1770px;
+}
             .main-area {
    				 width: 1200px;
     			height: 1100px;
@@ -265,12 +270,10 @@
         </header>
 
 
-         <main id="wrap">
+	   <main id="wrap">
          <header>
              <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
          </header>
-	        <div id="content">
-            </div>
 
 
             <div class="main-area">
@@ -298,24 +301,20 @@
                 </div>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-
-					<!-- <button id="sendRequest">재고 신청하기</button> -->
+					
                 <div class="list-area">
                     <table>
-                        <th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)"></th>
-                        <th></th>
+                    <tr>
+                        <th>
+                        <button id="sendRequest" onclick="sendRequest();">입고조회</button>
+                        </th>
                         <th>종류</th>
                         <th>개수</th>
-                        
+                    </tr>
 
                         <c:forEach items="${voList}" var="vo">
 						<tr>
 							<td></td>
-							<td><button type="button" class="btnClass" id="btn2"
-									onclick="detail(${vo.itemName});">조회</button></td>
 							<td>${vo.itemName}</td>
 							<td>${vo.inventoryCount}</td>
 						</tr>
@@ -360,6 +359,10 @@
                     checkbox.checked = selectAll.checked;
                 })
             }
+            
+            function sendRequest(){
+           		location.href="${root}/inventory/storeList";
+           	}
         </script>
     </body>
 

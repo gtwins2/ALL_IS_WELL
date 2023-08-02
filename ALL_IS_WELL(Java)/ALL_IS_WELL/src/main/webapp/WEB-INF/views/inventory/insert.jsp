@@ -6,14 +6,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>재고입고조회</title>
+        <title>재고 입고 처리</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-	        #wrap {
-				width: 1920px;
-				display: grid;
-				grid-template-columns: 150px 1770px;
-			}
+        #wrap {
+	width: 1920px;
+	display: grid;
+	grid-template-columns: 150px 1770px;
+}
             .main-area {
    				 width: 1200px;
     			height: 1100px;
@@ -43,12 +43,8 @@
                 border-radius: 5px;
                 font-weight: bold;
             }
-            #sendRequest:hover {
-		        background-color: #555;
-		        transition: 0.7s;
-		    }
 
-            #sendMail:hover {
+            #sendRequest:hover {
                 background-color: #555;
                 transition: 0.7s;
             }
@@ -274,20 +270,22 @@
         </header>
 
 
-        <main id="wrap">
-                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+	   <main id="wrap">
+         <header>
+             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+         </header>
 
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">재고입고조회</span>
+                    <span id="title">재고처리temp</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
                             <select name="search" id="search">
                                 <option value="kind">종류</option>
                                 <option value="title">개수</option>
-                                <option value="date">입고일자</option>
+                                
                             </select>
 
 					
@@ -303,24 +301,22 @@
                 </div>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-
-					<button id="sendRequest" onclick="sendRequest();">재고 신청하기</button>
+					
                 <div class="list-area">
                     <table>
-                        <th></th>
+                    <tr>
+                        <th>
+                        <button id="sendRequest" onclick="sendRequest();">입고조회</button>
+                        </th>
                         <th>종류</th>
                         <th>개수</th>
-                        <th>입고일자</th>
+                    </tr>
 
                         <c:forEach items="${voList}" var="vo">
 						<tr>
 							<td></td>
 							<td>${vo.itemName}</td>
-							<td>${vo.count}</td>
-							<td>${vo.approvalDate}</td>
+							<td>${vo.inventoryCount}</td>
 						</tr>
 					</c:forEach>
 
@@ -365,7 +361,7 @@
             }
             
             function sendRequest(){
-           		location.href="${root}/inventory/insert";
+           		location.href="${root}/inventory/storeList";
            	}
         </script>
     </body>

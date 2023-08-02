@@ -32,5 +32,10 @@ public class InventoryServiceImpl implements InventoryService {
 	public int getBoardCnt() {
 		return dao.getBoardCnt(sst);
 	}
+
+	@Override
+	public List<InventoryVo> storeList(PageVo pv, Map<String, String> paramMap) {
+		return dao.storeList(sst, pv, paramMap);
+	}
 	
 }

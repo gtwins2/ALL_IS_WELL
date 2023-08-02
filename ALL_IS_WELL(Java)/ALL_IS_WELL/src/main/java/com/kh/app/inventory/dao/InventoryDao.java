@@ -16,5 +16,8 @@ public interface InventoryDao {
 
 	//��ü �Խñ� ���� ��ȸ
 	int getBoardCnt(SqlSessionTemplate sst);
+
+
+	List<InventoryVo> storeList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap);
 	
 }

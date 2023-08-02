@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="inventory">
    <select id="getBoardCnt" resultType="int">
       SELECT COUNT(NO) FROM INVENTORY
@@ -31,20 +32,22 @@
 			ENROLL_DATE,
 			MODIFY_DATE,
 			STATUS
-		FROM PROCEEDING
+		FROM INVENTORY
 		WHERE NO = ${no}
 	 
 	 </select>
-	  <!-- 
-	  SELECT
-    I.NO, I.CATEGORY_NO, I.INVENTORY_COUNT, IC.ITEM_NAME, AST.STATUS, A.APPROVAL_DATE
-    FROM INVENTORY I
-    JOIN INVENTORY_CATEGORY IC ON IC.NO = I.CATEGORY_NO
-    JOIN INVENTORY_REQUEST_APPROVAL_DOCUMENT IRAD ON IC.NO = IRAD.CATEGORY_NO
-    JOIN APPROVAL_DOCUMENT AD ON IRAD.APPROVAL_DOCUMENT_NO = AD.NO
-    JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
-    JOIN APPROVAL_STATUS AST ON AST.NO = A.APPROVAL_STATUS_NO;
 	  
+	  
+	  <select id="selectStoreList" resultType="com.kh.app.inventory.vo.InventoryVo">
+		  SELECT
+		    I.NO, I.CATEGORY_NO, I.INVENTORY_COUNT, IC.ITEM_NAME, A.APPROVAL_DATE, IRAD.COUNT
+		    FROM INVENTORY I
+		    JOIN INVENTORY_CATEGORY IC ON IC.NO = I.CATEGORY_NO
+		    JOIN INVENTORY_REQUEST_APPROVAL_DOCUMENT IRAD ON IC.NO = IRAD.CATEGORY_NO
+		    JOIN APPROVAL_DOCUMENT AD ON IRAD.APPROVAL_DOCUMENT_NO = AD.NO
+		    JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
+            WHERE AD.STATUS = 'A'
+	  </select>
 	  
 	 <update id="delete">
 	    UPDATE PROCEEDING
@@ -59,6 +62,6 @@
 			CONTENT = #{content},
 			MODIFY_DATE = SYSDATE
 		WHERE NO = ${no}
-   </update> -->
+   </update>
 	
 </mapper>
