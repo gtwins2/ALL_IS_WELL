@@ -161,7 +161,6 @@
         align-items: center;
         padding-left: 10px;
         font-size: 20px;
-        height: 200px;
     }
 
     #start-date, #end-date {
@@ -336,17 +335,28 @@
                             </tr>
                             <tr id="stamp">
                                 <td>${vvo.sign}</td>
-                                <td></td>
+                                <td>
+                                    <c:choose>
+                                    <c:when test="${ivo.status == 'R'}">
+                                        <span class="rejected">반려</span>
+                                    </c:when>
+                                    <c:when test="${ivo.status == 'F'}">
+                                        ${vo.sign}
+                                    </c:when>
+                                    </c:choose>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr id="name">
-                                <td>${vvo.createDate}</td>
-                                <td></td>
+                                <td><fmt:formatDate value="${vvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
                                 <td>${vvo.memberName}</td>
-                                <td></td>
+                                <c:if test="${vvo.status == 'F' || vvo.status == 'R'}">
+                                    <td>${vo.approverName}</td>
+                                </c:if>
                                 <td></td>
                             </tr>
                         </table>
@@ -369,7 +379,9 @@
                     <button id="refuseBtn">반려</button>
                 </div>
             </c:if>
-            <div id="buttonDiv"></div>
+            <c:if test="${vvo.status != 'W'}">
+                <div id="buttonDiv"></div>
+            </c:if>
             <div id="myModal" class="jw-modal">
                 <div class="modal-content">
                     <div style="font-size: 35px; font-weight: bold;">MEMO</div>
@@ -412,7 +424,12 @@
         });
 
         function back(){
-            window.location.href = "${root}/approval/list";
+            if('${ivo.positionNo}' == 1){
+                location.href = "${root}/approval/list";
+            }
+            else{
+                location.href = "${root}/approval/draftList";
+            }
         }
 
         // 버튼과 모달 요소 선택하기

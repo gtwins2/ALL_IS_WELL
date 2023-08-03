@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
 
@@ -160,6 +161,10 @@ a{
     
 }
 
+#certifi{
+	width: 50%;
+	height: 50%;
+}
 
 </style>
 <body>
@@ -174,9 +179,13 @@ a{
                 <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt=""></div>
             </div>
             <div id="div02-2">
-                <div><input type="password" placeholder="비밀번호" name="password" id="input"></div>
-                <div><input type="password" placeholder="비밀번호 재확인" name="password2" id="input"></div>
-                <button id="login">비밀번호 재설정</button>
+                <div><input type="text" placeholder="아이디" name="id" id="input" class="input2"></div>
+                <div><input type="password" placeholder=" 변경할 비밀번호" name="password" id="input" class="input"></div>
+                <form action="/app/member/send-one" method="post">
+                	<button id="certifi">인증번호 요청</button>
+                </form>
+	                <button id="login">비밀번호 재설정</button>
+                
                 <div></div>
             </div>
             
@@ -186,8 +195,10 @@ a{
         <div>비밀번호 재설정</div>
         <div>휴대전화로 전송된 인증번호를 입력하세요.</div>
         <form action="/app/member/certification" method="post">
-        <input type="password" placeholder="비밀번호" name="password" id="input">
-        <div><input type="text" id="modalInput" name="number"></div>
+        <input type="text" name="password" id="total" hidden>
+        <input type="text" name="id" id="totalId" hidden>
+        <input type="text" name="n" value="${n}" hidden>
+        <div><input type="text" id="modalInput" name="number" ></div>
         <div>
             <input type="submit" id="modalBtn" value="확인">
         </div>
@@ -201,7 +212,17 @@ a{
     const login = document.querySelector('#login');
     const modal = document.querySelector('#modal');
     const body = document.querySelector('main');
-
+    
+    $(".input").change(function(){
+		email();	
+	});
+    
+    $(".input2").change(function(){
+		email2();	
+	});
+	
+	
+	
     login.addEventListener('click', () => {
         modal.style.display = 'grid';
         body.style. opacity = 0.5;
@@ -213,4 +234,20 @@ a{
 	}
     
     
+
+	function email() {
+		const input = $(".input").val();
+		
+		if(input != "") {
+			$("#total").val(input);
+		}
+	};
+	
+	function email2() {
+		const input2 = $(".input2").val();
+		
+		if(input != "") {
+			$("#totalId").val(input2);
+		}
+	};
 </script>

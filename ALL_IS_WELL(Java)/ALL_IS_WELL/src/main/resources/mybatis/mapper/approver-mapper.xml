@@ -22,7 +22,6 @@
 	        AD.STATUS STATUS
 	    FROM APPROVAL_DOCUMENT AD
 	    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
-	    JOIN APPROVER A ON M.NO = A.APPROVER_NO
 	    WHERE DEPARTMENT_NO = #{departmentNo}
 	    AND M.NO != #{approverNo}
 	    ORDER BY AD.NO DESC
@@ -81,5 +80,79 @@
 			'F'
 		)
 	</insert>
+
+	<!-- 재고 결재자 페이지 -->
+	<select id="detailApprovalInventory" resultType="com.kh.app.inventory.vo.InventoryVo">
+		SELECT DISTINCT
+		    AD.NO NO,
+		    AD.MEMBER_NO MEMBER_NO,
+		    AD.CREATE_DATE CREATE_DATE,
+		    M.NAME MEMBER_NAME,
+		    M.SIGN SIGN,
+		    D.NAME DEPARTMENT_NAME,
+		    AD.STATUS STATUS,
+		    A.APPROVAL_DATE APPROVAL_DATE,
+            M.POSITION_NO POSITION_NO
+		FROM APPROVAL_DOCUMENT AD
+		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+		JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
+		WHERE AD.NO = #{no}
+	</select>
+	
+	<!-- 휴가 결재자 페이지 -->
+	<select id="detailApprovalVacation" resultType="com.kh.app.approval.vo.VacationApprovalVo">
+		SELECT 
+		    AD.NO NO,
+		    AD.MEMBER_NO MEMBER_NO,
+		    AD.CREATE_DATE CREATE_DATE,
+		    VAD.CONTENT CONTENT,
+		    VAD.START_DATE START_DATE,
+		    VAD.END_DATE END_DATE,
+		    M.NAME MEMBER_NAME,
+		    M.SIGN SIGN,
+		    D.NAME DEPARTMENT_NAME,
+			AD.STATUS STATUS,
+			A.APPROVAL_DATE APPROVAL_DATE,
+            M.POSITION_NO POSITION_NO
+		FROM APPROVAL_DOCUMENT AD
+		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+		JOIN VACATION_APPROVAL_DOCUMENT VAD ON AD.NO = VAD.APPROVAL_DOCUMENT_NO
+		JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO		
+		WHERE AD.NO = #{no}
+	</select>
+	
+	<!-- 출장 결재자 페이지 -->
+	<select id="detailApprovalTrip" resultType="com.kh.app.approval.vo.BusinessTripApprovalVo">
+		SELECT 
+		    AD.NO NO,
+		    AD.MEMBER_NO MEMBER_NO,
+		    AD.CREATE_DATE CREATE_DATE,
+		    BTAD.CONTENT CONTENT,
+		    BTAD.START_DATE START_DATE,
+		    BTAD.END_DATE END_DATE,
+		    M.NAME MEMBER_NAME,
+		    M.SIGN SIGN,
+		    D.NAME DEPARTMENT_NAME,
+		    AD.STATUS STATUS,
+		    A.APPROVAL_DATE APPROVAL_DATE,
+            M.POSITION_NO POSITION_NO
+		FROM APPROVAL_DOCUMENT AD
+		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+		JOIN BUSINESS_TRIP_APPROVAL_DOCUMENT BTAD ON AD.NO = BTAD.APPROVAL_DOCUMENT_NO
+        JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
+		WHERE AD.NO = #{no}
+	</select>
+	
+	<!-- 출장 결재자 페이지 -->
+	
+	<select id="getStatus" resultType="com.kh.app.approver.vo.ApproverVo">
+		SELECT 
+			STATUS
+		FROM APPROVAL_DOCUMENT
+		WHERE NO = #{no}
+	</select>
 
 </mapper>

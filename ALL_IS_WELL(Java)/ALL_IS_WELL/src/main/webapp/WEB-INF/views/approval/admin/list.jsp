@@ -218,17 +218,7 @@
                 </form>
 
                 <div id="writeBtn">
-                    <form action="/app/approval/writeVacation" method="get" >
-                        <button id="writeApproval" type="submit">휴가작성</button>
-                    </form>
-                    <form action="/app/approval/writeTrip" method="get">
-                        <button id="writeApproval" type="submit">출장작성</button>
-                    </form>
-                    <c:if test="${loginMember.positionType eq 'N'}">
-                        <form action="/app/approval/writeInventory" method="get">
-                            <button id="writeApproval" type="submit">재고신청</button>
-                        </form>
-                    </c:if>
+                
                 </div>
             </div>
             <div class="list-area">
@@ -243,15 +233,17 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${voList}" var="vo">
-                            <tr onclick="detail();">
-                                <td id="approvalNo" hidden>${vo.no}</td>
-                                <td>${vo.memberName}</td>
-                                <td id="approvalTitle">${vo.title}</td>
-                                <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
-                                <td>
-                                    <button id="statusBtn" class="statusBtn" disabled>${vo.status}</button>
-                                </td>
-                            </tr>
+                            <c:if test="${vo.memberName ne loginMember.name}">
+                                <tr onclick="detail();">
+                                    <td id="approvalNo" hidden>${vo.no}</td>
+                                    <td>${vo.memberName}</td>
+                                    <td id="approvalTitle">${vo.title}</td>
+                                    <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
+                                    <td>
+                                        <button id="statusBtn" class="statusBtn" disabled>${vo.status}</button>
+                                    </td>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -264,8 +256,7 @@
 
             <div class="number-area">
                 <c:if test="${pv.currentPage > 1 }">
-                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>
-                </c:if>
+                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
                 <c:if test="${pv.maxPage > 1 }"> 
                     <c:forEach begin="${startPage}" end="${endPage}" var="i">
                         <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
@@ -282,7 +273,6 @@
 		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
 	</footer>
     <script>
-
         const sideBar = document.querySelector("#side-bar")
         const subMenus = document.querySelectorAll(".sub-menu");
         const thirdSidebars = document.querySelectorAll(".third-sidebar");
@@ -333,25 +323,12 @@
         function detail() {
             const no = event.target.parentElement.querySelector("#approvalNo").innerText;
             const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
-            const status = event.target.parentElement.querySelector(".statusBtn").textContent;
-
-            if(status ==="대기"){
-                if (title === "출장문서") {
-                    location.href = "${root}/approval/detailTrip?no=" + no;
-                } else if (title === "휴가문서") {
-                    location.href = "${root}/approval/detailVacation?no=" + no;
-                } else if (title === "재고신청문서") {
-                    location.href = "${root}/approval/detailInventory?no=" + no;
-                }
-            }
-            else {
-                if (title === "출장문서") {
-                    location.href = "${root}/approval/trip?no=" + no;
-                } else if (title === "휴가문서") {
-                    location.href = "${root}/approval/vacation?no=" + no;
-                } else if (title === "재고신청문서") {
-                    location.href = "${root}/approval/inventory?no=" + no;
-                }
+            if(title === "출장문서"){
+                location.href = "${root}/approval/trip?no=" + no;
+            } else if(title === "휴가문서"){
+                location.href = "${root}/approval/vacation?no=" + no;
+            } else if(title === "재고신청문서"){
+                location.href = "${root}/approval/inventory?no=" + no;
             }
         };
     </script>
