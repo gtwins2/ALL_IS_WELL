@@ -6,7 +6,6 @@ import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionSuspensionNotSupportedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +55,35 @@ public class ApprovalController {
 		model.addAttribute("voList", voList);
 
 	}
+	
+	//관리자 문서 리스트
+	@GetMapping("admin/list")
+	public void adminList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+			Model model, HttpSession session) throws Exception {
+		
+		if(!"ADMIN".equals(loginMember.getId()) || "1234".equals(loginMember.getPassword())) {
+			throw new LoginException();
+		}
+		
+		ApproverVo vo = new ApproverVo();
+		String approverName = "ADMIN";
+		
+		vo.setApproverName(approverName);
+		
+		int listCount = as.getAdminListCnt(vo);
+		int pageLimit = 5;
+		int boardLimit = 10;
+
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+
+		List<ApproverVo> voList = as.getAdminList(pv, vo);
+		
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList", voList);
+		
+		
+	}
 
 	// 결재해야할 문서(화면 (직급이 D1인 사람))
 	@GetMapping("list")
@@ -98,16 +126,26 @@ public class ApprovalController {
 	//재고 신청 문서 결재 화면
 	@GetMapping("inventory")
 	public void inventory(HttpSession session, Model model, String no) { 
-		
+				
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		ApproverVo vo = new ApproverVo();
+		vo.setApprovalDocumentNo(no);
 		vo.setApproverNo(loginMember.getNo());
 		vo.setApproverName(loginMember.getName());
 		vo.setSign(loginMember.getSign());
 		
-		InventoryVo ivo = as.detailApprovalInventory(no);
-		vo.setApprovalDate(ivo.getApprovalDate());
+		InventoryVo ivo = null;
+		
+		ApproverVo statusVo = as.getStatus(no);
+		String status = statusVo.getStatus();
+		
+		if("F".equals(status) || "R".equals(status)) {
+			ivo = as.detailApprovalInventory(no);
+		}
+		else {
+			ivo = as.detailInventory(no);
+		}
 		
 		List<InventoryVo> voList = as.detailInventoryItems(no);		
 		
@@ -128,12 +166,47 @@ public class ApprovalController {
 		vo.setApproverName(loginMember.getName());
 		vo.setSign(loginMember.getSign());
 		
-		VacationApprovalVo vvo = as.detailApprovalVacation(no);
-		System.out.println(vvo);
-		vo.setApprovalDate(vvo.getApprovalDate());
+		ApproverVo statusVo = as.getStatus(no);
+		String status = statusVo.getStatus();
+		
+		VacationApprovalVo vvo = null;
+		if("F".equals(status) || "R".equals(status)) {
+			vvo = as.detailApprovalVacation(no);
+		}
+		else {
+			vvo = as.detailVacation(no);
+		}
 		
 		model.addAttribute("vvo", vvo);
 		model.addAttribute("vo", vo);
+	}
+	
+	//출장 신청 문서 결재 화면
+	@GetMapping("trip")
+	public void trip(HttpSession session, Model model, String no) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		ApproverVo vo = new ApproverVo();
+		vo.setApproverNo(loginMember.getNo());
+		vo.setApproverName(loginMember.getName());
+		vo.setSign(loginMember.getSign());
+		
+		ApproverVo statusVo = as.getStatus(no);
+		String status = statusVo.getStatus();
+		
+		BusinessTripApprovalVo bvo = null;
+		
+		if("F".equals(status) || "R".equals(status)) {
+			bvo = as.detailApprovalTrip(no);
+		}
+		else {
+			bvo = as.detailTrip(no);
+		}
+		
+		model.addAttribute("bvo", bvo);
+		model.addAttribute("vo", vo);
+		
 	}
 	
 	//반려 선택
@@ -290,7 +363,18 @@ public class ApprovalController {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		InventoryVo ivo = as.detailInventory(no);
+		InventoryVo ivo = null;
+		
+		ApproverVo statusvo = as.getStatus(no);
+		String status = statusvo.getStatus();
+		
+		if("F".equals(status) || "R".equals(status)) {
+			ivo = as.detailApprovalInventory(no);
+		}
+		else {
+			ivo = as.detailInventory(no);
+		}
+		
 		List<InventoryVo> voList = as.detailInventoryItems(no);		
 		
 		model.addAttribute("ivo", ivo);

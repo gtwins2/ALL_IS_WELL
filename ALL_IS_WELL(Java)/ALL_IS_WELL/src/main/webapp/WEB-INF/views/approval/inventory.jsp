@@ -313,12 +313,14 @@
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${ivo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td><fmt:formatDate value="${vo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <td><fmt:formatDate value="${ivo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
                                 <td></td>
                             </tr>
                             <tr id="date">
                                 <td>${ivo.memberName}</td>
-                                <td>${vo.approverName}</td>
+                                <c:if test="${ivo.status == 'F' || ivo.status == 'R'}">
+                                    <td>${vo.approverName}</td>
+                                </c:if>
                                 <td></td>
                             </tr>
                         </table>
@@ -387,7 +389,12 @@
         });
 
         function back(){
-            window.location.href = "${root}/approval/list";
+            if('${ivo.positionNo}' == 1){
+                location.href = "${root}/approval/list";
+            }
+            else{
+                location.href = "${root}/approval/draftList";
+            }
         }
 
         // 버튼과 모달 요소 선택하기

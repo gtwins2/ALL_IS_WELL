@@ -104,5 +104,25 @@ public class ApprovalDao {
 	public int approvalInsertApprover(SqlSessionTemplate sst, ApproverVo vo) {
 		return sst.insert("approver.approvalInsertApprover", vo);
 	}
+
+	public InventoryVo detailApprovalInventory(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approver.detailApprovalInventory", no);
+	}
+
+	public ApproverVo getStatus(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approver.getStatus", no);
+	}
+
+	public VacationApprovalVo detailApprovalVacation(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approver.detailApprovalVacation", no);
+	}
+
+	public BusinessTripApprovalVo detailApprovalTrip(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("approver.detailApprovalTrip", no);
+	}
+
+	public int getAdminListCnt(SqlSessionTemplate sst, ApproverVo vo) {
+		return sst.selectOne("approver.getAdminListCnt", vo);
+	}
 	
 }
