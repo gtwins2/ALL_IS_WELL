@@ -6,12 +6,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.Gson;
+import com.kh.app.chatting.service.ChattingService;
+import com.kh.app.chatting.vo.ChattingVo;
 import com.kh.app.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +24,9 @@ import lombok.extern.slf4j.Slf4j;
 public class WebsocketServer extends TextWebSocketHandler {
 	//유저들의 세션을 담을 set
 	private Set<WebSocketSession> sessionSet = new HashSet<WebSocketSession>();
+	
+	@Autowired
+	private ChattingService service;
 	
 	//connection이 되었을때 되고 난이후에 동작하는 메소드
 	@Override
@@ -50,7 +56,14 @@ public class WebsocketServer extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		log.info("called...handleTextMessage");
 		
+		
+		log.info("받은 메시지 : "+message.getPayload().toString());
 		MemberVo loginMember = (MemberVo)session.getAttributes().get("loginMember");
+		
+//		ChattingData data = gson.fromJson(message.getPayload(), ChattingData.class);
+		
+		
+//		String roomId = data.getRoomId();
 		
 		//json으로 데이터를 파싱하기
 		Gson gson = new Gson();
@@ -72,6 +85,13 @@ public class WebsocketServer extends TextWebSocketHandler {
 		
 		String jsonStr = gson.toJson(msgVo);
 		
+		ChattingVo vo = new ChattingVo();
+		
+		/*
+		 * vo.setChattingRoomNo();
+		 * 
+		 * int result =
+		 */
 		
 		//전달받은 메세지를 모두에게 뿌려주기
 		//연결된 모든 세션을 가져와서 send 해주기

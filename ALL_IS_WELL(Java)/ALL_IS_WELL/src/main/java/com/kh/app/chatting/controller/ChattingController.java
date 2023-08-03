@@ -39,6 +39,8 @@ public class ChattingController {
 		
 		String memberNo = loginMember.getNo();
 		
+		log.info("memberNo : "+memberNo);
+		
 		List<ChattingVo> chatList = service.getChattingList(memberNo);
 		
 		log.info("채팅방 목록 :  "+chatList.toString());
@@ -78,7 +80,7 @@ public class ChattingController {
 	}
 	
 	@GetMapping("createNewChatRoom")
-	public String createNewChatRoom(@RequestParam String receiverNo, HttpSession session) {
+	public String createNewChatRoom(@RequestParam String receiverNo, HttpSession session, Model model) {
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
 		String senderNo = loginMember.getNo();
@@ -90,6 +92,25 @@ public class ChattingController {
 		//채팅방 생성
 		int result = service.createNewChatRoom(memberMap);
 		
+		log.info(String.valueOf(result));
 		
+		//리시버의 정보 가져오기
+		MemberVo receiver = service.getReceiverInfo(receiverNo);
+		
+		log.info(receiver.toString());
+		
+		//채팅방 번호 가져오기
+		ChattingVo roomVo = service.getChattingRoomNo(memberMap);
+		
+		log.info(roomVo.toString());
+		
+		String roomNo = roomVo.getChattingRoomNo();
+		
+		
+		
+		model.addAttribute("receiver", receiver);
+		model.addAttribute("roomVo", roomVo);
+		
+		return "chatting/newChattingRoom";
 	}
 }	
