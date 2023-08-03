@@ -24,6 +24,5 @@ public class InventoryVo {
 	private String status;
   // private String approvalDate;
   private Date approvalDate;
-  private Date approvalDate;
   private String positionNo;
 }
