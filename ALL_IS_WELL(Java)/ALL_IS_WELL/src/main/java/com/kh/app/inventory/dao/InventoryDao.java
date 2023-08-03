@@ -19,5 +19,11 @@ public interface InventoryDao {
 
 
 	List<InventoryVo> storeList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap);
+
+
+	List<InventoryVo> getItemName(SqlSessionTemplate sst);
+
+
+	int postInsert(SqlSessionTemplate sst, InventoryVo vo);
 	
 }

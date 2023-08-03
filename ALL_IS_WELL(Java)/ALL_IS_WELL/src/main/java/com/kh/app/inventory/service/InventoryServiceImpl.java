@@ -37,5 +37,15 @@ public class InventoryServiceImpl implements InventoryService {
 	public List<InventoryVo> storeList(PageVo pv, Map<String, String> paramMap) {
 		return dao.storeList(sst, pv, paramMap);
 	}
+
+	@Override
+	public List<InventoryVo> getItemName() {
+		return dao.getItemName(sst);
+	}
+
+	@Override
+	public int postInsert(InventoryVo vo) {
+		return dao.postInsert(sst, vo);
+	}
 	
 }

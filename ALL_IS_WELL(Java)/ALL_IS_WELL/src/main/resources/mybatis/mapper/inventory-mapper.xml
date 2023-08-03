@@ -47,21 +47,29 @@
 		    JOIN APPROVAL_DOCUMENT AD ON IRAD.APPROVAL_DOCUMENT_NO = AD.NO
 		    JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
             WHERE AD.STATUS = 'A'
+            <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
+			AND ${searchType} LIKE '%${searchValue.toString()}%'
+	  		</if>
 	  </select>
 	  
 	 <update id="delete">
 	    UPDATE PROCEEDING
 		SET STATUS = 'X'
 		WHERE NO = ${no}
-   </update>
+   	</update>
    
-   <update id="edit">
-	    UPDATE PROCEEDING
-		SET
-			TITLE = #{title},
-			CONTENT = #{content},
-			MODIFY_DATE = SYSDATE
-		WHERE NO = ${no}
-   </update>
+	<select id="getItemName" resultType="com.kh.app.inventory.vo.InventoryVo">
+		SELECT I.CATEGORY_NO , IC.ITEM_NAME
+		FROM INVENTORY_CATEGORY IC
+		JOIN INVENTORY I 
+		ON IC.NO = I.CATEGORY_NO
+	</select>
 	
+	<update id="postInsert">
+		UPDATE INVENTORY
+		SET INVENTORY_COUNT = INVENTORY_COUNT + ${count}
+		WHERE CATEGORY_NO = ${categoryNo}
+	</update>
+	
+
 </mapper>
