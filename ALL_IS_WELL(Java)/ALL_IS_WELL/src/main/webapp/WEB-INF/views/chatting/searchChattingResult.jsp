@@ -217,7 +217,7 @@
 	        // 대화하기 버튼에 이벤트 리스너 추가
 	        $(".conversation-btn").on("click", function () {
 	            var no = $(this).data("no");
-	            location.href = "/app/chatting/createNewChatRoom?receiverNo" + no;
+	            location.href = "/app/chatting/createNewChatRoom?receiverNo=" + no;
 	        });
 	    }
 
