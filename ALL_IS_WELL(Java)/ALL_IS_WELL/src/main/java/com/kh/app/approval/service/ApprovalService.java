@@ -203,5 +203,29 @@ public class ApprovalService {
 		
 		return true;
 	}
+
+	//인벤토리 결재자 결재 페이지
+	public InventoryVo detailApprovalInventory(String no) {
+		return dao.detailApprovalInventory(sst, no);
+	}
+
+	//휴가 결재자 결재 페이지
+	public VacationApprovalVo detailApprovalVacation(String no) {
+		return dao.detailApprovalVacation(sst, no);
+	}
+
+	//출장 결재자 결재 페이지
+	public BusinessTripApprovalVo detailApprovalTrip(String no) {
+		return dao.detailApprovalTrip(sst, no);
+	}
+	
+	public ApproverVo getStatus(String no) {
+		return dao.getStatus(sst, no);
+	}
+
+	//관리자 결재 페이지
+	public int getAdminListCnt(ApproverVo vo) {
+		return dao.getAdminListCnt(sst, vo);
+	}
 	
 }

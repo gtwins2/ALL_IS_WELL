@@ -20,5 +20,6 @@ public class VacationApprovalVo {
 	private Date endDate;
 	private Date approvalDate;
 	private String status;
+	private String positionNo;
 	
 }

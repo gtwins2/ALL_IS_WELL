@@ -17,6 +17,8 @@ public class BusinessTripApprovalVo {
 	private String departmentName;
 	private String sign;
 	private String status;
+	private Date approvalDate;
+	private String positionNo;
 	
 	private Date createDate;
 }
