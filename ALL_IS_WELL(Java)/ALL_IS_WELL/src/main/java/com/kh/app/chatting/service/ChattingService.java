@@ -47,5 +47,17 @@ public class ChattingService {
 
 
 
+	public MemberVo getReceiverInfo(String receiverNo) {
+		return dao.getReceiverInfo(sst, receiverNo);
+	}
+
+
+
+	public ChattingVo getChattingRoomNo(Map<String, String> memberMap) {
+		return dao.getChattingRoomNo(sst, memberMap);
+	}
+
+
+
 	
 }

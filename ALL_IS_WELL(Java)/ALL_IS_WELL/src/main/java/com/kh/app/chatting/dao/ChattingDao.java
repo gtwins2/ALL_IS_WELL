@@ -31,4 +31,12 @@ public class ChattingDao {
 	public int createNewChatRoom(SqlSessionTemplate sst, Map<String, String> memberMap) {
 		return sst.insert("chatting.createNewChatRoom", memberMap);
 	}
+
+	public MemberVo getReceiverInfo(SqlSessionTemplate sst, String receiverNo) {
+		return sst.selectOne("chatting.getReceiverInfo", receiverNo);
+	}
+
+	public ChattingVo getChattingRoomNo(SqlSessionTemplate sst, Map<String, String> memberMap) {
+		return sst.selectOne("chatting.getChattingRoomNo", memberMap);
+	}
 }

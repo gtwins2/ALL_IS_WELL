@@ -5,8 +5,7 @@
 <mapper namespace="chatting">
 	<select id="getChattingList" resultType="com.kh.app.chatting.vo.ChattingVo">
 		SELECT
-		  C.NO AS CHATTING_ROOM_NO,
-		  CHATTING_NO, 
+		  C.NO AS CHATTING_ROOM_NO, 
 		  SENDER_NO, RECEIVER_NO,
 		  SENDER_STATUS, RECEIVER_STATUS,
 		  SENDER_M.NAME AS SENDER_NAME,
@@ -23,10 +22,10 @@
 		JOIN POSITION RECEIVER_P ON RECEIVER_M.POSITION_NO = RECEIVER_P.NO
 		JOIN DEPARTMENT SENDER_D ON SENDER_M.DEPARTMENT_NO = SENDER_D.NO
 		JOIN DEPARTMENT RECEIVER_D ON RECEIVER_M.DEPARTMENT_NO = RECEIVER_D.NO
-        JOIN ATTENDANCE RECEIVER_A ON RECEIVER_M.NO = RECEIVER_A.MEMBER_NO
+        LEFT JOIN ATTENDANCE RECEIVER_A ON RECEIVER_M.NO = RECEIVER_A.MEMBER_NO
 		WHERE (SENDER_NO = #{memberNo} OR RECEIVER_NO = #{memberNo}) 
-		  AND SENDER_STATUS = 'O' 
-		  AND RECEIVER_STATUS = 'O'
+		AND SENDER_STATUS = 'O' 
+		AND RECEIVER_STATUS = 'O'
 	</select>
 	
 	<select id="searchMember" resultType="com.kh.app.member.vo.MemberVo">
@@ -41,7 +40,20 @@
 		 WHERE M.NAME =  #{searchInput}
 	</select>
 	
-	<!-- <insert id="createNewChatRoom">
-		
-	</insert> -->
+	<insert id="createNewChatRoom">
+		INSERT INTO CHATTING_ROOM(NO, SENDER_NO, RECEIVER_NO)
+		VALUES(SEQ_CHATTING_ROOM_NO.NEXTVAL, #{senderNo}, #{receiverNo})
+	</insert>
+	
+	<select id="getReceiverInfo" resultType="com.kh.app.member.vo.MemberVo">
+		SELECT M.NO, M.NAME, M.PROFILE, P.NAME AS POSITION_NAME, D.NAME AS DEPARTMENT_NAME, A.STATUS AS ATTENDACE_STATUS
+		FROM MEMBER M JOIN POSITION P ON M.POSITION_NO = P.NO
+		LEFT JOIN DEPARTMENT D ON M.DEPARTMENT_NO = D.NO
+		LEFT JOIN ATTENDANCE A ON M.NO = A.MEMBER_NO
+		WHERE M.NO = #{receiverNo}
+	</select>
+	
+	<select id="getChattingRoomNo" resultType="com.kh.app.chatting.vo.ChattingVo">
+		SELECT NO AS CHATTING_ROOM_NO FROM CHATTING_ROOM WHERE SENDER_NO = #{senderNo} AND RECEIVER_NO = #{receiverNo}
+	</select>
 </mapper>
