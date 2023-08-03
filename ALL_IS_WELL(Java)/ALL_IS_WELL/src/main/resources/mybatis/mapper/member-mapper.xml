@@ -53,6 +53,12 @@
    		AND PHONE_NUMBER = #{phoneNumber}
    </select>
 	
+	<update id="certification">
+		UPDATE MEMBER SET 
+		PASSWORD = #{password}
+		WHERE ID = #{id}
+	</update>
+	
 	<select id="getBoardCnt" resultType="int">
       SELECT COUNT(NO) FROM MEMBER
       WHERE STATUS = 'O'
