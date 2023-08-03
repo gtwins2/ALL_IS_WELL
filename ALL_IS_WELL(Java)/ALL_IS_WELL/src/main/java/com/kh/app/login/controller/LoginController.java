@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.app.admin.vo.AdminVo;
 import com.kh.app.member.service.MemberService;
+import com.kh.app.member.vo.CertificationVo;
 import com.kh.app.member.vo.MemberVo;
 
 import lombok.RequiredArgsConstructor;
@@ -95,18 +96,34 @@ public class LoginController {
 		return "login/pwdFindTest";
 	}
 	
+	@PostMapping("certification")
+	public String certification(CertificationVo vo, int n) {
+		if(vo.getNumber() == n) {
+			int result = ms.certification(vo);
+		}
+		
+		System.out.println(vo.getNumber());
+		System.out.println(vo.getN());
+		return "login/login";
+	}
+	
 	 @PostMapping("send-one")
-	    public SingleMessageSentResponse sendOne() {
+	    public String sendOne(CertificationVo vo, Model model) {
 	        Message message = new Message();
 	        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
+	        int n = (int)(Math.random() * 8999) + 1000;
+	        vo.setN(n);
+	        System.out.println(vo.getN());
 	        message.setFrom("01057963553");
 	        message.setTo("01057963553");
-	        message.setText("인증번호는 1111 입니다.");
-
+	        message.setText("인증번호는" +n+ "입니다.");
+	        
+	        model.addAttribute("n",n);
+	        
 	        SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
 	        System.out.println(response);
-
-	        return response;
+	        
+	        return "login/pwdFind";
 	    }
 
 	
