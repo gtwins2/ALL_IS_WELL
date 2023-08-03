@@ -280,22 +280,23 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">재고입고조회</span>
+                    <span id="title">결재문서입고조회</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="kind">종류</option>
-                                <option value="title">개수</option>
-                                <option value="date">입고일자</option>
+                            <select id="search" name="searchType">
+                                <option value="ITEM_NAME">종류</option>
+                                <option value="INVENTORY_COUNT">개수</option>
+                                <option value="APPROVAL_DATE">입고일자</option>
                             </select>
 
 					
 
                         </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        
+                        <input type="text" id="search-input" name="searchValue"> <a
+						href="http://127.0.0.1:8888/app/inventory/storeList?page=1"
+						id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<input type="submit" value="검색">
                     </form>
                    
 
@@ -307,7 +308,6 @@
                 <br>
                 <br>
 
-					<button id="sendRequest" onclick="sendRequest();">재고 신청하기</button>
                 <div class="list-area">
                     <table>
                         <th></th>

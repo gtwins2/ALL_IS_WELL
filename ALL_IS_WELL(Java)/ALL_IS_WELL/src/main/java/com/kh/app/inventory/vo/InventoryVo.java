@@ -13,7 +13,7 @@ public class InventoryVo {
 	private String itemName;
 	private List<Integer> categoryNoArr;
 	private List<Integer> countArr;
-	private int CategoryNo;
+	private int categoryNo;
 	private int count;
 	private String inventoryCount;
 	private String approvalDocumentNo;
@@ -22,7 +22,8 @@ public class InventoryVo {
 	private String departmentName;
 	private String sign;
 	private String status;
-   	private Date approvalDate;
-   	private String positionNo;
-
+  // private String approvalDate;
+  private Date approvalDate;
+  private Date approvalDate;
+  private String positionNo;
 }

@@ -35,6 +35,16 @@ public class InventoryDaoImpl implements InventoryDao{@Override
 		return sst.selectList("inventory.selectStoreList" , paramMap , rb);
 	}
 
+	@Override
+	public List<InventoryVo> getItemName(SqlSessionTemplate sst) {
+		return sst.selectList("inventory.getItemName");
+	}
+
+	@Override
+	public int postInsert(SqlSessionTemplate sst, InventoryVo vo) {
+		return sst.update("inventory.postInsert" , vo);
+	}
+
 	
 	
 	

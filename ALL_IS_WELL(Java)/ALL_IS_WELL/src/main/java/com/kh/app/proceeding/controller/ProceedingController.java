@@ -58,6 +58,7 @@ public class ProceedingController {
 
 		List<ProceedingVo> voList = service.list(pv, paramMap);
 
+		log.info(voList + "");
 		model.addAttribute("pv" , pv);
 		model.addAttribute("voList", voList);
 		

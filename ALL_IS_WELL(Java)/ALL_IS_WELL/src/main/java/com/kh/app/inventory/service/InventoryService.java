@@ -15,4 +15,9 @@ public interface InventoryService {
 	int getBoardCnt();
 
 	List<InventoryVo> storeList(PageVo pv, Map<String, String> paramMap);
+
+	List<InventoryVo> getItemName();
+
+	int postInsert(InventoryVo vo);
+
 }

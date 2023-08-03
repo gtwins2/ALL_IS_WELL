@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -6,14 +6,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>재고 입고 처리</title>
+        <title>재고 수정</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-        #wrap {
-	width: 1920px;
-	display: grid;
-	grid-template-columns: 150px 1770px;
-}
             .main-area {
    				 width: 1200px;
     			height: 1100px;
@@ -32,7 +27,7 @@
                 font-size: 35px;
             }
 
-            #sendRequest {
+            #sendRequest, #sendBack {
                 font-size: 20px;
                 color: white;
                 background-color: #FF8686;
@@ -44,7 +39,7 @@
                 font-weight: bold;
             }
 
-            #sendRequest:hover {
+            #sendRequest:hover, #sendBack:hover {
                 background-color: #555;
                 transition: 0.7s;
             }
@@ -129,70 +124,7 @@
 
             }
 
-            .list-area th,
-            .list-area td {
-                padding: 20px;
-                border-bottom: 1px solid #ddd;
-                text-align: left;
-            }
-
-            .list-area th {
-                font-size: 20px;
-                font-weight: normal;
-
-            }
-
-            .list-area th:first-child,
-            .list-area td:first-child {
-                width: 30px;
-            }
-
-            .list-area th:last-child,
-            .list-area td:last-child {
-                width: 100px;
-            }
-
-            .list-area td input[type="checkbox"] {
-                margin: 0;
-                padding: 0;
-            }
-
-            .list-area th:nth-child(3) {
-                padding-left: 10%;                
-                width: 150px;
-            }
-
-            .list-area th:nth-child(2) {
-                padding-left: 10%;
-                width: 150px;
-            }
-
-            .list-area th:nth-child(4) {
-                padding-left: 10%;
-                width: 150px;
-            }
-
-            .list-area td:nth-child(3) {
-                padding-left: 10.5%;
-                width: 150px;                
-            }
-
-            .list-area td:nth-child(2) {
-                padding-left: 10.5%;
-                width: 150px;                
-            }
-
-            .list-area td:nth-child(4) {
-                padding-left: 10%;
-                width: 150px;                
-            }
-			
-			
-.list-area td:nth-child(4) {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
+           
 
             .number-area {
                 text-align: center;
@@ -258,8 +190,54 @@
 
             #content{
                 display: grid;
-                grid-template-columns: 300px 1620px;
+                grid-template-columns: 300px 1220px;
             }
+            
+            #title-area , #content-area, #date-area {
+            	font-size: 30px;
+            }
+            
+            #content2{
+				font-size: 30px;
+				width: 1198px;
+				height: 500px; 
+            }
+            
+            #content-area2{
+            	width: 700px;
+            	height: 50px;
+            	margin-top: -30px;
+            	margin-left: 70px;
+            }
+            div > textarea{
+            	margin-left: 100px;
+            }
+            
+            label {
+			  font-family: sans-serif;
+			  font-size: 30px;
+			  padding-right: 10px;
+			}
+			
+			select {
+		 	  margin-left: 95px;
+			  font-size: 30px;
+			  padding: 2px 5px;
+			}
+			
+			#content-area2{
+				margin-left: 155px;
+			}
+			
+			#put2{
+				margin-left: 40px;
+				height: 40px;
+			}
+
+			#put{
+				margin-left: 100px;
+				height: 40px;
+			}
 
         </style>
     </head>
@@ -270,100 +248,89 @@
         </header>
 
 
-	   <main id="wrap">
-         <header>
-             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
-         </header>
+
+
+			<%-- <c:forEach items="${voList}" var="vo">
+				<tr>
+					<td></td>
+					<td>${vo.itemName}</td>
+					<td>${vo.count}</td>
+					<td>${vo.approvalDate}</td>
+				</tr>
+			</c:forEach> --%>
+
+	
+	
+
+	
+        <main id="content">
+            <div id="wrap">
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+            </div>
 
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">재고처리temp</span>
-
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="kind">종류</option>
-                                <option value="title">개수</option>
-                                
-                            </select>
-
-					
-
-                        </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        
-                    </form>
-                   
-
+                    <span id="title">재고 입고</span>
 
                 </div>
                 <br>
                 <br>
+                <br>
+                <br>
+                <br>
+				<form action="${root}/inventory/insert" method="post">
 					
-                <div class="list-area">
+				<div class="list-area">
                     <table>
-                    <tr>
-                        <th>
-                        <button id="sendRequest" onclick="sendRequest();">입고조회</button>
-                        </th>
-                        <th>종류</th>
-                        <th>개수</th>
-                    </tr>
 
-                        <c:forEach items="${voList}" var="vo">
-						<tr>
-							<td></td>
-							<td>${vo.itemName}</td>
-							<td>${vo.inventoryCount}</td>
-						</tr>
-					</c:forEach>
+					<br>
+					<br>
+					<input type="hidden" value=${loginMember.no} >
+					
+					<label for="item-select">종류</label>
+						<select	name="categoryNo">
+							<c:forEach items="${voList}" var="vo">
+							<option value="${vo.categoryNo}">${vo.itemName}</option>
+							</c:forEach>
+						</select>
+					
+					
+					
+					<br>
+					<br>
+					<div id="title-area">개수 <input type="number" name="count" id="put"> </div>
+					<br>
+					<br>
 
                     </table>
                 </div>
-                <c:set var="range" value="5" />
-			<c:set var="startPage"
-				value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
-			<c:set var="endPage"
-				value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
-			<c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
+					
+					<button id="sendRequest" type="submit" onclick="senrRequest();">작성하기</button>
+					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+                
+				</form>
 
-			<div class="number-area">
-				<c:if test="${pv.currentPage > 1 }">
-					<a class="pageBtn"
-						onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>
-				</c:if>
-				<c:if test="${pv.maxPage > 1 }">
-					<c:forEach begin="${startPage}" end="${endPage}" var="i">
-						<a class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pv.currentPage < pv.maxPage }">
-					<a class="pageBtn"
-						onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
-				</c:if>
-			</div>
-		</div>
-	</main>
+                </div>
+            </main>
+
 
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
+            
+            function backPage(){
+            	location.href = '${root}/common/member/home';
+            }
 
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
+            function sendRequest(){
+            	location.href = '${root}/inventory/list';
             }
             
-            function sendRequest(){
-           		location.href="${root}/inventory/storeList";
-           	}
+            
         </script>
     </body>
 
-    </html>
+    </html> 
