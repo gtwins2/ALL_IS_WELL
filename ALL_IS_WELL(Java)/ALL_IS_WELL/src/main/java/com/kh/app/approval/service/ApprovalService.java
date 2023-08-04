@@ -11,6 +11,7 @@ import com.kh.app.approval.vo.ApprovalBtnVo;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.approver.vo.AdminApproverVo;
 import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.inventory.vo.InventoryVo;
@@ -68,7 +69,7 @@ public class ApprovalService {
 		return true;
 	}
 	
-	public BusinessTripApprovalVo detailTrip(String no) {
+	public AdminApproverVo detailTrip(String no) {
 		return dao.detailTrip(sst, no);
 	}
 	
@@ -81,7 +82,7 @@ public class ApprovalService {
 		return dao.writeVacation(sst, vvo);
 	}
 
-	public VacationApprovalVo detailVacation(String no) {
+	public AdminApproverVo detailVacation(String no) {
 		return dao.detailVacation(sst, no);
 	}
 	
@@ -142,7 +143,7 @@ public class ApprovalService {
 		return true;
 	}
 	
-	public InventoryVo detailInventory(String no) {
+	public AdminApproverVo detailInventory(String no) {
 		return dao.detailInventory(sst, no);
 	}
 
@@ -205,17 +206,17 @@ public class ApprovalService {
 	}
 
 	//인벤토리 결재자 결재 페이지
-	public InventoryVo detailApprovalInventory(String no) {
+	public AdminApproverVo detailApprovalInventory(String no) {
 		return dao.detailApprovalInventory(sst, no);
 	}
 
 	//휴가 결재자 결재 페이지
-	public VacationApprovalVo detailApprovalVacation(String no) {
+	public AdminApproverVo detailApprovalVacation(String no) {
 		return dao.detailApprovalVacation(sst, no);
 	}
 
 	//출장 결재자 결재 페이지
-	public BusinessTripApprovalVo detailApprovalTrip(String no) {
+	public AdminApproverVo detailApprovalTrip(String no) {
 		return dao.detailApprovalTrip(sst, no);
 	}
 	
@@ -227,5 +228,31 @@ public class ApprovalService {
 	public int getAdminListCnt(ApproverVo vo) {
 		return dao.getAdminListCnt(sst, vo);
 	}
+
+	public List<ApproverVo> getAdminList(PageVo pv, ApproverVo vo) {
+		return dao.getAdminList(sst, vo, pv);
+	}
+
+	public AdminApproverVo detailApprovalAdminVacation(String no) {
+		return dao.detailApprovalAdminVacation(sst, no);
+	}
+
+	public AdminApproverVo detailApprovalAdminTrip(String no) {
+		return dao.detailApprovalAdminTrip(sst, no);
+	}
+
+	public AdminApproverVo detailApprovalAdminInventory(String no) {
+		return dao.detailApprovalAdminInventory(sst, no);
+	}
+
+	//관리자가 반려 버튼 클릭 시
+	public int AdminRefuseUpdate(AdminApproverVo avo) {
+		return dao.AdminRefuseUpdate(sst, avo);
+	}
+
+	public int AdminApprovalUpdate(AdminApproverVo avo) {
+		return dao.AdminApprovalUpdate(sst, avo);
+	}
+	
 	
 }

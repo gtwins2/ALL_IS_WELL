@@ -190,6 +190,10 @@
         background-color: #F0F0F0;
     }
 
+    tbody tr:hover{
+        background-color: #d9d9d9;
+    }
+
 </style>
 </head>
 <body>
@@ -244,7 +248,7 @@
                     <tbody>
                         <c:forEach items="${voList}" var="vo">
                             <tr onclick="detail();">
-                                <td id="approvalNo" hidden>${vo.no}</td>
+                                <td id="approvalNo" >${vo.no}</td>
                                 <td>${vo.memberName}</td>
                                 <td id="approvalTitle">${vo.title}</td>
                                 <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
@@ -308,6 +312,40 @@
             url.searchParams.set('page', pageNumber);
             window.location.href = url.href;
         }
+
+        function detail() {
+            const no = event.target.parentElement.querySelector("#approvalNo").innerText;
+            const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
+            const status = event.target.parentElement.querySelector(".statusBtn").innerText;
+
+            if(status ==="대기"){
+                if (title === "출장문서") {
+                    location.href = "${root}/approval/detailTrip?no=" + no;
+                } else if (title === "휴가문서") {
+                    location.href = "${root}/approval/detailVacation?no=" + no;
+                } else if (title === "재고신청문서") {
+                    location.href = "${root}/approval/detailInventory?no=" + no;
+                }
+            }
+            else if(status === "1차 승인" || status === "반려"){
+                if (title === "출장문서") {
+                    location.href = "${root}/approval/trip?no=" + no;
+                } else if (title === "휴가문서") {
+                    location.href = "${root}/approval/vacation?no=" + no;
+                } else if (title === "재고신청문서") {
+                    location.href = "${root}/approval/inventory?no=" + no;
+                }
+            }
+            else if(status === "A" || status === "O"){
+                if (title === "출장문서") {
+                    location.href = "${root}/approval/admin/trip?no=" + no;
+                } else if (title === "휴가문서") {
+                    location.href = "${root}/approval/admin/vacation?no=" + no;
+                } else if (title === "재고신청문서") {
+                    location.href = "${root}/approval/admin/inventory?no=" + no;
+                } 
+            }
+        };
     
         document.addEventListener("DOMContentLoaded", function () {
             const statusBtns = document.querySelectorAll(".statusBtn");
@@ -320,7 +358,11 @@
                 } else if (status === "R") {
                     statusBtn.innerHTML = "반려";
                     statusBtn.style.backgroundColor = "#EC3C3C";
-                } else if (status === "W") {
+                } else if (status === "O") {
+                    statusBtn.innerHTML = " 반려 ";
+                    statusBtn.style.backgroundColor = "#EC3C3C";
+                }
+                 else if (status === "W") {
                     statusBtn.innerHTML = "대기";
                     statusBtn.style.backgroundColor = "#A7A7A7";
                 } else if (status === "F") {
@@ -329,31 +371,6 @@
                 }
             });
         });
-
-        function detail() {
-            const no = event.target.parentElement.querySelector("#approvalNo").innerText;
-            const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
-            const status = event.target.parentElement.querySelector(".statusBtn").textContent;
-
-            if(status ==="대기"){
-                if (title === "출장문서") {
-                    location.href = "${root}/approval/detailTrip?no=" + no;
-                } else if (title === "휴가문서") {
-                    location.href = "${root}/approval/detailVacation?no=" + no;
-                } else if (title === "재고신청문서") {
-                    location.href = "${root}/approval/detailInventory?no=" + no;
-                }
-            }
-            else {
-                if (title === "출장문서") {
-                    location.href = "${root}/approval/trip?no=" + no;
-                } else if (title === "휴가문서") {
-                    location.href = "${root}/approval/vacation?no=" + no;
-                } else if (title === "재고신청문서") {
-                    location.href = "${root}/approval/inventory?no=" + no;
-                }
-            }
-        };
     </script>
 </body>
 </html>

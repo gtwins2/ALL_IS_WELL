@@ -305,7 +305,7 @@
                                         <span class="rejected">반려</span>
                                     </c:when>
                                     <c:when test="${ivo.status == 'F'}">
-                                        ${vo.sign}
+                                        ${ivo.approverSign}
                                     </c:when>
                                     </c:choose>
                                 </td>
@@ -319,7 +319,7 @@
                             <tr id="date">
                                 <td>${ivo.memberName}</td>
                                 <c:if test="${ivo.status == 'F' || ivo.status == 'R'}">
-                                    <td>${vo.approverName}</td>
+                                    <td>${ivo.approverName}</td>
                                 </c:if>
                                 <td></td>
                             </tr>
