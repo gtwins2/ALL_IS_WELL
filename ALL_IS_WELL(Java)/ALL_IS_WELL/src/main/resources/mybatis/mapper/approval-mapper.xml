@@ -60,7 +60,7 @@
 		)
 	</insert>
 	
-	<select id="detailTrip" resultType="com.kh.app.approval.vo.BusinessTripApprovalVo">
+	<select id="detailTrip" resultType="com.kh.app.approver.vo.AdminApproverVo">
 		SELECT 
 		    AD.NO NO,
 		    AD.MEMBER_NO MEMBER_NO,
@@ -110,7 +110,7 @@
 		)
 	</insert>
 	
-	<select id="detailVacation" resultType="com.kh.app.approval.vo.VacationApprovalVo">
+	<select id="detailVacation" resultType="com.kh.app.approver.vo.AdminApproverVo">
 		SELECT 
 		    AD.NO NO,
 		    AD.MEMBER_NO MEMBER_NO,
@@ -165,7 +165,7 @@
 	    )
 	</insert>
 	
-	<select id="detailInventory" resultType="com.kh.app.inventory.vo.InventoryVo">
+	<select id="detailInventory" resultType="com.kh.app.approver.vo.AdminApproverVo">
 		SELECT DISTINCT
 		    AD.NO NO,
 		    AD.MEMBER_NO MEMBER_NO,

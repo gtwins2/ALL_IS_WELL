@@ -190,6 +190,10 @@
         background-color: #F0F0F0;
     }
 
+    tbody tr:hover{
+        background-color: #d9d9d9;
+    }
+
 </style>
 </head>
 <body>
@@ -307,7 +311,7 @@
                 if (status === "A") {
                     statusBtn.innerHTML = "승인";
                     statusBtn.style.backgroundColor = "#119F30";
-                } else if (status === "R") {
+                } else if (status === "R" || status === "O") {
                     statusBtn.innerHTML = "반려";
                     statusBtn.style.backgroundColor = "#EC3C3C";
                 } else if (status === "W") {

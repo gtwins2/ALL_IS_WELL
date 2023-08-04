@@ -16,6 +16,7 @@ import com.kh.app.approval.service.ApprovalService;
 import com.kh.app.approval.vo.ApprovalVo;
 import com.kh.app.approval.vo.BusinessTripApprovalVo;
 import com.kh.app.approval.vo.VacationApprovalVo;
+import com.kh.app.approver.vo.AdminApproverVo;
 import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.member.vo.MemberVo;
@@ -60,10 +61,11 @@ public class ApprovalController {
 	@GetMapping("admin/list")
 	public void adminList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
 			Model model, HttpSession session) throws Exception {
-		
-		if(!"ADMIN".equals(loginMember.getId()) || "1234".equals(loginMember.getPassword())) {
-			throw new LoginException();
-		}
+
+//		loginMember = (MemberVo) session.getAttribute("loginMember");
+//		if("ADMIN".equals(loginMember.getName())) {
+//			throw new LoginException();
+//		}
 		
 		ApproverVo vo = new ApproverVo();
 		String approverName = "ADMIN";
@@ -83,6 +85,75 @@ public class ApprovalController {
 		model.addAttribute("voList", voList);
 		
 		
+	}
+	
+	// 관리자 휴가 결재 문서
+	@GetMapping("admin/vacation")
+	public void adminVacation(Model model, String no) {
+						
+		AdminApproverVo avo = as.detailApprovalAdminVacation(no);
+		
+		model.addAttribute("avo", avo);
+		
+	}
+	
+	// 관리자 출장 결재 문서
+	@GetMapping("admin/trip")
+	public void adminTrip(Model model, String no) {
+						
+		AdminApproverVo avo = as.detailApprovalAdminTrip(no);
+		
+		model.addAttribute("avo", avo);
+		
+	}
+	
+	// 관리자 재고 결재 문서
+	@GetMapping("admin/inventory")
+	public void adminInventory(Model model, String no) {
+						
+		AdminApproverVo avo = as.detailApprovalAdminInventory(no);
+		
+		List<InventoryVo> voList = as.detailInventoryItems(no);	
+		
+		model.addAttribute("voList", voList);
+		model.addAttribute("avo", avo);
+		
+	}
+	
+	//반려 선택
+	@PostMapping("admin/refuse")
+	public String adminRefuse(String no, String reason) {
+				
+		AdminApproverVo avo = new AdminApproverVo();
+		avo.setNo(no);
+		avo.setReason(reason);
+		
+		int result = as.AdminRefuseUpdate(avo);
+		
+		if(result != 1) {
+			return "error/errorPage";
+		}
+		
+		return "redirect:/approval/admin/list";
+	}
+	
+	//승인 선택
+	@PostMapping("admin/approval")
+	public String adminApproval(String no, String reason, HttpSession session) {
+		
+		loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		AdminApproverVo avo = new AdminApproverVo();
+		avo.setNo(no);
+		avo.setReason(reason);
+		
+		int result = as.AdminApprovalUpdate(avo);
+		
+		if(result != 1) {
+			return "error/errorPage";
+		}
+		
+		return "redirect:/approval/admin/list";
 	}
 
 	// 결재해야할 문서(화면 (직급이 D1인 사람))
@@ -135,7 +206,7 @@ public class ApprovalController {
 		vo.setApproverName(loginMember.getName());
 		vo.setSign(loginMember.getSign());
 		
-		InventoryVo ivo = null;
+		AdminApproverVo ivo = null;
 		
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
@@ -169,7 +240,7 @@ public class ApprovalController {
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
 		
-		VacationApprovalVo vvo = null;
+		AdminApproverVo vvo = null;
 		if("F".equals(status) || "R".equals(status)) {
 			vvo = as.detailApprovalVacation(no);
 		}
@@ -188,14 +259,11 @@ public class ApprovalController {
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		ApproverVo vo = new ApproverVo();
-		vo.setApproverNo(loginMember.getNo());
-		vo.setApproverName(loginMember.getName());
-		vo.setSign(loginMember.getSign());
 		
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
 		
-		BusinessTripApprovalVo bvo = null;
+		AdminApproverVo bvo = null;
 		
 		if("F".equals(status) || "R".equals(status)) {
 			bvo = as.detailApprovalTrip(no);
@@ -288,7 +356,7 @@ public class ApprovalController {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		VacationApprovalVo vvo = as.detailVacation(no);
+		AdminApproverVo vvo = as.detailVacation(no);
 		
 		model.addAttribute("vvo", vvo);
 	}
@@ -326,7 +394,7 @@ public class ApprovalController {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		BusinessTripApprovalVo bvo = as.detailTrip(no);
+		AdminApproverVo bvo = as.detailTrip(no);
 				
 		model.addAttribute("bvo", bvo);
 	}
@@ -363,7 +431,7 @@ public class ApprovalController {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		InventoryVo ivo = null;
+		AdminApproverVo ivo = null;
 		
 		ApproverVo statusvo = as.getStatus(no);
 		String status = statusvo.getStatus();

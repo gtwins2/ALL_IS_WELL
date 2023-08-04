@@ -190,17 +190,21 @@
         background-color: #F0F0F0;
     }
 
+    tbody tr:hover{
+        background-color: #d9d9d9;
+    }
+
 </style>
 </head>
 <body>
 	
 	<header>
-		<%@include file="/WEB-INF/views/common/member/header.jsp" %>
+		<%@include file="/WEB-INF/views/common/admin/header.jsp" %>
 	</header>
 	
 	<main id="wrap">
         <div>
-            <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
         </div>
         <div class="main-area">
             <div class="title-area">
@@ -270,7 +274,7 @@
 	</main>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
     <script>
         const sideBar = document.querySelector("#side-bar")
@@ -307,7 +311,7 @@
                 if (status === "A") {
                     statusBtn.innerHTML = "승인";
                     statusBtn.style.backgroundColor = "#119F30";
-                } else if (status === "R") {
+                } else if (status === "O") {
                     statusBtn.innerHTML = "반려";
                     statusBtn.style.backgroundColor = "#EC3C3C";
                 } else if (status === "W") {
@@ -324,11 +328,11 @@
             const no = event.target.parentElement.querySelector("#approvalNo").innerText;
             const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
             if(title === "출장문서"){
-                location.href = "${root}/approval/trip?no=" + no;
+                location.href = "${root}/approval/admin/trip?no=" + no;
             } else if(title === "휴가문서"){
-                location.href = "${root}/approval/vacation?no=" + no;
+                location.href = "${root}/approval/admin/vacation?no=" + no;
             } else if(title === "재고신청문서"){
-                location.href = "${root}/approval/inventory?no=" + no;
+                location.href = "${root}/approval/admin/inventory?no=" + no;
             }
         };
     </script>
