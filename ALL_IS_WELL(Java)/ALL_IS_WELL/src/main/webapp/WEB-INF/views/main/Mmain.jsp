@@ -84,7 +84,7 @@ hr{
 	
 	background: #000000;
 }
-h2{
+#h2{
 	position: absolute;
 	width: 311px;
 	height: 242px;
@@ -132,7 +132,7 @@ color: #FFFFFF;
 }
 #div03{
 position: absolute;
-width: 800px;
+width: 500px;
 height: 730px;
 left: 720px;
 top: 113px;
@@ -312,8 +312,8 @@ color: #000000;
 			<!-- 프로필 -->
 		    <div id="div01"></div>
 		    <div id="div01-1"><img src="${root}/resources/static/img/logo/logo2.png" alt="" width="100%" height="100%"></div>
-			<h2>흉부외과 전문의<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
-			<hr>
+			<h2 id="h2">흉부외과 전문의<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
+			
 			<input type="text" value="${loginMember.no}" name="no" hidden>
 		    <!-- 출근 -->
 		    

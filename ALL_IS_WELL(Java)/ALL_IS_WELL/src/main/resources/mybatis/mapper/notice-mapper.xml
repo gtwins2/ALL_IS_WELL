@@ -60,6 +60,7 @@
 			,DELETE_YN
 		FROM NOTICE_REPLY
 		WHERE NOTICE_NO=#{no}
+		AND DELETE_YN = 'N'
 	</select>
 	
 	<insert id="replyWrite">
@@ -74,10 +75,23 @@
 		(
 			SEQ_NOTICE_REPLY_NO.NEXTVAL
 			,#{noticeNo}
-			,#{writerNo}
+			,1
 			,#{content}
 		)
+		
 	</insert>
+	
+	<update id="noticeReplyDelete">
+		UPDATE NOTICE_REPLY SET
+		DELETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	
+	<update id="noticeReplyUpdate">
+		UPDATE NOTICE_REPLY SET
+		CONTENT = #{content}
+		WHERE NO = #{no}
+	</update>
 	
 	<select id="getNoticeListCnt" resultType="int">
 		SELECT COUNT(*)

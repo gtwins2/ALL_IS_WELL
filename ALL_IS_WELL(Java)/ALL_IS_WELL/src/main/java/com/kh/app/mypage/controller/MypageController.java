@@ -45,7 +45,7 @@ public class MypageController {
 		
 		int result = ms.sign(vo);
 		
-		return "redirect:/mypageMember";
+		return "login/login";
 	}
 	
 	
