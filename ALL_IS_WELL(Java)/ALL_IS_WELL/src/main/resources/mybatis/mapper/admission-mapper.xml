@@ -63,6 +63,8 @@
 		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
 			WHERE P.NAME LIKE '%${searchValue}%'		
 		</if>
+		ORDER BY R.NO DESC
+		
 	</select>
 	
 	<select id="goDetailAdmissionRecord" resultType="com.kh.app.admission.vo.AdmissionVo">

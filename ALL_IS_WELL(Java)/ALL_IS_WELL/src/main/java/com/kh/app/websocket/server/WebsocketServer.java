@@ -1,8 +1,10 @@
 package com.kh.app.websocket.server;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,6 +35,9 @@ public class WebsocketServer extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log.info("called...afterConnectionEstablished");
 		
+		
+		
+		
 		//sessionSet에 세션 저장(여러명이 연결)
 		sessionSet.add(session);
 		
@@ -60,10 +65,11 @@ public class WebsocketServer extends TextWebSocketHandler {
 		log.info("받은 메시지 : "+message.getPayload().toString());
 		MemberVo loginMember = (MemberVo)session.getAttributes().get("loginMember");
 		
-//		ChattingData data = gson.fromJson(message.getPayload(), ChattingData.class);
+		log.info(loginMember.toString());
 		
-		
-//		String roomId = data.getRoomId();
+		 
+		 
+		 
 		
 		//json으로 데이터를 파싱하기
 		Gson gson = new Gson();
@@ -73,30 +79,25 @@ public class WebsocketServer extends TextWebSocketHandler {
 		//변환된 데이터를 send하기
 		
 		Map<String, String> msgVo = new HashMap<>();
-		msgVo.put("profileImage", loginMember.getProfile());
 		msgVo.put("name", loginMember.getName());
 		msgVo.put("msg", message.getPayload());
 		
-		//이 시각이 발신시각은 아님
-		//발신시각을 받으려면 클라이언트 측에서 시간 값도 같이 보내줘야함
-		//long 타입이라서 String type으로 변환
-		msgVo.put("time", new Date() + "");
-		
+		Date currentTime = new Date();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M월 d일 a h:mm", Locale.KOREA);
+
+		String formattedTime = dateFormat.format(currentTime);
+
+		msgVo.put("time", formattedTime);
 		
 		String jsonStr = gson.toJson(msgVo);
 		
-		ChattingVo vo = new ChattingVo();
 		
-		/*
-		 * vo.setChattingRoomNo();
-		 * 
-		 * int result =
-		 */
+		
 		
 		//전달받은 메세지를 모두에게 뿌려주기
 		//연결된 모든 세션을 가져와서 send 해주기
 		for(WebSocketSession s : sessionSet) {
-			
 			s.sendMessage(new TextMessage(jsonStr));
 		}	
 	}

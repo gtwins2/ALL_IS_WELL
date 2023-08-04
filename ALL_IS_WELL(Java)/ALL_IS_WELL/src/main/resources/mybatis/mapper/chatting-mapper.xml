@@ -56,4 +56,9 @@
 	<select id="getChattingRoomNo" resultType="com.kh.app.chatting.vo.ChattingVo">
 		SELECT NO AS CHATTING_ROOM_NO FROM CHATTING_ROOM WHERE SENDER_NO = #{senderNo} AND RECEIVER_NO = #{receiverNo}
 	</select>
+	
+	<insert id="saveMessage">
+		 INSERT INTO CHATTING(NO, ROOM_NO, WRITER_NO, MESSENGER_CONTENT, MAIL_ENROLL_DATE, CONFIRM_YN, DELETE_YN) 
+		VALUES(SEQ_CHATTING_NO.NEXTVAL, #{chattingRoomNo}, #{writerNo}, #{messengerContent}, #{mailEnrollDate}, 'N', 'N')
+	</insert>
 </mapper>
