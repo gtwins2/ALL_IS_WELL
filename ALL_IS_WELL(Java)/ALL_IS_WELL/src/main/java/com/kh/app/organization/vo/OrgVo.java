@@ -5,10 +5,11 @@
  
  @Data public class OrgVo {
  
- private String mname; 
- private String dname; 
- private String position; 
- private String phoneNumber; 
+ private String no;
+ private String mname;
+ private String dname;
+ private String position;
+ private String phoneNumber;
  private String email;
  
  }

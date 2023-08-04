@@ -23,4 +23,6 @@ public interface MemberListDao {
 	//paging
 	int getBoardCnt(SqlSessionTemplate sst);
 
+	int edit(SqlSessionTemplate sst, MemberVo vo);
+
 }

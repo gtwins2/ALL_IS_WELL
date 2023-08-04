@@ -4,7 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orgChart">
    
-   
+    <select id="getList" resultType="com.kh.app.organization.vo.OrgVo">
+      SELECT 
+	      M.NAME as mname,
+	      D.NAME AS dname,
+	      P.NAME AS position,
+	      M.PHONE_NUMBER,
+	      M.EMAIL
+      FROM MEMBER M
+	  JOIN DEPARTMENT D
+	  ON M.DEPARTMENT_NO = D.NO
+	  JOIN POSITION P
+	  ON M.POSITION_NO = P.NO
+      WHERE M.POSITION_NO = 1
+      AND M.STATUS = 'O'
+     
+	</select>
+
 	
 	
 </mapper>

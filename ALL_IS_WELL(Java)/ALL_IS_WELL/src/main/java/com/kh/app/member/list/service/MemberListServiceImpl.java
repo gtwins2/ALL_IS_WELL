@@ -39,6 +39,10 @@ public class MemberListServiceImpl implements MemberListService{
 	public int getBoardCnt() {
 		return dao.getBoardCnt(sst);
 	}
+	@Override
+	public int edit(MemberVo vo) {
+		return dao.edit(sst , vo);
+	}
 		
 
 }
