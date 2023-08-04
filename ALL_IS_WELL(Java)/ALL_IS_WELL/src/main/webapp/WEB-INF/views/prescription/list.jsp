@@ -187,7 +187,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">환자 조회</span>
+                    <span id="title">환자 처방전 조회</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">

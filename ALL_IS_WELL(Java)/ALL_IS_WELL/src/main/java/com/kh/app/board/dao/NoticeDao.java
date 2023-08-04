@@ -42,4 +42,12 @@ public class NoticeDao {
 		return sst.insert("notice.noticeUpdate", vo);
 	}
 
+	public int noticeReplyDelete(SqlSessionTemplate sst, NoticeReplyVo vo) {
+		return sst.update("notice.noticeReplyDelete", vo);
+	}
+
+	public int noticeReplyUpdate(SqlSessionTemplate sst, NoticeReplyVo vo) {
+		return sst.update("notice.noticeReplyUpdate", vo);
+	}
+
 }

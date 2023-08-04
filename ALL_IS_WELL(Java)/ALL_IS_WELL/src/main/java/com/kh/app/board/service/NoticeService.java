@@ -47,5 +47,13 @@ public class NoticeService {
 		return dao.noticeUpdate(sst, vo);
 	}
 
+	public int noticeReplyDelete(NoticeReplyVo vo) {
+		return dao.noticeReplyDelete(sst, vo);
+	}
+
+	public int noticeReplyUpdate(NoticeReplyVo vo) {
+		return dao.noticeReplyUpdate(sst, vo);
+	}
+
 	
 }

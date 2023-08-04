@@ -112,6 +112,25 @@ public class AboardController {
 		return "redirect:/board/noticeDetail?no="+ no;
 	}
 	
+	@PostMapping("noticeReplyDelete")
+	public String noticeReplyDelete(NoticeReplyVo vo) {
+		int result = ns.noticeReplyDelete(vo);
+		String no = vo.getNoticeNo();
+		return "redirect:/board/noticeDetail?no="+ no;
+	}
+	
+	@GetMapping("noticeReplyUpdate")
+	public String noticeReplyUpdate(String no) {
+		
+		return "board/noticeReplyUpdate";
+	}
+	
+	@PostMapping("noticeReplyUpdate")
+	public String noticeReplyUpdate(NoticeReplyVo vo) {
+		int result = ns.noticeReplyUpdate(vo);
+		String no = vo.getNoticeNo();
+		return "redirect:/board/noticeDetail?no="+ no;
+	}
 	
 	
 	

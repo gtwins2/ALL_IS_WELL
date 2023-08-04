@@ -161,9 +161,8 @@ border-radius: 50px;
 
 #div03-1{
 	display: grid;
-	grid-template-columns: 1fr 7fr 1fr;
+	grid-template-columns: 1fr 10fr 1fr;
 	margin-left: 60px;
-	margin-right: 50px;
 }
 
 #write{
@@ -180,6 +179,30 @@ border-radius: 50px;
 	color: #FFFFFF;
 	border: 0px;
 	margin-left: 60px;
+}
+#delete{
+background-color:gray; 
+	width: 30px;
+	height: 20px;
+}
+
+#reply{
+	background-color:gray; 
+	width: 30px;
+	height: 20px;
+}
+
+
+#replyInput{
+	border: 0px;
+	background-color:lightgray; 
+	outline: none;
+}
+
+#updateForm{
+display: grid;
+grid-template-columns: 9fr 2fr 1fr;
+
 }
 </style>
 </head>
@@ -222,19 +245,29 @@ border-radius: 50px;
 					<div><button id="write">작성</button></div>
 				</div>
 			</form>
-
 			<div id="div03">
-				<c:forEach items="${voList2}" var="vo">
                             
-
 	                 <div id="div03-1">
-	                     <div>${vo.no}</div>
-	                     <div>${vo.content}</div>
-	                     <div>${vo.enrollDate}</div>
+	                 	<table width="1400px">
+						<c:forEach items="${voList2}" var="vo2">
+		                 	<tr>
+		                    	 <td hidden>${vo2.no} </td>
+		                    	 <td>${vo2.content} </td>
+		                     	 <td>${vo2.enrollDate}123</td>
+		                     	 <td><input type="text" value="${vo.no}" name="noticeNo" hidden></td>
+		                     	 <td><input type="text" value="${vo2.no}" name='no' hidden></td>
+			                     <td><input type="" value="수정" id="reply" ></td>
+		                     <form action="${root}/board/noticeReplyDelete" method="post">
+		                     	 <input type="text" value="${vo.no}" name="noticeNo" hidden>
+		                     	 <input type="text" value="${vo2.no}" name='no' hidden>
+			                     <td><input type="submit" value="삭제" id="delete"></td>
+		                     </form>
+		                     </tr>
+						</c:forEach>
+	                 	</table>
 	                 </div>
 	                 
                                 
-				</c:forEach>
 			</div>
 
 		</main>
@@ -263,4 +296,17 @@ border-radius: 50px;
 	function update() {
 		location.href="${root}/board/noticeUpdate?no="+ ${vo.no};
 	}
+	
+	const tr = document.querySelectorAll('tr');
+	const reply = document.querySelectorAll('#reply');
+    for(var i = 0; i < reply.length; i++){
+    	reply[i].addEventListener('click', (event)=>{
+            const no = event.target.parentNode.parentNode.children[0].innerText;
+            const name = event.target.parentNode.parentNode.children[1].innerText;
+            location.href='/app/board/noticeReplyUpdate?no=' + no +"&name=" + name;
+            console.log(event.target.parentNode.parentNode.children[0]);
+        
+      
+        });
+    }
 </script>
