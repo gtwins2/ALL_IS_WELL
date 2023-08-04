@@ -1,5 +1,7 @@
 package com.kh.app.chatting.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -112,5 +116,32 @@ public class ChattingController {
 		model.addAttribute("roomVo", roomVo);
 		
 		return "chatting/newChattingRoom";
+	}
+	
+	@PostMapping("saveMessage")
+	public ResponseEntity<String> saveMessage(@RequestBody ChattingVo vo, HttpSession session) {
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		
+		vo.setWriterNo(loginMember.getNo());
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentDate = dateFormat.format(new Date());
+		vo.setMailEnrollDate(currentDate);
+		
+		
+		log.info(vo.toString());
+		
+		int result = service.saveMessage(vo);
+		
+		log.info("메시지 저장 성공 여부 : "+String.valueOf(result));
+		
+		if(result != 1) {
+			throw new IllegalStateException("메시지 저장 실패");
+		}
+		
+		
+
+		return ResponseEntity.ok("메시지 디비에 저장됨");
 	}
 }	

@@ -39,4 +39,8 @@ public class ChattingDao {
 	public ChattingVo getChattingRoomNo(SqlSessionTemplate sst, Map<String, String> memberMap) {
 		return sst.selectOne("chatting.getChattingRoomNo", memberMap);
 	}
+
+	public int saveMessage(SqlSessionTemplate sst, ChattingVo vo) {
+		return sst.insert("chatting.saveMessage", vo);
+	}
 }

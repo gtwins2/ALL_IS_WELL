@@ -59,5 +59,11 @@ public class ChattingService {
 
 
 
+	public int saveMessage(ChattingVo vo) {
+		return dao.saveMessage(sst, vo);
+	}
+
+
+
 	
 }

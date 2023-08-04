@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>채팅방</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
     <style>
         * {
@@ -245,7 +246,8 @@
     
     
     <script type="text/javascript">
-    let chattingRoomNo = "${roomVo.chattingRoomNo}";
+    	let chattingRoomNo = "${roomVo.chattingRoomNo}";
+    	
     
     
 		const resultDiv = document.querySelector("#result");
@@ -267,34 +269,101 @@
 		ws.onerror = funcError;
 		
 		const contentArea = document.querySelector(".content-area");
+		
+		// 사용자가 메시지를 입력하고 전송할 경우 실행되는 코드
+	    const messageInput = document.querySelector("#chat-box");
+	    const sendButton = document.querySelector("#send");
 
-		// 서버에서 메시지를 수신할 경우 실행되는 코드
-		ws.onmessage = function(event) {
-		  const message = JSON.parse(event.data);
-		  const msg = JSON.parse(message.msg);
+	    sendButton.addEventListener("click", function (event) {
+	        event.preventDefault();
 
-		  contentArea.innerHTML += "<div>" + msg.message + "</div>";
-		};
+	        const messengerContent = messageInput.value;
+
+	        ws.send(messengerContent);
+
+	       /*  messageInput.value = ""; */
+	    });
+
+
+		 let messageDiv;
+
+        // 서버에서 메시지를 수신할 경우 실행되는 코드
+        ws.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+
+            // Extract message details from the JSON data
+            const senderName = message.name;
+            console.log(senderName);
+            const messageContent = message.msg;
+            console.log(messageContent);
+            const timeStamp = message.time;
+            console.log(timeStamp);
+
+            messageDiv = document.createElement("div");
+            messageDiv.classList.add("chat-opponent");
+
+            // Create the content div
+            const contentDiv = document.createElement("div");
+            contentDiv.classList.add("content");
+
+            // Create the textbox div and set its text content
+            const textboxDiv = document.createElement("div");
+            textboxDiv.classList.add("textbox");
+            textboxDiv.textContent = messageContent;
+
+            // Create the date div and set its text content
+            const dateDiv = document.createElement("div");
+            dateDiv.classList.add("date");
+            dateDiv.textContent = timeStamp;
+
+            // Append the textbox and date div to the content div
+            contentDiv.appendChild(textboxDiv);
+            contentDiv.appendChild(dateDiv);
+
+            // Create the mark-read div and set its text content
+            const markReadDiv = document.createElement("div");
+            markReadDiv.classList.add("mark-read");
+            markReadDiv.textContent = "1";
+
+            // Append the content div and mark-read div to the messageDiv
+            messageDiv.appendChild(contentDiv);
+            messageDiv.appendChild(markReadDiv);
+
+            // Append the messageDiv to the content area
+            contentArea.appendChild(messageDiv);
+        };
+        
 
 		// 사용자가 메시지를 입력하고 전송할 경우 실행되는 코드
-		const messageInput = document.querySelector("#chat-box");
-		const sendButton = document.querySelector("#send");
+		
 
 		sendButton.addEventListener("click", function(event) {
-		  event.preventDefault();
+			  event.preventDefault();
 
-		  const message = messageInput.value;
-		  const data = {
-		    type: "CHAT",
-		    message: message,
-		    roomId: chattingRoomNo
-		  };
+			  const messengerContent = messageInput.value;
+			  
 
-		  const jsonData = JSON.stringify(data);
-		  ws.send(jsonData);
+			 
 
-		  messageInput.value = "";
-		});
+			  $.ajax({
+			    url: "/app/chatting/saveMessage",
+			    type: "POST",
+			    data: JSON.stringify({ 
+			        messengerContent: messengerContent,
+			        chattingRoomNo: chattingRoomNo
+			      }),
+			      contentType: "application/json",
+			      dataType: "text",
+			      success: function(response) {
+	                    console.log("메시지 잘 전달됨 :", response);
+	                },
+			    error: function(xhr, status, error) {
+			    	console.error("메시지 저장 실패 - Status:", status, "Error:", error, "Response Text:", xhr.responseText);
+			    }
+			  });
+
+			  messageInput.value = "";
+			});
 		
 		//웹소켓 오픈되었을때 실행되는 함수
 		function funcOpen() {
@@ -313,6 +382,7 @@
 		
 		
 		//웹소켓 메시지 받았을때 실행되는 함수
+		
 		
 		
 	
