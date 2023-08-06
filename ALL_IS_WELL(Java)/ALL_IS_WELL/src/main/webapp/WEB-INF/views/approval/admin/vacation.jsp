@@ -363,8 +363,8 @@
                                 <td><fmt:formatDate value="${avo.completeDate}" pattern="yyyy-MM-dd HH시" /></td>
                             </tr>
                             <tr id="date">
-                                <td>${avo.memberName}</td>
-                                <td>${avo.approverName}</td>
+                                <td>${avo.memberName}(${avo.departmentName})</td>
+                                <td>${avo.approverName}(${avo.approverDepartmentName})</td>
                                 <td>
                                     <c:if test="${avo.status == 'A' || avo.status == 'O'}">
                                         송세경
@@ -404,16 +404,6 @@
                     </div>
                 </div>
             </div>
-            <div id="approvalMyModal" class="jw-modal">
-                <div class="modal-content">
-                    <div style="font-size: 35px; font-weight: bold;">승인</div>
-                    <div contenteditable="true" id="approvalModalContent"></div>
-                    <div class="button-container">
-                        <button id="approvalSubmitBtn">작성</button>
-                        <button id="approvalCancelBtn">취소</button>
-                    </div>
-                </div>
-            </div>
         </div>
    </main>
 
@@ -445,14 +435,8 @@
         const myModal = document.getElementById("myModal");
         const submitBtn = document.getElementById("submitBtn");
         const cancelBtn = document.getElementById("cancelBtn");
-        const approvalSubmitBtn = document.getElementById("approvalSubmitBtn");
-        const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
         // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "block";
-        });
-
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -462,20 +446,10 @@
             myModal.style.display = "none";
         });
 
-        approvalCancelBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "none";
-        });
-
         // 모달 바깥쪽 클릭 시 모달 닫기
         window.onclick = (event) => {
             if (event.target === myModal) {
                 myModal.style.display = "none";
-            }
-        };
-
-        window.onclick = (event) => {
-            if (event.target === approvalMyModal) {
-                approvalMyModal.style.display = "none";
             }
         };
 
@@ -503,20 +477,17 @@
         });
 
         //승인 시 작동
-        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+        document.querySelector("#approvalBtn").addEventListener('click', function (){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
-            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
 
             $.ajax({
                 type : 'post',
                 url : '${root}/approval/admin/approval',
                 data : {
                     no : documentNo,
-                    reason : approvalModalContent
                 },
                 success : function(){
                     console.log(documentNo)
-                    console.log(approvalModalContent)
                     location.href = "/app/approval/admin/list";
                 },
                 error : function(error){
@@ -524,6 +495,8 @@
                 }
             })
         })
+    
+    </script>
     </script>
 
 </body>

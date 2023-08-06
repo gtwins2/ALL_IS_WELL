@@ -250,6 +250,11 @@
       color: red;
     }
 
+    .approved {
+        font-size: 1.5em; 
+        font-weight: bold;
+        color: blue;
+    }
 </style>
 </head>
 <body>
@@ -304,24 +309,39 @@
                                     <c:when test="${ivo.status == 'R'}">
                                         <span class="rejected">반려</span>
                                     </c:when>
-                                    <c:when test="${ivo.status == 'F'}">
+                                    <c:when test="${ivo.status != 'W'}">
                                         ${ivo.approverSign}
                                     </c:when>
                                     </c:choose>
                                 </td>
-                                <td></td>
+                                <td class="${ivo.status == 'A' ? 'approved' : (ivo.status == 'O' ? 'rejected' : '')}">
+                                    <c:if test="${ivo.status == 'A'}">
+                                        승 인
+                                    </c:if>
+                                    <c:if test="${ivo.status == 'O'}">
+                                        반 려
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${ivo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
                                 <td><fmt:formatDate value="${ivo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td></td>
+                                <td>
+                                    <c:if test="${ivo.status == 'A' || ivo.status == 'O'}">
+                                        <fmt:formatDate value="${ivo.completeDate}" pattern="yyyy-MM-dd HH시" />
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr id="date">
-                                <td>${ivo.memberName}</td>
-                                <c:if test="${ivo.status == 'F' || ivo.status == 'R'}">
-                                    <td>${ivo.approverName}</td>
+                                <td>${ivo.memberName}(${ivo.departmentName})</td>
+                                <c:if test="${ivo.status == 'F' || ivo.status == 'R' || ivo.status == 'O'}">
+                                    <td>${ivo.approverName}(${ivo.approverDepartmentName})</td>
                                 </c:if>
-                                <td></td>
+                                <td>
+                                    <c:if test="${ivo.status == 'A' || ivo.status == 'O'}">
+                                        송세경
+                                    </c:if>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -389,12 +409,7 @@
         });
 
         function back(){
-            if('${ivo.positionNo}' == 1){
-                location.href = "${root}/approval/list";
-            }
-            else{
-                location.href = "${root}/approval/draftList";
-            }
+            history.back();
         }
 
         // 버튼과 모달 요소 선택하기
@@ -407,10 +422,6 @@
         const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
         // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "block";
-        });
-
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -420,20 +431,10 @@
             myModal.style.display = "none";
         });
 
-        approvalCancelBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "none";
-        });
-
         // 모달 바깥쪽 클릭 시 모달 닫기
         window.onclick = (event) => {
             if (event.target === myModal) {
                 myModal.style.display = "none";
-            }
-        };
-
-        window.onclick = (event) => {
-            if (event.target === approvalMyModal) {
-                approvalMyModal.style.display = "none";
             }
         };
 
@@ -461,16 +462,14 @@
         });
 
         //승인 시 작동
-        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+        document.querySelector("#approvalBtn").addEventListener('click', function (){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
-            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
 
             $.ajax({
                 type : 'post',
                 url : '${root}/approval/approval',
                 data : {
                     no : documentNo,
-                    reason : approvalModalContent
                 },
                 success : function(){
                     console.log(documentNo)

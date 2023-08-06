@@ -333,8 +333,8 @@
                                 <td><fmt:formatDate value="${avo.completeDate}" pattern="yyyy-MM-dd HH시" /></td>
                             </tr>
                             <tr id="date">
-                                <td>${avo.memberName}</td>
-                                <td>${avo.approverName}</td>
+                                <td>${avo.memberName}(${avo.departmentName})</td>
+                                <td>${avo.approverName}(${avo.approverDepartmentName})</td>
                                 <td>
                                     <c:if test="${avo.status == 'A' || avo.status == 'O'}">
                                         송세경

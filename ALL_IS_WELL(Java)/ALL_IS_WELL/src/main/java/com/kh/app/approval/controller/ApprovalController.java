@@ -139,13 +139,12 @@ public class ApprovalController {
 	
 	//승인 선택
 	@PostMapping("admin/approval")
-	public String adminApproval(String no, String reason, HttpSession session) {
+	public String adminApproval(String no,HttpSession session) {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		AdminApproverVo avo = new AdminApproverVo();
 		avo.setNo(no);
-		avo.setReason(reason);
 		
 		int result = as.AdminApprovalUpdate(avo);
 		
@@ -211,7 +210,7 @@ public class ApprovalController {
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
 		
-		if("F".equals(status) || "R".equals(status)) {
+		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
 			ivo = as.detailApprovalInventory(no);
 		}
 		else {
@@ -241,7 +240,7 @@ public class ApprovalController {
 		String status = statusVo.getStatus();
 		
 		AdminApproverVo vvo = null;
-		if("F".equals(status) || "R".equals(status)) {
+		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
 			vvo = as.detailApprovalVacation(no);
 		}
 		else {
@@ -265,7 +264,7 @@ public class ApprovalController {
 		
 		AdminApproverVo bvo = null;
 		
-		if("F".equals(status) || "R".equals(status)) {
+		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
 			bvo = as.detailApprovalTrip(no);
 		}
 		else {
@@ -302,13 +301,12 @@ public class ApprovalController {
 	
 	//승인 선택
 	@PostMapping("approval")
-	public String approval(String no, String reason, HttpSession session) {
+	public String approval(String no, HttpSession session) {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		ApproverVo vo = new ApproverVo();
 		vo.setApprovalDocumentNo(no);
-		vo.setReason(reason);
 		vo.setApproverNo(loginMember.getNo());
 		vo.setApproverName(loginMember.getName());
 		vo.setPositionNo(loginMember.getPositionNo());

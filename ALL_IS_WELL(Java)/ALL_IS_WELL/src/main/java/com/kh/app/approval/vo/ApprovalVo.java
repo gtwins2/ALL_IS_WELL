@@ -13,5 +13,6 @@ public class ApprovalVo {
 	private String status;
 	private String title;
 	private String memberName;
+	private String reason;
 	
 }
