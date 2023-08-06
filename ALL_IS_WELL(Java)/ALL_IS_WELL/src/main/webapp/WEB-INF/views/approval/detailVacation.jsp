@@ -213,7 +213,7 @@
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td>${vvo.memberName}</td>
+                                <td>${vvo.memberName}(${vvo.departmentName})</td>
                                 <td></td>
                                 <td></td>
                             </tr>
