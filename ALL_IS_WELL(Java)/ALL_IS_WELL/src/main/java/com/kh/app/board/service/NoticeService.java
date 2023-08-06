@@ -55,5 +55,13 @@ public class NoticeService {
 		return dao.noticeReplyUpdate(sst, vo);
 	}
 
+	public int noticeFile(NoticeVo vo) {
+		return dao.noticeFile(sst, vo);
+	}
+
+	public int fileUpdate(NoticeVo vo) {
+		return dao.fileUpdate(sst, vo);
+	}
+
 	
 }

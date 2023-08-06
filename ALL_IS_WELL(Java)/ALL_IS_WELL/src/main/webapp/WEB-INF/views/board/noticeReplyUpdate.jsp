@@ -121,8 +121,9 @@ textarea{
 				<div id="div01">
 					<div>
 						<div>제목</div>
-						<div> <input type="text" name="no" id="">${vo.no}</div>
-						<div> <input type="text" name="content" id=""></div>
+						<div> <input type="text" name="no" value="${no}" id=""></div>
+						<div> <input type="text" name="content" id="" value="${content }"></div>
+						<div> <input type="text" name="noticeNo" id="" value="${noticeNo }"></div>
 					</div>
 					<div>
 						<div>파일첨부</div>

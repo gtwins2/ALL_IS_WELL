@@ -125,7 +125,7 @@ textarea{
 					</div>
 					<div>
 						<div>파일첨부</div>
-						<div><button id="file"> 첨부파일</button></div>
+						<div><input type="file" id="file" name="attachName"></div>
 					</div>
 					<div>
 						<div>내용</div>

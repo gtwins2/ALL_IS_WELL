@@ -50,4 +50,12 @@ public class NoticeDao {
 		return sst.update("notice.noticeReplyUpdate", vo);
 	}
 
+	public int noticeFile(SqlSessionTemplate sst, NoticeVo vo) {
+		return sst.insert("notice.noticeFile", vo);
+	}
+
+	public int fileUpdate(SqlSessionTemplate sst, NoticeVo vo) {
+		return sst.update("notice.fileUpdate", vo);
+	}
+
 }
