@@ -70,6 +70,7 @@ public class AboardController {
 	public String noticeWrite(NoticeVo vo) {
 		
 		int result = ns.noticeWrite(vo);
+		int result2 = ns.noticeFile(vo);
 		
 		return "redirect:/board/noticeList";
 	}
@@ -87,6 +88,7 @@ public class AboardController {
 	public String noticeUpdate(NoticeVo vo) {
 		
 		int result = ns.noticeUpdate(vo);
+		int result2 = ns.fileUpdate(vo);
 		
 		return "redirect:/board/noticeList";
 	}
@@ -115,13 +117,15 @@ public class AboardController {
 	@PostMapping("noticeReplyDelete")
 	public String noticeReplyDelete(NoticeReplyVo vo) {
 		int result = ns.noticeReplyDelete(vo);
-		String no = vo.getNoticeNo();
+		String no = vo.getNo();
 		return "redirect:/board/noticeDetail?no="+ no;
 	}
 	
 	@GetMapping("noticeReplyUpdate")
-	public String noticeReplyUpdate(String no) {
-		
+	public String noticeReplyUpdate(String no, String content, String noticeNo, Model model) {
+		model.addAttribute("no",no);
+		model.addAttribute("content",content);
+		model.addAttribute("noticeNo",noticeNo);
 		return "board/noticeReplyUpdate";
 	}
 	
@@ -129,6 +133,7 @@ public class AboardController {
 	public String noticeReplyUpdate(NoticeReplyVo vo) {
 		int result = ns.noticeReplyUpdate(vo);
 		String no = vo.getNoticeNo();
+		
 		return "redirect:/board/noticeDetail?no="+ no;
 	}
 	

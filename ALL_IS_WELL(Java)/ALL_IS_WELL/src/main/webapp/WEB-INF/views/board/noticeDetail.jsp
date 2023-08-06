@@ -71,7 +71,7 @@ hr{
 	grid-template-columns: 1fr 3fr;
 }
 
-#file{
+#file-upload-button{
 	width: 115px;
 	height: 53px;
 	background: #FF8686;
@@ -227,7 +227,7 @@ grid-template-columns: 9fr 2fr 1fr;
 					</div>
 					<div>
 						<div>파일첨부</div>
-						<div><button id="file"> 첨부파일</button></div>
+						<div><a href="/app/resources/static/sign/${vo.attachName}" download>${vo.attachName}</a></div>
 					</div>
 					<div>
 						<div>내용</div>
@@ -253,6 +253,7 @@ grid-template-columns: 9fr 2fr 1fr;
 		                 	<tr>
 		                    	 <td hidden>${vo2.no} </td>
 		                    	 <td>${vo2.content} </td>
+		                    	 <td hidden>${vo2.noticeNo} </td>
 		                     	 <td>${vo2.enrollDate}123</td>
 		                     	 <td><input type="text" value="${vo.no}" name="noticeNo" hidden></td>
 		                     	 <td><input type="text" value="${vo2.no}" name='no' hidden></td>
@@ -302,8 +303,9 @@ grid-template-columns: 9fr 2fr 1fr;
     for(var i = 0; i < reply.length; i++){
     	reply[i].addEventListener('click', (event)=>{
             const no = event.target.parentNode.parentNode.children[0].innerText;
-            const name = event.target.parentNode.parentNode.children[1].innerText;
-            location.href='/app/board/noticeReplyUpdate?no=' + no +"&name=" + name;
+            const content = event.target.parentNode.parentNode.children[1].innerText;
+            const noticeNo = event.target.parentNode.parentNode.children[2].innerText;
+            location.href='/app/board/noticeReplyUpdate?no=' + no +"&content=" + content +"&noticeNo=" +noticeNo ;
             console.log(event.target.parentNode.parentNode.children[0]);
         
       
