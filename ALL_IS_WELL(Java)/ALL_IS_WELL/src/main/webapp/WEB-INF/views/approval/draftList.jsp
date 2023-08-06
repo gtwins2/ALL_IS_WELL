@@ -248,7 +248,7 @@
                     <tbody>
                         <c:forEach items="${voList}" var="vo">
                             <tr onclick="detail();">
-                                <td id="approvalNo" >${vo.no}</td>
+                                <td id="approvalNo" hidden>${vo.no}</td>
                                 <td>${vo.memberName}</td>
                                 <td id="approvalTitle">${vo.title}</td>
                                 <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
@@ -336,13 +336,13 @@
                     location.href = "${root}/approval/inventory?no=" + no;
                 }
             }
-            else if(status === "A" || status === "O"){
+            else if(status === "승인"){
                 if (title === "출장문서") {
-                    location.href = "${root}/approval/admin/trip?no=" + no;
+                    location.href = "${root}/approval/trip?no=" + no;
                 } else if (title === "휴가문서") {
-                    location.href = "${root}/approval/admin/vacation?no=" + no;
+                    location.href = "${root}/approval/vacation?no=" + no;
                 } else if (title === "재고신청문서") {
-                    location.href = "${root}/approval/admin/inventory?no=" + no;
+                    location.href = "${root}/approval/inventory?no=" + no;
                 } 
             }
         };

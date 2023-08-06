@@ -286,6 +286,18 @@
         transition: 0.7s;
     }
 
+    .rejected {
+      font-size: 1.5em; 
+      font-weight: bold; 
+      color: red;
+    }
+
+    .approved {
+        font-size: 1.5em; 
+        font-weight: bold;
+        color: blue;
+    }
+
 </style>
 </head>
 <body>
@@ -337,27 +349,42 @@
                                 <td>${bvo.sign}</td>
                                 <td>
                                     <c:choose>
-                                    <c:when test="${ivo.status == 'R'}">
+                                    <c:when test="${bvo.status == 'R'}">
                                         <span class="rejected">반려</span>
                                     </c:when>
-                                    <c:when test="${ivo.status == 'F'}">
+                                    <c:when test="${bvo.status != 'W'}">
                                         ${bvo.approverSign}
                                     </c:when>
                                     </c:choose>
                                 </td>
-                                <td></td>
+                                <td class="${bvo.status == 'A' ? 'approved' : (bvo.status == 'O' ? 'rejected' : '')}">
+                                    <c:if test="${bvo.status == 'A'}">
+                                        승 인
+                                    </c:if>
+                                    <c:if test="${bvo.status == 'O'}">
+                                        반 려
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${bvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
                                 <td><fmt:formatDate value="${bvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td></td>
+                                <td>
+                                    <c:if test="${bvo.status == 'A' || bvo.status == 'O'}">
+                                        <fmt:formatDate value="${bvo.completeDate}" pattern="yyyy-MM-dd HH시" />
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr id="date">
-                                <td>${bvo.memberName}</td>
-                                <c:if test="${bvo.status == 'F' || bvo.status == 'R'}">
-                                    <td>${bvo.approverName}</td>
+                                <td>${bvo.memberName}(${bvo.departmentName})</td>
+                                <c:if test="${bvo.status == 'F' || bvo.status == 'R' || bvo.status == 'O'}">
+                                    <td>${bvo.approverName}(${bvo.approverDepartmentName})</td>
                                 </c:if>
-                                <td></td>
+                                <td>
+                                    <c:if test="${bvo.status == 'A' || bvo.status == 'O'}">
+                                        송세경
+                                    </c:if>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -389,16 +416,6 @@
                     <div class="button-container">
                         <button id="submitBtn">제출</button>
                         <button id="cancelBtn">취소</button>
-                    </div>
-                </div>
-            </div>
-            <div id="approvalMyModal" class="jw-modal">
-                <div class="modal-content">
-                    <div style="font-size: 35px; font-weight: bold;">승인</div>
-                    <div contenteditable="true" id="approvalModalContent"></div>
-                    <div class="button-container">
-                        <button id="approvalSubmitBtn">작성</button>
-                        <button id="approvalCancelBtn">취소</button>
                     </div>
                 </div>
             </div>
@@ -442,10 +459,6 @@
         const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
         // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "block";
-        });
-
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -455,20 +468,10 @@
             myModal.style.display = "none";
         });
 
-        approvalCancelBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "none";
-        });
-
         // 모달 바깥쪽 클릭 시 모달 닫기
         window.onclick = (event) => {
             if (event.target === myModal) {
                 myModal.style.display = "none";
-            }
-        };
-
-        window.onclick = (event) => {
-            if (event.target === approvalMyModal) {
-                approvalMyModal.style.display = "none";
             }
         };
 
@@ -496,20 +499,17 @@
         });
 
         //승인 시 작동
-        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+        document.querySelector("#approvalBtn").addEventListener('click', function (){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
-            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
 
             $.ajax({
                 type : 'post',
                 url : '${root}/approval/approval',
                 data : {
                     no : documentNo,
-                    reason : approvalModalContent
                 },
                 success : function(){
                     console.log(documentNo)
-                    console.log(approvalModalContent)
                     location.href = "/app/approval/list";
                 },
                 error : function(error){

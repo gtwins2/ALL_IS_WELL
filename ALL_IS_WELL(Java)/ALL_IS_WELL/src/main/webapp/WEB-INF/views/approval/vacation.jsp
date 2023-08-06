@@ -286,6 +286,19 @@
         transition: 0.7s;
     }
 
+    .approved {
+        font-size: 1.5em; 
+        font-weight: bold;
+        color: blue;
+    }
+
+    .rejected {
+        font-size: 1.5em; 
+        font-weight: bold;
+        color: red;
+    }
+
+
 </style>
 </head>
 <body>
@@ -337,27 +350,42 @@
                                 <td>${vvo.sign}</td>
                                 <td>
                                     <c:choose>
-                                    <c:when test="${ivo.status == 'R'}">
+                                    <c:when test="${vvo.status == 'R'}">
                                         <span class="rejected">반려</span>
                                     </c:when>
-                                    <c:when test="${ivo.status == 'F'}">
+                                    <c:when test="${vvo.status == 'F'}">
                                         ${vvo.approverSign}
                                     </c:when>
                                     </c:choose>
                                 </td>
-                                <td></td>
+                                <td class="${vvo.status == 'A' ? 'approved' : (vvo.status == 'O' ? 'rejected' : '')}">
+                                    <c:if test="${vvo.status == 'A'}">
+                                        승 인
+                                    </c:if>
+                                    <c:if test="${vvo.status == 'O'}">
+                                        반 려
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${vvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
                                 <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td></td>
+                                <td>
+                                    <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
+                                        <fmt:formatDate value="${vvo.completeDate}" pattern="yyyy-MM-dd HH시" />
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr id="date">
-                                <td>${vvo.memberName}</td>
-                                <c:if test="${vvo.status == 'F' || vvo.status == 'R'}">
-                                    <td>${vvo.approverName}</td>
+                                <td>${vvo.memberName}(${vvo.departmentName})</td>
+                                <c:if test="${vvo.status == 'F' || vvo.status == 'R' || vvo.status == 'O'}">
+                                    <td>${vvo.approverName}(${vvo.approverDepartmentName})</td>
                                 </c:if>
-                                <td></td>
+                                <td>
+                                    <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
+                                        송세경
+                                    </c:if>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -392,16 +420,6 @@
                     </div>
                 </div>
             </div>
-            <div id="approvalMyModal" class="jw-modal">
-                <div class="modal-content">
-                    <div style="font-size: 35px; font-weight: bold;">승인</div>
-                    <div contenteditable="true" id="approvalModalContent"></div>
-                    <div class="button-container">
-                        <button id="approvalSubmitBtn">작성</button>
-                        <button id="approvalCancelBtn">취소</button>
-                    </div>
-                </div>
-            </div>
         </div>
    </main>
 
@@ -424,12 +442,7 @@
         });
 
         function back(){
-            if('${ivo.positionNo}' == 1){
-                location.href = "${root}/approval/list";
-            }
-            else{
-                location.href = "${root}/approval/draftList";
-            }
+            history.back();
         }
 
         // 버튼과 모달 요소 선택하기
@@ -441,11 +454,7 @@
         const approvalSubmitBtn = document.getElementById("approvalSubmitBtn");
         const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
-        // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "block";
-        });
-
+        // 버튼 클릭 시 모달 열
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -455,20 +464,10 @@
             myModal.style.display = "none";
         });
 
-        approvalCancelBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "none";
-        });
-
         // 모달 바깥쪽 클릭 시 모달 닫기
         window.onclick = (event) => {
             if (event.target === myModal) {
                 myModal.style.display = "none";
-            }
-        };
-
-        window.onclick = (event) => {
-            if (event.target === approvalMyModal) {
-                approvalMyModal.style.display = "none";
             }
         };
 
@@ -496,20 +495,17 @@
         });
 
         //승인 시 작동
-        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+        document.querySelector("#approvalBtn").addEventListener('click', function (){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
-            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
 
             $.ajax({
                 type : 'post',
                 url : '${root}/approval/approval',
                 data : {
                     no : documentNo,
-                    reason : approvalModalContent
                 },
                 success : function(){
                     console.log(documentNo)
-                    console.log(approvalModalContent)
                     location.href = "/app/approval/list";
                 },
                 error : function(error){
