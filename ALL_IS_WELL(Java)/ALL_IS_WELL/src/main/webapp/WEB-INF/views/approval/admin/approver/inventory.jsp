@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,6 @@
         width: 80%;
         min-height: 100%;
         margin: auto;
-        position: relative;
     }
 
     #listBtnDiv {
@@ -34,8 +33,8 @@
     }
 
     #listBtn {
-        width: 80px;
-        font-size: 20px;
+        width: 60px;
+        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
@@ -53,9 +52,9 @@
 
     #vacation-application {
         width: 80%;
-        height: 85%;
         border: 1px solid black;
         margin: auto;
+        margin-bottom: 50px;
     }
 
     #title {
@@ -86,8 +85,9 @@
     #approval {
         border-collapse: collapse;
         text-align: center;
-        width: 550px;
+        width: 360px;
         height: 250px;
+        margin-left: 200px;
     }
 
     #approval tr th:first-child{
@@ -108,74 +108,37 @@
     }
 
     #stamp td {
-        height: 130px;
+        height: 140px;
     }
 
-    #date, #name{
-        height: 30px
-    }
-
-    #reasonDiv {
-        margin: auto;
-        margin-top: 40px;
-        margin-bottom: 40px;
-        width: 80%;
-        height: 400px;
-
-        border: 1px solid black;
-
-        display: grid;
-        grid-template-columns: 1fr 9fr;
-        grid-template-rows: 1fr 9fr;
-    }
-
-    #reasonDiv div:not(:nth-child(2), :nth-child(4)) {
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-size: 15px;
-        font-weight: bold;
-        width: 150px;
-    }
-
-    .top, .top-side {
-        border-bottom: 0.5px solid black;
-        height: 80px;
-    }
-
-    .top, .bottom {
-        border-right: 0.5px solid black;
-    }
-
-    .top-side {
-        display: flex;
-        align-items: center;
-        padding-left: 10px;
-        font-size: 20px;
-    }
-
-    .bottom-side {
-        display: flex;
-        align-items: center;
-        padding-left: 10px;
-        font-size: 20px;
-    }
-
-    #start-date, #end-date {
-        font-size: 20px;
-        margin-left: 10px;
-    }
-    
-    #buttonDiv{
-        text-align: right;
-        margin-right: 180px;
-        margin-top: 20px;
+    #inventory-div{
+        margin-top: 100px;
         margin-bottom: 50px;
     }
 
-    #approvalBtn {
+    #inventory-table{
+        border-collapse: collapse;
+        font-size: 15px;
+        margin: auto;
+        width: 75%;
+    }
+
+    #inventory-table th:first-child{
+        width: 80px;
+    }
+
+    #inventory-table tr th:first-child, td:first-child{
+        height: 30px;
+        text-align: center;
+    }
+
+    #buttonDiv{
+        text-align: right;
+        margin-right: 180px;
+        margin-bottom: 50px;
+    }
+
+    #approvalBtn{
         width: 100px;
         font-size: 20px;
         color: white;
@@ -188,7 +151,7 @@
         font-weight: bold;
     }
 
-    #approvalBtn:hover {
+    #approvalBtn:hover{
         background-color: #555;
         transition: 0.7s;
     }
@@ -225,7 +188,7 @@
         background-color: rgba(0, 0, 0, 0.4);
     }
 
-    .modal-content{
+    .modal-content {
         background-color: #fefefe;
         margin: auto;
         padding: 20px;
@@ -285,7 +248,7 @@
         color: white;
         transition: 0.7s;
     }
-
+    
     .approved {
         font-size: 1.3em; 
         font-weight: bold;
@@ -300,45 +263,45 @@
 
     #reason{
         font-weight: bold;
+        color: black;
     }
-
 
 </style>
 </head>
 <body>
    
    <header>
-      <%@include file="/WEB-INF/views/common/member/header.jsp" %>
+      <%@include file="/WEB-INF/views/common/admin/header.jsp" %>
    </header>
    
    <main id="wrap">
         <div>
-            <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
         </div>
         <div id="main-area">
             <div id="listBtnDiv">
                 <button id="listBtn" onclick="back();">목록</button>
             </div>
             <div id="vacation-application">
-                <div id="title">휴가신청서</div>
+                <div id="title">재고신청서</div>
                 <div id="contain-top">
                     <div id="document-info">
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>${vvo.no}</td>
+                                <td>${avo.no}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
-                                <td>${vvo.createDate}</td>
+                                <td>${avo.createDate}</td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>${vvo.departmentName}</td>
+                                <td>${avo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>${vvo.memberName}</td>
+                                <td>${avo.memberName}</td>
                             </tr>
                         </table>
                     </div>
@@ -347,56 +310,34 @@
                             <tr>
                                 <th rowspan="4">결재</th>
                                 <th id="approval-title">담당</th>
-                                <th id="approval-title">중간 결재자</th>
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${vvo.sign}</td>
+                                <td>${avo.sign}</td>
                                 <td>
-                                    <c:choose>
-                                    <c:when test="${vvo.status == 'R'}">
-                                        <span class="rejected">반 려</span>
-                                        <br>
-                                        <br>
-                                        <span id="reason">
-                                            ${vvo.reason}
+                                    <c:if test="${avo.status == 'A'}">
+                                        <span class="approved">
+                                            승 인
                                         </span>
-                                    </c:when>
-                                    <c:when test="${vvo.status == 'F'}">
-                                        ${vvo.approverSign}
-                                    </c:when>
-                                    </c:choose>
-                                </td>
-                                <td>
-                                    <c:if test="${vvo.status == 'A'}">
-                                        승 인
                                     </c:if>
-                                    <c:if test="${vvo.status == 'O'}">
+                                    <c:if test="${avo.status == 'O'}">
                                         <span class="rejected">반 려</span>
                                         <br>
                                         <br>
                                         <span id="reason">
-                                            ${vvo.reason}
+                                            ${avo.reason}
                                         </span>
                                     </c:if>
                                 </td>
                             </tr>
                             <tr id="name">
-                                <td><fmt:formatDate value="${vvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td>
-                                    <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
-                                        <fmt:formatDate value="${vvo.completeDate}" pattern="yyyy-MM-dd HH시" />
-                                    </c:if>
-                                </td>
+                                <td><fmt:formatDate value="${avo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <td><fmt:formatDate value="${avo.completeDate}" pattern="yyyy-MM-dd HH시" /></td>
                             </tr>
                             <tr id="date">
-                                <td>${vvo.memberName}(${vvo.departmentName})</td>
-                                <c:if test="${vvo.status == 'F' || vvo.status == 'R' || vvo.status == 'O'}">
-                                    <td>${vvo.approverName}(${vvo.approverDepartmentName})</td>
-                                </c:if>
+                                <td>${avo.memberName}(${avo.departmentName})</td>
                                 <td>
-                                    <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
+                                    <c:if test="${avo.status == 'A' || avo.status == 'O'}">
                                         송세경
                                     </c:if>
                                 </td>
@@ -404,33 +345,44 @@
                         </table>
                     </div>
                 </div>
-                <div id="reasonDiv">
-                    <div class="top">휴가기간</div>
-                    <div class="top-side">
-                        ${vvo.startDate}  ~ ${vvo.endDate}
-                    </div>
-                    <div class="bottom">사유</div>
-                    <div class="bottom-side">
-                        ${vvo.content}
-                    </div>
+                <div id="inventory-div">
+                    <table border="1" id="inventory-table">
+                        <tr>
+                            <th>품목명</th>
+                            <th>개수</th>
+                        </tr>
+                        <c:forEach items="${voList}" var="vo">
+                            <tr>
+                                <td>${vo.itemName}</td>
+                                <td>${vo.count}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
             </div>
-            <c:if test="${vvo.status == 'W'}">
+            <c:if test="${avo.status == 'W'}">
                 <div id="buttonDiv">
                     <button id="approvalBtn">승인</button>
                     <button id="refuseBtn">반려</button>
                 </div>
             </c:if>
-            <c:if test="${vvo.status != 'W'}">
-                <div id="buttonDiv"></div>
-            </c:if>
             <div id="myModal" class="jw-modal">
                 <div class="modal-content">
-                    <div style="font-size: 35px; font-weight: bold;">MEMO</div>
+                    <div style="font-size: 35px; font-weight: bold;">반려</div>
                     <div contenteditable="true" id="modalContent"></div>
                     <div class="button-container">
-                        <button id="submitBtn">제출</button>
+                        <button id="submitBtn">작성</button>
                         <button id="cancelBtn">취소</button>
+                    </div>
+                </div>
+            </div>
+            <div id="approvalMyModal" class="jw-modal">
+                <div class="modal-content">
+                    <div style="font-size: 35px; font-weight: bold;">승인</div>
+                    <div contenteditable="true" id="approvalModalContent"></div>
+                    <div class="button-container">
+                        <button id="approvalSubmitBtn">작성</button>
+                        <button id="approvalCancelBtn">취소</button>
                     </div>
                 </div>
             </div>
@@ -438,7 +390,7 @@
    </main>
 
    <footer>
-      <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+      <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
    </footer>
 
    <script>
@@ -456,7 +408,7 @@
         });
 
         function back(){
-            history.back();
+            location.href = "${root}/approval/admin/list";
         }
 
         // 버튼과 모달 요소 선택하기
@@ -468,7 +420,7 @@
         const approvalSubmitBtn = document.getElementById("approvalSubmitBtn");
         const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
-        // 버튼 클릭 시 모달 열
+        // 버튼 클릭 시 모달 열기
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -492,7 +444,7 @@
 
             $.ajax({
                 type : 'post',
-                url : '${root}/approval/refuse',
+                url : '${root}/approval/admin/refuse',
                 data : {
                     no : documentNo,
                     reason : modalContent
@@ -500,7 +452,7 @@
                 success : function(){
                     console.log(documentNo)
                     console.log(modalContent)
-                    location.href = "/app/approval/list";
+                    location.href = "/app/approval/admin/list";
                 },
                 error : function(error){
                     console.log("error", error);
@@ -514,19 +466,19 @@
 
             $.ajax({
                 type : 'post',
-                url : '${root}/approval/approval',
+                url : '${root}/approval/admin/approval',
                 data : {
                     no : documentNo,
                 },
                 success : function(){
                     console.log(documentNo)
-                    location.href = "/app/approval/list";
+                    location.href = "/app/approval/admin/list";
                 },
                 error : function(error){
                     console.log("error", error);
                 }
             })
-        });
+        })
 
     </script>
 

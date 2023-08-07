@@ -1,6 +1,7 @@
 package com.kh.app.attendance.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,8 @@ public class AttendanceService {
 	}
 
 	// 관리자 근태기록 조회
-	public List<AttendanceVo> getAttendanceListAdmin(PageVo pv) {
-		return dao.getAttendanceListAdmin(sst, pv);
+	public List<AttendanceVo> getAttendanceListAdmin(PageVo pv, Map<String, String> paramMap) {
+		return dao.getAttendanceListAdmin(sst, pv, paramMap);
 	}
 
 	public int getAdminAttendanceListCnt() {

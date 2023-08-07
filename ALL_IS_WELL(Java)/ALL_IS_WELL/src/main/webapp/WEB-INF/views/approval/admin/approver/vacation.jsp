@@ -86,8 +86,9 @@
     #approval {
         border-collapse: collapse;
         text-align: center;
-        width: 550px;
+        width: 360px;
         height: 250px;
+        margin-left: 200px;
     }
 
     #approval tr th:first-child{
@@ -300,20 +301,20 @@
 
     #reason{
         font-weight: bold;
+        color: black;
     }
-
 
 </style>
 </head>
 <body>
    
    <header>
-      <%@include file="/WEB-INF/views/common/member/header.jsp" %>
+      <%@include file="/WEB-INF/views/common/admin/header.jsp" %>
    </header>
    
    <main id="wrap">
         <div>
-            <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
         </div>
         <div id="main-area">
             <div id="listBtnDiv">
@@ -326,19 +327,19 @@
                         <table border="1" id="info">
                             <tr>
                                 <th>문서번호</th>
-                                <td>${vvo.no}</td>
+                                <td>${avo.no}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
-                                <td>${vvo.createDate}</td>
+                                <td>${avo.createDate}</td>
                             </tr>
                             <tr>
                                 <th>소속부서</th>
-                                <td>${vvo.departmentName}</td>
+                                <td>${avo.departmentName}</td>
                             </tr>
                             <tr>
                                 <th>작 성 자</th>
-                                <td>${vvo.memberName}</td>
+                                <td>${avo.memberName}</td>
                             </tr>
                         </table>
                     </div>
@@ -347,56 +348,34 @@
                             <tr>
                                 <th rowspan="4">결재</th>
                                 <th id="approval-title">담당</th>
-                                <th id="approval-title">중간 결재자</th>
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${vvo.sign}</td>
+                                <td>${avo.sign}</td>
                                 <td>
-                                    <c:choose>
-                                    <c:when test="${vvo.status == 'R'}">
-                                        <span class="rejected">반 려</span>
-                                        <br>
-                                        <br>
-                                        <span id="reason">
-                                            ${vvo.reason}
+                                    <c:if test="${avo.status == 'A'}">
+                                        <span class="approved">
+                                            승 인
                                         </span>
-                                    </c:when>
-                                    <c:when test="${vvo.status == 'F'}">
-                                        ${vvo.approverSign}
-                                    </c:when>
-                                    </c:choose>
-                                </td>
-                                <td>
-                                    <c:if test="${vvo.status == 'A'}">
-                                        승 인
                                     </c:if>
-                                    <c:if test="${vvo.status == 'O'}">
+                                    <c:if test="${avo.status == 'O'}">
                                         <span class="rejected">반 려</span>
                                         <br>
                                         <br>
                                         <span id="reason">
-                                            ${vvo.reason}
+                                            ${avo.reason}
                                         </span>
                                     </c:if>
                                 </td>
                             </tr>
                             <tr id="name">
-                                <td><fmt:formatDate value="${vvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td>
-                                    <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
-                                        <fmt:formatDate value="${vvo.completeDate}" pattern="yyyy-MM-dd HH시" />
-                                    </c:if>
-                                </td>
+                                <td><fmt:formatDate value="${avo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <td><fmt:formatDate value="${avo.completeDate}" pattern="yyyy-MM-dd HH시" /></td>
                             </tr>
                             <tr id="date">
-                                <td>${vvo.memberName}(${vvo.departmentName})</td>
-                                <c:if test="${vvo.status == 'F' || vvo.status == 'R' || vvo.status == 'O'}">
-                                    <td>${vvo.approverName}(${vvo.approverDepartmentName})</td>
-                                </c:if>
+                                <td>${avo.memberName}(${avo.departmentName})</td>
                                 <td>
-                                    <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
+                                    <c:if test="${avo.status == 'A' || avo.status == 'O'}">
                                         송세경
                                     </c:if>
                                 </td>
@@ -407,21 +386,21 @@
                 <div id="reasonDiv">
                     <div class="top">휴가기간</div>
                     <div class="top-side">
-                        ${vvo.startDate}  ~ ${vvo.endDate}
+                        ${avo.startDate}  ~ ${avo.endDate}
                     </div>
                     <div class="bottom">사유</div>
                     <div class="bottom-side">
-                        ${vvo.content}
+                        ${avo.content}
                     </div>
                 </div>
             </div>
-            <c:if test="${vvo.status == 'W'}">
+            <c:if test="${avo.status == 'W'}">
                 <div id="buttonDiv">
                     <button id="approvalBtn">승인</button>
                     <button id="refuseBtn">반려</button>
                 </div>
             </c:if>
-            <c:if test="${vvo.status != 'W'}">
+            <c:if test="${avo.status != 'F'}">
                 <div id="buttonDiv"></div>
             </c:if>
             <div id="myModal" class="jw-modal">
@@ -438,7 +417,7 @@
    </main>
 
    <footer>
-      <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+      <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
    </footer>
 
    <script>
@@ -456,7 +435,7 @@
         });
 
         function back(){
-            history.back();
+            location.href = "${root}/approval/admin/list";
         }
 
         // 버튼과 모달 요소 선택하기
@@ -465,10 +444,8 @@
         const myModal = document.getElementById("myModal");
         const submitBtn = document.getElementById("submitBtn");
         const cancelBtn = document.getElementById("cancelBtn");
-        const approvalSubmitBtn = document.getElementById("approvalSubmitBtn");
-        const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
-        // 버튼 클릭 시 모달 열
+        // 버튼 클릭 시 모달 열기
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -492,7 +469,7 @@
 
             $.ajax({
                 type : 'post',
-                url : '${root}/approval/refuse',
+                url : '${root}/approval/admin/refuse',
                 data : {
                     no : documentNo,
                     reason : modalContent
@@ -500,7 +477,7 @@
                 success : function(){
                     console.log(documentNo)
                     console.log(modalContent)
-                    location.href = "/app/approval/list";
+                    location.href = "/app/approval/admin/list";
                 },
                 error : function(error){
                     console.log("error", error);
@@ -514,20 +491,21 @@
 
             $.ajax({
                 type : 'post',
-                url : '${root}/approval/approval',
+                url : '${root}/approval/admin/approval',
                 data : {
                     no : documentNo,
                 },
                 success : function(){
                     console.log(documentNo)
-                    location.href = "/app/approval/list";
+                    location.href = "/app/approval/admin/list";
                 },
                 error : function(error){
                     console.log("error", error);
                 }
             })
-        });
-
+        })
+    
+    </script>
     </script>
 
 </body>

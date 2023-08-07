@@ -186,29 +186,90 @@
 	</select>
 	
 	<select id="getAdminListCnt" resultType="int">
-		SELECT COUNT(*)
-		FROM APPROVAL_DOCUMENT
-		WHERE STATUS = 'F'
-		OR STATUS = 'A'
-		OR STATUS = 'O'
+		WITH first_select AS (
+		    SELECT
+		        AD.NO,
+		        AD.MEMBER_NO,
+		        AD.CREATE_DATE,
+		        AD.TITLE,
+		        M.NAME MEMBER_NAME,
+		        AD.STATUS,
+		        A.APPROVAL_DATE,
+		        NULL AS POSITION_NO
+		    FROM APPROVAL_DOCUMENT AD
+		    JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		    JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
+		    WHERE AD.STATUS = 'F'
+		    OR AD.STATUS = 'A'
+		    OR AD.STATUS = 'O'
+		), second_select AS (
+		    SELECT
+		        AD.NO,
+		        AD.MEMBER_NO,
+		        AD.CREATE_DATE,
+		        AD.TITLE,
+		        M.NAME MEMBER_NAME,
+		        AD.STATUS,
+		        NULL AS APPROVAL_DATE,
+		        P.NO POSITION_NO
+		    FROM APPROVAL_DOCUMENT AD
+		    JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		    JOIN DEPARTMENT D ON M.DEPARTMENT_NO = D.NO
+		    JOIN POSITION P ON M.POSITION_NO = P.NO
+		    WHERE P.NO = 1
+		    OR AD.STATUS = 'F'
+		    OR AD.STATUS = 'A'
+		    OR AD.STATUS = 'O'
+		)
+		
+		SELECT COUNT(*) FROM (
+		    SELECT * FROM first_select
+		    UNION ALL
+		    SELECT * FROM second_select
+		) combined_results
 	</select>
 	
 	<select id="getAdminList" resultType="com.kh.app.approver.vo.ApproverVo">
-		SELECT
-		    AD.NO,
-		    AD.MEMBER_NO,
-		    AD.CREATE_DATE,
-		    AD.TITLE,
-		    M.NAME MEMBER_NAME,
-		    AD.STATUS,
-		    A.APPROVAL_DATE
-		FROM APPROVAL_DOCUMENT AD
-		JOIN MEMBER M ON AD.MEMBER_NO = M.NO
-		JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
-		WHERE AD.STATUS = 'F'
-		OR AD.STATUS = 'A'
-		OR AD.STATUS = 'O'
-		ORDER BY APPROVAL_DATE DESC
+        WITH first_select AS (
+		   SELECT
+		       AD.NO,
+		       AD.MEMBER_NO,
+		       AD.CREATE_DATE,
+		       AD.TITLE,
+		       M.NAME MEMBER_NAME,
+		       AD.STATUS,
+		       A.APPROVAL_DATE,
+		       NULL AS POSITION_NO -- 추가된 열
+		   FROM APPROVAL_DOCUMENT AD
+		   JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		   JOIN APPROVER A ON AD.NO = A.APPROVAL_DOCUMENT_NO
+		   WHERE AD.STATUS = 'F'
+		   OR AD.STATUS = 'A'
+		   OR AD.STATUS = 'O'
+		), second_select AS (
+		   SELECT
+		       AD.NO,
+		       AD.MEMBER_NO,
+		       AD.CREATE_DATE,
+		       AD.TITLE,
+		       M.NAME MEMBER_NAME,
+		       AD.STATUS,
+		       NULL AS APPROVAL_DATE,
+		       P.NO POSITION_NO
+		   FROM APPROVAL_DOCUMENT AD
+		   JOIN MEMBER M ON AD.MEMBER_NO = M.NO
+		   JOIN DEPARTMENT D ON M.DEPARTMENT_NO = D.NO
+		   JOIN POSITION P ON M.POSITION_NO = P.NO
+		   WHERE P.NO = 1
+		   OR AD.STATUS = 'F'
+		   OR AD.STATUS = 'A'
+		   OR AD.STATUS = 'O'
+		)
+		
+		SELECT * FROM first_select
+		UNION ALL
+		SELECT * FROM second_select
+		ORDER BY 3 DESC
 	</select>
 
 	<select id="detailApprovalAdminVacation" resultType="com.kh.app.approver.vo.AdminApproverVo">
@@ -229,7 +290,7 @@
 		    AM.NAME APPROVER_NAME,
 		    AD.NAME AS APPROVER_DEPARTMENT_NAME,
 		    A.APPROVAL_DATE APPROVAL_DATE,
-		    A.REASON AS REASON,
+		    AD.REASON AS REASON,
 		    M.SIGN SIGN,
 		    AM.SIGN APPROVER_SIGN,
 			AD.COMPLETE_DATE COMPLETE_DATE 
@@ -263,7 +324,7 @@
 		    AM.NAME APPROVER_NAME,
 		    AD.NAME AS APPROVER_DEPARTMENT_NAME,
 		    A.APPROVAL_DATE APPROVAL_DATE,
-		    A.REASON AS REASON,
+		    AD.REASON AS REASON,
 		    M.SIGN SIGN,
 		    AM.SIGN APPROVER_SIGN,
             AD.COMPLETE_DATE COMPLETE_DATE 
@@ -294,7 +355,7 @@
 		    AM.NAME APPROVER_NAME,
 		    AD.NAME AS APPROVER_DEPARTMENT_NAME,
 		    A.APPROVAL_DATE APPROVAL_DATE,
-		    A.REASON AS REASON,
+		    AD.REASON AS REASON,
 		    M.SIGN SIGN,
 		    AM.SIGN APPROVER_SIGN,
 		    AD.COMPLETE_DATE COMPLETE_DATE

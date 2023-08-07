@@ -447,5 +447,34 @@ public class ApprovalController {
 		model.addAttribute("voList", voList);
 		
 	}
+	
+	@GetMapping("admin/approver/trip")
+	public void approverTrip(String no, Model model){
+		
+		AdminApproverVo avo = as.detailTrip(no);
+		
+		model.addAttribute("avo", avo);
+		
+	}
+	
+	@GetMapping("admin/approver/vacation")
+	public void approverTrip(Model model, String no) {
+				
+		AdminApproverVo avo = as.detailVacation(no);
+				
+		model.addAttribute("avo", avo);
+	}
+	
+	@GetMapping("admin/approver/inventory")
+	public void approverInventory(Model model, String no) {
+				
+		AdminApproverVo avo = as.detailInventory(no);
+		
+		List<InventoryVo> voList = as.detailInventoryItems(no);	
+		
+		model.addAttribute("avo", avo);
+		model.addAttribute("voList", voList);
+
+	}
 
 }

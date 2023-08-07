@@ -14,6 +14,8 @@ public class AttendanceVo {
 	private Date presenceTime;
 	private Date leaveTime;
 	private String status;
+	private String departmentName;
+	private String positionName;
 	
 	//휴가문서
 	private String content;

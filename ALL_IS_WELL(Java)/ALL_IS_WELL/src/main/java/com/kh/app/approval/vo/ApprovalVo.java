@@ -14,5 +14,6 @@ public class ApprovalVo {
 	private String title;
 	private String memberName;
 	private String reason;
+	private String completeDate;
 	
 }

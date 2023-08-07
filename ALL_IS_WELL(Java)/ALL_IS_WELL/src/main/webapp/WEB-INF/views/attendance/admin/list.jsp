@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -130,17 +132,18 @@
     }
 
     .search-area {
-        display: flex;
-        align-items: center;
+        display: inline-flex;
+        position: relative;
     }
 
-    #search{
+    #search {
         height: 40px;
     }
 
     .search-area input[type="text"] {
         padding: 5px;
-        margin-right: 20px;
+        margin-right: 0; 
+        padding-right: 30px;
         width: 600px;
         height: 40px;
         border: 1px solid gray;
@@ -150,7 +153,6 @@
     .category-area {
         display: flex;
         align-items: center;
-
     }
 
     .category-area label {
@@ -176,6 +178,13 @@
     }
 
     #search-icon {
+        position: absolute; 
+        right: 0;
+        top: 10px; 
+        display: flex; 
+        align-items: center;
+        padding: 0 10px; 
+        cursor: pointer; 
         color: gray;
     }
 
@@ -186,31 +195,25 @@
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
+        padding: 20px;
+    }
 
+    .list-area table {
+        width: 100%;
+        border-collapse: collapse;
     }
 
     .list-area th,
     .list-area td {
-        padding: 15px;
-        border-bottom: 1px solid #ddd;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 0.5px solid #C4C4C4;
         text-align: center;
     }
 
     .list-area th {
         font-size: 15px;
         font-weight: normal;
-    }
-
-    #member{
-        width: 150px;
-    }
-
-    #enter-time{
-        width: 600px;
-    }
-
-    #out-time {
-        width: 600px;
     }
 
 
@@ -222,12 +225,17 @@
 
     .number-area a {
         display: inline-block;
-        margin: 5px;
-        padding: 8px 12px;
         text-decoration: none;
         border: none;
         color: inherit;
         font-size: 15px;
+        margin: 10px 15px;
+        color: black;
+    }
+
+    .number-area a:hover {
+        color: #5A8CF2;
+        cursor: pointer;
     }
 
     #previous {
@@ -238,11 +246,22 @@
         color: #5A8CF2;
     }
 
-    .number-area a:hover {
-        color: #5A8CF2;
-        cursor: pointer;
+    .list-area th#enter-time,
+    .list-area td#enter-time,
+    .list-area th#out-time,
+    .list-area td#out-time {
+        width: 350px;
     }
 
+    .fa-solid{
+        font-size: 20px;
+        color: #d9d9d9;
+    }
+
+    .currentPage{
+        color: #5A8CF2 !important;
+        pointer-events: none;
+    }
 </style>
 </head>
 <body>
@@ -258,44 +277,49 @@
                 <span id="title">직원근태목록</span>
                 <form action="" class="search-area" method="get">
                     <label for="search" class="category-area">
-                        <select name="search" id="search">
+                        <select name="searchType" id="search">
                             <option value="name">이름</option>
+                            <option value="position">직급</option>
+                            <option value="department">부서</option>
                         </select>
                     </label>
                     <input type="text" id="search-input" name="searchValue">
-                    <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
-
-                <button id="writeApproval">검색하기</button>
+                <DIV></DIV>
             </div>
             <div class="list-area">
                 <table>
                 	<c:forEach items="${voList}" var="vo">
 						<tr>
                             <th hidden id="attendanceNo">${vo.no}</th>
-	                        <th id="member">${vo.memberName}</th>
-	                        <th id="enter-time">${vo.presenceTime}</th>
-	                        <th id="out-time">${vo.leaveTime}</th>
+	                        <th id="member">${vo.memberName}(${vo.departmentName}-${vo.positionName})</th>
+	                        <th id="enter-time"><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd HH:mm"/></th>
+	                        <th id="out-time"><fmt:formatDate value="${vo.leaveTime}" pattern="yyyy-MM-dd HH:mm"/></th>
 	                        <th id="status">${vo.status}</th>
 	                    </tr>                	
                 	</c:forEach>
                 </table>
             </div>
-            <c:set var="range" value="2" /> 
-            <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
-            <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
-            <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
-
             <div class="number-area">
-                <c:if test="${pv.currentPage > 1 }">
-                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
-                <c:if test="${pv.maxPage > 1 }"> 
-                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${pv.currentPage < pv.maxPage }">
-                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+                <c:if test="${pv.currentPage > 1}">
+                    <a href="list?page=1">&laquo;</a>
+                    <a href="list?page=${pv.currentPage - 1}">&lt;</a>
+                </c:if>      
+                <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                    <c:choose>
+                        <c:when test="${i == pv.currentPage}">
+                            <a class="currentPage">${i}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="list?page=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${pv.maxPage > pv.currentPage}">
+                    <a href="list?page=${pv.currentPage + 1}">&gt;</a>
+                    <a href="list?page=${pv.maxPage}">&raquo;</a>
                 </c:if>
             </div>
         </div>            
@@ -317,21 +341,6 @@
         thirdSidebars.forEach(thirdSidebar => {
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
-
-        const pageBtn = document.querySelectorAll('.pageBtn');
-
-        for (let btn of pageBtn) {
-            if (btn.innerHTML == '${pv.currentPage}') {
-                btn.style.color = '#d9d9d9';
-            }
-        }
-
-        function pageMove(pageNumber) {
-            let url = new URL(window.location.href);
-            url.searchParams.set('page', pageNumber);
-            window.location.href = url.href;
-        }
-
     </script>
 </body>
 </html>
