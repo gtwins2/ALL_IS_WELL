@@ -117,7 +117,7 @@ public class AboardController {
 	@PostMapping("noticeReplyDelete")
 	public String noticeReplyDelete(NoticeReplyVo vo) {
 		int result = ns.noticeReplyDelete(vo);
-		String no = vo.getNo();
+		String no = vo.getNoticeNo();
 		return "redirect:/board/noticeDetail?no="+ no;
 	}
 	

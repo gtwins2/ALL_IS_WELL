@@ -24,7 +24,7 @@
 	width: 115px;
 	height: 53px;
 	left: 367px;
-	top: 200px;
+	top: 125px;
 	background: #FF8686;
 	border-radius: 25px;
 	border: 0px;
@@ -43,19 +43,19 @@
 
 hr{
 	position: absolute;
-	width: 1617px;
+	width: 1770px;
 	height: 0px;
-	left: 303px;
-	top: 300px;
+	left: 150px;
+	top: 200px;
 	border: 1px solid #D1CECE;
 }
 
 #div01{
 	position: absolute;
 	width: 1617px;
-	height: 900px;
+	height: 700px;
 	left: 303px;
-	top: 340px;
+	top: 240px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 3fr;
 	
@@ -120,18 +120,10 @@ textarea{
 				<hr>
 				<div id="div01">
 					<div>
-						<div>제목</div>
-						<div> <input type="text" name="no" value="${no}" id=""></div>
+						<div>댓글내용</div>
 						<div> <input type="text" name="content" id="" value="${content }"></div>
-						<div> <input type="text" name="noticeNo" id="" value="${noticeNo }"></div>
-					</div>
-					<div>
-						<div>파일첨부</div>
-						<div><button id="file"> 첨부파일</button></div>
-					</div>
-					<div>
-						<div>내용</div>
-						<div><textarea name="content" id="" cols="30" rows="10"></textarea></div>
+						<div><input type="text" name="no" value="${no}" id="" hidden> </div>
+						<div> <input type="text" name="noticeNo" id="" value="${noticeNo}" hidden></div>
 					</div>
 				</div>
 			</form>

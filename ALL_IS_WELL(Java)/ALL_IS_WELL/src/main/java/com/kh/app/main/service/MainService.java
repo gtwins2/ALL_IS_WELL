@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.main.dao.MainDao;
+import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,16 @@ public class MainService {
 
 	public int leave(AttendanceVo vo) {
 		return dao.leave(sst, vo);
+	}
+
+
+	public int mCount() {
+		return dao.mCount(sst);
+	}
+
+
+	public int fCount() {
+		return dao.fCount(sst);
 	}
 
 }

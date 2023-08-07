@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.app.main.controller.Calendar"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,6 +117,7 @@ hr{
 	font-size: 30px;
 	line-height: 48px;
 	color: #FFFFFF;
+	border: 0px;
 }
 
 #div02-1{
@@ -130,11 +133,12 @@ font-size: 40px;
 line-height: 48px;
 color: #FFFFFF;
 }
+
 #div03{
 position: absolute;
-width: 500px;
+width: 900px;
 height: 730px;
-left: 720px;
+left: 520px;
 top: 113px;
 
 background: #FDFDFD;
@@ -295,10 +299,13 @@ color: #000000;
 	font-size: 30px;
 	line-height: 48px;
 	color: #FFFFFF;
+	border: 0px;
 }
 
 </style>
 <body>
+	
+
 
 	<header>
 		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
@@ -333,140 +340,36 @@ color: #000000;
 
 		    <script>
             
-            function getRandomColor() {
-               var letters = '0123456789ABCDEF';
-               var color = '#';
-               for (var i = 0; i < 6; i++) {
-                  color += letters[Math.floor(Math.random() * 16)];
-                  if(color == '#ffffff'){
-                     return color;
-                  }
-               }
-               return color;
-            }
-
-            var randomColor = getRandomColor(); // 랜덤 색상 생성
-
-            (function () {
-               $(function () {
-                  // calendar element 취득
-                  var calendarEl = $('#calendar')[0];
-                  // full-calendar 생성하기
-                  var calendar = new FullCalendar.Calendar(calendarEl, {
-                     height: '700px', // calendar 높이 설정
-                     expandRows: true, // 화면에 맞게 높이 재설정
-                     slotMinTime: '08:00', // Day 캘린더에서 시작 시간
-                     slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
-                     // 해더에 표시할 툴바
-                     headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                     },
-                     initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-                     // initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
-                     navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-                     editable: true, // 수정 가능?
-                     selectable: true, // 달력 일자 드래그 설정가능
-                     nowIndicator: true, // 현재 시간 마크
-                     dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-                     locale: 'ko', // 한국어 설정
-                     
-                     eventAdd: function (obj) { // 이벤트 추가(드래그))
-                        const params = [];
-                        params.push("write")
-                        params.push(obj.event.title);
-                        params.push(obj.event.start);
-                        params.push(obj.event.end);
-
-                        $.ajax({
-                           url: '/semi/teamCalendar',
-                           type: 'post',
-                           data: {
-                              params: JSON.stringify(params)
-                           },
-                           error: function () {
-                              alert("error");
-                           }
-                        });
-                     },
-                     eventChange: function (obj) { // 이벤트 수정(이벤트 드래그)
-                        const params = [];
-                        params.push("modify")
-                        params.push(obj.event.title);
-                        params.push(obj.event.start);
-                        params.push(obj.event.end);
-
-                        $.ajax({
-                           url: '/semi/teamCalendar',
-                           type: 'post',
-                           data: {
-                              params: JSON.stringify(params)
-                           },
-                           error: function () {
-                              alert("error");
-                           }
-                        });
-                     },
-                     eventClick: function (obj) { // 이벤트 삭제 (이벤트 클릭)
-                        var result = confirm('이 일정을 삭제하시겠습니까?');
-
-                        if (result == true) {
-                           const params = [];
-                           params.push("delete")
-                           params.push(obj.event.title);
-                           params.push(obj.event.start);
-                           params.push(obj.event.end);
-
-                           $.ajax({
-                              url: '/semi/teamCalendar',
-                              type: 'post',
-                              data: {
-                                 params: JSON.stringify(params)
-                              },
-                              success: function() {
-                                 location.reload();
-                              },
-                              error: function () {
-                                 alert("error");
-                              }
-                           });
-                        }
-                     },
-
-                     
-                     select: function (arg) { // 드래그 or 클릭으로 이벤트 생성
-                        var title = prompt('일정을 입력해주세요');
-                        if (title) {
-                           calendar.addEvent({
-                              title: title,
-                              start: arg.start,
-                              end: arg.end,
-                              allDay: arg.allDay,
-                              backgroundColor: randomColor // 배경색 지정
-                           });
-                        }
-                        calendar.unselect()
-                     },
-                     // 이벤트 
-                     events: [
-                        <c:forEach items="${voList}" var="vo">
-                           {
-                           title: '${vo.meetingContent}',
-                           start: '${vo.startDate}',
-                           end: '${vo.endDate}',
-                           backgroundColor: getRandomColor()
-                           },
-                        </c:forEach>
-                     ]
-                  });
-
-
-
-                  // 캘린더 랜더링
-                  calendar.render();
-               });
-            })();
+		    document.addEventListener('DOMContentLoaded', function() {
+		    	var calendarEl = document.getElementById('calendar');
+		    	var calendar = new FullCalendar.Calendar(calendarEl, {
+		    		initialView : 'dayGridMonth',
+		    		locale : 'ko', // 한국어 설정
+		    		headerToolbar : {
+		            	start : "prev next",
+		                center : "title",
+		                end : 'dayGridMonth,dayGridWeek,dayGridDay'
+		                },
+		    	selectable : true,
+		    	droppable : true,
+		    	editable : true,
+		    	events : [ 
+		        	    <%List<Calendar> calendarList = (List<Calendar>) request.getAttribute("calendarList");%>
+		                <%if (calendarList != null) {%>
+		                <%for (Calendar vo : calendarList) {%>
+		                {
+		                	title : '<%=vo.getOperationName()%>',
+		                    start : '<%=vo.getStartDate()%>',
+		                    end : '<%=vo.getEndDate()%>',
+		                    color : '#' + Math.round(Math.random() * 0xffffff).toString(16)
+		                 },
+		    	<%}
+		    }%>
+		    				]
+		    				
+		    			});
+		    			calendar.render();
+		    		});
          </script>
 		    
 		

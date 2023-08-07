@@ -1,12 +1,15 @@
 package com.kh.app.main.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.main.service.MainService;
+import com.kh.app.page.vo.PageVo;
+import com.kh.app.patient.vo.PatientVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -50,9 +53,11 @@ public class Main {
 	}
 	
 	@GetMapping("Amain")
-	public String Amain() {
+	public String Amain(Model model) {
 		
 		return "main/Amain";
 	}
+	
+	
 	
 }

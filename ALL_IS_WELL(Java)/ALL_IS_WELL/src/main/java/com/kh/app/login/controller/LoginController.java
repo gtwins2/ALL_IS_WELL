@@ -1,5 +1,9 @@
 package com.kh.app.login.controller;
 
+import java.util.Calendar;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.app.admin.vo.AdminVo;
+import com.kh.app.main.controller.CalendarService;
+import com.kh.app.main.service.MainService;
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.CertificationVo;
 import com.kh.app.member.vo.MemberVo;
+import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 import net.nurigo.sdk.NurigoApp;
@@ -27,7 +35,9 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 @RequiredArgsConstructor
 public class LoginController {
 
+	private final CalendarService calendarService; 
 	private final MemberService ms;
+	private final MainService ms2;
 	DefaultMessageService messageService;
 	
 	@Autowired
@@ -47,15 +57,26 @@ public class LoginController {
 	}
 	
 	@PostMapping("login")
-	public String login(MemberVo vo, HttpSession session) {
+	public String login(MemberVo vo, HttpSession session,ModelAndView mv, HttpServletRequest request) {
 		MemberVo loginMember = ms.login(vo);
 		session.setAttribute("loginMember", loginMember);
-
+		System.out.println(loginMember);
+		String viewpage = "calendar";
+		List<Calendar> calendar = null;
+		try {
+			calendar = calendarService.getCalendar(loginMember);
+			request.setAttribute("calendarList", calendar);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(calendar);
+		mv.setViewName(viewpage);
+		
 		if(loginMember == null) {
 			return "redirect:/member/login";
 			
 		}
-
+		
 		return "main/Mmain";
 	}
 	
@@ -65,10 +86,15 @@ public class LoginController {
 	}
 	
 	@PostMapping("Alogin")
-	public String Alogin(AdminVo vo, HttpSession session) {
+	public String Alogin(AdminVo vo, HttpSession session, Model model) {
 		if(vo.getAdminId().equals("ADMIN") && vo.getAdminPwd().equals("1234")) {
+			int listCount = ms2.mCount();
+			int currentPage = ms2.fCount();
+			PageVo pv = new PageVo(listCount, currentPage, 3, 3);
+			model.addAttribute("pv", pv);
 			return "main/Amain";
 		}
+		
 		return "error/404page";
 	}
 	
