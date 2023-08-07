@@ -47,8 +47,8 @@
 	position: absolute;
 	width: 299px;
 	height: 48px;
-	left: 412px;
-	top: 161px;
+	left: 350px;
+top: 109px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
@@ -59,10 +59,10 @@
 
 hr{
 position: absolute;
-width: 1594.69px;
-height: 0px;
-left: 305.65px;
-top: 258.2px;
+width: 1620px;
+	height: 0px;
+	left: 150px;
+	top: 168px;
 border: 1px solid #D1CECE;
 }
 

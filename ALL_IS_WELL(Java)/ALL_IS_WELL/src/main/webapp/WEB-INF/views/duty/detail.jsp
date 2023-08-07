@@ -6,15 +6,24 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>회의록상세조회</title>
+        <title>당직상세조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-            .main-area {
-   				 width: 1200px;
-    			height: 1100px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
-}
+            #wrap{
+				width: 1920px;
+				display: grid;
+				grid-template-columns: 150px 1770px;
+			}
+		
+		    main{
+		        min-height: 100%;
+		    }
+		
+		    .main-area {
+		        width: 70%;
+		        min-height: 80%;
+		        margin-left: 100px;
+		    }
 
             .title-area {
                 text-align: center;
@@ -30,7 +39,7 @@
             #sendRequest, #sendBack {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color: #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -43,24 +52,6 @@
                 background-color: #555;
                 transition: 0.7s;
             }
-
-            .search-area {
-                display: flex;
-                align-items: center;
-            }
-
-
-
-            .search-area input[type="text"] {
-                padding: 5px;
-                margin-right: 20px;
-                width: 300px;
-                height: 30px;
-                border: 1px solid gray;
-                border-radius: 10px;
-            }
-
-
 
             .list-area {
                 margin-top: 20px;
@@ -119,12 +110,37 @@
                 border-collapse: collapse;
                 width: 100%;
 
+            }
 
-                width: 100%;
+            .list-area th,
+            .list-area td {
+                padding: 20px;
+                border-bottom: 1px solid #ddd;
+                text-align: left;
+            }
+
+            .list-area th {
+                font-size: 20px;
+                font-weight: normal;
 
             }
 
-           
+
+            
+            #btn2 {
+                padding-left: 10%;
+                font-size: 10px;
+                color: white;
+                background-color: #FF8686;
+                width: 70px;
+                height: 30px;
+                border: none;
+                padding: 5px 5px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+
 
             .number-area {
                 text-align: center;
@@ -152,7 +168,8 @@
                 color: #5A8CF2;
             }
 
-            .list-area th input[type="checkbox"] {
+
+        /*     .list-area td input[type="checkbox"] {
                 appearance: none;
                 width: 20px;
                 height: 20px;
@@ -163,134 +180,69 @@
                 position: relative;
                 top: 2px;
                 cursor: pointer;
-            }
-
-            .list-area td input[type="checkbox"] {
-                appearance: none;
-                width: 20px;
-                height: 20px;
-                border: 2px solid #C4C4C4;
-                border-radius: 3px;
-                outline: none;
-                vertical-align: middle;
-                position: relative;
-                top: 2px;
-                cursor: pointer;
-            }
-
-            .list-area td input[type="checkbox"]:checked {
-                background-color: lightgray;
-                border-color: lightgray;
-            }
-
-            .list-area th input[type="checkbox"]:checked {
-                background-color: lightgray;
-                border-color: lightgray;
-            }
+            } */
 
             #content{
                 display: grid;
-                grid-template-columns: 300px 1220px;
-            }
-            
-            #title-area , #content-area, #date-area {
-            	font-size: 30px;
-            }
-            
-            #content2{
-				font-size: 30px;
-				width: 1198px;
-				height: 400px; 
-            }
-            
-            #content-area2{
-            	width: 919px;
-            	height: 300px;
-            	margin-top: -30px;
-            	margin-left: 70px;
-            	font-size: 30px;
-            }
-            div > textarea{
-            	margin-left: 100px;
+                grid-template-columns: 300px 1620px;
             }
 
+			input{
+			border: none;
+			}
+			input:hover{
+			background-color: lightgray;
+			}
         </style>
     </head>
 
     <body>
         <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
 
 
-        <div id="content">
-            <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
-            </div>
+            <main id="wrap">
+            <header>
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+            </header>
 
 
             <div class="main-area">
-                <div class="title-area">
-                    <span id="title">회의록수정하기</span>
-
+               <div class="title-area">
+                    <span id="title">당직상세조회</span>
                 </div>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
-				<div class="list-area">
-			<form action="${root}/proceeding/edit/${vo.no}" method="post" >
+            <div class="list-area">
+            <form action="${root}/duty/edit/${vo.no}" method="post" >
                     <table>
-
-					
-					<input type="hidden" value=${loginMember.no} >
-					<div id="title-area" >제목<textarea id="title-area" cols="60" rows="1" name="title">${vo.title}</textarea></div>
-					<br>					
-					<div id="title-area">작성자번호<textarea id="date-area" cols="60" rows="1"  name="memberNo" readonly>${vo.memberNo}</textarea></div>
-					<br>
-					<div id="title-area">작성일<textarea id="date-area" cols="60" rows="1"  name="enrollDate" readonly>${vo.enrollDate}</textarea></div>
-					<br>
-					<!-- <div id="content2">내용 -->
-					<div style="font-size:30px;">내용</div>
-					<div id="content-area">
-                        <textarea id="content-area2" cols="60" rows="10" name="content">${vo.content}</textarea>
-
-                    </div>
-                    
-                    
-                    
-     
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					
-
+                    <tr>
+                       <th>당직번호</th>
+                       <th>당직자번호</th>
+                       <th>당직자이름</th>
+                       <th>당직예정일</th>
+                    </tr>
+                    <tr>
+                  <input type="hidden" value=${loginMember.no}>
+                  <td><input type="text" id="title-area" name="no" value="${vo.no}" readonly></td>
+                  <td><input type="text" id="title-area" name="mno" value="${vo.mno}"></td>
+                  <td><input type="text" id="title-area" name="mname" value="${vo.mname}"></td>
+                  <td><input type="text" id="title-area" name="dutyDay" value="${vo.start}"></td>
+               </tr>
                     </table>
                 </div>
-					
-					<button type="submit" id="sendRequest">수정완료</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
-					<!-- <button id="sendRequest" onclick="edit();">수정하기</button> -->
-					
+               
+               <button type="submit" id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
+               <button  onclick="edit();" type="submit" id="sendRequest">수정하기</button>
+               <button id="sendBack" onclick="backPage();">뒤로가기</button>
+                
                 </form>
                 </div>
-                <br>
-                <br>
-                <br>
-
-            </div>
-
-        </div>
+                </main>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
@@ -303,7 +255,11 @@
             }
             
             function del(no){
-            	location.href = "${root}/proceeding/delete/" + no
+            	location.href = "${root}/duty/delete/" + no
+            }
+            
+            function edit(){
+            	alert("당직 수정 요청이 완료되었습니다.");
             }
             
         </script>

@@ -39,7 +39,7 @@
             #sendRequest {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color: #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -364,7 +364,6 @@
 				      <th>삭제</th>
 				    </tr>
 				  </thead>
-				  <tbody>
 				  
 				      <tr>
 				        <td>${vo.no}</td>
@@ -381,47 +380,32 @@
 				        <td>${vo.yearSalary}</td>
 				        <td><img src="${vo.profile}" alt="프로필사진" /></td>
 				        <td><img src="${vo.sign}" alt="서명이미지" /></td>
-				        <td><button class="deleteBtn" data-id="${vo.no}">삭제</button></td>
+				        <td></td>
 				      </tr>
-				  </tbody>
 				</table>
-
-	<!-- 삭제 모달 -->
-	<div id="deleteModal" class="modal" style="display: none;">
-	  <div class="modal-content">
-	    <span class="close">&times;</span>
-	    <p>사번: <span id="delNo"></span></p>
-	    <p>이름: <span id="delName"></span></p>
-	    <button id="deleteBtn">삭제하기</button>
-	  </div>
-	</div>
-
-
+		        <button id="sendRequest" onclick="del(${vo.no});">삭제</button>
+		        <button id="sendRequest" onclick="edit(${vo.no});">수정</button>
                 </div>
                 
                 <br>
                 <br>
                 <br>
 
-        </div>
 
 	</main>
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
-        <!-- <script>
-            var deleteNo = document.querySelector(".no");
-
-        function delete() {
-            location.href = "${root}/member/delete/" + deleteNo;
+        <script>
+        function del(no) {
             alert("해당 회원 삭제 요청이 완료되었습니다.");
-
+            location.href = "${root}/member/delete/" + no;
         };
         
-        </script> -->
-        
-        <script>
+        function edit(no) {
+            location.href = "${root}/member/edit/" + no;
+        };
         
         const sideBar = document.querySelector("#side-bar")
         const subMenus = document.querySelectorAll(".sub-menu");
@@ -435,33 +419,6 @@
             thirdSidebar.style.height = sideBar.offsetHeight + 'px';
         });
 
-        const pageBtn = document.querySelectorAll('.pageBtn');
-
-        for (let btn of pageBtn) {
-            if (btn.innerHTML == '${pv.currentPage}') {
-                btn.style.color = '#d9d9d9';
-            }
-        }
-
-        function pageMove(pageNumber) {
-            let url = new URL(window.location.href);
-            url.searchParams.set('page', pageNumber);
-            window.location.href = url.href;
-        }
-    
-        
-
-        const searchValueTag = document.querySelector("input[name=searchValue]");
-		searchValueTag.value = '${paramMap.searchValue}';
-		
-		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
-		const x = '${paramMap.searchType}';
-		if(x == 'title'){
-			searchTypeTagArr[0].selected = true;
-		}else if(x == '${paramMap.enroll_date}'){
-			searchTypeTagArr[1].selected = true;
-		}
-		
 		//modal
 		//회원 번호 넘겨받기
     	//const memberNo = document.getElementById('memberNoInput').value; 
@@ -469,16 +426,13 @@
         /* var modal = document.getElementById("myModal");
         var btns = document.querySelectorAll(".btnClass"); */
   
-      	
-        
-  
         /* for(i=0; i<13; i++){
 
             var span = document.getElementsByClassName("close")[0];
 
             btns[i].onclick = function () {
               modal.style.display = "block";
-            }
+            }0
 
             span.onclick = function() {
             modal.style.display = "none";
@@ -489,57 +443,10 @@
           }
         } */
 
-        }
 
 
-        }
 		
-        
-        
-        
     </script>
-    <!-- AJAX 코드 -->
-<script>
-$(document).ready(function() {
-  // 삭제 버튼 클릭 시, 모달 띄우기
-  $(document).on("click", ".deleteBtn", function() {
-    var no = $(this).data("no");
-    $.ajax({
-      type: "GET",
-      url: "member/detail/" + no,
-      success: function(vo) {
-        $("#delNo").text(vo.no);
-        $("#delName").text(vo.name);
-        $("#deleteModal").css("display", "block");
-      },
-      error: function() {
-        alert("회원 정보를 불러오는데 실패하였습니다.");
-      }
-    });
-  });
-  
-  // 모달 닫기 버튼
-  $(document).on("click", ".close", function() {
-    $("#deleteModal").css("display", "none");
-  });
-  
-  // 삭제 버튼 클릭 시, 회원 정보 삭제 요청 보내기
-  $(document).on("click", "#deleteBtn", function() {
-    var no = $(this).data("no");
-    $.ajax({
-      type: "GET",
-      url: "member/delete/" + no,
-      success: function() {
-        alert("회원 정보가 삭제되었습니다.");
-        location.reload();
-      },
-      error: function() {
-        alert("회원 정보 삭제에 실패하였습니다.");
-      }
-    });
-  });
-});
-</script>
-    </body>
+        </body>
 
     </html>

@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -294,7 +294,7 @@
                          <div id="box2">
 					        <div class="rightbox"></div>
 					        <div class="updown2"></div>
-					        <button type="button" class="btnClass" id="btn2">왜과</button>
+					        <button type="button" class="btnClass" id="btn2" onclick="detail(${vo});">${vo.dname}</button>
 					        <br>
 					        <br>
 					        <div id="namearea">
@@ -308,200 +308,63 @@
 					            <br>
 					            ${vo.email}
 					        </div>
-					    </div>
+					         <div id="myModal" class="modal" >
+					            <div class="modal-content">
+					              <span class="close">&times;</span>
+					              <p>
+					                이름 : ${vo.mname}
+					                <br>
+					                직급 : ${vo.position}
+					                <br>
+					                부서 : ${vo.dname}
+					                <br>
+					                전화번호 : ${vo.phoneNumber}
+					                <br>
+					                이메일 : ${vo.email}
+					              </p>
+					            </div>
+					        	</div>
+					    	</div>
             </c:forEach>
 		
-		   	<div id="box2">
-		        <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">일반외과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>
-		    </div>
-		
-
-		    <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                <div class="updownall"></div>
-		        <button type="button" class="btnClass" id="btn2">일반내과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-		    </div>
-
-   
-            <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                
-		        <button type="button" class="btnClass" id="btn2">소아과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                <div class="updownall"></div>
-		        <button type="button" class="btnClass" id="btn2">정형외과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                
-		        <button type="button" class="btnClass" id="btn2">산부인과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="leftbox"></div>
-		        <div class="updown2"></div>
-                <div class="updownall"></div>
-		        <button type="button" class="btnClass" id="btn2">응급의학과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">치과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="leftbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">재활과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">정신과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="leftbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">안과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass"  id="btn2" >임상병리과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                    <div class="leftbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2" >흉부외과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
 		
 		</div>
 	
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <p>
-                이름 : 송준섭
-                <br>
-                직급 : 과장
-                <br>
-                부서 : 외과
-                <br>
-                전화번호 : 0100101010
-                <br>
-                이메일 : asdfa@naver.com
-              </p>
-            </div>
-        </div>
+       
 
 	<footer>
 		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
 
 <script>
+//버튼 클릭시 모달창 오픈 및 데이터 출력
+function detail(vo) {
+  // 모달 요소 선택
+  const modal = document.querySelector('#myModal');
+
+  // 모달의 <p> 요소에서 데이터 출력
+  const p = modal.querySelector('p');
+  p.innerHTML = `
+    이름 : ${vo.mname}<br>
+    직급 : ${vo.position}<br>
+    부서 : ${vo.dname}<br>
+    전화번호 : ${vo.phoneNumber}<br>
+    이메일 : ${vo.email}
+  `;
+
+  // 모달 오픈
+  modal.style.display = 'block';
+}
+
+// 모달 닫기 버튼 클릭 이벤트 처리
+const closeBtn = document.querySelector('.close');
+closeBtn.addEventListener('click', function() {
+  const modal = document.querySelector('#myModal');
+  modal.style.display = 'none';
+});
+        
         // Get the modal
         var modal = document.getElementById("myModal");
-  
-        // Get the button that opens the modal
         // var btn = document.querySelector("#btn2");
         var btns = document.querySelectorAll(".btnClass");
   
@@ -547,4 +410,4 @@
     
 
 </body>
-</html> --%>
+</html>

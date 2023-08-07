@@ -98,7 +98,7 @@ a{
     margin-top: 50px;
     width: 250px;
     height: 250px;
-    border: 1px solid black;
+    border: 0px solid black;
 }
 
 
@@ -114,7 +114,7 @@ a{
         
         <div id="div02">
             <div id="div02-1">
-                <div><img src="" alt=""></div>
+                <div><img src="/app/resources/static/img/logo/관리자로고.jpg" alt="logo"></div>
             </div>
              <form action="/app/member/Alogin" method="POST" id="div02-2">
                 <div><input type="text" placeholder="아이디를 입력하세요" name="adminId"></div>

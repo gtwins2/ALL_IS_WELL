@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 @RequiredArgsConstructor
 @Slf4j
-public class MemberListDaoImpl implements MemberListDao{@Override
-	
+public class MemberListDaoImpl implements MemberListDao{
+	@Override
 	public List<MemberVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 	RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
 	return sst.selectList("member.selectMemberList" , paramMap , rb);
@@ -37,6 +37,11 @@ public class MemberListDaoImpl implements MemberListDao{@Override
 	@Override
 	public int getBoardCnt(SqlSessionTemplate sst) {
 		return sst.selectOne("member.getBoardCnt");
+	}
+
+	@Override
+	public int edit(SqlSessionTemplate sst , MemberVo vo) {
+		return sst.update("member.edit" , vo);
 	}
 
 }

@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.app.member.list.service.MemberListService;
+import com.kh.app.member.list.service.MemberListServiceImpl;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import retrofit2.http.GET;
 
 @Controller
 @RequestMapping("member")
@@ -68,8 +70,8 @@ public class MemberListController {
 
 	
 	//직원 삭제
-	@GetMapping({"delete/{no}" , "delete"})
-	public String Delete(@PathVariable(value = "no" , required = false) String no, Model model) {
+	@GetMapping({"delete/{no}"})
+	public String delete(@PathVariable(value = "no" , required = true) String no, Model model) {
 		
 		int result = service.delete(no);
 		if(result != 1) {
@@ -79,18 +81,32 @@ public class MemberListController {
 		return "redirect:/member/list";
 	}
 	
+	
+	@GetMapping({"edit/{no}"})
+	public String getEdit(@PathVariable(value = "no" , required = true) String no, Model model) {
+		
+		MemberVo vo = service.getMemberByNo(no);
+		
+		model.addAttribute("vo" , vo);
+		
+		return "member/edit";
+		
+	}
+	
+	//직원 정보 수정
+	@PostMapping({"edit/{no}"})
+	public String edit(@PathVariable(value = "no" , required = true) String no, Model model, MemberVo vo) {
+		vo.setNo(no);
+		int result = service.edit(vo);
+		if(result != 1) {
+			model.addAttribute("message", "회원 정보 수정 실패");
+		}
+		model.addAttribute("message", "회원 정보 수정 성공");
+		return "redirect:/member/detail/" + no;
+	}
+
+	
 }
 
 
 
-
-//@Controller
-//@RequestMapping("member")
-//public class MemberListController {
-//		@GetMapping("list")
-//		public String memberList() {
-//			return "member/list";
-//		}
-//	
-
-//}

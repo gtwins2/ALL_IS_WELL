@@ -235,12 +235,12 @@ grid-template-columns: 9fr 2fr 1fr;
 					</div>
 				</div>
 
-			<button id="list">목록</button>
+			<button id="list" onclick="back()">목록</button>
 
 			<form action="${root}/board/noticeDetail" method="post">
 				<div id="div02">
 					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
-					<input type="text" value="${loginMember.no}" name="writerNo" hidden> 				
+					<input type="text" value="1" name="writerNo" hidden> 				
 					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
 					<div><button id="write">작성</button></div>
 				</div>
@@ -254,15 +254,17 @@ grid-template-columns: 9fr 2fr 1fr;
 		                    	 <td hidden>${vo2.no} </td>
 		                    	 <td>${vo2.content} </td>
 		                    	 <td hidden>${vo2.noticeNo} </td>
-		                     	 <td>${vo2.enrollDate}123</td>
+		                     	 <td width="200px">${vo2.enrollDate}123</td>
 		                     	 <td><input type="text" value="${vo.no}" name="noticeNo" hidden></td>
 		                     	 <td><input type="text" value="${vo2.no}" name='no' hidden></td>
-			                     <td><input type="" value="수정" id="reply" ></td>
+		                     	 <c:if test="${vo2.writerNo == '1' }">
+			                     <td width="50px"><input type="button" value="수정" id="reply" ></td>
 		                     <form action="${root}/board/noticeReplyDelete" method="post">
 		                     	 <input type="text" value="${vo.no}" name="noticeNo" hidden>
 		                     	 <input type="text" value="${vo2.no}" name='no' hidden>
 			                     <td><input type="submit" value="삭제" id="delete"></td>
 		                     </form>
+		                     	 </c:if>
 		                     </tr>
 						</c:forEach>
 	                 	</table>
@@ -311,4 +313,9 @@ grid-template-columns: 9fr 2fr 1fr;
       
         });
     }
+    
+    function back() {
+    	location.href="${root}/board/noticeList";
+		
+	}
 </script>

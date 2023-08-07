@@ -18,7 +18,12 @@ public class OrganizationChartController {
 	private final OrgChartService service;
 	
 	@GetMapping("orgChart")
-	public String orgChart() {
+	public String orgChart(Model model, OrgVo vo) {
+		
+		List<OrgVo> voList  = service.list(vo);
+		System.out.println(voList);
+		model.addAttribute("voList" , voList);
+		
 		return "orgChart/orgChart";
 	}
 
@@ -28,7 +33,7 @@ public class OrganizationChartController {
 		
 		List<OrgVo> voList  = service.list(vo);
 		
-		model.addAttribute(voList);
+		model.addAttribute("voList" , voList);
 		
 		return "orgChart/orgChartAdmin";
 	}

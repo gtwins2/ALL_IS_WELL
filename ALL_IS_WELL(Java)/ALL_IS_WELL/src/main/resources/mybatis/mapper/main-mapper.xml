@@ -5,33 +5,47 @@
 <mapper namespace="main">
 	
 	<!-- 출근 -->
-	<insert id="attend">
-		INSERT INTO ATTENDANCE
-		(
-			NO
-			,MEMBER_NO
-			,PRESENCE_TIME
-		)
-		VALUES
-		(
-			SEQ_ATTENDANCE_NO.NEXTVAL
-			,#{no}
-			,TO_DATE(TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI')
-		)
-	</insert>
+   <insert id="attend">
+      INSERT INTO ATTENDANCE
+      (
+         NO
+         ,MEMBER_NO
+         ,PRESENCE_TIME
+      )
+      VALUES
+      (
+         SEQ_ATTENDANCE_NO.NEXTVAL
+         ,#{no}
+         ,TO_DATE(TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI')
+      )
+   </insert>
+   
+   <update id="leave">
+      UPDATE ATTENDANCE
+      SET LEAVE_TIME = TO_DATE(TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI')
+         ,STATUS = 'X'
+      WHERE MEMBER_NO = #{no} 
+      AND NO IN (
+          SELECT NO
+          FROM ATTENDANCE
+          ORDER BY NO DESC
+          FETCH FIRST 1 ROW ONLY
+      )
+      
+   </update>
+   
+	<select id="mCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE GENDER = 'M'
+	</select>
 	
-	<update id="leave">
-		UPDATE ATTENDANCE
-		SET LEAVE_TIME = TO_DATE(TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI')
-			,STATUS = 'X'
-		WHERE MEMBER_NO = #{no} 
-		AND NO IN (
-		    SELECT NO
-		    FROM ATTENDANCE
-		    ORDER BY NO DESC
-		    FETCH FIRST 1 ROW ONLY
-		)
-		
-	</update>
+	<select id="fCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE GENDER = 'F'
+	</select>
 	
 </mapper>

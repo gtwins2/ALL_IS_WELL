@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member">
-	<select id="login" resultType="MemberVo">
+<mapper namespace="duty">
+	<!-- <select id="login" resultType="MemberVo">
 		SELECT 
 			NO
 			,DEPARTMENT_NO
@@ -159,12 +159,88 @@
 
    <update id="edit">
 	    UPDATE MEMBER
-		SET DEPARTMENT_NO = ${departmentNo},
-		POSITION_NO = ${positionNo},
-		YEAR_SALARY = ${yearSalary}
+		SET DEPARTMENT_NO = ${departmentNO}
+		AND
+		POSITION_NO = ${positionNo}
 		WHERE NO = ${no}
+   </update> -->
+   
+   <insert id="insert">
+   	INSERT INTO DUTY
+   	NO,
+	MEMBER_NO,
+	DUTY_DAY
+	VALUES
+	(
+	SEQ_DUTY_NO.NEXTVAL,
+	${title},
+	${start}
+	)
+   </insert>
+   
+   <select id="getList" resultType="com.kh.app.duty.vo.DutyVo">
+	SELECT
+	D.NO,
+	D.MEMBER_NO AS mno ,
+	D.DUTY_DAY AS "start" ,
+	M.NAME AS mname
+	FROM DUTY D
+	JOIN MEMBER M ON D.MEMBER_NO = M.NO
+	ORDER BY "start" ASC
+	<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
+	  WHERE ${searchType} LIKE '%${searchValue}%'
+	  </if>
+	</select>
+	
+		<insert id="put">
+		INSERT INTO DUTY
+		(
+		NO,
+		MEMBER_NO,
+		DUTY_DAY
+		)
+		VALUES
+		(
+		SEQ_DUTY_NO.NEXTVAL,
+		${mno},
+		#{start}
+		)
+	</insert>
+   
+   <update id="edit">
+   	UPDATE DUTY
+	SET
+	MEMBER_NO = ${mno}, 
+	DUTY_DAY = TO_TIMESTAMP('${dutyDay}' , 'YYYY-MM-DD')
+	WHERE NO = ${no}
    </update>
    
+   <select id="getBoardCnt" resultType="int">
+      SELECT COUNT(NO) FROM DUTY
+      <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
+	  WHERE ${searchType} LIKE '%${searchValue}%'
+	  </if>
+   </select>
    
+   
+   <select id="getDutyByNo" resultType="com.kh.app.duty.vo.DutyVo">
+  SELECT
+	D.NO ,
+	D.MEMBER_NO AS mno ,
+	D.DUTY_DAY AS "start" ,
+	M.NAME AS mname
+	FROM DUTY D
+	JOIN MEMBER M ON D.MEMBER_NO = M.NO
+	WHERE D.NO = ${no}
+	
+   </select>
+   
+   <select id="getMemberList" resultType="com.kh.app.member.vo.MemberVo">
+   	SELECT
+   	NO AS mno,
+   	NAME AS mname
+   	FROM MEMBER
+   	WHERE STATUS = 'O'
+   </select>
    
 </mapper>
