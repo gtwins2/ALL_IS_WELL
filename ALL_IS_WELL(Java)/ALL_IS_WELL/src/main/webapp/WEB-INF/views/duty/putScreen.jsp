@@ -17,7 +17,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>재고 수정</title>
+        <title>당직 인원 지정</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             .main-area {
@@ -328,10 +328,11 @@
 		         	<label for="item-select"></label>
 						<select	name="mno">
 							<c:forEach items="${voList}" var="vo">
-							<option value="${vo.mno}">${vo.mname}</option>
+							<option name = "mno" value="${vo.mno}">${vo.mname}</option>
 							</c:forEach>
 						</select>
 						
+							console.log(${voList});
 						<!-- 날짜 선택해서 mno와 같은 방식으로 vo에 담아서 가져가기 -->
 						<input type="text" name="start" placeholder="yyyyMMdd 형식으로 입력하세요.">
 					

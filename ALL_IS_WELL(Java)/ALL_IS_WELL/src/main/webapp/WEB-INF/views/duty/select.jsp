@@ -1,4 +1,4 @@
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -311,6 +311,10 @@
         display: grid;
         grid-template-columns: 300px 1620px;
     }
+    
+    tr:hover {
+	  background-color: #f2f2f2;
+	}
 
     </style>
 </head>
@@ -321,40 +325,37 @@
     </header>
 
 
-    <div id="content">
-        <div id="wrap">
+        <main id="wrap">
+            <header>
             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
-        </div>
+            </header>
 
 
         <div class="main-area">
+        			 <!-- calendar 태그 -->
+         <div id='calendar-container'>
+            <div id='calendar'></div>
+         </div>
             <div class="title-area">
                 <span id="title">당직 리스트</span>
 
 
-                <form action="" class="search-area">
-                    <label for="search" class="category-area">
-                        <select name="search" id="search">
-                            <option value="title">부서</option>
-                            <option value="date">직급</option>
+                <form action="" class="search-area" method="get">
+                   <label for="search" class="category-area"> <select
+						id="search" name="searchType">
+                            <option value="mname">당직자</option>
+                            <option value="start">당직일</option>
                         </select>
 
-                    </label>
-                    <input type="text" id="search-input">
-                    <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </label> <input type="text" id="search-input" name="searchValue"> <a
+						href="http://127.0.0.1:8888/app/duty/select?page=1"
+						id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<input type="submit" value="검색">
                     
                 </form>
 
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-			 <!-- calendar 태그 -->
-         <div id='calendar-container'>
-            <div id='calendar'></div>
-         </div>
+
 			 
                 <button id="sendRequest" onclick="put();">지정하기</button>
             <div class="list-area">
@@ -365,7 +366,8 @@
                     
                     
                     <c:forEach items="${voList}" var="vo">
-						<tr>
+						<tr onclick="detail(${vo.no});">
+                    		<input type="hidden" name=no" value="${vo.no}">
 							<td>${vo.mno}</td>
 							<td>${vo.mname}</td>
 							<td>${vo.start}</td>
@@ -373,94 +375,8 @@
 						</tr>
 					</c:forEach>
 
-                    <!-- <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="choose"></td>
-                        <td>송섭섭</td>
-                        <td>외과</td>
-                        <td>과장</td>
-                        <td>01012345678</td>
-                    </tr> -->
-
-
-
-
                 </table>
-            </div>
-            <br>
-            <br>
-            <br>
+            
 
             <c:set var="range" value="5" />
 			<c:set var="startPage"
@@ -476,7 +392,7 @@
 				</c:if>
 				<c:if test="${pv.maxPage > 1 }">
 					<c:forEach begin="${startPage}" end="${endPage}" var="i">
-						<a class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+						<a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
 					</c:forEach>
 				</c:if>
 				<c:if test="${pv.currentPage < pv.maxPage }">
@@ -484,16 +400,19 @@
 						onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
 				</c:if>
 			</div>
-        </div>
+			</div>
+			</div>
 
-    </div>
+    </main>
 
     <footer>
         <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
     </footer>
 
     <script>
-
+    function detail(no){
+   	 location.href = "${root}/duty/detail/" + no
+    }
     const sideBar = document.querySelector("#side-bar")
     const subMenus = document.querySelectorAll(".sub-menu");
     const thirdSidebars = document.querySelectorAll(".third-sidebar");
@@ -653,6 +572,7 @@
             });
          })();
 
+        
 
     </script>
 </body>
