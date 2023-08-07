@@ -20,6 +20,8 @@ public interface MemberListService {
 		//페이징
 		int getBoardCnt();
 
+		int edit(MemberVo vo);
+
 		
 }
 

@@ -214,6 +214,15 @@
             	margin-left: 100px;
             }
 
+			input{
+			width: 55px;
+			height: 30px;
+			}
+			
+			#edit-area{
+				font-size: large;
+				height: 200px;
+			}
         </style>
     </head>
 
@@ -231,7 +240,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">회의록수정하기</span>
+                    <span id="title">개인정보수정하기</span>
 
                 </div>
                 <br>
@@ -241,41 +250,78 @@
                 <br>
 
 				<div class="list-area">
-			<form action="${root}/proceeding/edit/${vo.no}" method="post" >
-                    <table>
-
+			<form action="${root}/member/edit/${vo.no}" method="post" >
 					
-					<input type="hidden" value=${loginMember.no} >
-					<div id="title-area" >제목<textarea id="title-area" cols="60" rows="1" name="title">${vo.title}</textarea></div>
-					<br>					
-					<div id="title-area">작성자번호<textarea id="date-area" cols="60" rows="1"  name="memberNo" readonly>${vo.memberNo}</textarea></div>
-					<br>
-					<div id="title-area">작성일<textarea id="date-area" cols="60" rows="1"  name="enrollDate" readonly>${vo.enrollDate}</textarea></div>
-					<br>
-					<!-- <div id="content2">내용 -->
-					<div style="font-size:30px;">내용</div>
-					<div id="content-area">
-                        <textarea id="content-area2" cols="60" rows="10" name="content">${vo.content}</textarea>
-
-                    </div>
+					<table id="edit-area">
+				  <thead>
+				    <tr>
+				      <th>사번</th>
+				      <th>소속 부서</th>
+				      <th>직급</th>
+				      <th>이름</th>
+				      <th>상태</th>
+				      <th>입사일</th>
+				      <th>주민등록번호</th>
+				      <th>이메일</th>
+				      <th>휴대폰번호</th>
+				      <th>사무실번호</th>
+				      <th>면허번호</th>
+				      <th>연봉</th>
+				      <th>프로필 사진</th>
+				      <th>서명 이미지</th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  
+				      <tr>
+				        <td><input type="text" name="no" value="${vo.no}" readonly="readonly"></td>
+				        <td>
+				        	<select name="departmentNo">
+				        		<option value="'1'">외과</option>
+				        		<option value="2">내과</option>
+				        		<option value="3">소아청소년과</option>
+				        		<option value="4">피부과</option>
+				        		<option value="5">안과</option>
+				        		<option value="6">치과</option>
+				        		<option value="7">정신과</option>
+				        		<option value="8">물리치료과</option>
+				        		<option value="9">산부인과</option>
+				        		<option value="10">응급의학과</option>
+				        	</select>
+				        </td>
+				        <td>
+				        	<select name="positionNo">
+				        		<option value="'1'">교수</option>
+				        		<option value="2">레지던트</option>
+				        		<option value="3">펠로우</option>
+				        		<option value="4">인턴</option>
+				        		<option value="5">부장간호사</option>
+				        		<option value="6">과장간호사</option>
+				        		<option value="7">수간호사</option>
+				        		<option value="8">주임간호사</option>
+				        		<option value="9">간호사</option>
+				        	</select>
+				        </td>
+				        <td><input type="text" name="name" value="${vo.name}"></td>
+				        <td><input type="text" name="status" value="${vo.status}" readonly="readonly"></td>
+				        <td><input type="text" name="enrollDate" value="${vo.enrollDate}" readonly="readonly" style="width: 71px"></td>
+				        <td><input type="text" name="registrationNumber" value="${vo.registrationNumber}"style="width: 105px"></td>
+				        <td><input type="text" name="email" value="${vo.email}" style="width: 115px"></td>
+				        <td><input type="text" name="phoneNumber" value="${vo.phoneNumber}" style="width: 90px"></td>
+				        <td><input type="text" name="officeNumber" value="${vo.officeNumber}" style="width: 75px"></td>
+				        <td><input type="text" name="licenseNumber" value="${vo.licenseNumber}" style="width: 80px"></td>
+				        <td><input type="text" name="yearSalary" ></td>
+				        <td><img src="${vo.profile}" alt="프로필사진" /></td>
+				        <td><img src="${vo.sign}" alt="서명이미지" /></td>
+				        <td></td>
+				      </tr>
+				</table>
                     
                     
                     
-     
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					
-
-                    </table>
                 </div>
 					
-					<button type="submit" id="sendRequest">수정완료</button>
+					<button type="submit" id="sendRequest" onclick="sub();">수정완료</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
 					<!-- <button id="sendRequest" onclick="edit();">수정하기</button> -->
 					
@@ -304,6 +350,10 @@
             
             function del(no){
             	location.href = "${root}/proceeding/delete/" + no
+            }
+            
+            function sub(){
+            	alert("회원 정보 수정 요청이 처리되었습니다.");
             }
             
         </script>

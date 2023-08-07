@@ -24,7 +24,9 @@ import com.kh.app.organization.vo.OrgVo;
  private final OrgChartDao dao; private final SqlSessionTemplate sst;
  
  @Override 
- public List<OrgVo> list(OrgVo vo) { return dao.list(sst, vo); }
+ public List<OrgVo> list(OrgVo vo) {
+	 return dao.list(sst, vo); 
+	 }
  
  
  

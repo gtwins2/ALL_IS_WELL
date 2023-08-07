@@ -32,7 +32,7 @@
         margin-left: 900px;
         margin-top: 150px;
         font-size: 25px;
-    }
+    }	
 
     #text1{
         display: inline-block;
@@ -289,7 +289,7 @@
 		        
 		    </div>
 		
-	<%-- 	<c:forEach items="${voList}" var="vo">
+			<c:forEach items="${voList}" var="vo">
 		    <div id="box2">
 		        <div class="rightbox"></div>
 		        <div class="updown2"></div>
@@ -299,13 +299,13 @@
 		        <div id="namearea">
 		            ${vo.mname}
 		            <br>
-		            부   팀장   이현철
+		            
 		        </div>
 		    </div>
-		</c:forEach> --%>
+			</c:forEach> 
 
 
-		     <div id="box2">
+		    <!--  <div id="box2">
                 <div class="rightbox"></div>
 		        <div class="updown2"></div>
 		        <button type="button" class="btnClass" id="btn2">일반내과</button>
@@ -465,25 +465,32 @@
 		            <br>
 		            부   팀장   이현철
 		        </div>		        
-            </div>
-		</div>
-	
-        <div id="myModal" class="modal">
+            </div> 
+		</div>--> 
+		${voList}
+		<div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
               <p>
-                이름 : 송준섭
+               <%--  이름 : ${vo.mname}
                 <br>
-                직급 : 과장
+                직급 : ${vo.position}
                 <br>
-                부서 : 외과
+                부서 : ${vo.dname}
                 <br>
-                전화번호 : 0100101010
+                전화번호 : ${vo.phoneNumber}
                 <br>
-                이메일 : asdfa@naver.com
+                이메일 : ${vo.email} --%>
               </p>
             </div>
         </div>
+		
+		
+		
+		</div>
+	
+        
+       
         
 </main>
 	<footer>
