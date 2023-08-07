@@ -1,6 +1,7 @@
 package com.kh.app.attendance.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,8 +48,9 @@ public class AttendanceController {
 	
 	//근태기록 조회(관리자)
 	@GetMapping("admin/list")
-	public void adminAttendanceList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model) {
-						
+	public void adminAttendanceList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model
+			, @RequestParam Map<String , String> paramMap) {
+				
 		int listCount = as.getAdminAttendanceListCnt();
 		int pageLimit = 5;
 		int boardLimit = 10;
@@ -56,8 +58,7 @@ public class AttendanceController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		//리스트 조회
-		List<AttendanceVo> voList = as.getAttendanceListAdmin(pv);
-		
+		List<AttendanceVo> voList = as.getAttendanceListAdmin(pv, paramMap);
 		model.addAttribute("voList",voList);
 		model.addAttribute("pv", pv);
 		

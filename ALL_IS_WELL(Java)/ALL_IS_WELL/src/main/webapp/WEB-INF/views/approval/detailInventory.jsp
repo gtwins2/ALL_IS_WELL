@@ -184,8 +184,7 @@
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td>${ivo.memberName}</td>
-                                <td></td>
+                                <td>${ivo.memberName}(${ivo.departmentName})</td>                                <td></td>
                                 <td></td>
                             </tr>
                         </table>

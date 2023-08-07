@@ -316,7 +316,7 @@
                             <tr id="stamp">
                                 <td>${avo.sign}</td>
                                 <td>
-                                    ${avo.sign}
+                                    ${avo.approverSign}
                                 </td>
                                 <td class="${avo.status == 'A' ? 'approved' : (avo.status == 'O' ? 'rejected' : '')}">
                                     <c:if test="${avo.status == 'A'}">
@@ -420,10 +420,6 @@
         const approvalCancelBtn = document.getElementById("approvalCancelBtn");
 
         // 버튼 클릭 시 모달 열기
-        approvalBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "block";
-        });
-
         refuseBtn.addEventListener("click", () => {
             myModal.style.display = "block";
         });
@@ -433,20 +429,10 @@
             myModal.style.display = "none";
         });
 
-        approvalCancelBtn.addEventListener("click", () => {
-            approvalMyModal.style.display = "none";
-        });
-
         // 모달 바깥쪽 클릭 시 모달 닫기
         window.onclick = (event) => {
             if (event.target === myModal) {
                 myModal.style.display = "none";
-            }
-        };
-
-        window.onclick = (event) => {
-            if (event.target === approvalMyModal) {
-                approvalMyModal.style.display = "none";
             }
         };
 
@@ -474,27 +460,24 @@
         });
 
         //승인 시 작동
-        document.querySelector("#approvalSubmitBtn").addEventListener('click', function (){
+        document.querySelector("#approvalBtn").addEventListener('click', function (){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
-            let approvalModalContent = document.querySelector("#approvalModalContent").innerText;
 
             $.ajax({
                 type : 'post',
                 url : '${root}/approval/admin/approval',
                 data : {
                     no : documentNo,
-                    reason : approvalModalContent
                 },
                 success : function(){
                     console.log(documentNo)
-                    console.log(approvalModalContent)
                     location.href = "/app/approval/admin/list";
                 },
                 error : function(error){
                     console.log("error", error);
                 }
             })
-        });
+        })
 
     </script>
 

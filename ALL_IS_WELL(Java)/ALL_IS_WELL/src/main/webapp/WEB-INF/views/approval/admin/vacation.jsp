@@ -298,6 +298,10 @@
         color: red;
     }
 
+    #reason{
+        font-weight: bold;
+    }
+
 </style>
 </head>
 <body>
@@ -348,12 +352,17 @@
                             <tr id="stamp">
                                 <td>${avo.sign}</td>
                                 <td>${avo.approverSign}</td>
-                                <td class="${avo.status == 'A' ? 'approved' : (avo.status == 'O' ? 'rejected' : '')}">
+                                <td>
                                     <c:if test="${avo.status == 'A'}">
                                         승 인
                                     </c:if>
                                     <c:if test="${avo.status == 'O'}">
-                                        반 려
+                                        <span class="rejected">반 려</span>
+                                        <br>
+                                        <br>
+                                        <span id="reason">
+                                            사유 <br> ${avo.reason}
+                                        </span>
                                     </c:if>
                                 </td>
                             </tr>

@@ -239,6 +239,7 @@
                         <c:forEach items="${voList}" var="vo">
                             <tr onclick="detail();">
                                 <td id="approvalNo" hidden>${vo.no}</td>
+                                <td id="approvalPosition" hidden>${vo.positionNo}</td>
                                 <td>${vo.memberName}</td>
                                 <td id="approvalTitle">${vo.title}</td>
                                 <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
@@ -325,14 +326,30 @@
         function detail() {
             const no = event.target.parentElement.querySelector("#approvalNo").innerText;
             const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
-            if(title === "출장문서"){
-                location.href = "${root}/approval/admin/trip?no=" + no;
-            } else if(title === "휴가문서"){
-                location.href = "${root}/approval/admin/vacation?no=" + no;
-            } else if(title === "재고신청문서"){
-                location.href = "${root}/approval/admin/inventory?no=" + no;
+            const positionNo = event.target.parentElement.querySelector("#approvalPosition").innerHTML;
+
+            if(positionNo !== "1"){
+                if(title === "출장문서"){
+                    location.href = "${root}/approval/admin/trip?no=" + no;
+                } else if(title === "휴가문서"){
+                    location.href = "${root}/approval/admin/vacation?no=" + no;
+                } else if(title === "재고신청문서"){
+                    location.href = "${root}/approval/admin/inventory?no=" + no;
+                }
             }
-        };
+            else{
+                if(title === "출장문서"){
+                    location.href = "${root}/approval/admin/approver/trip?no=" + no;
+                } else if(title === "휴가문서"){
+                    location.href = "${root}/approval/admin/approver/vacation?no=" + no;
+                } else if(title === "재고신청문서"){
+                    location.href = "${root}/approval/admin/approver/inventory?no=" + no;
+                }
+            }
+        }
+
+            
+
     </script>
 </body>
 </html>

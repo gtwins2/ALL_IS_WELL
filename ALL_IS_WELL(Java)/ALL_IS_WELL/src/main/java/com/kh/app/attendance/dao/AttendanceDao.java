@@ -1,6 +1,7 @@
 package com.kh.app.attendance.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,9 +22,9 @@ public class AttendanceDao {
 		return sst.selectOne("attendance.getAttendanceListCnt", no);
 	}
 	
-	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, PageVo pv) {
+	public List<AttendanceVo> getAttendanceListAdmin(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("attendance.getAttendanceListAdmin", null, rb);
+		return sst.selectList("attendance.getAttendanceListAdmin", paramMap, rb);
 	}
 
 	public int getAdminAttendanceListCnt(SqlSessionTemplate sst) {

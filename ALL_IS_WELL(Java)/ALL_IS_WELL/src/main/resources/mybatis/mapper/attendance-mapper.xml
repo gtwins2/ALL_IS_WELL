@@ -28,19 +28,47 @@
 	<select id="getAttendanceListAdminCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM ATTENDANCE
+		
+	<if test="searchType == 'name' and searchValue != '' and searchValue != null">		
+		AND M.${searchType} LIKE '%${searchValue.toString()}%'
+	</if>
+	
+	<if test="searchType == 'position' and searchValue != '' and searchValue != null">		
+		AND P.NAME LIKE '%${searchValue.toString()}%'
+	</if>
+	
+	<if test="searchType == 'department' and searchValue != '' and searchValue != null">		
+		AND D.NAME LIKE '%${searchValue.toString()}%'
+	</if>
 	</select> 
 	
 	<!-- 관리자 근태 조회 -->
 	<select id="getAttendanceListAdmin" resultType="com.kh.app.attendance.vo.AttendanceVo">
 		SELECT 
-		    A.NO,
-		    MEMBER_NO,
-		    M.NAME AS MEMBER_NAME,
+		    M.NAME MEMBER_NAME,
 		    PRESENCE_TIME,
 		    LEAVE_TIME,
-		    A.STATUS
-		FROM ATTENDANCE A
-		JOIN MEMBER M ON A.MEMBER_NO = M.NO
+		    A.STATUS,
+		    A.NO NO,
+		    D.NAME DEPARTMENT_NAME,
+		    P.NAME POSITION_NAME
+		FROM MEMBER M
+		JOIN ATTENDANCE A ON M.NO = A.MEMBER_NO
+		JOIN DEPARTMENT D ON M.DEPARTMENT_NO = D.NO
+		JOIN POSITION P ON M.POSITION_NO = P.NO
+		
+	<if test="searchType == 'name' and searchValue != '' and searchValue != null">		
+		AND M.${searchType} LIKE '%${searchValue.toString()}%'
+	</if>
+	
+	<if test="searchType == 'position' and searchValue != '' and searchValue != null">		
+		AND P.NAME LIKE '%${searchValue.toString()}%'
+	</if>
+	
+	<if test="searchType == 'department' and searchValue != '' and searchValue != null">		
+		AND D.NAME LIKE '%${searchValue.toString()}%'
+	</if>
+
 		ORDER BY PRESENCE_TIME DESC
 	</select>
 	

@@ -150,18 +150,26 @@
 
     .number-area {
         text-align: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
     }
 
     .number-area a {
         display: inline-block;
-        margin: 5px;
-        padding: 8px 12px;
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        text-align: center;
+        line-height: 30px;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        color: #000000;
         text-decoration: none;
-        border: none;
-        color: inherit;
-        font-size: 15px;
+    }
+
+    .number-area a:hover {
+        background-color: #007bff;
+        color: #ffffff;
+        border-color: #007bff;
     }
 
     #previous {
