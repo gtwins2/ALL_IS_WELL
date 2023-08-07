@@ -1,45 +1,61 @@
 package com.kh.app.board.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kh.app.board.service.NoticeService;
+import com.kh.app.board.vo.NoticeReplyVo;
+import com.kh.app.board.vo.NoticeVo;
+import com.kh.app.page.vo.PageVo;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("Mboard")
+@RequiredArgsConstructor
 public class MboardController {
 
-	//°ÇÀÇ»çÇ× ¸ñ·Ï(Á÷¿ø)
+	private final NoticeService ns;
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 	@GetMapping("suggestList")
 	public String suggestList() {
 		return "board/member/suggestList";
 	}
 	
-	//°ÇÀÇ»çÇ× »ó¼¼ÆäÀÌÁö(´ñ±ÛÁ¶È¸)
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½È¸)
 	@GetMapping("suggestDetail")
 	public String suggestDetail() {
 		return "board/member/suggestDetail";
 	}
 	
 	
-	//°ÇÀÇ»çÇ× ÀÛ¼ºÇÏ±â
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï±ï¿½
 	@GetMapping("suggestWrite")
 	public String suggestWrite() {
 		return "board/member/suggestWrite";
 	}
 	
-	//¹®ÀÇ»çÇ× ¸ñ·Ï
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@GetMapping("inquiryList")
 	public String inquiryList() {
 		return "board/member/inquiryList";
 	}
 	
-	//¹®ÀÇ»çÇ× ÀÛ¼º
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
 	@GetMapping("inquiryWrite")
 	public String inquiryWrite() {
 		return "board/member/inquiryWrite";
 	}
 	
-	//¹®ÀÇ»çÇ× »ó¼¼ÆäÀÌÁö(´ñ±ÛÁ¶È¸)
+	//ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½È¸)
 	@GetMapping("inquiryDetail")
 	public String inquiryDetail() {
 		return "board/member/inquiryDetail";
@@ -48,15 +64,62 @@ public class MboardController {
 	
 	
 	
-	//°øÁö»çÇ×¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¸ï¿½ï¿½
 	@GetMapping("noticeList")
-	public String noticeList() {
+	public String noticeList(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session, NoticeVo vo) {
+		
+		int listCount = ns.getNoticeListCnt();
+	    int pageLimit = 5;
+	    int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<NoticeVo> voList = ns.noticeList(pv);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList" ,voList);
 		return "board/member/noticeList";
 	}
 
-	//°øÁö»çÇ× »ó¼¼ÆäÀÌÁö
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("noticeDetail")
-	public String noticeDetail() {
+	public String noticeDetail(NoticeVo vo, Model model, NoticeReplyVo vo2) {
+		NoticeVo voList = ns.noticeDetail(vo);
+		List<NoticeReplyVo> voList2 = ns.noticeReply(vo2);
+		
+		
+		model.addAttribute("voList2" ,voList2);
+		model.addAttribute("vo" ,voList);
 		return "board/member/noticeDetail";
+	}
+	
+	@PostMapping("noticeDetail")
+	public String noticeDetail(NoticeReplyVo vo) {
+		int result = ns.replyWrite(vo);
+		String no = vo.getNoticeNo();
+		return "redirect:/Mboard/noticeDetail?no="+ no;
+	}
+	
+	@PostMapping("noticeReplyDelete")
+	public String noticeReplyDelete(NoticeReplyVo vo) {
+		int result = ns.noticeReplyDelete(vo);
+		String no = vo.getNoticeNo();
+		return "redirect:/Mboard/noticeDetail?no="+ no;
+	}
+	
+	@GetMapping("noticeReplyUpdate")
+	public String noticeReplyUpdate(String no, String content, String noticeNo, Model model) {
+		model.addAttribute("no",no);
+		model.addAttribute("content",content);
+		model.addAttribute("noticeNo",noticeNo);
+		return "board/member/noticeReplyUpdate";
+	}
+	
+	@PostMapping("noticeReplyUpdate")
+	public String noticeReplyUpdate(NoticeReplyVo vo) {
+		int result = ns.noticeReplyUpdate(vo);
+		String no = vo.getNoticeNo();
+		
+		return "redirect:/Mboard/noticeDetail?no="+ no;
 	}
 }

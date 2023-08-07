@@ -97,7 +97,7 @@
 		(
 			SEQ_NOTICE_REPLY_NO.NEXTVAL
 			,#{noticeNo}
-			,1
+			,#{writerNo}
 			,#{content}
 		)
 		

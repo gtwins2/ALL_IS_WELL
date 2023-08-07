@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() 
+    {
+        var data = google.visualization.arrayToDataTable(
+            [["GENDER","Rating"],["M",${pv.listCount}],["W",${pv.currentPage}]]
+        );
+        var options = {
+            title: "GENDER Ratings"
+        };
+        var chart = new google.visualization.PieChart(document.getElementById("employee_piechart"));
+        chart.draw(data, options);
+    }
+</script>
 </head>
 <style>
 #content{
@@ -262,7 +279,8 @@ color: #000000;
 		</nav>
 		<main>
 			<div id="div01"></div>
-            <div id="div01-1">환자통계</div>
+			<div id="employee_piechart" style="width: 900px; height: 500px;"></div>
+            <div id="div01-1">환자통계${pv.listCount}</div>
             <hr id="hr1">
             <hr id="hr2">
 
