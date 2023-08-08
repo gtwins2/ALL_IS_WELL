@@ -354,14 +354,14 @@
                                 <td>${avo.approverSign}</td>
                                 <td>
                                     <c:if test="${avo.status == 'A'}">
-                                        승 인
+                                        <span class="approved">승 인</span>
                                     </c:if>
                                     <c:if test="${avo.status == 'O'}">
                                         <span class="rejected">반 려</span>
                                         <br>
                                         <br>
                                         <span id="reason">
-                                            사유 <br> ${avo.reason}
+                                            ${avo.reason}
                                         </span>
                                     </c:if>
                                 </td>

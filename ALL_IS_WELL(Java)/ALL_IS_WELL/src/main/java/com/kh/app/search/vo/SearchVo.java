@@ -7,5 +7,7 @@ public class SearchVo {
 
 	private String searchType;
 	private String searchValue;
+	private String searchValue2;
+	private String no;
 	
 }

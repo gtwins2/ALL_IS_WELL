@@ -5,11 +5,23 @@
 <mapper namespace="approval">
 	
 	<select id="getApprovalListCnt" resultType="int">
-		SELECT COUNT(*)
-		FROM APPROVAL_DOCUMENT
-		WHERE MEMBER_NO = #{no}
+	    SELECT COUNT(*)
+	    FROM APPROVAL_DOCUMENT
+	    WHERE MEMBER_NO = #{no}
+	    
+	    <if test="searchType == 'approvalType' and searchValue != '' and searchValue != null">
+	        AND TITLE LIKE '%${searchValue}%'
+	    </if>
+	    <if test="searchType == 'status' and searchValue != '' and searchValue != null">
+	        <if test="searchValue2 != '' and searchValue2 != null">
+	            AND (STATUS = #{searchValue} OR STATUS = #{searchValue2})
+	        </if>
+	        <if test="searchValue2 == '' or searchValue2 == null">
+	            AND STATUS = #{searchValue}
+	        </if>
+	    </if>
 	</select>
-	
+		
 	<select id="getApprovalList" resultType="com.kh.app.approval.vo.ApprovalVo">
 	    SELECT DISTINCT
 	        AD.NO,
@@ -17,10 +29,29 @@
 	        AD.CREATE_DATE,
 	        AD.TITLE,
 	        M.NAME AS MEMBER_NAME,
-	        AD.STATUS
+	        AD.STATUS,
+	        P.NO POSITION_NO,
+	        P.NAME POSITION_NAME,
+	        D.NO DEPARTMENT_NO,
+	        D.NAME DEPARTMENT_NAME
 	    FROM APPROVAL_DOCUMENT AD
 	    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
+	    JOIN POSITION P ON P.NO = M.POSITION_NO
+	    JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
 	    WHERE MEMBER_NO = #{no}
+	    
+	    <if test="searchType == 'approvalType' and searchValue != '' and searchValue != null">
+	        AND AD.TITLE LIKE '%${searchValue}%'
+	    </if>
+	    <if test="searchType == 'status' and searchValue != '' and searchValue != null">
+	        <if test="searchValue2 != '' and searchValue2 != null">
+	            AND (AD.STATUS = #{searchValue} OR AD.STATUS = #{searchValue2})
+	        </if>
+	        <if test="searchValue2 == '' or searchValue2 == null">
+	            AND AD.STATUS = #{searchValue}
+	        </if>
+	    </if>
+	    
 	    ORDER BY AD.NO DESC
 	</select>
 	

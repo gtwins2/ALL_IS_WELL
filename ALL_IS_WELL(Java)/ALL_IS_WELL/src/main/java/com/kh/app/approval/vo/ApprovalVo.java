@@ -15,5 +15,11 @@ public class ApprovalVo {
 	private String memberName;
 	private String reason;
 	private String completeDate;
+	private String positionNo;
+	private String positionName;
+	private String departmentNo;
+	private String departmentName;
+	private String searchType;
+	private String searchValue;
 	
 }

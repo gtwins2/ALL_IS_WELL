@@ -369,7 +369,7 @@
                                 </td>
                                 <td>
                                     <c:if test="${vvo.status == 'A'}">
-                                        승 인
+                                        <span class="approved">승 인</span>
                                     </c:if>
                                     <c:if test="${vvo.status == 'O'}">
                                         <span class="rejected">반 려</span>

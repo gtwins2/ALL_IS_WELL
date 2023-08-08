@@ -1,6 +1,8 @@
 package com.kh.app.approval.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
@@ -21,7 +23,9 @@ import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
+import kotlinx.serialization.descriptors.StructureKind.MAP;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -35,50 +39,76 @@ public class ApprovalController {
 	// 기안한 문서(화면)
 	@GetMapping("draftList")
 	public void draftList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
-			Model model, HttpSession session) {
+			Model model, HttpSession session, @RequestParam Map<String , String> paramMap) {
 
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		/*
 		 * if(loginMember == null) { throw new LoginException(); }
 		 */
-		String no = loginMember.getNo();
+		
+		SearchVo svo = new SearchVo();
+		
+		svo.setNo(loginMember.getNo());
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
+		
+		if ("대기".equals(svo.getSearchValue())) {
+			svo.setSearchValue("W");
+		}else if ("승인".equals(svo.getSearchValue())) {
+			svo.setSearchValue("A");
+		}else if ("1차".equals(svo.getSearchValue()) || "1차 승인".equals(svo.getSearchValue())) {
+			svo.setSearchValue("F");
+		}else if ("반려".equals(svo.getSearchValue())) {
+		    svo.setSearchValue2("O");
+		    svo.setSearchValue("R");
+		}
 
-		int listCount = as.getApprovalListCnt(no);
+		int listCount = as.getApprovalListCnt(svo);
 		int pageLimit = 5;
 		int boardLimit = 10;
 
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
-		List<ApprovalVo> voList = as.getApprovalList(pv, no);
+		List<ApprovalVo> voList = as.getApprovalList(pv, svo);
 
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
-
+		model.addAttribute("svo", svo);
 	}
 	
 	//관리자 문서 리스트
 	@GetMapping("admin/list")
 	public void adminList(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
-			Model model, HttpSession session) throws Exception {
+			Model model, HttpSession session, @RequestParam Map<String , String> paramMap) throws Exception {
 
 //		loginMember = (MemberVo) session.getAttribute("loginMember");
 //		if("ADMIN".equals(loginMember.getName())) {
 //			throw new LoginException();
 //		}
 		
-		ApproverVo vo = new ApproverVo();
-		String approverName = "ADMIN";
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
 		
-		vo.setApproverName(approverName);
+		if ("대기".equals(svo.getSearchValue())) {
+			svo.setSearchValue("W");
+		}else if ("승인".equals(svo.getSearchValue())) {
+			svo.setSearchValue("A");
+		}else if ("1차".equals(svo.getSearchValue()) || "1차 승인".equals(svo.getSearchValue())) {
+			svo.setSearchValue("F");
+		}else if ("반려".equals(svo.getSearchValue())) {
+		    svo.setSearchValue2("O");
+		    svo.setSearchValue("R");
+		}
 		
-		int listCount = as.getAdminListCnt(vo);
+		int listCount = as.getAdminListCnt(svo);
 		int pageLimit = 5;
 		int boardLimit = 10;
 
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
-		List<ApproverVo> voList = as.getAdminList(pv, vo);
+		List<ApproverVo> voList = as.getAdminList(pv, svo);
 		
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
@@ -158,7 +188,7 @@ public class ApprovalController {
 	// 결재해야할 문서(화면 (직급이 D1인 사람))
 	@GetMapping("list")
 	public void list(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
-			Model model, HttpSession session) {
+			Model model, HttpSession session, @RequestParam Map<String, String> paramMap) {
 
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		/*
@@ -167,22 +197,37 @@ public class ApprovalController {
 		
 		ApproverVo vo = new ApproverVo();
 		
+		String searchType = paramMap.get("searchType");
+		String searchValue = paramMap.get("searchValue");
 		String no = loginMember.getNo();
 		String departmentNo = loginMember.getDepartmentNo();
 		String positionNo = loginMember.getPositionNo();
 		
 		vo.setDepartmentNo(departmentNo);
 		vo.setPositionNo(positionNo);
-		vo.setApproverNo(no);
+		vo.setNo(no);
+		vo.setSearchType(searchType);
+		vo.setSearchValue(searchValue);
+		
+		if ("대기".equals(vo.getSearchValue())) {
+			vo.setSearchValue("W");
+		}else if ("승인".equals(vo.getSearchValue())) {
+			vo.setSearchValue("A");
+		}else if ("1차".equals(vo.getSearchValue()) || "1차 승인".equals(vo.getSearchValue())) {
+			vo.setSearchValue("F");
+		}else if ("반려".equals(vo.getSearchValue())) {
+		    vo.setSearchValue2("O");
+		    vo.setSearchValue("R");
+		}
 		
 		if(!"1".equals(positionNo)) {
 			throw new RuntimeException("결제권자가 아님");
 		}
-		
+				
 		int listCount = as.getApproverListCnt(vo);
 		int pageLimit = 5;
 		int boardLimit = 10;
-
+		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		List<ApproverVo> voList = as.getApproverList(pv, vo);
@@ -190,6 +235,7 @@ public class ApprovalController {
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
+		model.addAttribute("vo", vo);
 		
 	}
 	

@@ -15,19 +15,20 @@ import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 @Repository
 public class ApprovalDao {
 
 	//기안한 문서 개수
-	public int getApprovalListCnt(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("approval.getApprovalListCnt", no);
+	public int getApprovalListCnt(SqlSessionTemplate sst, SearchVo svo) {
+		return sst.selectOne("approval.getApprovalListCnt", svo);
 	}
 
 	//기안한 문서 리스트
-	public List<ApprovalVo> getApprovalList(SqlSessionTemplate sst, PageVo pv, String no) {
+	public List<ApprovalVo> getApprovalList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("approval.getApprovalList", no, rb);
+		return sst.selectList("approval.getApprovalList", svo, rb);
 	}
 	
 	public AdminApproverVo detailTrip(SqlSessionTemplate sst, String no) {
@@ -122,13 +123,13 @@ public class ApprovalDao {
 		return sst.selectOne("approver.detailApprovalTrip", no);
 	}
 
-	public int getAdminListCnt(SqlSessionTemplate sst, ApproverVo vo) {
-		return sst.selectOne("approver.getAdminListCnt", vo);
+	public int getAdminListCnt(SqlSessionTemplate sst, SearchVo svo) {
+		return sst.selectOne("approver.getAdminListCnt", svo);
 	}
 
-	public List<ApproverVo> getAdminList(SqlSessionTemplate sst, ApproverVo vo, PageVo pv) {
+	public List<ApproverVo> getAdminList(SqlSessionTemplate sst, SearchVo svo, PageVo pv) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("approver.getAdminList", vo, rb);
+		return sst.selectList("approver.getAdminList", svo, rb);
 	}
 
 	public AdminApproverVo detailApprovalAdminVacation(SqlSessionTemplate sst, String no) {

@@ -362,7 +362,12 @@
                                         승 인
                                     </c:if>
                                     <c:if test="${bvo.status == 'O'}">
-                                        반 려
+                                        <span class="rejected">반 려</span>
+                                        <br>
+                                        <br>
+                                        <span id="reason">
+                                            ${bvo.reason}
+                                        </span>
                                     </c:if>
                                 </td>
                             </tr>
