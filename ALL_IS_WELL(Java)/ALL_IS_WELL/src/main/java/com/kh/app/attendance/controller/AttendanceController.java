@@ -15,6 +15,7 @@ import com.kh.app.attendance.service.AttendanceService;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -50,10 +51,16 @@ public class AttendanceController {
 	@GetMapping("admin/list")
 	public void adminAttendanceList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage, Model model
 			, @RequestParam Map<String , String> paramMap) {
-				
-		int listCount = as.getAdminAttendanceListCnt();
+		
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
+		
+		int listCount = as.getAdminAttendanceListCnt(paramMap);
 		int pageLimit = 5;
 		int boardLimit = 10;
+		
+		System.out.println(listCount);
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
@@ -61,6 +68,7 @@ public class AttendanceController {
 		List<AttendanceVo> voList = as.getAttendanceListAdmin(pv, paramMap);
 		model.addAttribute("voList",voList);
 		model.addAttribute("pv", pv);
+		model.addAttribute("svo", svo);
 		
 	}
 	
