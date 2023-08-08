@@ -19,10 +19,10 @@
 
 #div01{
 position: absolute;
-width: 167px;
+width: 250px;
 height: 59px;
-left: 450px;
-top: 209px;
+left: 350px;
+top: 109px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
@@ -31,15 +31,24 @@ line-height: 48px;
 color: #000000;
 }
 
+hr{
+	position: absolute;
+	width: 1770px;
+	height: 0px;
+	left: 150px;
+	top: 168px;
+	border: 1px solid #D1CECE;
+}
+
 #div02{
 	position: absolute;
-	left: 439px;
-	top: 306px;
+	left: 430px;
+	top: 206px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
  	width: 1200px;
-	height: 600px;
+	height: 550px;
 	margin: auto;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
@@ -81,6 +90,7 @@ color: #000000;
 	border: 1px solid #B2B2B2;
 	width: 80%;
 	resize: none;
+	height: 120px;
 }
 
 #div03, #div04{
@@ -88,7 +98,7 @@ color: #000000;
 	width: 127.61px;
 	height: 47.83px;
 	left: 1455px;
-	top: 950px;
+	top: 780px;
 	background: #5A8CF2;
 	border-radius: 5px;
 	font-family: 'Inter';
@@ -123,13 +133,14 @@ color: #000000;
 		</div>
 		<main>
 			<div id="div01">접수</div>
+			<hr>
 			<form action="${root}/receipt/infoUpdate" method="post">
 				
 				<div id="div02">
 					<div id="div02-1">
-						<input type="text" value="${vo.no}" name="no" hidden>
 						<div>이름</div>
 						<div><input type="text" value="${vo.name}" readonly="readonly"></div>
+						<input type="text" value="${vo.no}" name="no" hidden>
 						<div id="div02-3">
 							<c:if test="${gender == 'M'}">
 							남<input type="checkbox" name="" id="m" checked readonly="readonly">

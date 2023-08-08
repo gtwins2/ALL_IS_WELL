@@ -9,4 +9,6 @@ public interface CalendarService {
 
 	List<Calendar> getCalendar(MemberVo loginMember) throws Exception;
 
+	List<Calendar> getCalendar();
+
 }

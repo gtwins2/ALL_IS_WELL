@@ -1,6 +1,7 @@
 package com.kh.app.prescription.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,13 +26,13 @@ public class PrescriptionDao {
 		return sst.insert("prescription.insertPL", vo);
 	}
 
-	public int getPrescriptionListCnt(SqlSessionTemplate sst, PrescriptionVo vo) {
-		return sst.selectOne("prescription.getPrescriptionListCnt", vo);
+	public int getPrescriptionListCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("prescription.getPrescriptionListCnt", paramMap);
 	}
 
-	public List<PatientVo> PrescriptionList(SqlSessionTemplate sst, PageVo pv) {
+	public List<PatientVo> PrescriptionList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("prescription.PrescriptionList", pv, rb);
+		return sst.selectList("prescription.PrescriptionList", paramMap, rb);
 	}
 
 	public PrescriptionVo detail(SqlSessionTemplate sst, PrescriptionVo vo) {

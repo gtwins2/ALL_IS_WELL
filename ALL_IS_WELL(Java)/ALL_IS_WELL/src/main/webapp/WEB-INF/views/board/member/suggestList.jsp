@@ -239,69 +239,23 @@
 
                 <div class="list-area">
                     <table>
+                        <thead>
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성일</th>
+                        </thead>
+						<tbody>
+                        <c:forEach items="${voList}" var="vo">
+                            
 
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
-
-                        <tr>
-                            <td>홍길동</td>
-                            <td>안녕하세요. 6월 신고내역서입니다.</td>
-                            <td>2023-06-13</td>
-                        </tr>
+                                <tr>
+                                    <td>${vo.no}</td>
+                                    <td>${vo.title}</td>
+                                    <td>${vo.enrollDate}</td>
+                                </tr>
+                                
+						</c:forEach>
+						</tbody>
 
 
 
@@ -313,15 +267,26 @@
                 <br>
 
                 <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
-                </div>
+                <c:if test="${pv.currentPage > 1}">
+                    <a href="noticeList?page=1">&laquo;</a>
+                    <a href="noticeList?page=${pv.currentPage - 1}">&lt;</a>
+                </c:if>      
+                <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                    <c:choose>
+                        <c:when test="${i == pv.currentPage}">
+                            <a class="currentPage">${i}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="noticeList?page=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${pv.maxPage > pv.currentPage}">
+                    <a href="noticeList?page=${pv.currentPage + 1}">&gt;</a>
+                    <a href="noticeList?page=${pv.maxPage}">&raquo;</a>
+                </c:if>
+            </div>
             </div>
 
         </div>

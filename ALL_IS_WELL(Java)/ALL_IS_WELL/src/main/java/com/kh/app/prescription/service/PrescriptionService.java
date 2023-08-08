@@ -1,6 +1,7 @@
 package com.kh.app.prescription.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,12 @@ public class PrescriptionService {
 		return dao.insertPL(sst,vo);
 	}
 
-	public int getPrescriptionListCnt(PrescriptionVo vo) {
-		return dao.getPrescriptionListCnt(sst,vo);
+	public int getPrescriptionListCnt(Map<String, String> paramMap) {
+		return dao.getPrescriptionListCnt(sst,paramMap);
 	}
 
-	public List<PatientVo> PrescriptionList(PageVo pv) {
-		return dao.PrescriptionList(sst, pv);
+	public List<PatientVo> PrescriptionList(PageVo pv, Map<String, String> paramMap) {
+		return dao.PrescriptionList(sst, pv, paramMap);
 	}
 
 	public PrescriptionVo detail(PrescriptionVo vo) {

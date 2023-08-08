@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.app.main.controller.Calendar"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script type="text/javascript">
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);
@@ -16,14 +19,55 @@
             [["GENDER","Rating"],["M",${pv.listCount}],["W",${pv.currentPage}]]
         );
         var options = {
-            title: "GENDER Ratings"
+            title: "Gender Ratings"
         };
         var chart = new google.visualization.PieChart(document.getElementById("employee_piechart"));
+        var chart2 = new google.visualization.PieChart(document.getElementById("employee_piechart"));
         chart.draw(data, options);
     }
 </script>
+ <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
+         <meta name="viewport"
+            content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+         <!-- jquery CDN -->
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         <!-- fullcalendar CDN -->
+         <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+         <!-- fullcalendar 언어 CDN -->
+         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+
 </head>
 <style>
+/* body 스타일 */
+            html,
+            body {
+               font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+               font-size: 14px;
+            }
+            .fc-sticky{
+               color: white;
+            }
+            
+            /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
+            .fc-header-toolbar {
+               padding-top: 1em;
+               padding-left: 1em;
+               padding-right: 1em;
+            }
+
+            /* 일요일 날짜 빨간색 */
+            .fc-day-sun a {
+            color: red;
+            text-decoration: none;
+            }
+
+            /* 토요일 날짜 파란색 */
+            .fc-day-sat a {
+            color: blue;
+            text-decoration: none;
+            }
+
 #content{
 		width: 1920px;
 		height: 750px;
@@ -70,7 +114,7 @@
 #hr2{
     top: 518px;
 }
-h2{
+#h2{
 	position: absolute;
 	width: 311px;
 	height: 242px;
@@ -118,11 +162,10 @@ h2{
 }
 #div03{
 position: absolute;
-width: 426px;
-height: 961px;
-left: 829px;
-top: 204px;
-
+width: 900px;
+height: 730px;
+left: 820px;
+top: 100px;
 background: #FDFDFD;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 50px;
@@ -265,7 +308,6 @@ color: #000000;
     top: 885px;
 }
 
-
 </style>
 <body>
 
@@ -278,15 +320,27 @@ color: #000000;
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<div id="div01"></div>
+			<!-- <div id="div01"></div> -->
 			<div id="employee_piechart" style="width: 900px; height: 500px;"></div>
-            <div id="div01-1">환자통계${pv.listCount}</div>
-            <hr id="hr1">
-            <hr id="hr2">
-
-
+			<canvas id="myChart"></canvas>
+            <!-- <div id="div01-1">환자통계</div> -->
+			
+			<script>
+				var ctx = document.getElementById("myChart").getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data:{
+						labels:["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets:[{
+							label: '# of Votes',
+							data:[12, 19, 3, 5, 2, 3],
+						}]
+					}
+					
+				})
+			</script>
             <!--재고 등록 이력-->
-            <div id="div02">
+            <!-- <div id="div02">
 		        <br>
 		        <div>
 		            <div id="right"><h3>공지사항</h3></div>
@@ -309,24 +363,53 @@ color: #000000;
 		            <div>5월 급여지급 지연 안내</div>
 		            <div>2023-06-07</div>
 		        </div>
-		    </div>
+		    </div> -->
 		    <!-- 재고이력 틀 -->
-		    <div id="div02-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
-
+		    <!-- <div id="div02-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
+ -->
 
 		    <!-- 일정 -->
-		    <div id="div03"></div>
-		    <hr id="div03-1">
-		    <div id="div03-2">8</div>
-		    <hr id="div03-3">
-		    <div id="div03-4">11</div>
-		    <hr id="div03-5">
-		    <div id="div03-6">19</div>
-		    <hr id="div03-7">
-		    <div id="div03-8">23</div>
+		    <div id='div03'>
+            <div id='calendar'></div>
+         	</div>
+
+		   <script>
+            
+		    document.addEventListener('DOMContentLoaded', function() {
+		    	var calendarEl = document.getElementById('calendar');
+		    	var calendar = new FullCalendar.Calendar(calendarEl, {
+		    		initialView : 'dayGridMonth',
+		    		locale : 'ko', // 한국어 설정
+		    		headerToolbar : {
+		            	start : "prev next",
+		                center : "title",
+		                end : 'dayGridMonth,dayGridWeek,dayGridDay'
+		                },
+		    	selectable : true,
+		    	droppable : true,
+		    	editable : true,
+		    	events : [ 
+		        	    <%List<Calendar> calendarList = (List<Calendar>) request.getAttribute("calendarList");%>
+		                <%if (calendarList != null) {%>
+		                <%for (Calendar vo : calendarList) {%>
+		                {
+		                	title : '<%=vo.getName()%>',
+		                    start : '<%=vo.getDutyDay()%>',
+		                    end : '<%=vo.getEndDate()%>',
+		                    color : '#' + Math.round(Math.random() * 0xffffff).toString(16)
+		                 },
+		    	<%}
+		    }%>
+		    				]
+		    				
+		    			});
+		    			calendar.render();
+		    		});
+         </script>
+		    
 		
 		    <!-- 공지사항 -->
-		    <div id="div04">
+		    <!-- <div id="div04">
 		        <br>
 		        <div>
 		            <div id="right"><h3>공지사항</h3></div>
@@ -349,12 +432,12 @@ color: #000000;
 		            <div>5월 급여지급 지연 안내</div>
 		            <div>2023-06-07</div>
 		        </div>
-		    </div>
+		    </div> -->
 		    <!-- 공지사항 틀 -->
-		    <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
-		    
+		    <!-- <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
+		     -->
 		    <!-- 결제현황 -->
-		    <div id="div05">
+		    <!-- <div id="div05">
 		        <br>
 		        <div>
 		            <div><h3>결제현황</h3></div>
@@ -384,9 +467,9 @@ color: #000000;
 		        </div>
 		    </div>
 		    <div id="div05-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp구분&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp문서명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-		
+		 -->
 		    <!-- 근태 -->
-		    <div id="div06">
+		    <!-- <div id="div06">
 		        <br>
 		        <div>
 		            <div><h3>결제현황</h3></div>
@@ -416,7 +499,7 @@ color: #000000;
 		        </div>
 		    </div>
 		    <div id="div06-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp구분&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp문서명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-
+ -->
 		</main>
 	</div>
 

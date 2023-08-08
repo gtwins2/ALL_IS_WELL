@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>문의사항</title>
+        <title>공지사항</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
 #content{
@@ -212,18 +212,15 @@
                 <div class="title-area">
                     <span id="title">문의사항</span>
 
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="writer">작성자</option>
-                                <option value="title">제목</option>
-                            </select>
-
-
-                        </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </form>
+                    <form action="" class="search-area" method="get">
+                    <label for="search" class="category-area">
+                        <select name="searchType" id="search">
+                            <option value="title">제목</option>
+                        </select>
+                    </label>
+                    <input type="text" id="search-input" name="searchValue">
+                    <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
+             	    </form>
 
                     <button id="sendMail" onclick="location.href='${root}/board/noticeWrite';">작성하기</button>
                 </div>
@@ -258,10 +255,11 @@
                 <br>
                 <br>
 
-                <div class="number-area">
+               <div class="number-area">
+               <c:if test="${pv.listCount > 10}">
                 <c:if test="${pv.currentPage > 1}">
-                    <a href="inquiryList?page=1">&laquo;</a>
-                    <a href="inquiryList?page=${pv.currentPage - 1}">&lt;</a>
+                    <a href="noticeList?page=1">&laquo;</a>
+                    <a href="noticeList?page=${pv.currentPage - 1}">&lt;</a>
                 </c:if>      
                 <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                 <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -270,13 +268,14 @@
                             <a class="currentPage">${i}</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="inquiryList?page=${i}">${i}</a>
+                            <a href="noticeList?page=${i}">${i}</a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
                 <c:if test="${pv.maxPage > pv.currentPage}">
-                    <a href="inquiryList?page=${pv.currentPage + 1}">&gt;</a>
-                    <a href="inquiryList?page=${pv.maxPage}">&raquo;</a>
+                    <a href="noticeList?page=${pv.currentPage + 1}">&gt;</a>
+                    <a href="noticeList?page=${pv.maxPage}">&raquo;</a>
+                </c:if>
                 </c:if>
             </div>
             
@@ -314,7 +313,7 @@
 		const title = event.target.parentNode.children[1].innerText;
 
 		//요청보내기
-		location.href='${root}/board/inquiryDetail?no=' + no + "&title=" + title;
+		location.href='${root}/board/noticeDetail?no=' + no + "&title=" + title;
 
 
 	}); 

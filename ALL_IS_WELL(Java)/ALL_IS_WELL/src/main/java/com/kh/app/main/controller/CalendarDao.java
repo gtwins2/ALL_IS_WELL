@@ -20,4 +20,10 @@ public class CalendarDao {
 		return calendar;
 		
 	}
+
+	public List<Calendar> getCalendar() {
+		List<Calendar> calendar = null;
+		calendar = sqlSession.selectList("Calendar.calendarList2");
+		return calendar;
+	}
 }
