@@ -14,12 +14,31 @@
 			,EMAIL
 			,CAUTION	
 		FROM PATIENT
+		<if test="searchType == 'name' and searchValue != '' and searchValue != null">		
+		WHERE ${searchType} LIKE '%${searchValue}%'
+		</if>
+		<if test="searchType == 'email' and searchValue != '' and searchValue != null">		
+		WHERE ${searchType} LIKE '%${searchValue}%'
+		</if>
 		ORDER BY NO DESC
 	</select>
 	
 	<select id="getListCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM PATIENT
+		
+	
+	    <where>
+	        <if test="searchType == 'name' and searchValue != '' and searchValue != null">
+	            AND NAME LIKE '%${searchValue}%'
+	        </if>
+	
+	        <if test="searchType == 'email' and searchValue != '' and searchValue != null">
+	            AND EMAIL LIKE '%${searchValue}%'
+	        </if>
+	
+	        
+	    </where>
 	</select>
 	
 	<select id="selectSearchList" resultType="com.kh.app.patient.vo.PatientVo">

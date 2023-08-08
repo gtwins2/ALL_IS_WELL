@@ -319,7 +319,7 @@ color: #000000;
 			<!-- 프로필 -->
 		    <div id="div01"></div>
 		    <div id="div01-1"><img src="${root}/resources/static/img/logo/logo2.png" alt="" width="100%" height="100%"></div>
-			<h2 id="h2">흉부외과 전문의<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
+			<h2 id="h2">${loginMember.name}<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
 			
 			<input type="text" value="${loginMember.no}" name="no" hidden>
 		    <!-- 출근 -->

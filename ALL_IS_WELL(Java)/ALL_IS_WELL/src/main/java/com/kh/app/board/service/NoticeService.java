@@ -1,6 +1,7 @@
 package com.kh.app.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class NoticeService {
 	private final NoticeDao dao; 
 	private final SqlSessionTemplate sst;; 
 	
-	public List<NoticeVo> noticeList(PageVo pv) {
-		return dao.noticeList(sst, pv);
+	public List<NoticeVo> noticeList(PageVo pv, Map<String, String> paramMap) {
+		return dao.noticeList(sst, pv, paramMap);
 	}
 
 	public NoticeVo noticeDetail(NoticeVo vo) {
@@ -39,8 +40,8 @@ public class NoticeService {
 		return dao.replyWrite(sst, vo);
 	}
 
-	public int getNoticeListCnt() {
-		return dao.getNoticeListCnt(sst);
+	public int getNoticeListCnt(Map<String, String> paramMap) {
+		return dao.getNoticeListCnt(sst, paramMap);
 	}
 
 	public int noticeUpdate(NoticeVo vo) {

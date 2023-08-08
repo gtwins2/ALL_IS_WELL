@@ -14,6 +14,9 @@
 			,MODIFY_DATE
 			,STATUS
 		FROM NOTICE
+		<if test="searchType == 'title' and searchValue != '' and searchValue != null">		
+		WHERE ${searchType} LIKE '%${searchValue}%'
+		</if>
 		ORDER BY NO DESC
 	</select>
 	
@@ -118,6 +121,12 @@
 	<select id="getNoticeListCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM NOTICE
+		<where>
+	        <if test="searchType == 'title' and searchValue != '' and searchValue != null">
+	            AND TITLE LIKE '%${searchValue}%'
+	        </if>
+	
+	    </where>
 	</select>
 	
 	<insert id="noticeUpdate">

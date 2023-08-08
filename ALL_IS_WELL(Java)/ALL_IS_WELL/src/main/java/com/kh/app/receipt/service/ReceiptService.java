@@ -1,6 +1,7 @@
 package com.kh.app.receipt.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class ReceiptService {
 		return dao.search(sst, vo);
 	}
 
-	public List<PatientVo> list(PageVo pv) {
-		return dao.list(sst, pv);
+	public List<PatientVo> list(PageVo pv, Map<String, String> paramMap) {
+		return dao.list(sst, pv, paramMap);
 	}
 
 	public int regist(PatientVo vo) {
@@ -35,16 +36,16 @@ public class ReceiptService {
 		return dao.registContent(sst, vo);
 	}
 
-	public int getPatientListCnt() {
-		return dao.getPatientListCnt(sst);
+	public int getPatientListCnt(Map<String, String> paramMap) {
+		return dao.getPatientListCnt(sst, paramMap);
 	}
 
 	public PatientVo selectOneList(PatientVo vo) {
 		return dao.selectOneList(sst, vo);
 	}
 
-	public List<PatientVo> registList(PageVo pv) {
-		return dao.registList(sst, pv);
+	public List<PatientVo> registList(PageVo pv, Map<String, String> paramMap) {
+		return dao.registList(sst, pv, paramMap);
 	}
 
 	public PatientVo infoUpdate(PatientVo vo) {

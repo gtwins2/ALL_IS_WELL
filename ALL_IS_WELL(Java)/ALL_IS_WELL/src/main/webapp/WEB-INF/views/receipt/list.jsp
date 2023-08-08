@@ -193,18 +193,16 @@
                 <div class="title-area">
                     <span id="title">환자 조회</span>
 
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="writer">작성자</option>
-                                <option value="title">제목</option>
-                            </select>
-
-
-                        </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </form>
+                    <form action="" class="search-area" method="get">
+                    <label for="search" class="category-area">
+                        <select name="searchType" id="search">
+                            <option value="name">이름</option>
+                            <option value="email">이메일</option>
+                        </select>
+                    </label>
+                    <input type="text" id="search-input" name="searchValue">
+                    <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </form>
 
                     
                 </div>
@@ -240,11 +238,12 @@
                 <br>
                 <br>
 
-                
+
                 <div class="number-area">
+                <c:if test="${pv.listCount > 10}">
                 <c:if test="${pv.currentPage > 1}">
-                    <a href="list?page=1">&laquo;</a>
-                    <a href="list?page=${pv.currentPage - 1}">&lt;</a>
+                    <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                    <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
                 </c:if>      
                 <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                 <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -253,13 +252,14 @@
                             <a class="currentPage">${i}</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="list?page=${i}">${i}</a>
+                            <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
                 <c:if test="${pv.maxPage > pv.currentPage}">
-                    <a href="list?page=${pv.currentPage + 1}">&gt;</a>
-                    <a href="list?page=${pv.maxPage}">&raquo;</a>
+                    <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                    <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                </c:if>
                 </c:if>
             </div>
 

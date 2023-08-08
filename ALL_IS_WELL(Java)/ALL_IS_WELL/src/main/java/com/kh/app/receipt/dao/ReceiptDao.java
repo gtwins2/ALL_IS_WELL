@@ -1,6 +1,7 @@
 package com.kh.app.receipt.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,9 +14,9 @@ import com.kh.app.receipt.vo.ReceiptVo;
 @Repository
 public class ReceiptDao {
 
-	public List<PatientVo> list(SqlSessionTemplate sst, PageVo pv) {
+	public List<PatientVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("receipt.selectList", pv, rb);
+		return sst.selectList("receipt.selectList", paramMap, rb);
 	}
 
 	public List<PatientVo> search(SqlSessionTemplate sst, PatientVo vo) {
@@ -30,17 +31,17 @@ public class ReceiptDao {
 		return sst.insert("receipt.registContent", vo);
 	}
 
-	public int getPatientListCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("receipt.getListCnt");
+	public int getPatientListCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("receipt.getListCnt", paramMap);
 	}
 
 	public PatientVo selectOneList(SqlSessionTemplate sst, PatientVo vo) {
 		return sst.selectOne("receipt.selectOneList", vo);
 	}
 
-	public List<PatientVo> registList(SqlSessionTemplate sst, PageVo pv) {
+	public List<PatientVo> registList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("receipt.registList", pv, rb);
+		return sst.selectList("receipt.registList", paramMap, rb);
 	}
 
 	public PatientVo infoUpdate(SqlSessionTemplate sst, PatientVo vo) {

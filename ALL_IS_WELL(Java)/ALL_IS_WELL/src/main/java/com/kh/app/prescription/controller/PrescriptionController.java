@@ -1,6 +1,7 @@
 package com.kh.app.prescription.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import com.kh.app.page.vo.PageVo;
 import com.kh.app.patient.vo.PatientVo;
 import com.kh.app.prescription.service.PrescriptionService;
 import com.kh.app.prescription.vo.PrescriptionVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,14 +30,18 @@ public class PrescriptionController {
 	
 	@GetMapping("list")
 	public String list(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session, PrescriptionVo vo) {
-		
-		int listCount = ps.getPrescriptionListCnt(vo);
+	int currentPage, Model model, HttpSession session, PrescriptionVo vo
+	,@RequestParam Map<String , String> paramMap) {
+		SearchVo svo = new SearchVo();
+	    svo.setSearchType(paramMap.get("searchType"));
+	    svo.setSearchValue(paramMap.get("searchValue"));
+	       
+		int listCount = ps.getPrescriptionListCnt(paramMap);
 	    int pageLimit = 5;
 	    int boardLimit = 10;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<PatientVo> voList = ps.PrescriptionList(pv);
+		List<PatientVo> voList = ps.PrescriptionList(pv, paramMap);
 		model.addAttribute("voList" ,voList);
 		model.addAttribute("pv", pv);
 		
@@ -68,16 +74,9 @@ public class PrescriptionController {
 		int result2 = ps.insertPL(vo);
 		int result = ps.write(vo);
 		
-		int listCount = ps.getPrescriptionListCnt(vo);
-	    int pageLimit = 5;
-	    int boardLimit = 10;
 		
-		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<PatientVo> voList = ps.PrescriptionList(pv);
-		model.addAttribute("voList" ,voList);
-		model.addAttribute("pv", pv);
 		
-		return "prescription/list";
+		return "redirect:/prescription/list";
 	}
 	
 }

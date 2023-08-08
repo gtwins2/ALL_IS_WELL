@@ -193,18 +193,16 @@
                 <div class="title-area">
                     <span id="title">접수한 환자 조회</span>
 
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="writer">작성자</option>
-                                <option value="title">제목</option>
-                            </select>
-
-
-                        </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </form>
+                    <form action="" class="search-area" method="get">
+                    <label for="search" class="category-area">
+                        <select name="searchType" id="search">
+                            <option value="name">이름</option>
+                            <option value="email">이메일</option>
+                        </select>
+                    </label>
+                    <input type="text" id="search-input" name="searchValue">
+                    <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </form>
 
                     
                 </div>
@@ -245,6 +243,7 @@
 
                 
               <div class="number-area">
+              <c:if test="${pv.listCount > 10}">
                 <c:if test="${pv.currentPage > 1}">
                     <a href="registList?page=1">&laquo;</a>
                     <a href="registList?page=${pv.currentPage - 1}">&lt;</a>
@@ -263,6 +262,7 @@
                 <c:if test="${pv.maxPage > pv.currentPage}">
                     <a href="registList?page=${pv.currentPage + 1}">&gt;</a>
                     <a href="registList?page=${pv.maxPage}">&raquo;</a>
+                </c:if>
                 </c:if>
             </div>
 

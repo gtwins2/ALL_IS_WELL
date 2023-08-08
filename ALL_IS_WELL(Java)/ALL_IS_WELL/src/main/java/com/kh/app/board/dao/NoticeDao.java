@@ -1,6 +1,7 @@
 package com.kh.app.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,9 +14,9 @@ import com.kh.app.page.vo.PageVo;
 @Repository
 public class NoticeDao {
 
-	public List<NoticeVo> noticeList(SqlSessionTemplate sst, PageVo pv) {
+	public List<NoticeVo> noticeList(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("notice.noticeList", pv, rb);
+		return sst.selectList("notice.noticeList", paramMap, rb);
 	}
 
 	public NoticeVo noticeDetail(SqlSessionTemplate sst, NoticeVo vo) {
@@ -34,8 +35,8 @@ public class NoticeDao {
 		return sst.insert("notice.replyWrite", vo);
 	}
 
-	public int getNoticeListCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("notice.getNoticeListCnt");
+	public int getNoticeListCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("notice.getNoticeListCnt", paramMap);
 	}
 
 	public int noticeUpdate(SqlSessionTemplate sst, NoticeVo vo) {

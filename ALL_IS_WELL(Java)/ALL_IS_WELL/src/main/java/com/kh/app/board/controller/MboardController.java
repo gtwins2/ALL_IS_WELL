@@ -1,6 +1,7 @@
 package com.kh.app.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import com.kh.app.board.service.NoticeService;
 import com.kh.app.board.vo.NoticeReplyVo;
 import com.kh.app.board.vo.NoticeVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -67,15 +69,19 @@ public class MboardController {
 	//�������׸��
 	@GetMapping("noticeList")
 	public String noticeList(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session, NoticeVo vo) {
-		
-		int listCount = ns.getNoticeListCnt();
+	int currentPage, Model model, HttpSession session, NoticeVo vo
+	,@RequestParam Map<String , String> paramMap) {
+		SearchVo svo = new SearchVo();
+	    svo.setSearchType(paramMap.get("searchType"));
+	    svo.setSearchValue(paramMap.get("searchValue"));
+	    
+		int listCount = ns.getNoticeListCnt(paramMap);
 	    int pageLimit = 5;
 	    int boardLimit = 10;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<NoticeVo> voList = ns.noticeList(pv);
+		List<NoticeVo> voList = ns.noticeList(pv, paramMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList" ,voList);
 		return "board/member/noticeList";

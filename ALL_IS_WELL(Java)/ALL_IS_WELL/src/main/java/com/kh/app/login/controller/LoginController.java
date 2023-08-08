@@ -60,7 +60,6 @@ public class LoginController {
 	public String login(MemberVo vo, HttpSession session,ModelAndView mv, HttpServletRequest request) {
 		MemberVo loginMember = ms.login(vo);
 		session.setAttribute("loginMember", loginMember);
-		System.out.println(loginMember);
 		String viewpage = "calendar";
 		List<Calendar> calendar = null;
 		try {
@@ -69,7 +68,6 @@ public class LoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(calendar);
 		mv.setViewName(viewpage);
 		
 		if(loginMember == null) {
@@ -86,11 +84,22 @@ public class LoginController {
 	}
 	
 	@PostMapping("Alogin")
-	public String Alogin(AdminVo vo, HttpSession session, Model model) {
+	public String Alogin(AdminVo vo, HttpSession session, Model model,ModelAndView mv, HttpServletRequest request) {
 		if(vo.getAdminId().equals("ADMIN") && vo.getAdminPwd().equals("1234")) {
 			int listCount = ms2.mCount();
 			int currentPage = ms2.fCount();
 			PageVo pv = new PageVo(listCount, currentPage, 3, 3);
+			
+			String viewpage = "calendar";
+			List<Calendar> calendar = null;
+			try {
+				calendar = calendarService.getCalendar();
+				request.setAttribute("calendarList", calendar);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			mv.setViewName(viewpage);
+			
 			model.addAttribute("pv", pv);
 			return "main/Amain";
 		}

@@ -14,7 +14,6 @@
 			,EMAIL
 			,CAUTION	
 		FROM PATIENT
-		
 	</select>
 	
 	<insert id="write">
@@ -56,7 +55,12 @@
 	
 	<select id="getPrescriptionListCnt" resultType="int">
 		SELECT COUNT(*)
-		FROM PRESCRIPTION
+		FROM PRESCRIPTION_LIST
+		<where>
+	        <if test="searchType == 'name' and searchValue != '' and searchValue != null">
+	            AND NAME LIKE '%${searchValue}%'
+	        </if>
+	    </where>
 	</select>
 	
 	<select id="PrescriptionList" resultType="com.kh.app.patient.vo.PatientVo">
@@ -65,7 +69,10 @@
 		,NAME
 		
 		FROM PRESCRIPTION_LIST 
-		
+		<if test="searchType == 'name' and searchValue != '' and searchValue != null">		
+		WHERE ${searchType} LIKE '%${searchValue}%'
+		</if>
+		ORDER BY NO DESC
 	</select>
 	
 	<select id="detail" resultType="com.kh.app.prescription.vo.PrescriptionVo">
