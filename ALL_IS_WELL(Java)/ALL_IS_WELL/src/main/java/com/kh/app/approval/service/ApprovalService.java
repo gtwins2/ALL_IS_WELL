@@ -17,6 +17,7 @@ import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,12 +29,12 @@ public class ApprovalService {
 	private final ApprovalDao dao;
 	private final SqlSessionTemplate sst;
 
-	public int getApprovalListCnt(String no) {
-		return dao.getApprovalListCnt(sst, no);
+	public int getApprovalListCnt(SearchVo svo) {
+		return dao.getApprovalListCnt(sst, svo);
 	}
 
-	public List<ApprovalVo> getApprovalList(PageVo pv, String no) {
-		return dao.getApprovalList(sst, pv, no);
+	public List<ApprovalVo> getApprovalList(PageVo pv, SearchVo svo) {
+		return dao.getApprovalList(sst, pv, svo);
 	}
 
 	
@@ -225,12 +226,12 @@ public class ApprovalService {
 	}
 
 	//관리자 결재 페이지
-	public int getAdminListCnt(ApproverVo vo) {
-		return dao.getAdminListCnt(sst, vo);
+	public int getAdminListCnt(SearchVo svo) {
+		return dao.getAdminListCnt(sst, svo);
 	}
 
-	public List<ApproverVo> getAdminList(PageVo pv, ApproverVo vo) {
-		return dao.getAdminList(sst, vo, pv);
+	public List<ApproverVo> getAdminList(PageVo pv, SearchVo svo) {
+		return dao.getAdminList(sst, svo, pv);
 	}
 
 	public AdminApproverVo detailApprovalAdminVacation(String no) {

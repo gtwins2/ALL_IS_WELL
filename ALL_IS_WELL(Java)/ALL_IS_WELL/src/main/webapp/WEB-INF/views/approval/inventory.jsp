@@ -319,7 +319,12 @@
                                         승 인
                                     </c:if>
                                     <c:if test="${ivo.status == 'O'}">
-                                        반 려
+                                        <span class="rejected">반 려</span>
+                                        <br>
+                                        <br>
+                                        <span id="reason">
+                                            ${ivo.reason}
+                                        </span>
                                     </c:if>
                                 </td>
                             </tr>
