@@ -313,15 +313,27 @@
                 <br>
 
                 <div class="number-area">
-                    <a id="previous" href="">
-                        < </a>
-                            <a href=""> 1 </a>
-                            <a href=""> 2 </a>
-                            <a href=""> 3 </a>
-                            <a href=""> 4 </a>
-                            <a href=""> 5 </a>
-                            <a id="after" href=""> > </a>
-                </div>
+                <c:if test="${pv.currentPage > 1}">
+                    <a href="inquiryList?page=1">&laquo;</a>
+                    <a href="inquiryList?page=${pv.currentPage - 1}">&lt;</a>
+                </c:if>      
+                <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                    <c:choose>
+                        <c:when test="${i == pv.currentPage}">
+                            <a class="currentPage">${i}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="inquiryList?page=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${pv.maxPage > pv.currentPage}">
+                    <a href="inquiryList?page=${pv.currentPage + 1}">&gt;</a>
+                    <a href="inquiryList?page=${pv.maxPage}">&raquo;</a>
+                </c:if>
+            </div>
+            
             </div>
 
         </div>

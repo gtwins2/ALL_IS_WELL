@@ -62,7 +62,7 @@
     position: absolute;
     width: 334px;
     height: 480px;
-    left: 200px;
+    left: 300px;
     top: 113px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -73,7 +73,7 @@
 	position: absolute;
     width: 334px;
     height: 240px;
-	left: 200px;
+	left: 300px;
     top: 113px;
 }
 
@@ -81,7 +81,7 @@ hr{
 	position: absolute;
 	width: 334px;
 	height: 0.67px;
-	left: 200px;
+	left: 300px;
 	top: 350px;
 	
 	background: #000000;
@@ -90,7 +90,7 @@ hr{
 	position: absolute;
 	width: 311px;
 	height: 242px;
-	left: 220px;
+	left: 320px;
 	top: 378px;
 	font-family: 'Inter';
 	font-style: normal;
@@ -105,7 +105,7 @@ hr{
     position: absolute;
     width: 200px;
     height: 75px;
-    left: 270px;
+    left: 370px;
     top: 650px;
     background: #5A8CF2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -138,8 +138,8 @@ color: #FFFFFF;
 position: absolute;
 width: 900px;
 height: 730px;
-left: 520px;
-top: 113px;
+left: 820px;
+top: 100px;
 
 background: #FDFDFD;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -287,7 +287,7 @@ color: #000000;
 	position: absolute;
     width: 200px;
     height: 75px;
-    left: 270px;
+    left: 370px;
     top: 750px;
     background: #5A8CF2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -374,7 +374,7 @@ color: #000000;
 		    
 		
 		    <!-- 공지사항 -->
-		    <div id="div04">
+		    <!-- <div id="div04">
 		        <br>
 		        <div>
 		            <div id="right"><h3>공지사항</h3></div>
@@ -394,12 +394,12 @@ color: #000000;
 		            <div>2023-06-08</div>
 		        </div>
 		        
-		    </div>
+		    </div> -->
 		    <!-- 공지사항 틀 -->
-		    <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
-		    
+		    <!-- <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
+		     -->
 		    <!-- 결제현황 -->
-		    <div id="div05">
+		    <!-- <div id="div05">
 		        <br>
 		        <div>
 		            <div><h3>결제현황</h3></div>
@@ -429,9 +429,9 @@ color: #000000;
 		        </div>
 		    </div>
 		    <div id="div05-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp구분&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp문서명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-		
+		 -->
 		    <!-- 근태 -->
-		    <div id="div06">
+		    <!-- <div id="div06">
 		        <br>
 		        <div>
 		            <div><h3>결제현황</h3></div>
@@ -461,7 +461,7 @@ color: #000000;
 		        </div>
 		    </div>
 		    <div id="div06-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp구분&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp문서명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-
+ -->
 		</main>
 	</div>
 

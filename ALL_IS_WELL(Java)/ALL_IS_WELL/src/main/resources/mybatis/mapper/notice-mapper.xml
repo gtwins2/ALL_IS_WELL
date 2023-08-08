@@ -14,7 +14,7 @@
 			,MODIFY_DATE
 			,STATUS
 		FROM NOTICE
-		
+		ORDER BY NO DESC
 	</select>
 	
 	<select id="noticeDetail" resultType="com.kh.app.board.vo.NoticeVo">
