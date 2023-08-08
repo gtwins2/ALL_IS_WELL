@@ -27,8 +27,8 @@ public class AttendanceDao {
 		return sst.selectList("attendance.getAttendanceListAdmin", paramMap, rb);
 	}
 
-	public int getAdminAttendanceListCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("attendance.getAttendanceListAdminCnt");
+	public int getAdminAttendanceListCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("attendance.getAttendanceListAdminCnt", paramMap);
 	}
 
 }

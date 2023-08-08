@@ -26,21 +26,30 @@
 
 	<!-- 관리자 근태 조회(개수) -->
 	<select id="getAttendanceListAdminCnt" resultType="int">
-		SELECT COUNT(*)
-		FROM ATTENDANCE
-		
-	<if test="searchType == 'name' and searchValue != '' and searchValue != null">		
-		AND M.${searchType} LIKE '%${searchValue.toString()}%'
-	</if>
+	    SELECT COUNT(*)
+	    FROM ATTENDANCE A
+	    JOIN MEMBER M ON M.NO = A.MEMBER_NO
+	    <if test="searchType == 'position'">
+	        JOIN POSITION P ON P.NO = M.POSITION_NO
+	    </if>
+	    <if test="searchType == 'department'">
+	        JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+	    </if>
 	
-	<if test="searchType == 'position' and searchValue != '' and searchValue != null">		
-		AND P.NAME LIKE '%${searchValue.toString()}%'
-	</if>
+	    <where>
+	        <if test="searchType == 'name' and searchValue != '' and searchValue != null">
+	            AND M.NAME LIKE '%${searchValue}%'
+	        </if>
 	
-	<if test="searchType == 'department' and searchValue != '' and searchValue != null">		
-		AND D.NAME LIKE '%${searchValue.toString()}%'
-	</if>
-	</select> 
+	        <if test="searchType == 'position' and searchValue != '' and searchValue != null">
+	            AND P.NAME LIKE '%${searchValue}%'
+	        </if>
+	
+	        <if test="searchType == 'department' and searchValue != '' and searchValue != null">
+	            AND D.NAME LIKE '%${searchValue}%'
+	        </if>
+	    </where>
+	</select>
 	
 	<!-- 관리자 근태 조회 -->
 	<select id="getAttendanceListAdmin" resultType="com.kh.app.attendance.vo.AttendanceVo">
@@ -58,15 +67,15 @@
 		JOIN POSITION P ON M.POSITION_NO = P.NO
 		
 	<if test="searchType == 'name' and searchValue != '' and searchValue != null">		
-		AND M.${searchType} LIKE '%${searchValue.toString()}%'
+		WHERE M.${searchType} LIKE '%${searchValue}%'
 	</if>
 	
 	<if test="searchType == 'position' and searchValue != '' and searchValue != null">		
-		AND P.NAME LIKE '%${searchValue.toString()}%'
+		WHERE P.NAME LIKE '%${searchValue}%'
 	</if>
 	
 	<if test="searchType == 'department' and searchValue != '' and searchValue != null">		
-		AND D.NAME LIKE '%${searchValue.toString()}%'
+		WHERE D.NAME LIKE '%${searchValue}%'
 	</if>
 
 		ORDER BY PRESENCE_TIME DESC
