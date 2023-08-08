@@ -241,24 +241,28 @@
                 <br>
 
                 
-                <c:set var="range" value="2" /> 
-                <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
-                <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
-                <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
-    
                 <div class="number-area">
-                    <c:if test="${pv.currentPage > 1 }">
-                        <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
-                    <c:if test="${pv.maxPage > 1 }"> 
-                        <c:forEach begin="${startPage}" end="${endPage}" var="i">
-                            <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-                        </c:forEach>
-                    </c:if>
-                    <c:if test="${pv.currentPage < pv.maxPage }">
-                        <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
-                    </c:if>
-                    
-                </div>
+                <c:if test="${pv.currentPage > 1}">
+                    <a href="list?page=1">&laquo;</a>
+                    <a href="list?page=${pv.currentPage - 1}">&lt;</a>
+                </c:if>      
+                <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                    <c:choose>
+                        <c:when test="${i == pv.currentPage}">
+                            <a class="currentPage">${i}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="list?page=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${pv.maxPage > pv.currentPage}">
+                    <a href="list?page=${pv.currentPage + 1}">&gt;</a>
+                    <a href="list?page=${pv.maxPage}">&raquo;</a>
+                </c:if>
+            </div>
+
             </div>
 
         </div>
