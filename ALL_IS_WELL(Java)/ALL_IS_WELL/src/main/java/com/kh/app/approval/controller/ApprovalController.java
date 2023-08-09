@@ -301,22 +301,16 @@ public class ApprovalController {
 		
 		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
 			if("1".equals(positionNo)) {
-				vvo = as.detailInventory(no);
-				System.out.println(1);
+				vvo = as.detailVacation(no);
 			}
 			else {
-				vvo = as.detailApprovalInventory(no);
-				System.out.println(2);
-				System.out.println(vvo);
-
+				vvo = as.detailApprovalVacation(no);
 			}
 		}
 		else {
-			vvo = as.detailInventory(no);
-			System.out.println(3);
+			vvo = as.detailVacation(no);
 		}
 		
-		System.out.println(vvo);
 		
 		model.addAttribute("vvo", vvo);
 		model.addAttribute("vo", vo);
@@ -327,30 +321,31 @@ public class ApprovalController {
 	public void trip(HttpSession session, Model model, String no) {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
-		
-		String positionNo = loginMember.getPositionNo();
-		
-		ApproverVo vo = new ApproverVo();
+				
+		AdminApproverVo positionNoVo = as.getPositionNo(no);
+		String positionNo = positionNoVo.getPositionNo();
+						
+		AdminApproverVo vvo = null;
 		
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
 		
-		AdminApproverVo bvo = null;
-		
 		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
-			if ("1".equals(positionNo)) {
-				bvo = as.detailTrip(no);
+			if("1".equals(positionNo)) {
+				vvo = as.detailTrip(no);
+				System.out.println(1);
 			}
 			else {
-				bvo = as.detailApprovalTrip(no);
+				vvo = as.detailApprovalTrip(no);
+				System.out.println(2);
 			}
 		}
 		else {
-			bvo = as.detailTrip(no);
+			vvo = as.detailTrip(no);
+			System.out.println(3);
 		}
 		
-		model.addAttribute("bvo", bvo);
-		model.addAttribute("vo", vo);
+		model.addAttribute("vvo", vvo);
 		
 	}
 	
