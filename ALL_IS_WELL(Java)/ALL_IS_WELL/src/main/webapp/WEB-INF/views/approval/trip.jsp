@@ -299,6 +299,17 @@
     }
 
 </style>
+<c:if test="${bvo.approverName == null}">
+    <style>
+        #approval {
+            border-collapse: collapse;
+            text-align: center;
+            width: 360px;
+            height: 250px;
+            margin-left: 200px;
+        }
+    </style>
+</c:if>
 </head>
 <body>
    
@@ -342,24 +353,33 @@
                             <tr>
                                 <th rowspan="4">결재</th>
                                 <th id="approval-title">담당</th>
-                                <th id="approval-title">중간 결재자</th>
+                                <c:if test="${bvo.approverName != null}">
+                                    <th id="approval-title">중간 결재자</th>
+                                </c:if>
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
                                 <td>${bvo.sign}</td>
+                                <c:if test="${bvo.approverName != null}">
+                                    <td>
+                                        <c:choose>
+                                        <c:when test="${bvo.status == 'R'}">
+                                            <span class="rejected">반 려</span>
+                                            <br>
+                                            <br>
+                                            <span id="reason">
+                                                ${bvo.reason}
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${bvo.status == 'F'}">
+                                            ${bvo.approverSign}
+                                        </c:when>
+                                        </c:choose>
+                                    </td>
+                                </c:if>
                                 <td>
-                                    <c:choose>
-                                    <c:when test="${bvo.status == 'R'}">
-                                        <span class="rejected">반려</span>
-                                    </c:when>
-                                    <c:when test="${bvo.status != 'W'}">
-                                        ${bvo.approverSign}
-                                    </c:when>
-                                    </c:choose>
-                                </td>
-                                <td class="${bvo.status == 'A' ? 'approved' : (bvo.status == 'O' ? 'rejected' : '')}">
                                     <c:if test="${bvo.status == 'A'}">
-                                        승 인
+                                        <span class="approved">승 인</span>
                                     </c:if>
                                     <c:if test="${bvo.status == 'O'}">
                                         <span class="rejected">반 려</span>
@@ -373,7 +393,9 @@
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${bvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td><fmt:formatDate value="${bvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <c:if test="${bvo.approverName != null}">
+                                    <td><fmt:formatDate value="${bvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                </c:if>
                                 <td>
                                     <c:if test="${bvo.status == 'A' || bvo.status == 'O'}">
                                         <fmt:formatDate value="${bvo.completeDate}" pattern="yyyy-MM-dd HH시" />
@@ -382,8 +404,12 @@
                             </tr>
                             <tr id="date">
                                 <td>${bvo.memberName}(${bvo.departmentName})</td>
-                                <c:if test="${bvo.status == 'F' || bvo.status == 'R' || bvo.status == 'O'}">
-                                    <td>${bvo.approverName}(${bvo.approverDepartmentName})</td>
+                                <c:if test="${bvo.approverName != null}">
+                                    <td>
+                                        <c:if test="${bvo.status != 'W'}">
+                                            ${bvo.approverName}(${bvo.approverDepartmentName}-${bvo.approverPositionName})
+                                        </c:if>
+                                    </td>
                                 </c:if>
                                 <td>
                                     <c:if test="${bvo.status == 'A' || bvo.status == 'O'}">

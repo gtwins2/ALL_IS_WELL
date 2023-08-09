@@ -257,7 +257,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${voList}
                         <c:forEach items="${voList}" var="vo">
                             <c:if test="${vo.memberName ne loginMember.name}">
                                 <tr onclick="detail();">
@@ -278,8 +277,8 @@
             <div class="number-area">
                 <c:if test="${pv.listCount > 10}">
                     <c:if test="${pv.currentPage > 1}">
-                        <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
-                        <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                        <a href="list?page=1&searchType=${vo.getSearchType()}&searchValue=${vo.getSearchValue()}">&laquo;</a>
+                        <a href="list?page=${pv.currentPage - 1}&searchType=${vo.getSearchType()}&searchValue=${vo.getSearchValue()}">&lt;</a>
                     </c:if>      
                     <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                     <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -288,13 +287,13 @@
                                 <a class="currentPage">${i}</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                                <a href="list?page=${i}&searchType=${vo.getSearchType()}&searchValue=${vo.getSearchValue()}">${i}</a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:if test="${pv.maxPage > pv.currentPage}">
-                        <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
-                        <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                        <a href="list?page=${pv.currentPage + 1}&searchType=${vo.getSearchType()}&searchValue=${vo.getSearchValue()}">&gt;</a>
+                        <a href="list?page=${pv.maxPage}&searchType=${vo.getSearchType()}&searchValue=${vo.getSearchValue()}">&raquo;</a>
                     </c:if>
                 </c:if>
             </div>

@@ -234,6 +234,8 @@
                     <label for="search" class="category-area">
                         <select name="searchType" id="search">
                             <option value="name" ${param.searchType == 'name' ? 'selected' : ''}>작성자</option>
+                            <option value="department" ${param.searchType == 'department' ? 'selected' : ''}>부서</option>
+                            <option value="position" ${param.searchType == 'position' ? 'selected' : ''}>직급</option>
                             <option value="approvalType" ${param.searchType == 'approvalType' ? 'selected' : ''}>문서종류</option>
                             <option value="status" ${param.searchType == 'status' ? 'selected' : ''}>상태</option>
                         </select>

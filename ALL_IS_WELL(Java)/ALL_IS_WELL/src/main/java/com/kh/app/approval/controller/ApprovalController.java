@@ -113,6 +113,7 @@ public class ApprovalController {
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
+		model.addAttribute("svo",svo);
 		
 		
 	}
@@ -244,20 +245,28 @@ public class ApprovalController {
 	public void inventory(HttpSession session, Model model, String no) { 
 				
 		loginMember = (MemberVo) session.getAttribute("loginMember");
-		
+				
 		ApproverVo vo = new ApproverVo();
 		vo.setApprovalDocumentNo(no);
 		vo.setApproverNo(loginMember.getNo());
 		vo.setApproverName(loginMember.getName());
 		vo.setSign(loginMember.getSign());
 		
+		AdminApproverVo positionNoVo = as.getPositionNo(no);
+		String positionNo = positionNoVo.getPositionNo();
+						
 		AdminApproverVo ivo = null;
 		
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
 		
 		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
-			ivo = as.detailApprovalInventory(no);
+			if("1".equals(positionNo)) {
+				ivo = as.detailInventory(no);
+			}
+			else {
+				ivo = as.detailApprovalInventory(no);
+			}
 		}
 		else {
 			ivo = as.detailInventory(no);
@@ -276,22 +285,38 @@ public class ApprovalController {
 	public void vacation(HttpSession session, Model model, String no) {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
-		
+				
 		ApproverVo vo = new ApproverVo();
 		vo.setApproverNo(loginMember.getNo());
 		vo.setApproverName(loginMember.getName());
 		vo.setSign(loginMember.getSign());
 		
+		AdminApproverVo positionNoVo = as.getPositionNo(no);
+		String positionNo = positionNoVo.getPositionNo();
+						
+		AdminApproverVo vvo = null;
+		
 		ApproverVo statusVo = as.getStatus(no);
 		String status = statusVo.getStatus();
 		
-		AdminApproverVo vvo = null;
 		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
-			vvo = as.detailApprovalVacation(no);
+			if("1".equals(positionNo)) {
+				vvo = as.detailInventory(no);
+				System.out.println(1);
+			}
+			else {
+				vvo = as.detailApprovalInventory(no);
+				System.out.println(2);
+				System.out.println(vvo);
+
+			}
 		}
 		else {
-			vvo = as.detailVacation(no);
+			vvo = as.detailInventory(no);
+			System.out.println(3);
 		}
+		
+		System.out.println(vvo);
 		
 		model.addAttribute("vvo", vvo);
 		model.addAttribute("vo", vo);
@@ -303,6 +328,8 @@ public class ApprovalController {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
+		String positionNo = loginMember.getPositionNo();
+		
 		ApproverVo vo = new ApproverVo();
 		
 		ApproverVo statusVo = as.getStatus(no);
@@ -311,7 +338,12 @@ public class ApprovalController {
 		AdminApproverVo bvo = null;
 		
 		if("F".equals(status) || "R".equals(status) || "O".equals(status) || "A".equals(status)) {
-			bvo = as.detailApprovalTrip(no);
+			if ("1".equals(positionNo)) {
+				bvo = as.detailTrip(no);
+			}
+			else {
+				bvo = as.detailApprovalTrip(no);
+			}
 		}
 		else {
 			bvo = as.detailTrip(no);

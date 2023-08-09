@@ -304,6 +304,29 @@
 
 
 </style>
+<c:if test="${vvo.approverName == null}">
+    <style>
+        #approval {
+            border-collapse: collapse;
+            text-align: center;
+            width: 360px;
+            height: 250px;
+            margin-left: 200px;
+        }
+    </style>
+</c:if>
+
+<c:if test="${vvo.positionNo != '1'}">
+    <style>
+        #approval {
+            border-collapse: collapse;
+            text-align: center;
+            width: 550px;
+            height: 250px;
+            margin-right: 150px;
+        }
+    </style>
+</c:if>
 </head>
 <body>
    
@@ -341,32 +364,56 @@
                                 <td>${vvo.memberName}</td>
                             </tr>
                         </table>
-                    </div>
+                    </div>${vvo}
                     <div id="approval-column">
                         <table border="1" id="approval">
                             <tr>
                                 <th rowspan="4">결재</th>
                                 <th id="approval-title">담당</th>
-                                <th id="approval-title">중간 결재자</th>
+                                <c:if test="${vvo.approverName != null}">
+                                    <th id="approval-title">중간 결재자</th>
+                                </c:if>
+                                <c:if test="${vvo.positionNo != '1' && vvo.status == 'W'}">
+                                    <th id="approval-title">중간 결재자</th>
+                                </c:if>
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
                                 <td>${vvo.sign}</td>
-                                <td>
-                                    <c:choose>
-                                    <c:when test="${vvo.status == 'R'}">
-                                        <span class="rejected">반 려</span>
-                                        <br>
-                                        <br>
-                                        <span id="reason">
-                                            ${vvo.reason}
-                                        </span>
-                                    </c:when>
-                                    <c:when test="${vvo.status == 'F'}">
-                                        ${vvo.approverSign}
-                                    </c:when>
-                                    </c:choose>
-                                </td>
+                                <c:if test="${vvo.approverName != null}">
+                                    <td>
+                                        <c:choose>
+                                        <c:when test="${vvo.status == 'R'}">
+                                            <span class="rejected">반 려</span>
+                                            <br>
+                                            <br>
+                                            <span id="reason">
+                                                ${vvo.reason}
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${vvo.status == 'F'}">
+                                            ${vvo.approverSign}
+                                        </c:when>
+                                        </c:choose>
+                                    </td>
+                                </c:if>
+                                <c:if test="${vvo.positionNo != '1' && vvo.status == 'W'}">
+                                    <td>
+                                        <c:choose>
+                                        <c:when test="${vvo.status == 'R'}">
+                                            <span class="rejected">반 려</span>
+                                            <br>
+                                            <br>
+                                            <span id="reason">
+                                                ${vvo.reason}
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${vvo.status == 'F'}">
+                                            ${vvo.approverSign}
+                                        </c:when>
+                                        </c:choose>
+                                    </td>
+                                </c:if>
                                 <td>
                                     <c:if test="${vvo.status == 'A'}">
                                         <span class="approved">승 인</span>
@@ -383,7 +430,12 @@
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${vvo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <c:if test="${vvo.approverName != null}">
+                                    <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                </c:if>
+                                <c:if test="${vvo.positionNo != '1' && vvo.status == 'W'}">
+                                    <td><fmt:formatDate value="${vvo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                </c:if>
                                 <td>
                                     <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">
                                         <fmt:formatDate value="${vvo.completeDate}" pattern="yyyy-MM-dd HH시" />
@@ -392,8 +444,18 @@
                             </tr>
                             <tr id="date">
                                 <td>${vvo.memberName}(${vvo.departmentName})</td>
-                                <c:if test="${vvo.status == 'F' || vvo.status == 'R' || vvo.status == 'O'}">
-                                    <td>${vvo.approverName}(${vvo.approverDepartmentName})</td>
+                                <c:if test="${vvo.approverName != null}">
+                                    <td>
+                                        <c:if test="${vvo.status != 'W'}">
+                                            ${vvo.approverName}(${vvo.approverDepartmentName}-${vvo.approverPositionName})
+                                        </c:if>
+                                    </td>
+                                </c:if>
+                                <c:if test="${vvo.positionNo != '1' && vvo.status == 'W'}">                                    <td>
+                                        <c:if test="${vvo.status != 'W'}">
+                                            ${vvo.approverName}(${vvo.approverDepartmentName}-${vvo.approverPositionName})
+                                        </c:if>
+                                    </td>
                                 </c:if>
                                 <td>
                                     <c:if test="${vvo.status == 'A' || vvo.status == 'O'}">

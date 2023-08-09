@@ -78,13 +78,6 @@
         text-align: center;
     }
 
-    #approval {
-        border-collapse: collapse;
-        text-align: center;
-        width: 550px;
-        height: 250px;
-    }
-
     #approval tr th:first-child{
         width: 40px;
     }
@@ -256,6 +249,29 @@
         color: blue;
     }
 </style>
+<c:if test="${ivo.approverName == null}">
+    <style>
+        #approval {
+            border-collapse: collapse;
+            text-align: center;
+            width: 360px;
+            height: 250px;
+            margin-left: 200px;
+        }
+    </style>
+</c:if>
+
+<c:if test="${ivo.positionNo != '1'}">
+    <style>
+        #approval {
+            border-collapse: collapse;
+            text-align: center;
+            width: 550px;
+            height: 250px;
+            margin-right: 180px;
+        }
+    </style>
+</c:if>
 </head>
 <body>
    
@@ -299,24 +315,53 @@
                             <tr>
                                 <th rowspan="4">결재</th>
                                 <th id="approval-title">담당</th>
-                                <th id="approval-title">중간 결재자</th>
+                                <c:if test="${ivo.approverName != null}">
+                                    <th id="approval-title">중간 결재자</th>
+                                </c:if>
+                                <c:if test="${ivo.positionNo != '1' && ivo.status == 'W'}">
+                                    <th id="approval-title">중간 결재자</th>
+                                </c:if>
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
                                 <td>${ivo.sign}</td>
+                                <c:if test="${ivo.approverName != null}">
+                                    <td>
+                                        <c:choose>
+                                        <c:when test="${ivo.status == 'R'}">
+                                            <span class="rejected">반 려</span>
+                                            <br>
+                                            <br>
+                                            <span id="reason">
+                                                ${ivo.reason}
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${ivo.status == 'F'}">
+                                            ${ivo.approverSign}
+                                        </c:when>
+                                        </c:choose>
+                                    </td>
+                                </c:if>
+                                <c:if test="${ivo.positionNo != '1' && ivo.status == 'W'}">
+                                    <td>
+                                        <c:choose>
+                                        <c:when test="${ivo.status == 'R'}">
+                                            <span class="rejected">반 려</span>
+                                            <br>
+                                            <br>
+                                            <span id="reason">
+                                                ${ivo.reason}
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${ivo.status == 'F'}">
+                                            ${ivo.approverSign}
+                                        </c:when>
+                                        </c:choose>
+                                    </td>
+                                </c:if>
                                 <td>
-                                    <c:choose>
-                                    <c:when test="${ivo.status == 'R'}">
-                                        <span class="rejected">반려</span>
-                                    </c:when>
-                                    <c:when test="${ivo.status != 'W'}">
-                                        ${ivo.approverSign}
-                                    </c:when>
-                                    </c:choose>
-                                </td>
-                                <td class="${ivo.status == 'A' ? 'approved' : (ivo.status == 'O' ? 'rejected' : '')}">
                                     <c:if test="${ivo.status == 'A'}">
-                                        승 인
+                                        <span class="approved">승 인</span>
                                     </c:if>
                                     <c:if test="${ivo.status == 'O'}">
                                         <span class="rejected">반 려</span>
@@ -330,7 +375,12 @@
                             </tr>
                             <tr id="name">
                                 <td><fmt:formatDate value="${ivo.createDate}" pattern="yyyy-MM-dd HH시" /></td>
-                                <td><fmt:formatDate value="${ivo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                <c:if test="${ivo.approverName != null}">
+                                    <td><fmt:formatDate value="${ivo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                </c:if>
+                                <c:if test="${ivo.positionNo != '1' && ivo.status == 'W'}">
+                                    <td><fmt:formatDate value="${ivo.approvalDate}" pattern="yyyy-MM-dd HH시" /></td>
+                                </c:if>
                                 <td>
                                     <c:if test="${ivo.status == 'A' || ivo.status == 'O'}">
                                         <fmt:formatDate value="${ivo.completeDate}" pattern="yyyy-MM-dd HH시" />
@@ -339,8 +389,18 @@
                             </tr>
                             <tr id="date">
                                 <td>${ivo.memberName}(${ivo.departmentName})</td>
-                                <c:if test="${ivo.status == 'F' || ivo.status == 'R' || ivo.status == 'O'}">
-                                    <td>${ivo.approverName}(${ivo.approverDepartmentName})</td>
+                                <c:if test="${ivo.approverName != null}">
+                                    <td>
+                                        <c:if test="${ivo.status != 'W'}">
+                                            ${ivo.approverName}(${ivo.approverDepartmentName}-${ivo.approverPositionName})
+                                        </c:if>
+                                    </td>
+                                </c:if>
+                                <c:if test="${ivo.positionNo != '1' && ivo.status == 'W'}">                                    <td>
+                                        <c:if test="${ivo.status != 'W'}">
+                                            ${ivo.approverName}(${ivo.approverDepartmentName}-${ivo.approverPositionName})
+                                        </c:if>
+                                    </td>
                                 </c:if>
                                 <td>
                                     <c:if test="${ivo.status == 'A' || ivo.status == 'O'}">
