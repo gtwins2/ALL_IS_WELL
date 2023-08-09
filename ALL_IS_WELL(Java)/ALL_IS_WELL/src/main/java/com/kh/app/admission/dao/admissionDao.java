@@ -74,4 +74,9 @@ public class admissionDao {
 	public int getScheduleCount(SqlSessionTemplate sst, Map<String, String> paramMap) {
 		return sst.selectOne("admission.getScheduleCount", paramMap);
 	}
+
+
+	public List<PatientVo> getPatientList(SqlSessionTemplate sst) {
+		return sst.selectList("admission.getPatientList");
+	}
 }

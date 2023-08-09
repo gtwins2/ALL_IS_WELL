@@ -76,6 +76,11 @@ public class AdmissionService {
 	public int getScheduleCount(Map<String, String> paramMap) {
 		return dao.getScheduleCount(sst, paramMap);
 	}
+
+
+	public List<PatientVo> getPatientList() {
+		return dao.getPatientList(sst);
+	}
 	
 	
 }
