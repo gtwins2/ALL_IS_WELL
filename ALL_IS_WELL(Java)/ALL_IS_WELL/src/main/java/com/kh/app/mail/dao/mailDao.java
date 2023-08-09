@@ -94,7 +94,7 @@ public class mailDao {
 
 	public List<MailVo> getMailTrashList(SqlSessionTemplate sst, PageVo pv, String receiverNo) {
 		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
-		return sst.selectList("mail.getMailTrashList", pv, rb);
+		return sst.selectList("mail.getMailTrashList", receiverNo, rb);
 	}
 
 	public int deleteMailAttachment(SqlSessionTemplate sst, String mailNo) {

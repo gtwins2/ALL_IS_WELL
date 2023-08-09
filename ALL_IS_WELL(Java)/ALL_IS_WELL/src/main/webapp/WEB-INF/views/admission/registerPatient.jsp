@@ -446,8 +446,30 @@
 		   var patientName = document.getElementById('patientName');
 		   var closeBtn = document.getElementsByClassName('close')[0];
 		
+		   var closeButton = document.querySelector("#closeBtn");
+		   
+		   closeButton.addEventListener("click", function(){
+			   closeModal();
+		   });
+		   
 		   function openModal() {
 		       modal.style.display = 'block';
+		       
+		       $.ajax({
+		    	   url: "/app/admission/getPatientList",
+		            type: "get",
+		            dataType: "json",
+		            success: function (data) {
+		                console.log(data);
+		                
+		                updateResultContainer(data);
+		                
+		            },
+		            error: function (error) {
+		                console.log(error);
+		                alert("검색 결과 전달 실패");
+		            }
+		       });
 		   }
 		
 		   function closeModal() {

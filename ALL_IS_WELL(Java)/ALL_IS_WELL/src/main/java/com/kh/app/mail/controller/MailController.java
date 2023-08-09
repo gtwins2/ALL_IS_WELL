@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.http.HttpStatus;
@@ -40,12 +41,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.HtmlUtils;
 
 import com.kh.app.mail.service.MailService;
 import com.kh.app.mail.vo.MailVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.operation.vo.OperationVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -92,7 +95,11 @@ public class MailController {
 		model.addAttribute("receiveList", receiveList);
 		model.addAttribute("paramMap", paramMap);
 		
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
 		
+		model.addAttribute("svo", svo);
 		
 		return "mail/receiveMailForm";
 	}
@@ -125,6 +132,8 @@ public class MailController {
 		
 		int boardLimit = 10;
 		
+		
+		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		List<MailVo> trashList = service.getMailTrashList(pv, receiverNo);
@@ -134,6 +143,9 @@ public class MailController {
 		
 		model.addAttribute("pv", pv);
 		model.addAttribute("trashList", trashList);
+		
+		
+		
 		
 		return "mail/mailTrashCan";
 	}
@@ -163,7 +175,11 @@ public class MailController {
 		model.addAttribute("sendList", sendList);
 		model.addAttribute("paramMap", paramMap);
 		
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
 		
+		model.addAttribute("svo", svo);
 		
 		return "mail/sendMailForm";
 	}
@@ -248,10 +264,10 @@ public class MailController {
 			    messageHelper.setTo(receiverEmailList.get(i));
 
 			    // 이메일 제목
-			    messageHelper.setSubject("[AllIsWell] "+loginMember.getName()+"("+loginMember.getDepartmentName()+") 님이 보낸 메일 : "+vo.getMailTitle());
+			    messageHelper.setSubject("[AllIsWell] "+loginMember.getName()+" 님이 보낸 메일 : "+vo.getMailTitle());
 
 			    // 이메일 내용
-			    messageHelper.setText(vo.getMailContent());
+			    messageHelper.setText(vo.getMailContent(), true);
 
 			    // 보낸 날짜
 			    messageHelper.setSentDate(new Date());
