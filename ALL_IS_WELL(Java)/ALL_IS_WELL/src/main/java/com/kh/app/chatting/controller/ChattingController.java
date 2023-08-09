@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.app.chatting.service.ChattingService;
 import com.kh.app.chatting.vo.ChattingVo;
@@ -192,41 +194,4 @@ public class ChattingController {
 		
 		return "redirect:/chatting/chattingList";
 	}
-	
-	//상대방 접속 확인 여부
-//	@PostMapping("check_opponent_status")
-//	public ResponseEntity<String> checkOpponentStatus(@RequestParam String opponentId) {
-//		
-//
-//		return ResponseEntity.ok(isConnected ? "connected" : "disconnected");
-//	}
-	
-	@PostMapping("updateConfirmYn")
-	public ResponseEntity<Void> updateConfirmYn(String chattingRoomNo, HttpSession session) {
-		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-		
-		String memberNo = loginMember.getNo();
-		
-		Map<String, String> confirmMap = new HashMap<>();
-		
-		confirmMap.put("chattingRoomNo", chattingRoomNo);
-		confirmMap.put("memberNo", memberNo);
-		
-		int count = service.selectCountOfChatting(confirmMap);
-		
-		
-		for(int i = 0; i < count; i++) {
-			int result = service.updateConfirmYn(confirmMap);
-			
-			log.info(String.valueOf(result));
-			
-			if(result != 1) {
-				throw new IllegalStateException("업데이트 실패");
-			}
-		}
-		
-		return ResponseEntity.ok().build();
-	}
-
-	
 }	

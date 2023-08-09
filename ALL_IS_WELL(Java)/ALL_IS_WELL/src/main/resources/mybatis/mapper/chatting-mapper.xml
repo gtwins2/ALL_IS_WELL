@@ -117,10 +117,4 @@
 		WHERE R.NO = #{chattingRoomNo}
 		AND NOT C.WRITER_NO = #{memberNo}
 	</select>
-	
-	<update id="updateConfirmYn">
-		UPDATE CHATTING SET CONFIRM_YN = 'Y'
-		WHERE ROOM_NO = #{chatting_room_no}
-		AND NOT WRITER_NO = #{memberNo}
-	</update>
 </mapper>

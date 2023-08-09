@@ -55,9 +55,4 @@ public class ChattingDao {
 	public int selectCountOfChatting(SqlSessionTemplate sst, Map<String, String> confirmMap) {
 		return sst.selectOne("chatting.selectCountOfChatting", confirmMap);
 	}
-
-
-	public int updateConfirmYn(SqlSessionTemplate sst, Map<String, String> confirmMap) {
-		return sst.update("chatting.updateConfirmYn", confirmMap);
-	}
 }

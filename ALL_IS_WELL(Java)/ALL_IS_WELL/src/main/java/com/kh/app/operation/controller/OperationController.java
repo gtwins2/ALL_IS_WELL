@@ -26,6 +26,7 @@ import com.kh.app.member.vo.MemberVo;
 import com.kh.app.operation.service.OperationService;
 import com.kh.app.operation.vo.OperationVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -84,9 +85,13 @@ public class OperationController {
 		    }
 		}
 		
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
+		
 		
 		model.addAttribute("paramMap", paramMap);
-		
+		model.addAttribute("svo", svo);
 		
 		return "surgery/operationRoomList";
 	}
@@ -171,9 +176,15 @@ public class OperationController {
 		log.info(scheduleList.toString());
 		
 		
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
+		
+		
 		model.addAttribute("pv", pv);
 		model.addAttribute("scheduleList", scheduleList);
 		model.addAttribute("paramMap", paramMap);
+		model.addAttribute("svo", svo);
 		
 		
 		

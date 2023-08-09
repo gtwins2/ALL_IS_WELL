@@ -74,6 +74,7 @@
             border-radius: 3px;
             width: 700px;
             height: 30px;
+            margin-left: 60px;
             
         }
 
@@ -236,8 +237,7 @@
             <form action="/app/mail/writeMail" method="post" enctype="multipart/form-data" id="sendForm">
                 <div class="receive-area">
                     <div>받는 사람</div>
-                    <input type="checkbox" name="to-me">
-                    <div id="me">나에게</div>
+                    
     
                     <input type="text" name="receiverMailAddress" id="receivePerson">
         			<input type="hidden" name="selectedMemberNumbers" id="selectedMemberNumbers">
@@ -525,7 +525,7 @@
 
                             $('#receivePerson').val(selectedEmails.join(', '));
                         });
-
+ 
                     });
                 },
                 error: function(error) {
@@ -550,34 +550,65 @@
             const email = emailButton.data('email');
             const memberNumber = emailButton.data('member-number');
 
-            if (!selectedEmails.includes(email)) {
+             if (!selectedEmails.includes(email)) {
                 selectedEmails.push(email);
                 selectedMemberNumbers.push(memberNumber);
             }
-
-            $('#receivePerson').val(selectedEmails.join(', '));
+ 
+           
 
             toggleSelectedEmails(email);  
+            
+            
+            
+            $('#receivePerson').val(selectedEmails.join(', '));
         });
 
 
         // 선택된 이메일 삭제 버튼 클릭 이벤트
         $(document).on('click', '.delete-email-btn', function() {
             const email = $(this).prev().text();
-            toggleSet(selectedEmails, email);
+             toggleSet(selectedEmails, email);
+            $(this).parent().remove(); 
+            
+            const memberNumber = $(this).data('member-number');
+
+            toggleSelectedEmails(email, memberNumber);
+
             $(this).parent().remove();
+            $('#receivePerson').val(selectedEmails.join(', '));
         });
 
         // 선택 버튼 클릭 이벤트
         $(document).on('click', '#choose', function() {
+        	$('#receivePerson').val(selectedEmails.join(', '));
             $('#selectedMemberNumbers').val(selectedMemberNumbers.join(','));
 
             $('#addressModal').modal('hide');
         });
 
     });
+    
+    
+ // 이메일 추가 또는 제거 기능을 수행하는 함수
+    function toggleSelectedEmails(email, memberNumber) {
+      const index = selectedEmails.indexOf(email);
 
-    function toggleArray(array, value) {
+      if (index > -1) {
+        // 이미 선택된 이메일인 경우, 제거
+        selectedEmails.splice(index, 1);
+        selectedMemberNumbers.splice(index, 1);
+      } else {
+        // 선택되지 않은 이메일인 경우, 추가
+        selectedEmails.push(email);
+        selectedMemberNumbers.push(memberNumber);
+      }
+    }
+
+    
+    
+
+     function toggleArray(array, value) {
         const index = array.indexOf(value);
         if (index > -1) {
             array.splice(index, 1); // Remove the value if it exists
@@ -586,30 +617,70 @@
         }
     }
 
-    function toggleSelectedEmails(email) {
+   /*  function toggleSelectedEmails(email) {
         const emailDiv = $('.selected-emails').find('div:contains("' + email + '")');
         if (emailDiv.length > 0) {
             emailDiv.remove();
         } else {
             $('.selected-emails').append($('<div>').text(email).append('<button class="delete-email-btn">&times;</button>'));
         }
-    }
-
+    } */
     
-    
-    
-    //이메일이 나에게 체크되어있을 경우
-   <%--  $(document).ready(function() {
-    	const loggedInUserEmail = '<%= ((MemberVo) session.getAttribute("loginMember")).getEmail() %>';
-
-        $('#to-me').change(function() {
-            if ($(this).prop('checked')) {
-                $('#receivePerson').val(loggedInUserEmail);
-            } else {
-                $('#receivePerson').val('');
-            }
-        }); --%>
+    /* function toggleSelectedEmails(email) {
+        const emailDiv = $('.selected-emails').find('div:contains("' + email + '")');
         
+        if (emailDiv.length > 0) {
+            emailDiv.remove();
+        } else {
+            const newEmailDiv = $('<div>').text(email).append('<button class="delete-email-btn">&times;</button>');
+            $('.selected-emails').append(newEmailDiv);
+
+            $(document).on('click', '.delete-email-btn', function() {
+                const email = $(this).prev().text();
+                const memberNumber = $(this).data("memberNumber");
+
+                toggleSelectedEmails(email, memberNumber);
+            });
+        }
+    } */
+    
+    function toggleSelectedEmails(email, memberNumber) {
+        const emailDiv = $('.selected-emails').find('div:contains("' + email + '")');
+
+        if (emailDiv.length > 0) {
+            emailDiv.remove();
+            toggleArray(selectedEmails, email);
+            toggleArray(selectedMemberNumbers, memberNumber);
+        } else {
+            const newEmailDiv = $('<div>').text(email).append('<button class="delete-email-btn">&times;</button>');
+            $('.selected-emails').append(newEmailDiv);
+
+            newEmailDiv.find(".delete-email-btn").on("click", function () {
+                newEmailDiv.remove();
+                toggleArray(selectedEmails, email);
+                toggleArray(selectedMemberNumbers, memberNumber);
+                updateSelectedEmails();
+            });
+            
+            updateReceivePerson();
+        }
+        
+        updateSelectedEmails();
+    }
+    
+	
+    
+    function updateSelectedEmails() {
+    	  const selectedEmailsText = selectedEmails.join(', ');
+    	  $('#receivePerson').val(selectedEmailsText);
+    	}
+    
+    
+    function updateReceivePerson() {
+    	  const receivePerson = selectedEmails.join(", ");
+    	  $('#receivePerson').text(receivePerson);
+    	}
+   
         
    //파일 여러개 모두삭제
    function deleteAllFiles() {

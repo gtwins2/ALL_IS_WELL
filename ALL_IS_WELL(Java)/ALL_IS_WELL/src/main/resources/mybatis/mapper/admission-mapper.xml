@@ -85,4 +85,21 @@
 			WHERE P.NAME LIKE '%${searchValue}%'		
 		</if>
 	</select>
+	
+	<select id="getPatientList" resultType="com.kh.app.patient.vo.PatientVo">
+		SELECT 
+	    NO,
+	    NAME,
+	    GENDER,
+	    CASE
+	        WHEN gender = 'M' THEN RPAD(SUBSTR(registration_number, 1, 7) || '-1******', LENGTH(registration_number), '*')
+	        WHEN gender = 'F' THEN RPAD(SUBSTR(registration_number, 1, 7) || '-2******', LENGTH(registration_number), '*')
+	        ELSE registration_number
+	    END AS REGISTRATION_NUMBER,
+	    PHONE_NUMBER,
+	    EMAIL,
+	    CAUTION 
+	FROM 
+	    PATIENT 
+	</select>
 </mapper>

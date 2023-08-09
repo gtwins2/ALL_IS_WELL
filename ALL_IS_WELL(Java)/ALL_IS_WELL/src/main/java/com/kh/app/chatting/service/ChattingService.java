@@ -91,14 +91,5 @@ public class ChattingService {
 
 
 
-
-
-
-	public int updateConfirmYn(Map<String, String> confirmMap) {
-		return dao.updateConfirmYn(sst, confirmMap);
-	}
-
-
-
 	
 }

@@ -174,7 +174,7 @@
 		JOIN SENDER_MAIL S ON S.MAIL_NO = M.NO 
 		JOIN MEMBER MR 
 		ON MR.NO = S.SENDER_NO 
-		WHERE R.RECEIVER_NO = 2
+		WHERE R.RECEIVER_NO = #{receiverNo}
 		AND R.STATUS = 'X'
 	</select>
 </mapper>

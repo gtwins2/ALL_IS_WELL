@@ -18,6 +18,7 @@ import com.kh.app.admission.vo.AdmissionVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.patient.vo.PatientVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,11 +62,15 @@ public class AdmissionController {
 		 
 		 log.info(roomList.toString());
 		 
+		 SearchVo svo = new SearchVo();
+		 svo.setSearchType(paramMap.get("searchType"));
+		 svo.setSearchValue(paramMap.get("searchValue"));
+		 
 		 
 		model.addAttribute("pv", pv);
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("paramMap", paramMap);
-		
+		model.addAttribute("svo", svo);
 		
 		return "admission/admissionRoomList";
 	}
@@ -104,9 +109,14 @@ public class AdmissionController {
 		 log.info(scheduleList.toString());
 		 
 		 
+		 SearchVo svo = new SearchVo();
+		 svo.setSearchType(paramMap.get("searchType"));
+		 svo.setSearchValue(paramMap.get("searchValue"));
+		 
 		model.addAttribute("pv", pv);
 		model.addAttribute("scheduleList", scheduleList);
 		model.addAttribute("paramMap", paramMap);
+		model.addAttribute("svo", svo);
 		
 		return "admission/admissionListForm";
 	}
@@ -165,5 +175,20 @@ public class AdmissionController {
 		}
 		
 		return "redirect:/admission/roomList";
+	}
+	
+	@GetMapping("getPatientList")
+	@ResponseBody
+	public List<PatientVo> getPatientList() {
+		List<PatientVo> patientList = service.getPatientList();
+		
+		log.info("patientList 조회 결과 : "+patientList.toString());
+		
+		
+		if(patientList == null) {
+			throw new IllegalStateException("patientList 조회 실패");
+		}
+		
+		return patientList;
 	}
 }

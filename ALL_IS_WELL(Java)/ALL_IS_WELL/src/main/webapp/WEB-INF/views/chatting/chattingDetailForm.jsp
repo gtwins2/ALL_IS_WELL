@@ -586,56 +586,10 @@
 	});
 	
 	
-	//상대방이 접속했는지 확인
-	 function checkOpponentStatus() {
-		 var opponentId;  // 상대방의 ID
-		
-		
-			if("${chattingDetailList[0].senderNo}" == sessionScope.loginMember.no) {
-				opponentId = "${chattingDetailList[0].receiverNo}";
-			} else if("${chattingDetailList[0].receiverNo}" == sessionScope.loginMember.no) {
-				opponentId = "${chattingDetailList[0].senderNo}";
-			}
-		
-	     
-	      
-	      $.ajax({
-	        url: '/app/chatting/check_opponent_status', // 백엔드 엔드포인트
-	        method: 'POST',
-	        data: {opponentId: opponentId}, // 요청에 상대방의 ID를 함께 보냅니다.
-
-	        success: function (response) {
-	          // 응답을 처리하는 코드
-	          if (response === "connected") {
-	            console.log('상대방이 접속 중입니다.');
-	            $.ajax({
-	            	url: '/app/chatting/updateConfirmYn',
-	            	method: 'POST',
-	            	data: {
-	            		chattingRoomNo: chattingRoomNo
-	            	}
-	            	success: function(){
-	            		console.log("업데이트 성공");
-	            	},
-	            	error: function() {
-	            		console.log("업데이트 실패");
-	            	}
-	            });
-	            
-	          } else if (response === "disconnected") {
-	            console.log('상대방이 접속하지 않았습니다.');
-	          }
-	        },
-
-	        error: function (xhr, status, error) {
-	          console.log('오류 발생:', xhr, status, error);
-	        }
-	      });
-	    }
-
-	    // checkOpponentStatus 함수 호출
-	    checkOpponentStatus();
-	  </script>
+	
+	
+	
+	
 	
 	</script>
 </body>
