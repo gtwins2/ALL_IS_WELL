@@ -1,5 +1,6 @@
 package com.kh.app.chatting.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -26,9 +27,7 @@ public class ChattingService {
 	
 	
 	
-	public List<ChattingVo> getChattingList(String memberNo) {
-		return dao.getChattingList(sst, memberNo);
-	}
+	
 
 
 
@@ -61,6 +60,42 @@ public class ChattingService {
 
 	public int saveMessage(ChattingVo vo) {
 		return dao.saveMessage(sst, vo);
+	}
+
+
+
+	public List<ChattingVo> getChattingDetail(String chattingRoomNo) {
+		return dao.getChattingDetail(sst, chattingRoomNo);
+	}
+
+
+
+	public int quitChatting(String chattingRoomNo) {
+		return dao.quitChatting(sst, chattingRoomNo);
+	}
+
+
+
+	public List<ChattingVo> getChattingList(Map<String, String> chattingMap) {
+		return dao.getChattingList(sst, chattingMap);
+	}
+
+
+
+
+
+
+	public int selectCountOfChatting(Map<String, String> confirmMap) {
+		return dao.selectCountOfChatting(sst, confirmMap);
+	}
+
+
+
+
+
+
+	public int updateConfirmYn(Map<String, String> confirmMap) {
+		return dao.updateConfirmYn(sst, confirmMap);
 	}
 
 

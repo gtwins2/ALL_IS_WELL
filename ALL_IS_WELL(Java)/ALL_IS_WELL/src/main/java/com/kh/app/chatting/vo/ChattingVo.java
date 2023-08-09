@@ -24,4 +24,5 @@ public class ChattingVo {
 	private String receiverDepartmentName;
 	private String receiverPositionName;
 	private String receiverAttendanceStatus;
+	private String senderAttendanceStatus;
 }

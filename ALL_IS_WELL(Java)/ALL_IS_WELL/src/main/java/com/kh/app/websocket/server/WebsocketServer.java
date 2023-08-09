@@ -7,8 +7,11 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -26,6 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 public class WebsocketServer extends TextWebSocketHandler {
 	//유저들의 세션을 담을 set
 	private Set<WebSocketSession> sessionSet = new HashSet<WebSocketSession>();
+	
+	
+	
+
 	
 	@Autowired
 	private ChattingService service;
@@ -53,7 +60,11 @@ public class WebsocketServer extends TextWebSocketHandler {
 		
 		//sessionsSet에 저장된 세션 삭제
 		sessionSet.remove(session);
+		
+		
+		
 	}
+	
 	
 	
 	//텍스트 메시지를 다루는 메소드
@@ -79,8 +90,11 @@ public class WebsocketServer extends TextWebSocketHandler {
 		//변환된 데이터를 send하기
 		
 		Map<String, String> msgVo = new HashMap<>();
+		msgVo.put("no", loginMember.getNo());
 		msgVo.put("name", loginMember.getName());
 		msgVo.put("msg", message.getPayload());
+		msgVo.put("profile", loginMember.getProfile());
+		msgVo.put("confirmYn", "N");
 		
 		Date currentTime = new Date();
 
