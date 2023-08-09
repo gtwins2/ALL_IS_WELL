@@ -9,11 +9,17 @@
         <title>공지사항</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-            .main-area {
-   				 width: 1200px;
-    			height: 600px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
+           #content{
+    width: 1920px;
+    height: 750px;
+    display: grid;
+    grid-template-columns: 150px 1770px;
+}
+
+.main-area {
+    width: 70%;
+    min-height: 80%;
+    margin: auto;
 }
 
             .title-area {
@@ -26,7 +32,7 @@
             #title {
                 font-size: 35px;
             }
-
+            
             #sendMail {
                 font-size: 20px;
                 color: white;
@@ -49,6 +55,11 @@
                 align-items: center;
             }
 
+            .search-area {
+                display: flex;
+                align-items: center;
+            }
+
 
 
             .search-area input[type="text"] {
@@ -61,10 +72,6 @@
             }
 
 
-
-            .list-area {
-                margin-top: 20px;
-            }
 
 
             .category-area {
@@ -99,15 +106,7 @@
                 color: gray;
             }
 
-            #delete-button {
-                color: #5A8CF2;
-                font-weight: bold;
-                font-size: 15px;
-                margin-left: 2%;
-            }
-
             .list-area {
-                margin-top: 20px;
 
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
@@ -119,88 +118,79 @@
                 border-collapse: collapse;
                 width: 100%;
 
-
-                width: 100%;
-
             }
 
             .list-area th,
             .list-area td {
-                padding: 20px;
+                padding: 13px;
                 border-bottom: 1px solid #ddd;
-                text-align: left;
+                text-align: center;
             }
 
             .list-area th {
                 font-size: 20px;
                 font-weight: normal;
-
             }
 
-            .list-area th:first-child,
-            .list-area td:first-child {
-                width: 300px;
-                text-align: center;
-            }
+           
 
-            .list-area th:last-child,
-            .list-area td:last-child {
-                width: 300px;
-                text-align: center;
-            }
 
-            
-
-            .list-area th:nth-child(2) {
-                padding-left: 20%;
-            }
-
-            .list-area td:nth-child(2) {
-                padding-left: 10%;
-            }
+           
 			
 			
-.list-area td:nth-child(3) {
+.list-area td:nth-child(4) {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
-            .number-area {
-                text-align: center;
-            }
+.number-area {
+        text-align: center;
+        margin-top: -30px;
+}
 
-            .number-area a {
-                display: inline-block;
-                margin: 5px;
-                padding: 8px 12px;
-                text-decoration: none;
-                border: none;
-                color: inherit;
-                font-size: 20px;
-            }
+.number-area a {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border: none;
+    color: inherit;
+    font-size: 15px;
+}
 
-            #previous {
-                color: #5A8CF2;
-            }
+#previous {
+    color: #5A8CF2;
+}
 
-            #after {
-                color: #5A8CF2;
-            }
+#after {
+    color: #5A8CF2;
+}
 
-            .number-area a:hover {
-                color: #5A8CF2;
-            }
+.number-area a:hover {
+    color: #5A8CF2;
+    cursor: pointer;
+}
 
-     
 
-         
+           
+            
 
-            #content{
-                display: grid;
-                grid-template-columns: 300px 1620px;
-            }
+#div01{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+    background: #5A8CF2;
+    border: 0px;
+}
 
+#div01:hover{
+	background-color: #555;
+	transition: 0.7s;
+}
         </style>
     </head>
 
@@ -220,20 +210,17 @@
                 <div class="title-area">
                     <span id="title">문의사항</span>
 
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select name="search" id="search">
-                                <option value="writer">작성자</option>
-                                <option value="title">제목</option>
-                            </select>
+                    <form action="" class="search-area" method="get">
+                    <label for="search" class="category-area">
+                        <select name="searchType" id="search">
+                            <option value="title">이름</option>
+                        </select>
+                    </label>
+                    <input type="text" id="search-input" name="searchValue">
+                    <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </form>
 
-
-                        </label>
-                        <input type="text" id="search-input">
-                        <a href="" id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </form>
-
-                    <button id="sendMail">작성하기</button>
+                    <button id="sendMail" onclick="location.href='${root}/Mboard/inquiryWrite';">작성하기</button>
                 </div>
                 <br>
 
@@ -268,6 +255,7 @@
                 <br>
 
                 <div class="number-area">
+                <c:if test="${pv.listCount > 10}">
                 <c:if test="${pv.currentPage > 1}">
                     <a href="inquiryList?page=1">&laquo;</a>
                     <a href="inquiryList?page=${pv.currentPage - 1}">&lt;</a>
@@ -287,6 +275,7 @@
                     <a href="inquiryList?page=${pv.currentPage + 1}">&gt;</a>
                     <a href="inquiryList?page=${pv.maxPage}">&raquo;</a>
                 </c:if>
+                </c:if>
             </div>
             
             </div>
@@ -301,3 +290,43 @@
     </body>
 
     </html>
+    <script>
+    const sideBar = document.querySelector("#side-bar")
+	const subMenus = document.querySelectorAll(".sub-menu");
+	const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+	subMenus.forEach(subMenu => {
+		subMenu.style.height = sideBar.offsetHeight + 'px';
+	});
+
+	thirdSidebars.forEach(thirdSidebar => {
+		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	});
+	
+	//환자정보가기
+    const tbody = document.querySelector('tbody');
+	tbody.addEventListener('click', (event)=>{
+		//글번호 가져와서
+		const no = event.target.parentNode.children[0].innerText;
+		const title = event.target.parentNode.children[1].innerText;
+
+		//요청보내기
+		location.href='${root}/Mboard/inquiryDetail?no=' + no + "&title=" + title;
+
+
+	}); 
+	
+	const pageBtn = document.querySelectorAll('.pageBtn');
+
+    for (let btn of pageBtn) {
+        if (btn.innerHTML == '${pv.currentPage}') {
+            btn.style.color = '#d9d9d9';
+        }
+    }
+
+    function pageMove(pageNumber) {
+        let url = new URL(window.location.href);
+        url.searchParams.set('page', pageNumber);
+        window.location.href = url.href;
+	}
+    </script>

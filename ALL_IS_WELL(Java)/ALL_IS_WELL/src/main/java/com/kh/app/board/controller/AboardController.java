@@ -149,16 +149,20 @@ public class AboardController {
 	//���ǻ��� ���(������)
 	@GetMapping("suggestList")
 	public String suggestList(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session,SuggestVo vo) {
+	int currentPage, Model model, HttpSession session,SuggestVo vo
+	,@RequestParam Map<String , String> paramMap) {
 		
-		
-		int listCount = ss.getListCnt();
+		SearchVo svo = new SearchVo();
+	    svo.setSearchType(paramMap.get("searchType"));
+	    svo.setSearchValue(paramMap.get("searchValue"));
+	    
+		int listCount = ss.getListCnt(paramMap);
 	    int pageLimit = 5;
 	    int boardLimit = 10;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<SuggestVo> voList = ss.suggestList(pv);
+		List<SuggestVo> voList = ss.suggestList(pv, paramMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList" ,voList);
 		return "board/suggestList";
@@ -175,8 +179,12 @@ public class AboardController {
 	
 	//���ǻ��� ��������(����ۼ�)
 	@GetMapping("suggestDetail")
-	public String suggestDetail() {
+	public String suggestDetail(SuggestVo vo ,Model model) {
 		
+		SuggestVo voList = ss.suggestDetail(vo);
+		
+		
+		model.addAttribute("vo" ,voList);
 		
 		return "board/suggestDetail";
 	}
@@ -189,16 +197,20 @@ public class AboardController {
 	//���ǻ��� ���
 	@GetMapping("inquiryList")
 	public String inquiryList(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session,InquiryVo vo) {
+	int currentPage, Model model, HttpSession session,InquiryVo vo
+	,@RequestParam Map<String , String> paramMap) {
 		
+		SearchVo svo = new SearchVo();
+	    svo.setSearchType(paramMap.get("searchType"));
+	    svo.setSearchValue(paramMap.get("searchValue"));
 		
-		int listCount = is.getListCnt();
+		int listCount = is.getListCnt(paramMap);
 	    int pageLimit = 5;
 	    int boardLimit = 10;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<InquiryVo> voList = is.inquiryList(pv);
+		List<InquiryVo> voList = is.inquiryList(pv, paramMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList" ,voList);
 		
@@ -210,7 +222,7 @@ public class AboardController {
 	public String inquiryDetail(InquiryVo vo, Model model, NoticeReplyVo vo2) {
 		
 		InquiryVo voList = is.inquiryDetail(vo);
-		List<NoticeReplyVo> voList2 = is.inquiryReply(vo2);
+		List<InquiryVo> voList2 = is.inquiryReply(vo2);
 		
 		
 		model.addAttribute("voList2" ,voList2);
@@ -219,5 +231,33 @@ public class AboardController {
 		return "board/inquiryDetail";
 	}
 	
+	@PostMapping("inquiryDetail")
+	public String inquiryDetail(InquiryVo vo) {
+		int result = is.replyWrite(vo);
+		String no = vo.getInquiryNo();
+		return "redirect:/board/inquiryDetail?no="+ no;
+	}
 	
+	@GetMapping("inquiryReplyUpdate")
+	public String inquiryReplyUpdate(String no, String content, String noticeNo, Model model) {
+		model.addAttribute("no",no);
+		model.addAttribute("content",content);
+		model.addAttribute("noticeNo",noticeNo);
+		return "board/inquiryReplyUpdate";
+	}
+	
+	@PostMapping("inquiryReplyUpdate")
+	public String inquiryReplyUpdate(InquiryVo vo) {
+		int result = is.inquiryReplyUpdate(vo);
+		String no = vo.getNoticeNo();
+		
+		return "redirect:/board/inquiryDetail?no="+ no;
+	}
+	
+	@PostMapping("inquiryReplyDelete")
+	public String inquiryReplyDelete(InquiryVo vo) {
+		int result = is.inquiryReplyDelete(vo);
+		String no = vo.getInquiryNo();
+		return "redirect:/board/inquiryDetail?no="+ no;
+	}
 }

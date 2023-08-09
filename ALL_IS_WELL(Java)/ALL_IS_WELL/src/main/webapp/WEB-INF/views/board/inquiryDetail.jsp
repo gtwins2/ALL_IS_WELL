@@ -71,7 +71,7 @@ hr{
 	grid-template-columns: 1fr 3fr;
 }
 
-#file{
+#file-upload-button{
 	width: 115px;
 	height: 53px;
 	background: #FF8686;
@@ -161,9 +161,8 @@ border-radius: 50px;
 
 #div03-1{
 	display: grid;
-	grid-template-columns: 1fr 7fr 1fr;
+	grid-template-columns: 1fr 10fr 1fr;
 	margin-left: 60px;
-	margin-right: 50px;
 }
 
 #write{
@@ -181,6 +180,30 @@ border-radius: 50px;
 	border: 0px;
 	margin-left: 60px;
 }
+#delete{
+background-color:gray; 
+	width: 30px;
+	height: 20px;
+}
+
+#reply{
+	background-color:gray; 
+	width: 30px;
+	height: 20px;
+}
+
+
+#replyInput{
+	border: 0px;
+	background-color:lightgray; 
+	outline: none;
+}
+
+#updateForm{
+display: grid;
+grid-template-columns: 9fr 2fr 1fr;
+
+}
 </style>
 </head>
 <body>
@@ -194,49 +217,58 @@ border-radius: 50px;
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<form action="">
-
-				<button id="sendMail">수정하기</button>
+			<c:if test="${loginMember.no == vo.memberNo }">
+					<button id="sendMail" onclick="update();">수정하기</button>
+				</c:if>
 				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>
 						<div> <input type="text" name="" id="" value="${vo.title}" readonly></div>
 					</div>
-					<div>
-						<div>파일첨부</div>
-						<div><button id="file"> 첨부파일</button></div>
-					</div>
+					
 					<div>
 						<div>내용</div>
 						<div><textarea name="" id="textarea" cols="30" rows="10" readonly>${vo.content}</textarea></div>
 					</div>
 				</div>
-			</form>
 
-			<button id="list">목록</button>
+			<button id="list" onclick="back()">목록</button>
 
-			<form action="${root}/board/noticeDetail" method="post">
+			<form action="${root}/board/inquiryDetail" method="post">
 				<div id="div02">
-					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
-					<input type="text" value="${loginMember.no}" name="writerNo" hidden> 				
+					<input type="text" value="${vo.no}" name="inquiryNo" hidden> 
+					<input type="text" value="${loginMember.no}" name="writerNo" hidden>				
 					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
 					<div><button id="write">작성</button></div>
 				</div>
 			</form>
-
 			<div id="div03">
-				<c:forEach items="${voList2}" var="vo">
                             
-
 	                 <div id="div03-1">
-	                     <div>${vo.no}</div>
-	                     <div>${vo.content}</div>
-	                     <div>${vo.enrollDate}</div>
+	                 	<table width="1400px">
+						<c:forEach items="${voList2}" var="vo2">
+		                 	<tr>
+		                 		 <td hidden>${vo2.no} </td>
+		                    	 <td>${vo2.content} </td>
+		                     	 <td hidden>${vo2.inquiryNo} </td>
+		                     	 <td width="200px">${vo2.enrollDate}</td>
+		                     	 <td><input type="text" value="${vo.no}" name="inquiryNo" hidden></td>
+		                     	 <td><input type="text" value="${vo2.no}" name='no' hidden></td>
+		                     	 <c:if test="true">
+			                     <td width="50px"><input type="button" value="수정" id="reply" ></td>
+		                     <form action="${root}/board/inquiryReplyDelete" method="post">
+		                     	 <input type="text" value="${vo.no}" name="inquiryNo" hidden>
+		                     	 <input type="text" value="${vo2.no}" name='no' hidden>
+			                     <td><input type="submit" value="삭제" id="delete"></td>
+		                     </form>
+		                     	 </c:if>
+		                     </tr>
+						</c:forEach>
+	                 	</table>
 	                 </div>
 	                 
                                 
-				</c:forEach>
 			</div>
 
 		</main>
@@ -261,4 +293,18 @@ border-radius: 50px;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	const tr = document.querySelectorAll('tr');
+	const reply = document.querySelectorAll('#reply');
+    for(var i = 0; i < reply.length; i++){
+    	reply[i].addEventListener('click', (event)=>{
+            const no = event.target.parentNode.parentNode.children[0].innerText;
+            const content = event.target.parentNode.parentNode.children[1].innerText;
+            const noticeNo = event.target.parentNode.parentNode.children[2].innerText;
+            location.href='/app/board/inquiryReplyUpdate?no=' + no +"&content=" + content +"&noticeNo=" +noticeNo ;
+            console.log(event.target.parentNode.parentNode.children[0]);
+        
+      
+        });
+    }
 </script>
