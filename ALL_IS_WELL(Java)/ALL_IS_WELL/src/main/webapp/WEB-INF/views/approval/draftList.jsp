@@ -183,14 +183,6 @@
         font-size: 15px;
     }
 
-    #previous {
-        color: #5A8CF2;
-    }
-
-    #after {
-        color: #5A8CF2;
-    }
-
     .number-area a:hover {
         color: #5A8CF2;
         cursor: pointer;
@@ -269,6 +261,7 @@
                         <c:forEach items="${voList}" var="vo">
                             <tr onclick="detail();">
                                 <td id="approvalNo" hidden>${vo.no}</td>
+                                <td id="positionNo" hidden>${vo.positionNo}</td>
                                 <td>${vo.memberName}(${vo.departmentName}-${vo.positionName})</td>
                                 <td id="approvalTitle">${vo.title}</td>
                                 <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>
@@ -326,16 +319,27 @@
 
         function detail() {
             const no = event.target.parentElement.querySelector("#approvalNo").innerText;
+            const positionNo = event.target.parentElement.querySelector("#positionNo").innerText;
             const title = event.target.parentElement.querySelector("#approvalTitle").innerText;
             const status = event.target.parentElement.querySelector(".statusBtn").innerText;
 
             if(status ==="대기"){
-                if (title === "출장문서") {
-                    location.href = "${root}/approval/detailTrip?no=" + no;
-                } else if (title === "휴가문서") {
-                    location.href = "${root}/approval/detailVacation?no=" + no;
-                } else if (title === "재고신청문서") {
-                    location.href = "${root}/approval/detailInventory?no=" + no;
+                if(positionNo === "1"){
+                    if (title === "출장문서") {
+                        location.href = "${root}/approval/trip?no=" + no;
+                    } else if (title === "휴가문서") {
+                        location.href = "${root}/approval/vacation?no=" + no;
+                    } else if (title === "재고신청문서") {
+                        location.href = "${root}/approval/inventory?no=" + no;
+                    }
+                }else{
+                    if (title === "출장문서") {
+                        location.href = "${root}/approval/detailTrip?no=" + no;
+                    } else if (title === "휴가문서") {
+                        location.href = "${root}/approval/detailVacation?no=" + no;
+                    } else if (title === "재고신청문서") {
+                        location.href = "${root}/approval/detailInventory?no=" + no;
+                    }
                 }
             }
             else if(status === "1차 승인" || status === "반려"){

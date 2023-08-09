@@ -254,6 +254,10 @@ public class ApprovalService {
 	public int AdminApprovalUpdate(AdminApproverVo avo) {
 		return dao.AdminApprovalUpdate(sst, avo);
 	}
+
+	public AdminApproverVo getPositionNo(String no) {
+		return dao.getPositionNo(sst, no);
+	}
 	
 	
 }
