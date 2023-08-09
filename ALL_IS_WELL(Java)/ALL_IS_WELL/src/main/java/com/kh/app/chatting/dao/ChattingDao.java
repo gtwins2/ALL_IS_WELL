@@ -17,11 +17,6 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class ChattingDao {
 	
-	
-	
-	public List<ChattingVo> getChattingList(SqlSessionTemplate sst, String memberNo) {
-		return sst.selectList("chatting.getChattingList", memberNo);
-	}
 
 	public List<MemberVo> searchMember(SqlSessionTemplate sst, String searchInput) {
 		return sst.selectList("chatting.searchMember", searchInput);
@@ -42,5 +37,27 @@ public class ChattingDao {
 
 	public int saveMessage(SqlSessionTemplate sst, ChattingVo vo) {
 		return sst.insert("chatting.saveMessage", vo);
+	}
+
+	public List<ChattingVo> getChattingDetail(SqlSessionTemplate sst, String chattingRoomNo) {
+		return sst.selectList("chatting.getChattingDetail", chattingRoomNo);
+	}
+
+	public int quitChatting(SqlSessionTemplate sst, String chattingRoomNo) {
+		return sst.update("chatting.quitChatting", chattingRoomNo);
+	}
+
+	public List<ChattingVo> getChattingList(SqlSessionTemplate sst, Map<String, String> chattingMap) {
+		return sst.selectList("chatting.getChattingList", chattingMap);
+	}
+
+
+	public int selectCountOfChatting(SqlSessionTemplate sst, Map<String, String> confirmMap) {
+		return sst.selectOne("chatting.selectCountOfChatting", confirmMap);
+	}
+
+
+	public int updateConfirmYn(SqlSessionTemplate sst, Map<String, String> confirmMap) {
+		return sst.update("chatting.updateConfirmYn", confirmMap);
 	}
 }

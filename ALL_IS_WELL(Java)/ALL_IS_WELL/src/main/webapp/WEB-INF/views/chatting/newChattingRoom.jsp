@@ -204,6 +204,40 @@
 		#send i {
 		    font-size: 20px;
 		}
+		
+		#menu {
+		  position: absolute;
+		  background-color: white;
+		  border: 1px solid #ccc;
+		  padding: 10px;
+		  border-radius: 5px;
+		  transform: translateY(calc(-900%));
+		  transition: all 0.3s ease;
+		  right: 0;
+		  z-index: 1000;
+		}
+		
+		#menu.hidden {
+		  transform: translateY(0%);
+		  opacity: 0;
+		  pointer-events: none;
+		}
+		
+		ul {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		}
+		
+		li {
+		  margin-bottom: 10px;
+		}
+		
+		a {
+		  text-decoration: none;
+		  color: #333;
+		  font-size: 16px;
+		}	
 
     </style>
 </head>
@@ -232,19 +266,25 @@
         </div>
 
         <div class="chat-area">
-           
-                <div class="send-area">
-                    <input type="text" name="chat" id="chat-box">
-                    <button id="send"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            
-        
-
+            <form action="">
+            	<div class="send-area">
+                <input type="text" name="chat" id="chat-box">
+                <button id="send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            </form>
         </div>
     </div>
     
     
-    
+     
+    <div id="menu" class="hidden">
+	  <ul>
+	    <li><a id="quitChattingBtn">나가기</a></li>
+	    <li><a href="/app/chatting/chattingList">목록으로</a></li>
+	  </ul>
+	</div>
+
+
     <script type="text/javascript">
     	let chattingRoomNo = "${roomVo.chattingRoomNo}";
     	
@@ -270,100 +310,134 @@
 		
 		const contentArea = document.querySelector(".content-area");
 		
-		// 사용자가 메시지를 입력하고 전송할 경우 실행되는 코드
-	    const messageInput = document.querySelector("#chat-box");
-	    const sendButton = document.querySelector("#send");
+		 const messageInput = document.querySelector("#chat-box");
+		    const sendButton = document.querySelector("#send");
 
-	    sendButton.addEventListener("click", function (event) {
-	        event.preventDefault();
+		    sendButton.addEventListener("click", function (event) {
+		    	const messengerContent = messageInput.value;
+				  
 
-	        const messengerContent = messageInput.value;
+				 
 
-	        ws.send(messengerContent);
+				  $.ajax({
+				    url: "/app/chatting/saveMessage",
+				    type: "POST",
+				    data: JSON.stringify({ 
+				        messengerContent: messengerContent,
+				        chattingRoomNo: chattingRoomNo
+				      }),
+				      contentType: "application/json",
+				      dataType: "text",
+				      success: function(response) {
+		                  console.log("메시지 잘 전달됨 :", response);
+		              },
+				    error: function(xhr, status, error) {
+				    	console.error("메시지 저장 실패 - Status:", status, "Error:", error, "Response Text:", xhr.responseText);
+				    }
+				  });
 
-	       /*  messageInput.value = ""; */
-	    });
+		    	
+		        
 
 
-		 let messageDiv;
+		        ws.send(messengerContent);
+		        
+		        
+		        event.preventDefault();
 
-        // 서버에서 메시지를 수신할 경우 실행되는 코드
-        ws.onmessage = function(event) {
-            const message = JSON.parse(event.data);
+		     	messageInput.value = "";
+		    });
 
-            // Extract message details from the JSON data
-            const senderName = message.name;
-            console.log(senderName);
-            const messageContent = message.msg;
-            console.log(messageContent);
-            const timeStamp = message.time;
-            console.log(timeStamp);
 
-            messageDiv = document.createElement("div");
-            messageDiv.classList.add("chat-opponent");
+		    let messageDiv;
 
-            // Create the content div
-            const contentDiv = document.createElement("div");
-            contentDiv.classList.add("content");
+		    // 서버에서 메시지를 수신할 경우 실행되는 코드
+		    ws.onmessage = function(event) {
+		        const message = JSON.parse(event.data);
 
-            // Create the textbox div and set its text content
-            const textboxDiv = document.createElement("div");
-            textboxDiv.classList.add("textbox");
-            textboxDiv.textContent = messageContent;
+		        
+		        const senderNo = message.no;
+		        console.log(senderNo);
+		        const currentUserNo = ${sessionScope.loginMember.no};
+		        console.log(currentUserNo);
+		        const senderName = message.name;
+		        console.log(senderName);
+		        const messageContent = message.msg;
+		        console.log(messageContent);
+		        const timeStamp = message.time;
+		        console.log(timeStamp);
+		        const senderProfilePicture = message.profile;
 
-            // Create the date div and set its text content
-            const dateDiv = document.createElement("div");
-            dateDiv.classList.add("date");
-            dateDiv.textContent = timeStamp;
 
-            // Append the textbox and date div to the content div
-            contentDiv.appendChild(textboxDiv);
-            contentDiv.appendChild(dateDiv);
+		        
+		        //로그인한 사람이 보냈을 경우
+		        if (currentUserNo == senderNo) {
+		        	messageDiv = document.createElement("div");
+		        	
+		            messageDiv.classList.add("chat-opponent");
+		            
+		            const contentDiv = document.createElement("div");
+		            contentDiv.classList.add("content");
 
-            // Create the mark-read div and set its text content
-            const markReadDiv = document.createElement("div");
-            markReadDiv.classList.add("mark-read");
-            markReadDiv.textContent = "1";
+		            const textboxDiv = document.createElement("div");
+		            textboxDiv.classList.add("textbox");
+		            textboxDiv.textContent = messageContent;
 
-            // Append the content div and mark-read div to the messageDiv
-            messageDiv.appendChild(contentDiv);
-            messageDiv.appendChild(markReadDiv);
+		            const dateDiv = document.createElement("div");
+		            dateDiv.classList.add("date");
+		            dateDiv.textContent = timeStamp;
 
-            // Append the messageDiv to the content area
-            contentArea.appendChild(messageDiv);
-        };
-        
+		            contentDiv.appendChild(textboxDiv);
+		            contentDiv.appendChild(dateDiv);
 
-		// 사용자가 메시지를 입력하고 전송할 경우 실행되는 코드
-		
+		            const markReadDiv = document.createElement("div");
+		            markReadDiv.classList.add("mark-read");
+		            markReadDiv.textContent = "1";
 
-		sendButton.addEventListener("click", function(event) {
-			  event.preventDefault();
+		            messageDiv.appendChild(contentDiv);
+		            messageDiv.appendChild(markReadDiv);
 
-			  const messengerContent = messageInput.value;
-			  
+		            contentArea.appendChild(messageDiv);
+		        } else {
+					const messageDiv = document.createElement("div");
+		        	
+		            messageDiv.classList.add("chat-me");
+		            
+		           
+		            const profilePictureDiv = document.createElement("div");
+		            profilePictureDiv.classList.add("profile-picture");
+		            const profilePictureImg = document.createElement("img");
+		            profilePictureImg.setAttribute("src", senderProfilePicture);
+		            profilePictureImg.setAttribute("alt", senderName);
+		            profilePictureDiv.appendChild(profilePictureImg);
 
-			 
+		            const contentDiv = document.createElement("div");
+		            contentDiv.classList.add("content");
 
-			  $.ajax({
-			    url: "/app/chatting/saveMessage",
-			    type: "POST",
-			    data: JSON.stringify({ 
-			        messengerContent: messengerContent,
-			        chattingRoomNo: chattingRoomNo
-			      }),
-			      contentType: "application/json",
-			      dataType: "text",
-			      success: function(response) {
-	                    console.log("메시지 잘 전달됨 :", response);
-	                },
-			    error: function(xhr, status, error) {
-			    	console.error("메시지 저장 실패 - Status:", status, "Error:", error, "Response Text:", xhr.responseText);
-			    }
-			  });
+		            const senderNameDiv = document.createElement("div");
+		            senderNameDiv.classList.add("sender-name");
+		            senderNameDiv.textContent = senderName;
 
-			  messageInput.value = "";
-			});
+		            const textboxDiv = document.createElement("div");
+		            textboxDiv.classList.add("textbox");
+		            textboxDiv.textContent = messageContent;
+
+		            const dateDiv = document.createElement("div");
+		            dateDiv.classList.add("date");
+		            dateDiv.textContent = timeStamp;
+
+		            contentDiv.appendChild(senderNameDiv);
+		            contentDiv.appendChild(textboxDiv);
+		            contentDiv.appendChild(dateDiv);
+
+		            messageDiv.appendChild(profilePictureDiv);
+		            messageDiv.appendChild(contentDiv);
+
+		            contentArea.appendChild(messageDiv);
+		        }
+
+		       
+		    };
 		
 		//웹소켓 오픈되었을때 실행되는 함수
 		function funcOpen() {
@@ -381,16 +455,17 @@
 		}
 		
 		
-		//웹소켓 메시지 받았을때 실행되는 함수
 		
 		
+		//모달
+		function toggleMenu() {
+		  const menu = document.querySelector("#menu");
+		  menu.classList.toggle("hidden");
+		}
 		
-	
-		
-	
-		
-		
-		
+		document.querySelector("#list-icon").addEventListener("click", function () {
+		  toggleMenu();
+		});
 		
 	</script>
 </body>

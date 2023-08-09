@@ -108,4 +108,13 @@
 	<update id="updateRoomStatus">
 		UPDATE OPERATING_ROOM SET STATUS = 'X' WHERE NO = #{operatingRoomNo}
 	</update>
+	
+	<select id="getMemberList" resultType="com.kh.app.member.vo.MemberVo">
+		SELECT 
+		M.NO, M.NAME AS NAME, P.NAME AS POSITION_NAME, D.NAME AS DEPARTMENT_NAME  
+		FROM MEMBER M 
+		JOIN POSITION P ON M.POSITION_NO = P.NO 
+		JOIN DEPARTMENT D 
+		ON M.DEPARTMENT_NO = D.NO 
+	</select>
 </mapper>

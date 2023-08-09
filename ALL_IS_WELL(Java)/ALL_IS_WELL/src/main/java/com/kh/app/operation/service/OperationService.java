@@ -83,6 +83,10 @@ public class OperationService {
 	public int updateRoomStatus(String operatingRoomNo) {
 		return dao.updateRoomStatus(sst, operatingRoomNo);
 	}
+
+	public List<MemberVo> getMemberList() {
+		return dao.getMemberList(sst);
+	}
 	
 	
 	

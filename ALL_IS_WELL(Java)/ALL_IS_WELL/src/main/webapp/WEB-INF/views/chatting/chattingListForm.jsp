@@ -124,15 +124,18 @@
 		    background-color: #555;
 		}
 
+		.detail-area {
+			cursor: pointer;
+		}
     
     </style>
 </head>
 <body>
 	<div class="main-wrap">
-        <form action="">
+        <form action="/app/chatting/chattingList" method="GET">
             <div class="search-area">
                 <i class="fa-solid fa-magnifying-glass" id="icon"></i>
-                <input id="search" type="search">
+                <input id="search" type="search" name="searchValue">
             </div>
         </form>
         
@@ -141,23 +144,44 @@
     
         <div class="list-area">
         	<c:forEach items="${chatList}" var="list">
-        		<div class="detail-area">
-                <img src="/app/resources/static/profile/${list.receiverProfile}" alt="" class="profile-image">
-                <div class="details">
-                	<c:if test="${list.receiverAttendanceStatus eq 'O'}">
-                		 <div id="status">출근</div>
-                	</c:if>
-                	
-                	<c:if test="${list.receiverAttendanceStatus eq 'X' or empty list.receiverAttendanceStatus}">
-                		 <div id="status">출근 전</div>
-                	</c:if>
-                   
-                    <div id="name">${list.receiverName}(${list.receiverDepartmentName} ${list.receiverPositionName})</div>
-                </div>
-                
-            </div>
-        	</c:forEach>
-            
+			    <div class="detail-area">
+			        <input type="hidden" name="chattingRoomNo" value="${list.chattingRoomNo}" id="chattingRoomNo">
+			
+			        <c:choose>
+			            <c:when test="${currentUserNo eq list.receiverNo}">
+			                <img src="/app/resources/static/profile/${list.senderProfile}" alt="" class="profile-image">
+			            </c:when>
+			            <c:otherwise>
+			                <img src="/app/resources/static/profile/${list.receiverProfile}" alt="" class="profile-image">
+			            </c:otherwise>
+			        </c:choose>
+			
+			        <div class="details">
+			            <c:choose>
+			                <c:when test="${currentUserNo eq list.receiverNo}">
+			                	<c:if test="${list.senderAttendanceStatus eq 'O'}">
+			                		 <div id="status">출근</div>
+			                	</c:if>
+			                	
+			                	<c:if test="${list.senderAttendanceStatus eq 'X' or empty list.senderAttendanceStatus}">
+			                		 <div id="status">출근 전</div>
+			                	</c:if>
+			                    <div id="name">${list.senderName}(${list.senderDepartmentName} ${list.senderPositionName})</div>
+			                </c:when>
+			                <c:otherwise>
+			                	<c:if test="${list.receiverAttendanceStatus eq 'O'}">
+			                		 <div id="status">출근</div>
+			                	</c:if>
+			                	
+			                	<c:if test="${list.receiverAttendanceStatus eq 'X' or empty list.receiverAttendanceStatus}">
+			                		 <div id="status">출근 전</div>
+			                	</c:if>
+			                    <div id="name">${list.receiverName}(${list.receiverDepartmentName} ${list.receiverPositionName})</div>
+			                </c:otherwise>
+			            </c:choose>
+			        </div>
+			    </div>
+			</c:forEach>
 
             
         </div>
@@ -168,6 +192,20 @@
     </div>
     
     <script type="text/javascript">
+    	
+    	
+    const detailAreas = document.querySelectorAll(".detail-area");
+
+    detailAreas.forEach((detailArea) => {
+      detailArea.addEventListener("click", function () {
+        const chattingRoomNo = this.querySelector("#chattingRoomNo").value;
+        console.log(chattingRoomNo);
+        location.href = "/app/chatting/chattingDetail?chattingRoomNo=" + chattingRoomNo;
+      });
+    });
+    	
+
+    
     	const plusButton = document.querySelector("#plus");
     	plusButton.addEventListener("click", function(){
     		location.href = "/app/chatting/chattingResult";

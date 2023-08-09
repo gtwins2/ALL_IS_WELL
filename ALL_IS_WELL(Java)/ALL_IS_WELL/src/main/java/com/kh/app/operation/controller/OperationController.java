@@ -4,6 +4,7 @@ import java.security.Timestamp;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,17 @@ public class OperationController {
 	@GetMapping("roomList")
 	public String getRoomList(@RequestParam(name="page", required=false, defaultValue="1") int currentPage,  Model model, @RequestParam Map<String, String> paramMap) {
 		
+		if(paramMap != null) {
+		    String searchValue = paramMap.get("searchValue");
+		    if(searchValue != null) {
+		        if(searchValue.equals("사용중")) {
+		            paramMap.put("searchValue", "O");
+		        } else if(searchValue.equals("사용가능")) {
+		            paramMap.put("searchValue", "X");
+		        }
+		    }
+		}
+		
 		int listCount = service.getRoomCount(paramMap);
 		
 		int pageLimit = 5; 
@@ -49,12 +61,30 @@ public class OperationController {
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		
+		
+		
+		
 		List<OperationVo> roomList = service.getRoomList(pv, paramMap);
 		
 		log.info(roomList.toString());
 		
 		model.addAttribute("pv", pv);
 		model.addAttribute("roomList", roomList);
+		
+		
+		if(paramMap != null) {
+		    String searchValue = paramMap.get("searchValue");
+		    if(searchValue != null) {
+		        if(searchValue.equals("O")) {
+		            paramMap.put("searchValue", "사용중");
+		        } else if(searchValue.equals("X")) {
+		            paramMap.put("searchValue", "사용가능");
+		        }
+		    }
+		}
+		
+		
 		model.addAttribute("paramMap", paramMap);
 		
 		
@@ -199,22 +229,27 @@ public class OperationController {
 
 		log.info(voList.toString());
 		
-		MultiValueMap<String, String> voData = new LinkedMultiValueMap<>();
+		
+		
+		
+		List<String> namesAndPositions = new ArrayList<>();
 		
 		for(int i = 0; i < voList.size(); i++) {
-			voData.add(voList.get(i).getName(), voList.get(i).getPositionName());
+			String nameAndPosition = voList.get(i).getName()+"("+voList.get(i).getPositionName()+")";
+			
+			namesAndPositions.add(nameAndPosition);
 		}
 		
-		log.info(voData.toString());
+		String namesAndPositionsString = String.join("\n", namesAndPositions);
 		
-		
+		log.info(namesAndPositions.toString());
 		
 		if(schedule == null) {
 			throw new IllegalStateException("수술 일정 상세 조회 실패....");
 		}
 		
 		model.addAttribute("schedule", schedule);
-		model.addAttribute("voData", voData);
+		model.addAttribute("namesAndPositionsString", namesAndPositionsString);
 		
 		return "surgery/operationDateDetailForm";
 	}
@@ -246,6 +281,21 @@ public class OperationController {
 		
 		
 		return "redirect:/operation/scheduleList";
+	}
+	
+	//모든 멤버 가져오기
+	@GetMapping("getAllMembers")
+	@ResponseBody
+	public List<MemberVo> getMemberList() {
+		List<MemberVo> voList = service.getMemberList();
+		
+		log.info("전체 회원 조회 -> 수술 : "+voList);
+		
+		if(voList == null) {
+			throw new IllegalStateException("전체 회원 가져오기 실패");
+		}
+		
+		return voList;
 	}
 	
 	
