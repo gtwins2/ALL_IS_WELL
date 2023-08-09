@@ -387,7 +387,7 @@
 
                     <div class="area">
                         <span>참여인원</span>
-                        <textarea name="people" id="people" style="overflow: auto; resize: none;" readonly>${voData }</textarea>
+                        <textarea name="people" id="people" style="overflow: auto; resize: none;" readonly>${namesAndPositionsString}</textarea>
                         <textarea name="participantNumbers" id="participantNumbers" style="display: none;" readonly></textarea>
                          <input type="hidden" name="operatingRoomNo" value="${schedule.operatingRoomNo}" />
                          <input type="hidden" name="operationNo" value="${schedule.operationNo}" />

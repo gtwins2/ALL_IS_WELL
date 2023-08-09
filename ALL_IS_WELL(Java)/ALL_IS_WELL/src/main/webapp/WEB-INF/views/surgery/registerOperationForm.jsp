@@ -464,8 +464,27 @@
         var closeBtn = document.getElementsByClassName('close')[0];
 
         
+        
+        
         function openModal() {
             modal.style.display = 'block';
+            
+            $(document).ready(function() {
+        	    // 페이지가 로드될 때 모든 멤버를 가져와서 표시
+        	    $.ajax({
+        	        url: "/app/operation/getAllMembers",
+        	        type: "get",
+        	        dataType: "json",
+        	        success: function (data) {
+        	            console.log(data);
+        	            updateResultContainer(data);
+        	        },
+        	        error: function (error) {
+        	            console.log(error);
+        	            console.log("멤버 리스트 가져오기 실패");
+        	        }
+        	    });
+        	});
         }
 
         
@@ -482,6 +501,12 @@
             
             resetSelectedParticipants();
         }
+        
+const closeButton = document.querySelector("#closeBtn");
+        
+        closeButton.addEventListener("click", function(){
+        	closeModal();
+        });
 
      
         participantInput.addEventListener('focus', openModal);
@@ -503,11 +528,16 @@
             selectedParticipants = [];
         }
 
-	</script>
+
 	
-	<script type="text/javascript">
+	
+	
+	
 	 var selectedParticipants = [];
 	
+	 
+	 
+	 
 		document.getElementById('searchBtn').addEventListener('click', function (event) {
 		    event.preventDefault();
 		    searchParticipants();
@@ -617,6 +647,13 @@
     			const participantNumbers = document.querySelector("#participantNumbers");
     			participantNumbers.value = selectedParticipants.map(participant => participant.no).join(',');
     			
+    			
+    			
+    			clearSearchResults();
+    			
+    			clearSearchInput();
+    			
+    			resetSelectedParticipants();
     			
                 closeModal();
 		    });

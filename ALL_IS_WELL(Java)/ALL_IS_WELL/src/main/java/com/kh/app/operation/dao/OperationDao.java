@@ -102,4 +102,8 @@ public class OperationDao {
 	public int updateRoomStatus(SqlSessionTemplate sst, String operatingRoomNo) {
 		return sst.update("operation.updateRoomStatus", operatingRoomNo);
 	}
+
+	public List<MemberVo> getMemberList(SqlSessionTemplate sst) {
+		return sst.selectList("operation.getMemberList");
+	}
 }
