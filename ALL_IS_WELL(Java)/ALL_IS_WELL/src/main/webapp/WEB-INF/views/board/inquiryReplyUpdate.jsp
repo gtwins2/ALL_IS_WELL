@@ -25,7 +25,7 @@
 	height: 53px;
 	left: 367px;
 	top: 125px;
-	background: #5A8CF2;
+	background: #FF8686;
 	border-radius: 25px;
 	border: 0px;
 	font-family: 'Inter';
@@ -72,50 +72,58 @@ hr{
 	grid-template-columns: 1fr 3fr;
 }
 
-
+#file{
+	width: 115px;
+	height: 53px;
+	background: #FF8686;
+	border-radius: 25px;
+	border: 0px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	color: #FFFFFF;
+}
 
 #div01 > div:nth-child(1) > div > input{
 	width:80%;
 	font-size: 25px;
 }
 
-
+#div01 > div:nth-child(2) >  div:nth-child(2) {
+	text-align: left;
+	margin-left: 120px;
+}
 
 textarea{
 	width:80%;
-	height: 250px;
+	height: 400px;
 	font-size: 25px;
-	resize: none;
-	border: 1px solid gray;
-	font-family: 'Inter';
-	font-style: normal;
 }
 </style>
 </head>
 <body>
 
 	<header>
-		<%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
 	</header>
 		
 	<div id="content">
 		<nav>
-			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<form action="${root}/Mboard/inquiryWrite" method="post">
+			<form action="${root}/board/inquiryReplyUpdate" method="post">
 
 				<input type="submit" id="sendMail" value="작성하기">
 				<hr>
-				<input type="text" name="memberNo" value="${loginMember.no}" hidden>
 				<div id="div01">
 					<div>
-						<div>제목</div>
-						<div> <input type="text" name="title" id=""></div>
-					</div>
-					<div>
-						<div>내용</div>
-						<div><textarea name="content" id="" cols="30" rows="10"></textarea></div>
+						<div>댓글내용</div>
+						<div> <input type="text" name="content" id="" value="${content }"></div>
+						<div><input type="text" name="no" value="${no}" id="" hidden> </div>
+						<div> <input type="text" name="noticeNo" id="" value="${noticeNo}" hidden></div>
 					</div>
 				</div>
 			</form>
@@ -124,8 +132,22 @@ textarea{
 	</div>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
 	</footer>
 
 </body>
 </html>
+<script>
+
+	const sideBar = document.querySelector("#side-bar")
+	const subMenus = document.querySelectorAll(".sub-menu");
+	const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+	subMenus.forEach(subMenu => {
+		subMenu.style.height = sideBar.offsetHeight + 'px';
+	});
+
+	thirdSidebars.forEach(thirdSidebar => {
+		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+	});
+</script>

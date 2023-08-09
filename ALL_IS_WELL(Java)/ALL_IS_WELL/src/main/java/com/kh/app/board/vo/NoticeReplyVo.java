@@ -13,5 +13,9 @@ public class NoticeReplyVo {
 	private String deleteYn;
 	private String inquiryNo;
 	private String adminNo;
-	
+	private String memberNo;
+	private String title;
+	private String inquiryStatus;
+	private String attachName;
+	private String mno;
 }

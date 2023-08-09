@@ -71,7 +71,7 @@ hr{
 	grid-template-columns: 1fr 3fr;
 }
 
-#file{
+#file-upload-button{
 	width: 115px;
 	height: 53px;
 	background: #FF8686;
@@ -161,15 +161,14 @@ border-radius: 50px;
 
 #div03-1{
 	display: grid;
-	grid-template-columns: 1fr 7fr 1fr;
+	grid-template-columns: 1fr 10fr 1fr;
 	margin-left: 60px;
-	margin-right: 50px;
 }
 
 #write{
 	width: 115px;
 	height: 53px;
-	background: #FF8686;
+	background: #5A8CF2;
 	border-radius: 25px;
 	font-family: 'Inter';
 	font-style: normal;
@@ -180,6 +179,30 @@ border-radius: 50px;
 	color: #FFFFFF;
 	border: 0px;
 	margin-left: 60px;
+}
+#delete{
+background-color:gray; 
+	width: 30px;
+	height: 20px;
+}
+
+#reply{
+	background-color:gray; 
+	width: 30px;
+	height: 20px;
+}
+
+
+#replyInput{
+	border: 0px;
+	background-color:lightgray; 
+	outline: none;
+}
+
+#updateForm{
+display: grid;
+grid-template-columns: 9fr 2fr 1fr;
+
 }
 </style>
 </head>
@@ -194,9 +217,7 @@ border-radius: 50px;
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-			<form action="">
-
-				<button id="sendMail">수정하기</button>
+				<button id="sendMail" onclick="update();">수정하기</button>
 				<hr>
 				<div id="div01">
 					<div>
@@ -204,40 +225,13 @@ border-radius: 50px;
 						<div> <input type="text" name="" id="" value="${vo.title}" readonly></div>
 					</div>
 					<div>
-						<div>파일첨부</div>
-						<div><button id="file"> 첨부파일</button></div>
-					</div>
-					<div>
 						<div>내용</div>
 						<div><textarea name="" id="textarea" cols="30" rows="10" readonly>${vo.content}</textarea></div>
 					</div>
 				</div>
-			</form>
 
-			<button id="list">목록</button>
+			<button id="list" onclick="back()">목록</button>
 
-			<form action="${root}/board/noticeDetail" method="post">
-				<div id="div02">
-					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
-					<input type="text" value="${loginMember.no}" name="writerNo" hidden> 				
-					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
-					<div><button id="write">작성</button></div>
-				</div>
-			</form>
-
-			<div id="div03">
-				<c:forEach items="${voList2}" var="vo">
-                            
-
-	                 <div id="div03-1">
-	                     <div>${vo.no}</div>
-	                     <div>${vo.content}</div>
-	                     <div>${vo.enrollDate}</div>
-	                 </div>
-	                 
-                                
-				</c:forEach>
-			</div>
 
 		</main>
 	</div>
@@ -261,4 +255,27 @@ border-radius: 50px;
 	thirdSidebars.forEach(thirdSidebar => {
 		thirdSidebar.style.height = sideBar.offsetHeight + 'px';
 	});
+	
+	function update() {
+		location.href="${root}/board/noticeUpdate?no="+ ${vo.no};
+	}
+	
+	const tr = document.querySelectorAll('tr');
+	const reply = document.querySelectorAll('#reply');
+    for(var i = 0; i < reply.length; i++){
+    	reply[i].addEventListener('click', (event)=>{
+            const no = event.target.parentNode.parentNode.children[0].innerText;
+            const content = event.target.parentNode.parentNode.children[1].innerText;
+            const noticeNo = event.target.parentNode.parentNode.children[2].innerText;
+            location.href='/app/Mboard/noticeReplyUpdate?no=' + no +"&content=" + content +"&noticeNo=" +noticeNo ;
+            console.log(event.target.parentNode.parentNode.children[0]);
+        
+      
+        });
+    }
+    
+    function back() {
+    	location.href="${root}/Mboard/noticeList";
+		
+	}
 </script>

@@ -222,7 +222,7 @@
                     <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
              	    </form>
 
-                    <button id="sendMail" onclick="location.href='${root}/board/noticeWrite';">작성하기</button>
+                    <div></div>
                 </div>
                 <br>
 
@@ -313,7 +313,7 @@
 		const title = event.target.parentNode.children[1].innerText;
 
 		//요청보내기
-		location.href='${root}/board/noticeDetail?no=' + no + "&title=" + title;
+		location.href='${root}/board/suggestDetail?no=' + no + "&title=" + title;
 
 
 	}); 

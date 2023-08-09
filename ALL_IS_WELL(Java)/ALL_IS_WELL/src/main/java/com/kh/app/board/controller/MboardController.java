@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.app.board.service.InquiryService;
 import com.kh.app.board.service.NoticeService;
+import com.kh.app.board.service.SuggestService;
+import com.kh.app.board.vo.InquiryVo;
 import com.kh.app.board.vo.NoticeReplyVo;
 import com.kh.app.board.vo.NoticeVo;
+import com.kh.app.board.vo.SuggestVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.search.vo.SearchVo;
 
@@ -26,15 +30,41 @@ import lombok.RequiredArgsConstructor;
 public class MboardController {
 
 	private final NoticeService ns;
+	private final SuggestService ss;
+	private final InquiryService is;
+	
 	//���ǻ��� ���(����)
 	@GetMapping("suggestList")
-	public String suggestList() {
+	public String suggestList(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session,SuggestVo vo
+	,@RequestParam Map<String , String> paramMap) {
+		
+		SearchVo svo = new SearchVo();
+	    svo.setSearchType(paramMap.get("searchType"));
+	    svo.setSearchValue(paramMap.get("searchValue"));
+	    
+		int listCount = ss.getListCnt(paramMap);
+	    int pageLimit = 5;
+	    int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<SuggestVo> voList = ss.suggestList(pv, paramMap);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList" ,voList);
+		
+		System.out.println(listCount);
 		return "board/member/suggestList";
 	}
 	
 	//���ǻ��� ��������(�����ȸ)
 	@GetMapping("suggestDetail")
-	public String suggestDetail() {
+	public String suggestDetail(SuggestVo vo ,Model model) {
+		SuggestVo voList = ss.suggestDetail(vo);
+		
+		
+		model.addAttribute("vo" ,voList);
+		
 		return "board/member/suggestDetail";
 	}
 	
@@ -45,25 +75,99 @@ public class MboardController {
 		return "board/member/suggestWrite";
 	}
 	
+	@PostMapping("suggestWrite")
+	public String suggestWrite(SuggestVo vo) {
+		
+		int result = ss.suggestWrite(vo);
+		
+		return "redirect:/Mboard/suggestList";
+	}
+	
+	@GetMapping("suggestUpdate")
+	public String suggestUpdate(SuggestVo vo, Model model) {
+
+		SuggestVo voList = ss.suggestDetail(vo);
+		model.addAttribute("vo" ,voList);
+		return "board/member/suggestUpdate";
+	}
+	
+	@PostMapping("suggestUpdate")
+	public String suggestUpdate(SuggestVo vo) {
+		
+		int result = ss.suggestUpdate(vo);
+		
+		return "redirect:/Mboard/suggestList";
+	}
+	
+	
 	//���ǻ��� ���
 	@GetMapping("inquiryList")
-	public String inquiryList() {
+	public String inquiryList(@RequestParam(name="page", required=false, defaultValue="1") 
+	int currentPage, Model model, HttpSession session,InquiryVo vo
+	,@RequestParam Map<String , String> paramMap) {
+		
+		SearchVo svo = new SearchVo();
+	    svo.setSearchType(paramMap.get("searchType"));
+	    svo.setSearchValue(paramMap.get("searchValue"));
+		
+		int listCount = is.getListCnt(paramMap);
+	    int pageLimit = 5;
+	    int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<InquiryVo> voList = is.inquiryList(pv, paramMap);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList" ,voList);
+		model.addAttribute("svo", svo);
+		
 		return "board/member/inquiryList";
 	}
 	
 	//���ǻ��� �ۼ�
 	@GetMapping("inquiryWrite")
 	public String inquiryWrite() {
+		
+		
 		return "board/member/inquiryWrite";
+	}
+	
+	@PostMapping("inquiryWrite")
+	public String inquiryWrite(InquiryVo vo) {
+		
+		int result = is.inquiryWrite(vo);
+		
+		return "redirect:/Mboard/inquiryList";
 	}
 	
 	//���ǻ��� ��������(�����ȸ)
 	@GetMapping("inquiryDetail")
-	public String inquiryDetail() {
+	public String inquiryDetail(InquiryVo vo, Model model, NoticeReplyVo vo2) {
+		
+		InquiryVo voList = is.inquiryDetail(vo);
+		List<InquiryVo> voList2 = is.inquiryReply(vo2);
+		
+		
+		model.addAttribute("voList2" ,voList2);
+		model.addAttribute("vo" ,voList);
 		return "board/member/inquiryDetail";
 	}
 	
+	@GetMapping("inquiryUpdate")
+	public String inquiryUpdate(InquiryVo vo, Model model) {
+		
+		InquiryVo voList = is.inquiryDetail(vo);
+		model.addAttribute("vo" ,voList);
+		return "board/member/inquiryUpdate";
+	}
 	
+	@PostMapping("inquiryUpdate")
+	public String inquiryUpdate(InquiryVo vo) {
+		
+		int result = is.inquiryUpdate(vo);
+		
+		return "redirect:/Mboard/inquiryList";
+	}
 	
 	
 	//�������׸��
