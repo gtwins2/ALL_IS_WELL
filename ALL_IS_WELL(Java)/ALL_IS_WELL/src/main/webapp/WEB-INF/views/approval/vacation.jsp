@@ -364,7 +364,7 @@
                                 <td>${vvo.memberName}</td>
                             </tr>
                         </table>
-                    </div>${vvo}
+                    </div>
                     <div id="approval-column">
                         <table border="1" id="approval">
                             <tr>
