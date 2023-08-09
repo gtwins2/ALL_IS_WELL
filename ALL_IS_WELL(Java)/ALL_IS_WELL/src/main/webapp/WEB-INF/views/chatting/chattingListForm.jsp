@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>채팅 목록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
     <style>
         * {
@@ -200,10 +201,16 @@
       detailArea.addEventListener("click", function () {
         const chattingRoomNo = this.querySelector("#chattingRoomNo").value;
         console.log(chattingRoomNo);
+        
+        
+        
         location.href = "/app/chatting/chattingDetail?chattingRoomNo=" + chattingRoomNo;
+        
       });
     });
     	
+    
+  
 
     
     	const plusButton = document.querySelector("#plus");
