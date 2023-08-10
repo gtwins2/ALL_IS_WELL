@@ -38,5 +38,9 @@ public class AttendanceService {
 	public int getAdminAttendanceListCnt(Map<String, String> paramMap) {
 		return dao.getAdminAttendanceListCnt(sst, paramMap);
 	}
+
+	public AttendanceVo getPresentAttendance(String no) {
+		return dao.getPresentAttendance(sst, no);
+	}
 	
 }

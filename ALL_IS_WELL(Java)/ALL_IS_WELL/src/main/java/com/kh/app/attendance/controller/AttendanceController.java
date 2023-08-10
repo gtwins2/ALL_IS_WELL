@@ -37,12 +37,16 @@ public class AttendanceController {
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
-		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		PageVo pv = new PageVo(listCount-1, currentPage, pageLimit, boardLimit);
+		
+		AttendanceVo fvo = as.getPresentAttendance(no);
+		
 		
 		List<AttendanceVo> voList = as.getAttendanceList(pv, no);
 		
 //		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("pv", pv);
+		model.addAttribute("fvo", fvo);
 		model.addAttribute("voList", voList);
 		
 	}

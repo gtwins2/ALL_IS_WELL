@@ -426,7 +426,7 @@
                     </table>
                 </div>
             </div>
-            <c:if test="${ivo.status == 'W'}">
+            <c:if test="${ivo.status == 'W' && ivo.positionNo != '1'}">
                 <div id="buttonDiv">
                     <button id="approvalBtn">승인</button>
                     <button id="refuseBtn">반려</button>

@@ -31,4 +31,8 @@ public class AttendanceDao {
 		return sst.selectOne("attendance.getAttendanceListAdminCnt", paramMap);
 	}
 
+	public AttendanceVo getPresentAttendance(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("attendance.getPresentAttendance", no);
+	}
+
 }
