@@ -22,8 +22,8 @@
 
         .main-wrap {
             box-sizing: border-box;
-            width: 450px;
-            height: 600px;
+            width: 600px;
+            height: 800px;
             background-color: white;
             /*border: 1px solid black;*/
         }
@@ -128,6 +128,7 @@
 		    background-color: #E0E0E0;
 		    border-radius: 5px;
 		    color: black;
+		    padding: 20px 20px;
 		}
 		
 		
@@ -158,6 +159,7 @@
 		    height: 100%;
 		    width: 100%;
 		    color: white;
+		    padding: 20px 20px;
 		
 		}
 		
@@ -390,12 +392,9 @@
 		            contentDiv.appendChild(textboxDiv);
 		            contentDiv.appendChild(dateDiv);
 
-		            const markReadDiv = document.createElement("div");
-		            markReadDiv.classList.add("mark-read");
-		            markReadDiv.textContent = "1";
-
+		          
 		            messageDiv.appendChild(contentDiv);
-		            messageDiv.appendChild(markReadDiv);
+
 
 		            contentArea.appendChild(messageDiv);
 		        } else {
