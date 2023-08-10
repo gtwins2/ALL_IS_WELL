@@ -17,7 +17,7 @@
 #div01{
 	position: absolute;
 	width: 539px;
-	height: 600px;
+	height: 510px;
 	left: 524px;
 	top: 220px;
 	background: #FFFFFF;
@@ -52,8 +52,8 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 24px;
-	line-height: 40px;
+	font-size: 22px;
+	line-height: 27px;
 	color: #000000;
 }
 #div01-2{
@@ -64,18 +64,18 @@
 #div01-3{
 	position: absolute;
 	width: 0px;
-	height: 295px;
+	height: 200px;
 	left: 705px;
 	top: 530px;
-	border: 1px solid #000000;
+	border: 1px solid lightgray;
 }
 
 #div02{
 	position: absolute;
-	width: 411.64px;
-	height: 107.01px;
-	left: 587.23px;
-	top: 958.74px;
+	width: 311.64px;
+	height: 90.01px;
+	left: 650.23px;
+	top: 740.74px;
 	background: #5A8CF2;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 20px;
@@ -86,8 +86,8 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 40px;
-	line-height: 48px;
+	font-size: 30px;
+	line-height: 80px;
 	color: #FFFFFF;
 }
 
@@ -119,7 +119,7 @@
 	width: 257px;
 	height: 85px;
 	left: 1355px;
-	top: 297px;
+	top: 220px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
@@ -130,30 +130,32 @@
 
 #div04-1{
 	position: absolute;
-	width: 538.91px;
-	height: 317.16px;
-	left: 1162px;
-	top: 368.84px;
+	width: 500.91px;
+	height: 250.16px;
+	left: 1202px;
+	top: 280.84px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
+	
 }
 
 #div04-2{
 	position: absolute;
 	width: 245px;
-	height: 107px;
-	left: 1309px;
-	top: 736px;
+	height: 85px;
+	left: 1350px;
+	top: 606px;
 	background: #5A8CF2;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 20px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 40px;
+	font-size: 30px;
 	color: #FFFFFF;
 	text-align: center;
+	border: 0px;
 }
 
 #div04-2 > h2{
@@ -168,16 +170,16 @@
 
 #div04-3{
 	position: absolute;
-	left: 1309px;
-	top: 700px;
+	left: 1350px;
+	top: 550px;
 }
 
 #div05{
 	position: absolute;
 	width: 539px;
 	height: 90px;
-	left: 1162px;
-	top: 933px;
+	left: 1202px;
+	top: 733px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
@@ -186,16 +188,13 @@
 #div05 > div{
 	width: 487px;
 	height: 53px;
-	left: 1208px;
-	top: 959px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 32px;
-	line-height: 39px;
+	line-height: 80px;
 	color: #000000;
 	text-align: center;
-	line-height: 10px;
 } 
 </style>
 <body>
@@ -214,11 +213,11 @@
 			
 			 <!-- 개인정보 -->
 			 <div id="div01"></div>
-			 <div id="div01-1"></div>
+			 <img alt="프로필" src="${root}/resources/static/profile/${loginMember.profile}"id="div01-1" width="100%" height="100%">
 			 <hr id="hr02">
 			 <div id="div01-2">
 			 	<div>부서<br>직급<br>이름<br>면허번호<br>전화번호<br>이메일<br>연봉</div>
-			 	<div>흉부외과<br>전문의<br>이순신<br>123-98-1212<br>01012312428<br>sslee@naver.com<br>90,000,000</div>
+			 	<div>${loginMember.dname}<br>${loginMember.pname}<br>${loginMember.name}<br>${loginMember.registrationNumber}<br>${loginMember.phoneNumber}<br>${loginMember.email}<br>${loginMember.yearSalary}</div>
 			 </div>
 			 <div id="div01-3"></div>
 			
@@ -235,7 +234,7 @@
 			 
 			 <!-- 잔여휴가 -->
 			 <div id="div05">
-				<div><h3>잔여휴가수 | 15일</h3></div>
+				<div><h3>잔여휴가수 | ${loginMember.vacation}일</h3></div>
 			 </div>
 		</main>
 	</div>

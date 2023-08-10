@@ -5,12 +5,12 @@
 <mapper namespace="member">
 	<select id="login" resultType="MemberVo">
 		SELECT 
-			NO
+			M.NO
 			,DEPARTMENT_NO
 			,POSITION_NO
 			,ID
 			,PASSWORD
-			,NAME
+			,M.NAME
 			,STATUS
 			,POSITION_TYPE
 			,ENROLL_DATE
@@ -22,7 +22,12 @@
 			,LICENSE_NUMBER
 			,YEAR_SALARY
 			,SIGN
-		FROM MEMBER
+			,VACATION
+            ,D.NAME AS DNAME
+			,P.NAME AS PNAME
+		FROM MEMBER M
+        JOIN DEPARTMENT D ON D.NO = M.DEPARTMENT_NO
+        JOIN POSITION P ON P.NO = M.POSITION_NO
 		WHERE ID = #{id}
 		AND PASSWORD = #{password}
 		

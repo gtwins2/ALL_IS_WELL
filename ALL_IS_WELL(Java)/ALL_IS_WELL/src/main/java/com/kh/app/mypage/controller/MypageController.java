@@ -32,8 +32,6 @@ public class MypageController {
 	public String memberInfoUpdate(MemberVo vo) {
 		
 		int result = ms.memberInfoUpdate(vo);
-		System.out.println(vo.getPassword2());
-		System.out.println(vo.getPassword());
 		if(vo.getPassword().equals(vo.getPassword2())) {
 			return "login/login";
 		}

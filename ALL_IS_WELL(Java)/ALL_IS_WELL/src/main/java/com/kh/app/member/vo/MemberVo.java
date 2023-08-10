@@ -25,4 +25,7 @@ public class MemberVo {
 	private String departmentName;
 	private String positionName;
 	private String attendanceStatus;
+	private String vacation;
+	private String dname;
+	private String pname;
 }

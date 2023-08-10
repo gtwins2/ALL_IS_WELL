@@ -235,22 +235,14 @@ grid-template-columns: 9fr 2fr 1fr;
 
 			<button id="list" onclick="back()">목록</button>
 
-			<form action="${root}/Mboard/noticeDetail" method="post">
-				<div id="div02">
-					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				
-					<input type="text" value="${loginMember.no}" name="writerNo" hidden> 				
-					<div><textarea name="content" id="textarea2" cols="30" rows="10"></textarea></div>
-					<div><button id="write">작성</button></div>
-				</div>
-			</form>
 			<div id="div03">
                             
 	                 <div id="div03-1">
 	                 	<table width="1400px">
 						<c:forEach items="${voList2}" var="vo2">
 		                 	<tr>
-		                    	 <td>${vo2.content} </td>
-		                     	 <td width="200px">${vo2.enrollDate}123</td>
+		                    	 <td width="1000px">${vo2.content} </td>
+		                     	 <td width="200px">${vo2.enrollDate}</td>
 		                     	 <td><input type="text" value="${vo.no}" name="noticeNo" hidden></td>
 		                     	 <td><input type="text" value="${vo2.no}" name='no' hidden></td>
 		                     	 
