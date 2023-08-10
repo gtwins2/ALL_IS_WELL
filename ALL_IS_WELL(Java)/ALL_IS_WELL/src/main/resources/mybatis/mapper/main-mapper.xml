@@ -48,4 +48,43 @@
 		WHERE GENDER = 'F'
 	</select>
 	
+	<select id="nineCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 9000000000000 AND 9999999999999
+	</select>
+	
+	
+	<select id="eightCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 8000000000000 AND 8999999999999
+
+	</select>
+	
+	<select id="sevenCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 7000000000000 AND 7999999999999
+
+	</select>
+	
+	<select id="sixCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 6000000000000 AND 6999999999999
+	</select>
+	
+	<select id="fiveCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 5000000000000 AND 5999999999999
+
+	</select>
+	
 </mapper>

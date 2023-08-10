@@ -36,4 +36,25 @@ public class MainService {
 		return dao.fCount(sst);
 	}
 
+
+	public int nineCount() {
+		return dao.nineCount(sst);
+	}
+	
+	public int eightCount() {
+		return dao.eightCount(sst);
+	}
+	
+	public int sevenCount() {
+		return dao.sevenCount(sst);
+	}
+	
+	public int sixCount() {
+		return dao.sixCount(sst);
+	}
+	
+	public int fiveCount() {
+		return dao.fiveCount(sst);
+	}
+
 }

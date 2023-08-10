@@ -69,7 +69,7 @@ hr{
     margin: auto;
     width: 300px;
     height: 300px;
-    background-color: #f00000;
+    background-color: lightgray;
     border-radius: 50px;
 }
 

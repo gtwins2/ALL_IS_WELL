@@ -21,6 +21,7 @@ import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.CertificationVo;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.patient.vo.PatientVo;
 
 import lombok.RequiredArgsConstructor;
 import net.nurigo.sdk.NurigoApp;
@@ -71,7 +72,7 @@ public class LoginController {
 		mv.setViewName(viewpage);
 		
 		if(loginMember == null) {
-			return "redirect:/member/login";
+			return "login/error/loginError";
 			
 		}
 		
@@ -90,6 +91,12 @@ public class LoginController {
 			int currentPage = ms2.fCount();
 			PageVo pv = new PageVo(listCount, currentPage, 3, 3);
 			
+			int nine = ms2.nineCount(); 
+			int eight = ms2.eightCount(); 
+			int seven = ms2.sevenCount(); 
+			int six = ms2.sixCount(); 
+			int five = ms2.fiveCount(); 
+			
 			String viewpage = "calendar";
 			List<Calendar> calendar = null;
 			try {
@@ -101,6 +108,15 @@ public class LoginController {
 			mv.setViewName(viewpage);
 			
 			model.addAttribute("pv", pv);
+			model.addAttribute("nine", nine);
+			model.addAttribute("eight", eight);
+			model.addAttribute("seven", seven);
+			model.addAttribute("six", six);
+			model.addAttribute("five", five);
+			
+			System.out.println(five);
+			System.out.println(six);
+			System.out.println(seven);
 			return "main/Amain";
 		}
 		
@@ -116,6 +132,9 @@ public class LoginController {
 	public String idFind(MemberVo vo, Model model) {
 		
 		MemberVo voList = ms.idFind(vo);
+		if(voList == null) {
+			return "login/error/idfindError";
+		}
 		model.addAttribute("vo",voList);
 		
 		return "login/idFind";

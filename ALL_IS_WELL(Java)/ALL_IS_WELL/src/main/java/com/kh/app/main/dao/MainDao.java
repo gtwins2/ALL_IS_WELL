@@ -26,4 +26,24 @@ public class MainDao {
 		return sst.selectOne("main.fCount");
 	}
 
+	public int nineCount(SqlSessionTemplate sst) {
+		return sst.selectOne("main.nineCount", sst);
+	}
+	
+	public int eightCount(SqlSessionTemplate sst) {
+		return sst.selectOne("main.eightCount", sst);
+	}
+	
+	public int sevenCount(SqlSessionTemplate sst) {
+		return sst.selectOne("main.sevenCount", sst);
+	}
+	
+	public int sixCount(SqlSessionTemplate sst) {
+		return sst.selectOne("main.sixCount", sst);
+	}
+	
+	public int fiveCount(SqlSessionTemplate sst) {
+		return sst.selectOne("main.fiveCount", sst);
+	}
+
 }

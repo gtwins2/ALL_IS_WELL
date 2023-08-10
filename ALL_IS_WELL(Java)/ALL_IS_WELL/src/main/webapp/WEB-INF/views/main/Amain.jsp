@@ -22,7 +22,6 @@
             title: "Gender Ratings"
         };
         var chart = new google.visualization.PieChart(document.getElementById("employee_piechart"));
-        var chart2 = new google.visualization.PieChart(document.getElementById("employee_piechart"));
         chart.draw(data, options);
     }
 </script>
@@ -322,23 +321,82 @@ color: #000000;
 		<main>
 			<!-- <div id="div01"></div> -->
 			<div id="employee_piechart" style="width: 900px; height: 500px;"></div>
-			<canvas id="myChart"></canvas>
-            <!-- <div id="div01-1">환자통계</div> -->
-			
-			<script>
-				var ctx = document.getElementById("myChart").getContext('2d');
-				var myChart = new Chart(ctx, {
-					type: 'bar',
-					data:{
-						labels:["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-						datasets:[{
-							label: '# of Votes',
-							data:[12, 19, 3, 5, 2, 3],
-						}]
-					}
-					
-				})
-			</script>
+			<div id="chart_div" style="width:650px;"></div>
+
+<script type="text/javascript">
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+
+google.charts.setOnLoadCallback(drawBasic);
+
+ 
+
+function drawBasic() {
+
+var data = new google.visualization.DataTable();
+
+data.addColumn('string', '요일');
+
+data.addColumn('number', '(명)');
+
+ 
+
+data.addRows([
+
+['90년생', ${nine}],
+
+['80년생', ${eight}],
+
+['70년생', ${seven}],
+
+['60년생', ${six}],
+
+['50년생',${five}],
+
+
+]);
+
+ 
+
+var options = {
+
+title: '환자 나이대 현황',
+
+hAxis: {
+
+title: '',
+
+viewWindow: {
+
+min: [7, 30, 0],
+
+max: [17, 30, 0]
+
+}
+
+},
+
+vAxis: {
+
+title: '(명)'
+
+}
+
+};
+
+ 
+
+var chart = new google.visualization.ColumnChart(
+
+document.getElementById('chart_div'));
+
+ 
+
+chart.draw(data, options);
+
+}
+
+</script>
             <!--재고 등록 이력-->
             <!-- <div id="div02">
 		        <br>

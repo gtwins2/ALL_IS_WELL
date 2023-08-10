@@ -153,6 +153,13 @@ public class MboardController {
 		return "board/member/inquiryDetail";
 	}
 	
+	@PostMapping("inquiryDetail")
+	public String inquiryDetail(InquiryVo vo) {
+		int result = is.replyWrite(vo);
+		String no = vo.getInquiryNo();
+		return "redirect:/Mboard/inquiryDetail?no="+ no;
+	}
+	
 	@GetMapping("inquiryUpdate")
 	public String inquiryUpdate(InquiryVo vo, Model model) {
 		

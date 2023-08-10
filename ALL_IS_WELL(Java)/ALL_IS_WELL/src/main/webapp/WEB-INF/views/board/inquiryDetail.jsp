@@ -250,7 +250,7 @@ grid-template-columns: 9fr 2fr 1fr;
 						<c:forEach items="${voList2}" var="vo2">
 		                 	<tr>
 		                 		 <td hidden>${vo2.no} </td>
-		                    	 <td>${vo2.content} </td>
+		                    	 <td width="1000px">${vo2.content} </td>
 		                     	 <td hidden>${vo2.inquiryNo} </td>
 		                     	 <td width="200px">${vo2.enrollDate}</td>
 		                     	 <td><input type="text" value="${vo.no}" name="inquiryNo" hidden></td>
