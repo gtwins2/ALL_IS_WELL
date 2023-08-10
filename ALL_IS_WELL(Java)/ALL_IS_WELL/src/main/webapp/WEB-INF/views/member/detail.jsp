@@ -73,6 +73,9 @@
 
             .list-area {
                 margin-top: 20px;
+                margin-left: 400px;
+                width: 500px;
+                height: 800px;
             }
 
 
@@ -124,44 +127,6 @@
                 border-radius: 20px;
             }
 
-            .list-area table {
-                border-collapse: collapse;
-                width: 100%;
-
-            }
-
-            .list-area th,
-            .list-area td {
-                padding: 20px;
-                border-bottom: 1px solid #ddd;
-                text-align: left;
-            }
-
-            .list-area th {
-                font-size: 20px;
-                font-weight: normal;
-
-            }
-
-            .list-area th:first-child,
-            .list-area td:first-child {
-                width: 20px;
-            }
-
-            .list-area th:last-child,
-            .list-area td:last-child {
-                width: 30px;
-            }
-
-            .list-area td input[type="checkbox"] {
-                margin: 0;
-                padding: 0;
-            }
-
-            .list-area th:nth-child(3) {
-                padding-left: 10%;                
-                width: 200px;                
-            }
             
             #btn2 {
                 padding-left: 10%;
@@ -177,72 +142,6 @@
                 font-weight: bold;
             }
 
-            .list-area th:nth-child(2) {
-                padding-left: 10%;
-                width: 200px;                
-            }
-			
-			.list-area th:nth-child(3) {
-                padding-left: 9.5%;
-                width: 200px;                
-            }
-            
-            .list-area th:nth-child(4) {
-                padding-left: 10%;
-                width: 200px;                
-            }
-            
-            .list-area th:nth-child(5) {
-                padding-left: 3%;
-                width: 200px;                
-            }
-            .list-area th:nth-child(6) {
-                padding-left: 3%;
-                width: 200px;                
-            }
-	 		.list-area th:nth-child(7) {
-                width: 200px;                
-                padding-left: 3%;
-            }
-            .list-area th:nth-child(8) {
-                width: 200px;                
-                padding-left: 3%;
-            }
-
-
-            .list-area td:nth-child(3) {
-                padding-left: 9.5%;
-                width: 200px;                
-            }
-
-            .list-area td:nth-child(2) {
-                padding-left: 10%;
-                width: 200px;                
-            }
-            
-            .list-area td:nth-child(4) {
-                padding-left: 10%;
-                width: 200px;                
-            }
-            
-            .list-area td:nth-child(6) {
-                width: 200px;                
-                padding-left: 3%;
-            }
-           
-            
-            .list-area td:nth-child(3) {
-                padding-left: 10%;
-                width: 200px;                
-            }
-			
-			
-			.list-area td:nth-child(4) {
-                padding-left: 10.5%;
-                white-space: nowrap;
-			    text-overflow: ellipsis;
-			    overflow: hidden;
-			}
 
             .number-area {
                 text-align: center;
@@ -310,6 +209,10 @@
                 display: grid;
                 grid-template-columns: 300px 1620px;
             }
+            
+            .list-area > p > i{
+            font-size: 20px;
+            }
 
         </style>
     </head>
@@ -335,57 +238,31 @@
 
                 </div>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
 					
-                <!-- <div class="list-area"> -->
                 
                   <!-- Member 정보 출력을 위한 테이블 -->
-				<table>
-				  <thead>
-				    <tr>
-				      <th>사번</th>
-				      <th>소속 부서</th>
-				      <th>직급</th>
-				      <th>이름</th>
-				      <th>상태</th>
-				      <th>입사일</th>
-				      <th>주민등록번호</th>
-				      <th>이메일</th>
-				      <th>휴대폰번호</th>
-				      <th>사무실번호</th>
-				      <th>면허번호</th>
-				      <th>연봉</th>
-				      <th>프로필 사진</th>
-				      <th>서명 이미지</th>
-				      <th>삭제</th>
-				    </tr>
-				  </thead>
-				  
-				      <tr>
-				        <td>${vo.no}</td>
-				        <td>${vo.departmentName}</td>
-				        <td>${vo.positionName}</td>
-				        <td>${vo.name}</td>
-				        <td>${vo.status}</td>
-				        <td>${vo.enrollDate}</td>
-				        <td>${vo.registrationNumber}</td>
-				        <td>${vo.email}</td>
-				        <td>${vo.phoneNumber}</td>
-				        <td>${vo.officeNumber}</td>
-				        <td>${vo.licenseNumber}</td>
-				        <td>${vo.yearSalary}</td>
-				        <td><img src="${vo.profile}" alt="프로필사진" /></td>
-				        <td><img src="${vo.sign}" alt="서명이미지" /></td>
-				        <td></td>
-				      </tr>
-				</table>
+                  <div class="list-area">
+                  <p>
+                  <br>
+					<i>사번 : ${vo.no} <hr><br></i>
+					<i style="font-size: 20px;">소속 부서 : ${vo.departmentName}</i> <hr><br>
+					<i style="font-size: 20px;">직급 : ${vo.positionName}</i> <hr><br>
+					<i style="font-size: 20px;">이름 : ${vo.name}</i> <hr><br>
+					<i style="font-size: 20px;">상태 : ${vo.status}</i> <hr><br>
+					<i style="font-size: 20px;">입사일 : ${vo.enrollDate}</i> <hr><br>
+					<i style="font-size: 20px;">주민등록번호 : ${vo.registrationNumber}</i> <hr><br>
+					<i style="font-size: 20px;">이메일 : ${vo.email}</i> <hr><br>
+					<i style="font-size: 20px;">휴대폰번호 : ${vo.phoneNumber}</i> <hr><br>
+					<i style="font-size: 20px;">사무실번호 : ${vo.officeNumber}</i> <hr><br>
+					<i style="font-size: 20px;">면허번호 : ${vo.licenseNumber}</i> <hr><br>
+					<i style="font-size: 20px;">연봉 : ${vo.yearSalary}</i> <hr><br>
+					<i style="font-size: 20px;">프로필 사진 : ${vo.profile}</i> <hr><br>
+					<i style="font-size: 20px;">서명 이미지 : ${vo.sign}</i>
+				  </p>
+                </div>
 		        <button id="sendRequest" onclick="del(${vo.no});">삭제</button>
 		        <button id="sendRequest" onclick="edit(${vo.no});">수정</button>
-                </div>
                 
                 <br>
                 <br>

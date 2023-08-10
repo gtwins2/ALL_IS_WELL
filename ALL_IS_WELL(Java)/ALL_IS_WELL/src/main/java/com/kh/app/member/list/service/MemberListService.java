@@ -18,7 +18,7 @@ public interface MemberListService {
 		int delete(String no);
 		
 		//페이징
-		int getBoardCnt();
+		int getBoardCnt(Map<String , String> paramMap);
 
 		int edit(MemberVo vo);
 

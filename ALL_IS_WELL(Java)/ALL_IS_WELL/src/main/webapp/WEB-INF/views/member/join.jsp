@@ -223,6 +223,22 @@
 				font-size: large;
 				height: 200px;
 			}
+			table {
+				border-collapse: collapse;
+			}
+			
+			td{
+				border-right: 1px solid black;
+				text-align: center;
+			}
+			th{
+				border-right: 1px solid black;
+				border-bottom: 1px solid black;
+			}
+			
+			td:nth-last-child() {
+				border-right: none;	
+			}
         </style>
     </head>
 
@@ -266,8 +282,7 @@
 				      <th>휴대폰번호</th>
 				      <th>사무실번호</th>
 				      <th>면허번호</th>
-				      <th>연봉</th>
-				      <th></th>
+				      <th style="border-right: none;">연봉</th>
 				    </tr>
 				  </thead>
 				  
@@ -298,6 +313,8 @@
 				        		<option value="8">주임간호사</option>
 				        		<option value="9">간호사</option>
 				        	</select>
+				        </td>
+				        <td>
 				        	<select name="positionType">
 				        		<option value="'D'">의사</option>
 				        		<option value="'N'">간호사</option>
@@ -312,8 +329,7 @@
 				        <td><input type="text" name="phoneNumber" value="${vo.phoneNumber}" style="width: 90px"></td>
 				        <td><input type="text" name="officeNumber" value="${vo.officeNumber}" style="width: 75px"></td>
 				        <td><input type="text" name="licenseNumber" value="${vo.licenseNumber}" style="width: 80px"></td>
-				        <td><input type="text" name="yearSalary" ></td>
-				        <td></td>
+				        <td style="border-right: none;"><input type="text" name="yearSalary" ></td>
 				      </tr>
 				</table>
                     
@@ -322,7 +338,7 @@
                 </div>
 					
 					<button type="submit" id="sendRequest" onclick="sub();">회원가입</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
 					
                 </form>
                 </div>
@@ -342,6 +358,9 @@
             
             function sub(){
             	alert("회원 가입 요청이 처리되었습니다.");
+            }
+            function backPage(){
+            	location.href="${root}/member/list"
             }
             
         </script>

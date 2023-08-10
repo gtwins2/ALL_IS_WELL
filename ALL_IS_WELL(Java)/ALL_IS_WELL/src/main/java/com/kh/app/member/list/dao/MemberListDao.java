@@ -21,7 +21,7 @@ public interface MemberListDao {
 	
 	
 	//paging
-	int getBoardCnt(SqlSessionTemplate sst);
+	int getBoardCnt(SqlSessionTemplate sst , Map<String, String> paramMap);
 
 	int edit(SqlSessionTemplate sst, MemberVo vo);
 

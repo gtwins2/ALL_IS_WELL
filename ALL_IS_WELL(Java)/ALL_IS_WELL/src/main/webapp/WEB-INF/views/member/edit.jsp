@@ -30,7 +30,7 @@
             #sendRequest, #sendBack {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color: #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -117,9 +117,6 @@
 
             .list-area table {
                 border-collapse: collapse;
-                width: 100%;
-
-
                 width: 100%;
 
             }
@@ -221,26 +218,43 @@
 			
 			#edit-area{
 				font-size: large;
-				height: 200px;
+				height: 250px;
 			}
+			
+			table {
+		border-collapse: collapse;
+	}
+	
+	td{
+		border-right: 1px solid black;
+		text-align: center;
+	}
+	th{
+		border-right: 1px solid black;
+		border-bottom: 1px solid black;
+	}
+	
+	td:nth-last-child() {
+		border-right: none;	
+	}
         </style>
     </head>
 
     <body>
         <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
 
 
         <div id="content">
             <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </div>
 
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">개인정보수정하기</span>
+                    <span id="title">회원정보수정하기</span>
 
                 </div>
                 <br>
@@ -250,7 +264,7 @@
                 <br>
 
 				<div class="list-area">
-			<form action="${root}/member/edit/${vo.no}" method="post" >
+			<form action="${root}/edit/${vo.no}" method="post" >
 					
 					<table id="edit-area">
 				  <thead>
@@ -268,15 +282,14 @@
 				      <th>면허번호</th>
 				      <th>연봉</th>
 				      <th>프로필 사진</th>
-				      <th>서명 이미지</th>
-				      <th></th>
+				      <th style="border-right: none;">서명 이미지</th>
 				    </tr>
 				  </thead>
 				  
 				      <tr>
 				        <td><input type="text" name="no" value="${vo.no}" readonly="readonly"></td>
 				        <td>
-				        	<select name="departmentNo">
+				        	<select name="departmentNo" style="height: 30px;">
 				        		<option value="'1'">외과</option>
 				        		<option value="2">내과</option>
 				        		<option value="3">소아청소년과</option>
@@ -290,7 +303,7 @@
 				        	</select>
 				        </td>
 				        <td>
-				        	<select name="positionNo">
+				        	<select name="positionNo" style="height: 30px;">
 				        		<option value="'1'">교수</option>
 				        		<option value="2">레지던트</option>
 				        		<option value="3">펠로우</option>
@@ -312,8 +325,7 @@
 				        <td><input type="text" name="licenseNumber" value="${vo.licenseNumber}" style="width: 80px"></td>
 				        <td><input type="text" name="yearSalary" ></td>
 				        <td><img src="${vo.profile}" alt="프로필사진" /></td>
-				        <td><img src="${vo.sign}" alt="서명이미지" /></td>
-				        <td></td>
+				        <td style="border-right: none;"><img src="${vo.sign}" alt="서명이미지" /></td>
 				      </tr>
 				</table>
                     
@@ -322,8 +334,7 @@
                 </div>
 					
 					<button type="submit" id="sendRequest" onclick="sub();">수정완료</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
-					<!-- <button id="sendRequest" onclick="edit();">수정하기</button> -->
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
 					
                 </form>
                 </div>
@@ -336,7 +347,7 @@
         </div>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
@@ -348,12 +359,12 @@
                 })
             }
             
-            function del(no){
-            	location.href = "${root}/proceeding/delete/" + no
-            }
-            
             function sub(){
             	alert("회원 정보 수정 요청이 처리되었습니다.");
+            }
+            
+            function backPage(){
+            	location.href="${root}/member/list"
             }
             
         </script>

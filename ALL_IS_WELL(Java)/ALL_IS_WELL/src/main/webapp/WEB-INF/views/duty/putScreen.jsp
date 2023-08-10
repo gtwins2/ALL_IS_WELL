@@ -249,6 +249,10 @@
 				margin-left: 100px;
 				height: 40px;
 			}
+			
+			#dateInput{
+				font-size: 30px;
+			}
 
  /* body 스타일 */
             html,
@@ -286,22 +290,6 @@
         <header>
             <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
-
-
-
-
-			<%-- <c:forEach items="${voList}" var="vo">
-				<tr>
-					<td></td>
-					<td>${vo.itemName}</td>
-					<td>${vo.count}</td>
-					<td>${vo.approvalDate}</td>
-				</tr>
-			</c:forEach> --%>
-
-	
-	
-
 	
         <main id="content">
             <div id="wrap">
@@ -311,7 +299,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">당직 인원 지정</span>
+                    <span id="title">당직 지정</span>
 
                 </div>
                 <br>
@@ -321,23 +309,18 @@
                 <br>
 				<form action="${root}/duty/put" method="post">
 					
-                    <div id='calendar-container'>
-		            <div id='calendar'></div>
-		         	</div>
-		         	
 		         	<label for="item-select"></label>
-						<select	name="mno">
+						<select  style="border: 3px solid #FF8686; border-radius: 5px;" name="mno">
 							<c:forEach items="${voList}" var="vo">
 							<option name = "mno" value="${vo.no}">${vo.name}</option>
 							</c:forEach>
 						</select>
 						
-							console.log(${vo});
 						<!-- 날짜 선택해서 mno와 같은 방식으로 vo에 담아서 가져가기 -->
-						<input type="text" name="start" placeholder="yyyyMMdd 형식">
+						<input type="text" name="start" id="dateInput" placeholder="yyyyMMdd" style="border: 3px solid #FF8686; border-radius: 5px; font-size: 33px;">
 					
 					<button id="sendRequest" type="submit" onclick="sendRequest();">지정하기</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
                 
 				</form>
 
@@ -352,133 +335,17 @@
         <script>
             
             function backPage(){
-            	location.href = '${root}/common/member/home';
+            	location.href = '${root}/duty/select';
             }
 
             function sendRequest(){
-            	location.href = '${root}/inventory/list';
+            	alert("당직 지정 요청이 완료되었습니다.");
+            	sendReq2();
             }
-            function getRandomColor() {
-                var letters = '0123456789ABCDEF';
-                var color = '#';
-                for (var i = 0; i < 6; i++) {
-                   color += letters[Math.floor(Math.random() * 16)];
-                   if(color == '#ffffff'){
-                      return color;
-                   }
-                }
-                return color;
-             }
-
-             var randomColor = getRandomColor(); // 랜덤 색상 생성
-
-             (function () {
-                $(function () {
-                   // calendar element 취득
-                   var calendarEl = $('#calendar')[0];
-                   // full-calendar 생성하기
-                   var calendar = new FullCalendar.Calendar(calendarEl, {
-                      height: '700px', // calendar 높이 설정
-                      expandRows: true, // 화면에 맞게 높이 재설정
-                      slotMinTime: '08:00', // Day 캘린더에서 시작 시간
-                      slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
-                      // 해더에 표시할 툴바
-                      headerToolbar: {
-                         left: 'prev,next today',
-                         center: 'title',
-                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                      },
-                      initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-                      // initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
-                      navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-                      editable: true, // 수정 가능?
-                      selectable: true, // 달력 일자 드래그 설정가능
-                      nowIndicator: true, // 현재 시간 마크
-                      dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-                      locale: 'ko', // 한국어 설정
-                      
-                      eventAdd: function (obj) { // 이벤트 추가(드래그))
-                         const params = [];
-                         params.push(obj.event.title);
-                         params.push(obj.event.start);
-                         console.log(params);
-
-                         $.ajax({
-                            url: 'duty/select',
-                            type: 'post',
-                            data: {
-                               params: JSON.stringify(params)
-                            },
-                            error: function () {
-                               alert("error");
-                            }
-                         });
-                      },
-                      eventChange: function (obj) { // 이벤트 수정(이벤트 드래그)
-                         const params = [];
-                         params.push("modify")
-                         params.push(obj.event.title);
-                         params.push(obj.event.start);
-                         params.push(obj.event.end);
-
-                         $.ajax({
-                            url: 'duty/select',
-                            type: 'post',
-                            data: {
-                               params: JSON.stringify(params)
-                            },
-                            error: function () {
-                               alert("error");
-                            }
-                         });
-                      },
-                      eventClick: function (obj) { // 이벤트 삭제 (이벤트 클릭)
-                         var result = confirm('이 일정을 삭제하시겠습니까?');
-
-                         if (result == true) {
-                            const params = [];
-                            params.push("delete")
-                            params.push(obj.event.title);
-                            params.push(obj.event.start);
-                            params.push(obj.event.end);
-
-                            $.ajax({
-                               url: 'duty/select',
-                               type: 'post',
-                               data: {
-                                  params: JSON.stringify(params)
-                               },
-                               success: function() {
-                                  location.reload();
-                               },
-                               error: function () {
-                                  alert("error");
-                               }
-                            });
-                         }
-                      },
-
-                      
-                      select: function (arg) { // 드래그 or 클릭으로 이벤트 생성
-                         var title = prompt('일정을 입력해주세요');
-                         if (title) {
-                            calendar.addEvent({
-                               title: title,
-                               start: arg.start,
-                               end: arg.end,
-                               allDay: arg.allDay,
-                               backgroundColor: randomColor // 배경색 지정
-                            });
-                         }
-                         calendar.unselect()
-                      },
-                      ]
-                   });
-
-                   // 캘린더 랜더링
-                   calendar.render();
-                });
-             })();
+            
+            function sendReq2(){
+            	location.href = 'redirect:/${root}/inventory/list';
+            }
             
         </script>
     </body>

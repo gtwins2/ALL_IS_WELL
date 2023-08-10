@@ -46,9 +46,6 @@ public class ProceedingController {
 //		/*
 //		 * if(loginMember == null) { throw new LoginException(); }
 //		 */
-//		String no = loginMember.getNo();
-//		ProceedingVo vo = new ProceedingVo();
-//		vo.setMemberNo(no);
 		
 		int listCount = service.getBoardCnt();
 		int pageLimit = 5;
@@ -58,7 +55,6 @@ public class ProceedingController {
 
 		List<ProceedingVo> voList = service.list(pv, paramMap);
 
-		log.info(voList + "");
 		model.addAttribute("pv" , pv);
 		model.addAttribute("voList", voList);
 		
@@ -96,9 +92,7 @@ public class ProceedingController {
 		}
 		
 		vo.setMemberNo(loginMember.getNo());
-		log.info(loginMember.getNo());
 		int result = service.write(vo);
-		log.info(result + "");
 		if(result != 1) {
 			model.addAttribute("message", "회의록 작성 실패");
 			return "redirect:/error/errorPage";

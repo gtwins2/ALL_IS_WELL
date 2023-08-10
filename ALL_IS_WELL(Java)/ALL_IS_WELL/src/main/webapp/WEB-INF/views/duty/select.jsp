@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="com.kh.app.main.controller.Calendar"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>당직 지정</title>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
          <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
@@ -319,6 +323,7 @@
 	}
 
     </style>
+    
 </head>
 
 <body>
@@ -334,15 +339,17 @@
 
 
         <div class="main-area">
-        			 <!-- calendar 태그 -->
-         <div id='calendar-container'>
+         <div class="title-area">
+                <span id="title">당직 리스트</span><button id="sendRequest" onclick="put();">지정하기</button>
+            </div>
+                
+        	<!-- 일정 -->
+        	<br>
+        	<br>
+		    <div id='div03'>
             <div id='calendar'></div>
-         </div>
-            <div class="title-area">
-                <span id="title">당직 리스트</span>
-
-
-                <form action="" class="search-area" method="get">
+         	</div>
+            <form action="" class="search-area" method="get">
                    <label for="search" class="category-area"> <select
 						id="search" name="searchType">
                             <option value="mname">당직자</option>
@@ -356,10 +363,6 @@
                     
                 </form>
 
-            </div>
-
-			 
-                <button id="sendRequest" onclick="put();">지정하기</button>
             <div class="list-area">
                 <table>
                     <th style="margin-left: 30px;">당직자번호</th>
@@ -403,7 +406,11 @@
 				</c:if>
 			</div>
 			</div>
-			</div>
+            
+            </div>
+
+			 
+                
 
     </main>
 
@@ -427,13 +434,6 @@
         thirdSidebar.style.height = sideBar.offsetHeight + 'px';
     });
 
-        function selectAll(selectAll) {
-            const checkboxes = document.getElementsByName('choose');
-
-            checkboxes.forEach((checkbox) => {
-                checkbox.checked = selectAll.checked;
-            })
-        }
         
         function put(){
         	location.href="${root}/duty/put";
@@ -451,128 +451,36 @@
             return color;
          }
 
-         var randomColor = getRandomColor(); // 랜덤 색상 생성
-
-         (function () {
-            $(function () {
-               // calendar element 취득
-               var calendarEl = $('#calendar')[0];
-               // full-calendar 생성하기
-               var calendar = new FullCalendar.Calendar(calendarEl, {
-                  height: '700px', // calendar 높이 설정
-                  expandRows: true, // 화면에 맞게 높이 재설정
-                  slotMinTime: '08:00', // Day 캘린더에서 시작 시간
-                  slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
-                  // 해더에 표시할 툴바
-                  headerToolbar: {
-                     left: 'prev,next today',
-                     center: 'title',
-                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                  },
-                  initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-                  // initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
-                  navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-                  editable: true, // 수정 가능?
-                  selectable: true, // 달력 일자 드래그 설정가능
-                  nowIndicator: true, // 현재 시간 마크
-                  dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-                  locale: 'ko', // 한국어 설정
-                  
-                  eventAdd: function (obj) { // 이벤트 추가(드래그))
-                     const params = [];
-                     params.push("write")
-                     params.push(obj.event.title);
-                     params.push(obj.event.start);
-                     params.push(obj.event.end);
-
-                     $.ajax({
-                        url: '/semi/teamCalendar',
-                        type: 'post',
-                        data: {
-                           params: JSON.stringify(params)
-                        },
-                        error: function () {
-                           alert("error");
-                        }
-                     });
-                  },
-                  eventChange: function (obj) { // 이벤트 수정(이벤트 드래그)
-                     const params = [];
-                     params.push("modify")
-                     params.push(obj.event.title);
-                     params.push(obj.event.start);
-                     params.push(obj.event.end);
-
-                     $.ajax({
-                        url: '/semi/teamCalendar',
-                        type: 'post',
-                        data: {
-                           params: JSON.stringify(params)
-                        },
-                        error: function () {
-                           alert("error");
-                        }
-                     });
-                  },
-                  eventClick: function (obj) { // 이벤트 삭제 (이벤트 클릭)
-                     var result = confirm('이 일정을 삭제하시겠습니까?');
-
-                     if (result == true) {
-                        const params = [];
-                        params.push("delete")
-                        params.push(obj.event.title);
-                        params.push(obj.event.start);
-                        params.push(obj.event.end);
-
-                        $.ajax({
-                           url: '/semi/teamCalendar',
-                           type: 'post',
-                           data: {
-                              params: JSON.stringify(params)
-                           },
-                           success: function() {
-                              location.reload();
-                           },
-                           error: function () {
-                              alert("error");
-                           }
-                        });
-                     }
-                  },
-
-                  
-                  select: function (arg) { // 드래그 or 클릭으로 이벤트 생성
-                     var title = prompt('당직 직원 번호를 입력해주세요');
-                     if (title) {
-                        calendar.addEvent({
-                           title: title,
-                           start: arg.start,
-                           end: arg.end,
-                           allDay: arg.allDay,
-                           backgroundColor: randomColor // 배경색 지정
-                        });
-                     }
-                     calendar.unselect()
-                  },
-                  // 이벤트 
-                  events: [
-                     <c:forEach items="${voList}" var="vo">
-                        {
-                        title: '${vo.meetingContent}',
-                        start: '${vo.startDate}',
-                        end: '${vo.endDate}',
-                        backgroundColor: getRandomColor()
-                        },
-                     </c:forEach>
-                  ]
-               });
-
-
-
-               // 캘린더 랜더링
-               calendar.render();
-            });
-         })();
+         document.addEventListener('DOMContentLoaded', function() {
+		    	var calendarEl = document.getElementById('calendar');
+		    	var calendar = new FullCalendar.Calendar(calendarEl, {
+		    		initialView : 'dayGridMonth',
+		    		locale : 'ko', // 한국어 설정
+		    		headerToolbar : {
+		            	start : "prev next",
+		                center : "title",
+		                end : 'dayGridMonth,dayGridWeek,dayGridDay'
+		                },
+		    	selectable : true,
+		    	droppable : true,
+		    	editable : true,
+		    	events : [ 
+		        	    <%List<Calendar> calendarList = (List<Calendar>) request.getAttribute("calendarList");%>
+		                <%if (calendarList != null) {%>
+		                <%for (Calendar vo : calendarList) {%>
+		                {
+		                	title : '<%=vo.getName()%>',
+		                    start : '<%=vo.getDutyDay()%>',
+		                    end : '<%=vo.getEndDate()%>',
+		                    color : '#' + Math.round(Math.random() * 0xffffff).toString(16)
+		                 },
+		    	<%}
+		    }%>
+		    				]
+		    				
+		    			});
+		    			calendar.render();
+		    		});
 
         
 

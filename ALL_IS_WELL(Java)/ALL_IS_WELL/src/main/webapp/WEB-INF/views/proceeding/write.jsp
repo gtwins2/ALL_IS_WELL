@@ -200,7 +200,7 @@
             #content2{
 				font-size: 30px;
 				width: 1198px;
-				height: 500px; 
+				height: 400px; 
             }
             
             #content-area2{
@@ -255,28 +255,15 @@
 					
 					<br>
 					<br>
-					<div id="title-area">회의예정일<textarea id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate"></textarea></div>
+					<div id="title-area">회의예정일<textarea style="margin-left: 18px;" id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate"></textarea></div>
 					<br>
 					<br>
-					<!-- <div id="content2">내용 -->
-					<div id="content-area">
+					<div id="content2">내용
+					<div id="content-area" style="margin-left: 100px;">
                         <textarea id="content-area2" cols="60" rows="10" name="content"></textarea>
 
                     </div>
                     
-                    
-                    
-     
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					
-
                     </table>
                 </div>
 					
