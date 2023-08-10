@@ -25,7 +25,7 @@
             width: 600px;
             height: 800px;
             background-color: white;
-            border: 1px solid black;
+           /*  border: 1px solid black; */
         }
 
         .title-area {
@@ -330,9 +330,7 @@
                     <div class="textbox">${list.messengerContent}</div>
                     <div class="date">${list.mailEnrollDate}</div>
                 </div>
-                <c:if test="${list.confirmYn eq 'N'}">
-                    <div class="mark-read">1</div>
-                </c:if>
+                
             </div>
         </c:when>
         <c:otherwise>
@@ -343,9 +341,7 @@
                     <div class="textbox">${list.messengerContent}</div>
                     <div class="date">${list.mailEnrollDate}</div>
                 </div>
-                <c:if test="${list.confirmYn eq 'N'}">
-                    <div class="mark-read">1</div>
-                </c:if>
+               
             </div>
         </c:otherwise>
     </c:choose>
@@ -494,14 +490,7 @@
 
             messageDiv.appendChild(contentDiv);
             
-            if(confirmYn == 'N') {
-            	const markReadDiv = document.createElement("div");
-                markReadDiv.classList.add("mark-read");
-                markReadDiv.textContent = "1";
-                
-                
-                messageDiv.appendChild(markReadDiv);
-            } 
+           
             
             
            
@@ -543,14 +532,7 @@
             messageDiv.appendChild(contentDiv);
             
             
-            if(confirmYn == 'N') {
-            	const markReadDiv = document.createElement("div");
-                markReadDiv.classList.add("mark-read");
-                markReadDiv.textContent = "1";
-                
-                
-                messageDiv.appendChild(markReadDiv);
-            } 
+           
 
             contentArea.appendChild(messageDiv);
         }

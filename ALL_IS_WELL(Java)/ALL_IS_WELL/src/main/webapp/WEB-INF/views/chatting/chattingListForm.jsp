@@ -22,18 +22,18 @@
 
         .main-wrap {
             box-sizing: border-box;
-            width: 450px;
-            height: 600px;
+            width: 600px;
+            height: 800px;
             background-color: white;
            
             position: relative; /* Added position relative */
         }
 
         .search-area {
-            margin-top: 20px;
-            margin-left: 80px;
+            margin-top: 30px;
+            margin-left: 100px;
             position: relative;
-            width: 350px;
+            width: 450px;
              
         }
 
@@ -128,6 +128,14 @@
 		.detail-area {
 			cursor: pointer;
 		}
+		
+		
+		hr {
+  border-style: solid;
+  border-color: #d3d3d3;
+  border-width: 1px 0 0;
+  margin: 20px 0;
+}
     
     </style>
 </head>

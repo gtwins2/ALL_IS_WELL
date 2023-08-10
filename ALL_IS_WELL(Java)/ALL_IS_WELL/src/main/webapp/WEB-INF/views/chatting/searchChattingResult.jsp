@@ -30,10 +30,10 @@
         }
 
         .search-area {
-            margin-top: 20px;
-            margin-left: 80px;
+            margin-top: 30px;
+            margin-left: 100px;
             position: relative;
-            width: 350px;
+            width: 450px;
              
         }
 
@@ -122,9 +122,12 @@
 		    background-color: #555;
 		}
 		
-			#line {
-				color: lightgray;
-			}
+		hr {
+		  border-style: solid;
+		  border-color: #d3d3d3;
+		  border-width: 1px 0 0;
+		  margin: 20px 0;
+		}
 
     
     </style>
@@ -139,7 +142,7 @@
         </form>
         
         <br>
-        <hr class="line">
+        <hr>
     
         <div class="list-area">
         	<c:forEach items="${chatList}" var="list">

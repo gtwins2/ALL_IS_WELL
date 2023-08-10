@@ -91,7 +91,14 @@
 		    var messengerIcon = document.querySelector('#messenger img');
 		    if (messengerIcon) {
 		      messengerIcon.addEventListener('click', function() {
-		        window.open('/app/chatting/chattingList', 'chattingList', 'width=460,height=600');
+		    	  const width = 600;
+		    	   const height = 800;
+		    	   const left = (screen.width / 2) - (width / 2);
+		    	   const top = 0;
+		    	  
+		    	  
+		    	  
+		        window.open('/app/chatting/chattingList', 'chattingList', 'width=' + width + ', height=' + height + ', left=' + left + ', top=' + top);
 		      });
 		    }
 		});
