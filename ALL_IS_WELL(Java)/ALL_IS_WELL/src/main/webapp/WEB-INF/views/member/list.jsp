@@ -376,7 +376,7 @@ main {
 			<div class="list-area">
 				<table>
 					<tr>
-						<th>//////////</th>
+						<th><button type="button" class="btnCalss" id="btn2" onclick="join();">회원가입</button></th>
 						<th>이름</th>
 						<th>담당부서</th>
 						<th>직급</th>
@@ -486,7 +486,9 @@ main {
 		
 		
 		
-		
+		function join(){
+			location.href = "${root}/member/join"
+		}
 		
 		
 		

@@ -44,4 +44,9 @@ public class MemberListDaoImpl implements MemberListDao{
 		return sst.update("member.edit" , vo);
 	}
 
+	@Override
+	public int join(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.insert("member.join" , vo);
+	}
+
 }
