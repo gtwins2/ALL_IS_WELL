@@ -188,9 +188,11 @@
 
     }
 
-    .list-area th:first-child,
-    .list-area td:first-child {
-        width: 30px;
+    
+    
+    .list-area th:first-child{
+    	margin-left: 20px;
+    	width: 30px;
     }
 
     .list-area th:last-child,
@@ -360,7 +362,7 @@
                 <button id="sendRequest" onclick="put();">지정하기</button>
             <div class="list-area">
                 <table>
-                    <th>당직자번호</th>
+                    <th style="margin-left: 30px;">당직자번호</th>
                     <th>당직자이름</th>
                     <th>당직예정일</th>
                     

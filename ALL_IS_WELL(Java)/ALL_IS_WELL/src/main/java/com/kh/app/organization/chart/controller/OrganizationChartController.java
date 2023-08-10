@@ -21,7 +21,6 @@ public class OrganizationChartController {
 	public String orgChart(Model model, OrgVo vo) {
 		
 		List<OrgVo> voList  = service.list(vo);
-		System.out.println(voList);
 		model.addAttribute("voList" , voList);
 		
 		return "orgChart/orgChart";

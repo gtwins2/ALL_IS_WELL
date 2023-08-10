@@ -43,6 +43,10 @@ public class MemberListServiceImpl implements MemberListService{
 	public int edit(MemberVo vo) {
 		return dao.edit(sst , vo);
 	}
+	@Override
+	public int join(MemberVo vo) {
+		return dao.join(sst, vo);
+	}
 		
 
 }

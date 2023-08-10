@@ -17,8 +17,10 @@
     }
 
     #box1{
+        margin-top: 150px;
         grid-column: 1/7;
         margin-left: -210px;
+        height: 100px;
     }
 
     #box2{
@@ -44,6 +46,20 @@
         font-size: 25px;
     }
 
+	.btnClass{
+		width: 180px;
+        height: 70px;
+        background-color: #5A8CF2;
+         font-size: 25px;
+          margin-left: 50px;
+	}
+	.btnClass33{
+		width: 180px;
+        height: 80px;
+        background-color: #5A8CF2;
+        font-size: 25px;
+        margin-left: 932px;
+	}
     #btn3{
         width: 180px;
         height: 70px;
@@ -170,7 +186,7 @@
     }
 
     #namearea{
-        margin-left: 70px;
+        margin-left: 100px;
         font-size: 25px;
     }
 
@@ -185,7 +201,7 @@
         margin-left: 1020px;
         border: 3px solid black;
         width: 0.1px;
-        height: 200px;
+        height: 215px;
     }
     
     .updown3 {
@@ -201,7 +217,7 @@
         margin-top: -100px;
         border: 3px solid black;
         width: 0.1px;
-        height: 390px;
+        height: 395px;
     }
 
     .rightbox{
@@ -284,16 +300,21 @@
 		<div id="wrapper">
 
 		    <div id="box1">
-		        <button type="button" class="btnClass" id="btn1">병원장</button>
+		         <button type="button" class="btnClass33" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+			        병원장
+			    </button>
 		        <div class="updown1"></div>
 		        
 		    </div>
 		
 			<c:forEach items="${voList}" var="vo">
-		    <div id="box2">
-		        <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">${vo.dname}</button>
+			<c:if test="${vo.dname eq '외과'}">
+				<div id="box2">
+					<div class="rightbox"></div>
+			        <div class="updown2"></div>
+			         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
 		        <br>
 		        <br>
 		        <div id="namearea">
@@ -302,189 +323,180 @@
 		            
 		        </div>
 		    </div>
+		    </c:if>
+		    
+		    <c:if test="${vo.dname eq '소아청소년과'}">
+				<div id="box2">
+                <div class="centerbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+
+
+		    <c:if test="${vo.dname eq '피부과'}">
+				<div id="box2">
+                <div class="centerbox"></div>
+		        <div class="updown2"></div>
+		        <div class="updownall"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+
+
+		    <c:if test="${vo.dname eq '안과'}">
+				<div id="box2">
+                <div class="centerbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    <c:if test="${vo.dname eq '치과'}">
+				<div id="box2">
+                <div class="leftbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    
+		    
+		    <c:if test="${vo.dname eq '정신과'}">
+				<div id="box2">
+                <div class="rightbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    <c:if test="${vo.dname eq '내과'}">
+				<div id="box2">
+                <div class="centerbox"></div>
+		        <div class="updown2"></div>
+		        <div class="updownall"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    <c:if test="${vo.dname eq '물리치료과'}">
+				<div id="box2">
+                <div class="leftbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    <c:if test="${vo.dname eq '산부인과'}">
+				<div id="box2">
+                <div class="rightbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+        ${vo.dname}
+    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    <c:if test="${vo.dname eq '응급의학과'}">
+				<div id="box2">
+                <div class="leftbox"></div>
+		        <div class="updown2"></div>
+                
+		         <button type="button" class="btnClass" id="btn${vo.id}" data-name="${vo.mname}" data-position="${vo.position}" data-department="${vo.dname}" data-phone="${vo.phoneNumber}" data-email="${vo.email}">
+			        ${vo.dname}
+			    </button>
+		        <br>
+		        <br>
+		        <div id="namearea">
+					${vo.mname}
+		        </div>		        
+            </div>
+		    </c:if>
+		    
+		    
 			</c:forEach> 
 
 
-		    <!--  <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">일반내과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-		    </div>
-		    
-		     <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                <div class="updownall"></div>
-		        <button type="button" class="btnClass" id="btn2">일반내과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-		    </div>
-
-   
-            <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                
-		        <button type="button" class="btnClass" id="btn2">소아과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                <div class="updownall"></div>
-		        <button type="button" class="btnClass" id="btn2">정형외과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="centerbox"></div>
-		        <div class="updown2"></div>
-                
-		        <button type="button" class="btnClass" id="btn2">산부인과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="leftbox"></div>
-		        <div class="updown2"></div>
-                <div class="updownall"></div>
-		        <button type="button" class="btnClass" id="btn2">응급의학과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">치과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="leftbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">재활과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">정신과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="leftbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2">안과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                <div class="rightbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass"  id="btn2" >임상병리과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div>
-
-            <div id="box2">
-                    <div class="leftbox"></div>
-		        <div class="updown2"></div>
-		        <button type="button" class="btnClass" id="btn2" >흉부외과</button>
-		        <br>
-		        <br>
-		        <div id="namearea">
-		            정   과장   송준섭
-		            <br>
-		            부   팀장   이현철
-		        </div>		        
-            </div> 
-		</div>--> 
-		${voList}
+		<c:forEach items="${voList}" var="vo">
 		<div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <p>
-               <%--  이름 : ${vo.mname}
-                <br>
-                직급 : ${vo.position}
-                <br>
-                부서 : ${vo.dname}
-                <br>
-                전화번호 : ${vo.phoneNumber}
-                <br>
-                이메일 : ${vo.email} --%>
-              </p>
+                <p>
+	                이름 : <span id="mname"></span>
+	                <br>
+	                직급 : <span id="position"></span>
+	                <br>
+	                부서 : <span id="department"></span>
+	                <br>
+	                전화번호 : <span id="phone"></span>
+	                <br>
+	                이메일 : <span id="email"></span>
+            	</p>
             </div>
         </div>
-		
+		</c:forEach>
 		
 		
 		</div>
@@ -498,46 +510,42 @@
 	</footer>
 
 <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-  
-        // Get the button that opens the modal
-        // var btn = document.querySelector("#btn2");
-        var btns = document.querySelectorAll(".btnClass");
-  
-  
-        // Get the <span> element that closes the modal
-        
-  
-        // When the user clicks on the button, open the modal
-        for(i=0; i<13; i++){
+var modal = document.getElementById("myModal"); // 모달 요소
+var buttons = document.querySelectorAll(".btnClass"); // 모든 버튼 요소들
 
-            var span = document.getElementsByClassName("close")[0];
+// 각 버튼 요소에 대하여
+buttons.forEach(function(btn) {
+    // 클릭 이벤트 핸들러 등록
+    btn.addEventListener("click", function() {
+        // 버튼의 data 속성으로부터 정보를 가져옴
+        var name = this.getAttribute("data-name");
+        var position = this.getAttribute("data-position");
+        var department = this.getAttribute("data-department");
+        var phone = this.getAttribute("data-phone");
+        var email = this.getAttribute("data-email");
 
-            btns[i].onclick = function () {
-              modal.style.display = "block";
-            }
+        // 모달 내부의 요소에 정보를 설정
+        var mnameElem = modal.querySelector("#mname");
+        var positionElem = modal.querySelector("#position");
+        var departmentElem = modal.querySelector("#department");
+        var phoneElem = modal.querySelector("#phone");
+        var emailElem = modal.querySelector("#email");
+        mnameElem.innerText = name;
+        positionElem.innerText = position;
+        departmentElem.innerText = department;
+        phoneElem.innerText = phone;
+        emailElem.innerText = email;
 
-            span.onclick = function() {
-            modal.style.display = "none";
+        // 모달 요소를 표시
+        modal.style.display = "block";
+    });
+});
 
-            window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-
-        }
-
-
-        }
-  
-        // When the user clicks on <span> (x), close the modal
-        
-  
-        // When the user clicks anywhere outside of the modal, close it
-        
-
+// 모달 닫기 버튼 클릭 이벤트 핸들러 등록
+var closeBtn = modal.querySelector(".close");
+closeBtn.addEventListener("click", function() {
+    modal.style.display = "none"; // 모달 숨기기
+});
 
 
         

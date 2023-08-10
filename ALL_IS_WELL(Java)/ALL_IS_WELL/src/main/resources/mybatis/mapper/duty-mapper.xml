@@ -232,13 +232,12 @@
 	FROM DUTY D
 	JOIN MEMBER M ON D.MEMBER_NO = M.NO
 	WHERE D.NO = ${no}
-	
    </select>
    
    <select id="getMemberList" resultType="com.kh.app.member.vo.MemberVo">
    	SELECT
-   	NO AS mno,
-   	NAME AS mname
+   	NO ,
+   	NAME 
    	FROM MEMBER
    	WHERE STATUS = 'O'
    </select>

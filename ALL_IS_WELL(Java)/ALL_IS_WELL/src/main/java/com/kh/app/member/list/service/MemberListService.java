@@ -22,6 +22,8 @@ public interface MemberListService {
 
 		int edit(MemberVo vo);
 
+		int join(MemberVo vo);
+
 		
 }
 

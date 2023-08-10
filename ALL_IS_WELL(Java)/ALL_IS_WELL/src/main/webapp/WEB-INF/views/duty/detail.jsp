@@ -233,7 +233,6 @@
                     </table>
                 </div>
                
-               <button type="submit" id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
                <button  onclick="edit();" type="submit" id="sendRequest">수정하기</button>
                <button id="sendBack" onclick="backPage();">뒤로가기</button>
                 

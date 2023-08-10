@@ -165,6 +165,42 @@
 		WHERE NO = ${no}
    </update>
    
+   <insert id="join">
+   		INSERT INTO MEMBER
+   		(
+   			NO,
+			DEPARTMENT_NO,
+			POSITION_NO,
+			ID,
+			PASSWORD,
+			NAME,
+			POSITION_TYPE,
+			REGISTRATION_NUMBER,
+			EMAIL,
+			PHONE_NUMBER,
+			OFFICE_NUMBER,
+			LICENSE_NUMBER,
+			YEAR_SALARY
+   		)
+   		VALUES
+   		(
+   			SEQ_MEMBER_NO.NEXTVAL,
+   			${departmentNo},
+   			${positionNo},
+   			'${id}',
+   			'${password}',
+   			'${name}',
+   			${positionType},
+   			'${registrationNumber}',
+   			'${email}',
+   			'${phoneNumber}',
+   			'${officeNumber}',
+   			'${licenseNumber}',
+   			${yearSalary}
+   		)
+   		
+   		
+   </insert>
    
    
 </mapper>

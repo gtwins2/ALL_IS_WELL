@@ -328,13 +328,13 @@
 		         	<label for="item-select"></label>
 						<select	name="mno">
 							<c:forEach items="${voList}" var="vo">
-							<option name = "mno" value="${vo.mno}">${vo.mname}</option>
+							<option name = "mno" value="${vo.no}">${vo.name}</option>
 							</c:forEach>
 						</select>
 						
-							console.log(${voList});
+							console.log(${vo});
 						<!-- 날짜 선택해서 mno와 같은 방식으로 vo에 담아서 가져가기 -->
-						<input type="text" name="start" placeholder="yyyyMMdd 형식으로 입력하세요.">
+						<input type="text" name="start" placeholder="yyyyMMdd 형식">
 					
 					<button id="sendRequest" type="submit" onclick="sendRequest();">지정하기</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
@@ -472,15 +472,6 @@
                          }
                          calendar.unselect()
                       },
-                      // 이벤트 
-                      /* events: [
-                         <c:forEach items="${voList}" var="vo">
-                            {
-                            title: '${vo.mno}',
-                            start: '${vo.start}',
-                            backgroundColor: getRandomColor()
-                            },
-                         </c:forEach>
                       ]
                    });
 

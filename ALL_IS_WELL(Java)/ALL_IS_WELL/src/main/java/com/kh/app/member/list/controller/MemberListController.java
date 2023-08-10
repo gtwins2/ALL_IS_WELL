@@ -104,8 +104,24 @@ public class MemberListController {
 		model.addAttribute("message", "회원 정보 수정 성공");
 		return "redirect:/member/detail/" + no;
 	}
-
 	
+	@GetMapping("join")
+	public String join() {
+		return "member/join";
+	}
+	
+	@PostMapping("join")
+	public String join(MemberVo vo, Model model) {
+		int result = service.join(vo);
+		
+		if(result != 1) {
+			model.addAttribute("message" , "회원 가입 실패");
+		}
+		model.addAttribute("message" , "회원 가입 성공");
+		
+		return "redirect:/member/list";
+}
+
 }
 
 

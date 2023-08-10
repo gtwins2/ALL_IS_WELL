@@ -25,4 +25,6 @@ public interface MemberListDao {
 
 	int edit(SqlSessionTemplate sst, MemberVo vo);
 
+	int join(SqlSessionTemplate sst, MemberVo vo);
+
 }
