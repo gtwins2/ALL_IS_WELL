@@ -36,16 +36,16 @@ public class MemberListServiceImpl implements MemberListService{
 		return dao.delete(sst, no);
 	}
 	@Override
-	public int getBoardCnt() {
-		return dao.getBoardCnt(sst);
-	}
-	@Override
 	public int edit(MemberVo vo) {
 		return dao.edit(sst , vo);
 	}
 	@Override
 	public int join(MemberVo vo) {
 		return dao.join(sst, vo);
+	}
+	@Override
+	public int getBoardCnt(Map<String, String> paramMap) {
+		return dao.getBoardCnt(sst , paramMap);
 	}
 		
 

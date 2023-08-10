@@ -2,9 +2,11 @@ package com.kh.app.duty.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.json.JSONParser;
@@ -17,11 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonArray;
 import com.kh.app.duty.service.DutyService;
 import com.kh.app.duty.vo.DutyVo;
+import com.kh.app.main.controller.CalendarService;
+import com.kh.app.main.service.MainService;
 import com.kh.app.member.list.service.MemberListService;
+import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.vo.ProceedingVo;
@@ -36,6 +42,9 @@ import lombok.extern.slf4j.Slf4j;
 public class DutyController {
 
 	private final DutyService service;
+	private final CalendarService calendarService; 
+	private final MemberService ms;
+	private final MainService ms2;
 	
 	//당직 상세 조회
 	@GetMapping(value = {"detail/{no}"})
@@ -54,50 +63,61 @@ public class DutyController {
 	
 	//당직 지정
 	@GetMapping("select")
-	public String duty(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+	public String duty(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage, ModelAndView mv, HttpServletRequest request,
 			Model model, HttpSession session , @RequestParam Map<String , String> paramMap) {
-		int listCount = service.getBoardCnt();
-		int pageLimit = 5;
-		int boardLimit = 10;
-
-		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-
-		List<DutyVo> voList = service.list(pv, paramMap);
-
-		model.addAttribute("pv" , pv);
+		
+		 int listCount = service.getBoardCnt(); int pageLimit = 5; int boardLimit = 10;
+		 
+		 PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		 
+		 List<DutyVo> voList = service.list(pv, paramMap);
+		 
+		 
+		
+        String viewpage = "calendar";
+        List<Calendar> calendar = null;
+        try {
+           calendar = calendarService.getCalendar();
+           request.setAttribute("calendarList", calendar);
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        mv.setViewName(viewpage);
+        
+        model.addAttribute("pv" , pv);
 		model.addAttribute("voList", voList);
 		
 		return "duty/select";
 	}
 	
 	@PostMapping("select")
-	public String dutySelect(DutyVo vo , @RequestParam("params") String params , Model model) {
+	public String dutySelect(MemberVo vo,ModelAndView mv, HttpServletRequest request, HttpSession session , @RequestParam("params") String params , Model model) {
 		
-		// 전송받은 파라미터 파싱
-        JSONParser parser = new JSONParser(params);
-        JsonArray jsonArray = null;
+		MemberVo loginMember = ms.login(vo);
+		session.setAttribute("loginMember", loginMember);
+		
+		String viewpage = "calendar";
+		List<Calendar> calendar = null;
 		try {
-			jsonArray = (JsonArray)parser.parse();
-		} catch (ParseException e) {
+			calendar = calendarService.getCalendar(loginMember);
+			request.setAttribute("calendarList", calendar);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-        // 파라미터에서 값을 추출
-        String title = jsonArray.get(0).toString();
-        String start = jsonArray.get(1).toString();
-        
-        vo.setTitle(title);
-        vo.setDutyDay(start);
+		mv.setViewName(viewpage);
 		
-		log.info(vo + "");
+		if(loginMember == null) {
+			return "redirect:/member/login";
+			
+		}
 		int result = service.select(vo);
 		
 		if(result != 1) {
 			model.addAttribute("message" , "duty select error");
 			return "error/errorPage";
 		}
-		
 		return "duty/select";
+		
 	}
 	
 	@GetMapping("put")

@@ -158,7 +158,7 @@ main {
 }
 
 .list-area th:nth-child(3) {
-	padding-left: 10%;
+	padding-left: 13%;
 	width: 150px;
 }
 
@@ -271,6 +271,10 @@ main {
 	border-radius: 5px;
 	font-weight: bold;
 }
+
+tr:hover {
+	  background-color: #f2f2f2;
+	}
 </style>
 </head>
 
@@ -311,15 +315,12 @@ main {
 				<table>
 					<tr>
 						<th></th>
-						<th></th>
 						<th>제목</th>
-						<th>등록일</th>
+						<th style="left: 100px;">등록일</th>
 					</tr>
 					<c:forEach items="${voList}" var="vo">
-						<tr>
+						<tr onclick="detail(${vo.no});">
 							<td></td>
-							<td><button type="button" class="btnClass" id="btn2"
-									onclick="detail(${vo.no});">조회</button></td>
 							<td>${vo.title}</td>
 							<td>${vo.enrollDate}</td>
 						</tr>

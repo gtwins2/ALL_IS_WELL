@@ -35,11 +35,6 @@ public class MemberListDaoImpl implements MemberListDao{
 	}
 
 	@Override
-	public int getBoardCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("member.getBoardCnt");
-	}
-
-	@Override
 	public int edit(SqlSessionTemplate sst , MemberVo vo) {
 		return sst.update("member.edit" , vo);
 	}
@@ -47,6 +42,11 @@ public class MemberListDaoImpl implements MemberListDao{
 	@Override
 	public int join(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.insert("member.join" , vo);
+	}
+
+	@Override
+	public int getBoardCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("member.getBoardCnt", paramMap);
 	}
 
 }

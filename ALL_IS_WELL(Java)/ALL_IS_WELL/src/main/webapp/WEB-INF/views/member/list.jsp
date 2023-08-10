@@ -322,6 +322,10 @@ main {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+tr:hover {
+	  background-color: #f2f2f2;
+	}
 </style>
 </head>
 
@@ -385,9 +389,8 @@ main {
 					</tr>
 					<c:forEach items="${voList}" var="vo">
 						<!-- <input id="getNo" type="hidden" value=${vo.no}> -->
-						<tr>
-							<th><button type="button" class="btnClass" id="btn2"
-									onclick="detail(${vo.no});">조회</button></th>
+						<tr onclick="detail(${vo.no});">
+							<th></th>
 							<th>${vo.name}</th>
 							<th>${vo.departmentName}</th>
 							<th>${vo.positionName}</th>
@@ -398,6 +401,7 @@ main {
 				</table>
 			</div>
 
+			
 			<c:set var="range" value="5" />
 			<c:set var="startPage"
 				value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
@@ -406,6 +410,7 @@ main {
 			<c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
 
 			<div class="number-area">
+			<c:if test="${pv.listCount > 10}">
 				<c:if test="${pv.currentPage > 1 }">
 					<a class="pageBtn"
 						onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>
@@ -418,6 +423,7 @@ main {
 				<c:if test="${pv.currentPage < pv.maxPage }">
 					<a class="pageBtn"
 						onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+				</c:if>
 				</c:if>
 			</div>
 

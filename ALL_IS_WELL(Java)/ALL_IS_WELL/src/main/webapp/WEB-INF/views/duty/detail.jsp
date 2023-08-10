@@ -234,7 +234,8 @@
                 </div>
                
                <button  onclick="edit();" type="submit" id="sendRequest">수정하기</button>
-               <button id="sendBack" onclick="backPage();">뒤로가기</button>
+               <button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
+               
                 
                 </form>
                 </div>

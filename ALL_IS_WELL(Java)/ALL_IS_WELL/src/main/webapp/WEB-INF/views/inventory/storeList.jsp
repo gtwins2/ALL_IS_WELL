@@ -280,7 +280,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">결재문서입고조회</span>
+                    <span id="title">재고결재문서조회</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">

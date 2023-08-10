@@ -19,6 +19,7 @@ import com.kh.app.member.list.service.MemberListService;
 import com.kh.app.member.list.service.MemberListServiceImpl;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,16 +46,23 @@ public class MemberListController {
 //		ProceedingVo vo = new ProceedingVo();
 //		vo.setMemberNo(no);
 		
-		int listCount = service.getBoardCnt();
-		int pageLimit = 5;
-		int boardLimit = 10;
+		 SearchVo svo = new SearchVo();
+	      svo.setSearchType(paramMap.get("searchType"));
+	      svo.setSearchValue(paramMap.get("searchValue"));
+	      
+	      int listCount = service.getBoardCnt(paramMap);
+	      int pageLimit = 5;
+	      int boardLimit = 10;
 
-		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+
+	      PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		List<MemberVo> voList = service.list(pv, paramMap);
 
-		model.addAttribute("pv" , pv);
-		model.addAttribute("voList", voList);
+		 model.addAttribute("voList",voList);
+	     model.addAttribute("pv", pv);
+	     model.addAttribute("svo", svo);
+
 		return "member/list";
 	}
 	
