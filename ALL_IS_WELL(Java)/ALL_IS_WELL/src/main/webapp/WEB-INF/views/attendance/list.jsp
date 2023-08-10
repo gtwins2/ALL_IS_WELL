@@ -117,17 +117,17 @@
 
     .title-area th#date,
     .list-area th#date {
-        width: 150px; /* 날짜 열의 너비 지정 */
+        width: 350px; /* 날짜 열의 너비 지정 */
     }
 
     .title-area th#writer,
     .list-area th#writer {
-        width: 450px; /* 출근시간 열의 너비 지정 */
+        width: 310px; /* 출근시간 열의 너비 지정 */
     }
 
     .title-area th#content,
     .list-area th#content {
-        width: 450px; /* 퇴근시간 열의 너비 지정 */
+        width: 310px; /* 퇴근시간 열의 너비 지정 */
     }
 
 </style>
@@ -146,9 +146,15 @@
             <div class="title-area">
                 <table>
                     <tr>
-                        <th id="date">07.18</th>
-                        <th id="writer">출근 시간 : X</th>
-                        <th id="content">퇴근 시간 : X</th>
+                        <th id="date"><fmt:formatDate value="${fvo.presenceTime}" pattern="yyyy-MM-dd"/></th>
+                        <th id="writer">출근 시간 : <fmt:formatDate value="${fvo.presenceTime}" pattern="HH시  mm분"/></th>
+                        <c:if test="${fvo.leaveTime != null}">
+                            <th id="content">퇴근 시간 : <fmt:formatDate value="${fvo.leaveTime}" pattern="HH시  mm분"/></th>
+                        </c:if>
+                        <c:if test="${fvo.leaveTime == null}">
+                            <th id="content">퇴근 시간 : X</th>
+                        </c:if>
+                        
                     </tr>
                 </table>
             </div>
@@ -162,9 +168,9 @@
                     <c:forEach items="${voList}" var="vo">
                         <tr>
                             <td hidden>${vo.memberNo}</td>
-                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="MM-dd"/></td>
-                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-                            <td><fmt:formatDate value="${vo.leaveTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd"/></td>
+                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="HH시  mm분"/></td>
+                            <td><fmt:formatDate value="${vo.leaveTime}" pattern="HH시  mm분"/></td>
                         </tr>
                     </c:forEach>
                 </table>

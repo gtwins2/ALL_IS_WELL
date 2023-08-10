@@ -5,23 +5,45 @@
 <mapper namespace="attendance">
 
  	<select id="getAttendanceList" resultType="com.kh.app.attendance.vo.AttendanceVo">
-		SELECT 
-		    A.NO,
-		    MEMBER_NO,
-		    M.NAME,
-		    PRESENCE_TIME,
-		    LEAVE_TIME,
-		    A.STATUS
-		FROM ATTENDANCE A
-		JOIN MEMBER M ON A.MEMBER_NO = M.NO
-		WHERE MEMBER_NO = #{no}
-		ORDER BY PRESENCE_TIME DESC
+	    SELECT *
+	    FROM (
+	        SELECT
+	            A.NO,
+	            MEMBER_NO,
+	            M.NAME,
+	            PRESENCE_TIME,
+	            LEAVE_TIME,
+	            A.STATUS,
+	            ROW_NUMBER() OVER (ORDER BY PRESENCE_TIME DESC) AS RN
+	        FROM ATTENDANCE A
+	        JOIN MEMBER M ON A.MEMBER_NO = M.NO
+	        WHERE MEMBER_NO = 1
+	    )
+	    WHERE RN > 1
 	</select>
 	
 	<select id="getAttendanceListCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM ATTENDANCE
 		WHERE MEMBER_NO = #{no}
+	</select>
+	
+	<select id="getPresentAttendance" resultType="com.kh.app.attendance.vo.AttendanceVo">
+	    SELECT *
+	    FROM (
+	        SELECT
+	            A.NO,
+	            MEMBER_NO,
+	            M.NAME,
+	            PRESENCE_TIME,
+	            LEAVE_TIME,
+	            A.STATUS,
+	            ROW_NUMBER() OVER (ORDER BY PRESENCE_TIME DESC) AS RN
+	        FROM ATTENDANCE A
+	        JOIN MEMBER M ON A.MEMBER_NO = M.NO
+	        WHERE MEMBER_NO = 1
+	    )
+	    WHERE RN = 1
 	</select>
 
 	<!-- 관리자 근태 조회(개수) -->

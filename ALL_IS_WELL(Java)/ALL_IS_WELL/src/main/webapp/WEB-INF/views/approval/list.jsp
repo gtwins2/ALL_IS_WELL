@@ -260,7 +260,7 @@
                         <c:forEach items="${voList}" var="vo">
                             <c:if test="${vo.memberName ne loginMember.name}">
                                 <tr onclick="detail();">
-                                    <td id="approvalNo" >${vo.no}</td>
+                                    <td id="approvalNo" hidden>${vo.no}</td>
                                     <td>${vo.memberName}(${vo.departmentName}-${vo.positionName})</td>
                                     <td id="approvalTitle">${vo.title}</td>
                                     <td><fmt:formatDate value="${vo.createDate}" pattern="yyyy-MM-dd"/></td>

@@ -477,11 +477,16 @@
                     </div>
                 </div>
             </div>
-            <c:if test="${vvo.status == 'W'}">
+            <c:if test="${vvo.status == 'W' && vvo.positionNo != '1'}">
                 <div id="buttonDiv">
                     <button id="approvalBtn">승인</button>
                     <button id="refuseBtn">반려</button>
                 </div>
+            </c:if>
+            ${vvo.positionNo}
+            ${loginMember.positionNo}
+            <c:if test="${vvo.status == 'W' && vvo.positionNo == loginMember.positionNo}">
+                <div id="buttonDiv"></div>
             </c:if>
             <c:if test="${vvo.status != 'W'}">
                 <div id="buttonDiv"></div>
