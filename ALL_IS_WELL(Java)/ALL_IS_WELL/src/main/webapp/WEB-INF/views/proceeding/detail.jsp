@@ -296,14 +296,10 @@
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
-
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
-            }
-            
+        	function backPage(){
+        		location.href = "${root}/proceeding/list"
+        	}    
+        
             function del(no){
             	location.href = "${root}/proceeding/delete/" + no
             }

@@ -307,7 +307,7 @@
                 </div>
 					
 					<button id="sendRequest" type="submit" onclick="senrRequest();">작성하기</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
                 
 				</form>
 
@@ -322,7 +322,7 @@
         <script>
             
             function backPage(){
-            	location.href = '${root}/common/member/home';
+            	location.href = '${root}/inventory/list';
             }
 
             function sendRequest(){

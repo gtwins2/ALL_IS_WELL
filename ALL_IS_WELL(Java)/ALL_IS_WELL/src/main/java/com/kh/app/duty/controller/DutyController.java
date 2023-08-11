@@ -31,6 +31,7 @@ import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.proceeding.vo.ProceedingVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -66,14 +67,18 @@ public class DutyController {
 	public String duty(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage, ModelAndView mv, HttpServletRequest request,
 			Model model, HttpSession session , @RequestParam Map<String , String> paramMap) {
 		
-		 int listCount = service.getBoardCnt(); int pageLimit = 5; int boardLimit = 10;
-		 
-		 PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		 
+		 SearchVo svo = new SearchVo();
+	      svo.setSearchType(paramMap.get("searchType"));
+	      svo.setSearchValue(paramMap.get("searchValue"));
+	      
+	      int listCount = service.getBoardCnt(paramMap);
+	      int pageLimit = 5;
+	      int boardLimit = 10;
+
+	      PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		 List<DutyVo> voList = service.list(pv, paramMap);
 		 
 		 
-		
         String viewpage = "calendar";
         List<Calendar> calendar = null;
         try {
@@ -84,10 +89,48 @@ public class DutyController {
         }
         mv.setViewName(viewpage);
         
-        model.addAttribute("pv" , pv);
+        System.out.println(listCount);
+        
 		model.addAttribute("voList", voList);
+		model.addAttribute("pv" , pv);
+		model.addAttribute("svo" , svo);
 		
 		return "duty/select";
+	}
+
+	@GetMapping("admin/select")
+	public String dutyAdmin(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage, ModelAndView mv, HttpServletRequest request,
+			Model model, HttpSession session , @RequestParam Map<String , String> paramMap) {
+		
+		SearchVo svo = new SearchVo();
+		svo.setSearchType(paramMap.get("searchType"));
+		svo.setSearchValue(paramMap.get("searchValue"));
+		
+		int listCount = service.getBoardCnt(paramMap);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		List<DutyVo> voList = service.list(pv, paramMap);
+		
+		
+		String viewpage = "calendar";
+		List<Calendar> calendar = null;
+		try {
+			calendar = calendarService.getCalendar();
+			request.setAttribute("calendarList", calendar);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		
+		System.out.println(listCount);
+		
+		model.addAttribute("voList", voList);
+		model.addAttribute("pv" , pv);
+		model.addAttribute("svo" , svo);
+		
+		return "duty/admin/select";
 	}
 	
 	@PostMapping("select")

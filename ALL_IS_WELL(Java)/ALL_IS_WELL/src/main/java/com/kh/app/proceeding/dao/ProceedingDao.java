@@ -16,7 +16,7 @@ public interface ProceedingDao {
 	
 
 	//��ü �Խñ� ���� ��ȸ
-	int getBoardCnt(SqlSessionTemplate sst);
+	int getBoardCnt(SqlSessionTemplate sst , Map<String, String> paramMap);
 	
 	//�Խñ� �ۼ�				//board/write
 	int write(SqlSessionTemplate sst , ProceedingVo vo);

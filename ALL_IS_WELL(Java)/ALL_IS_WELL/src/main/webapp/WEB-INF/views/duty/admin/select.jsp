@@ -85,7 +85,7 @@
     #sendRequest {
         font-size: 20px;
         color: white;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         size: 10px;
         border: none;
         padding: 10px 15px;
@@ -287,13 +287,13 @@
 
 <body>
     <header>
-        <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+        <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
     </header>
 
 
         <main id="wrap">
             <header>
-            <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </header>
 
 
@@ -377,7 +377,7 @@
     </main>
 
     <footer>
-        <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+        <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
     </footer>
 
     <script>

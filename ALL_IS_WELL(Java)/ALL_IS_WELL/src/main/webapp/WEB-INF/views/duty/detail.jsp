@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>당직상세조회</title>
+        <title>당직조회 및 수정</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
             #wrap{
@@ -210,7 +210,7 @@
 
             <div class="main-area">
                <div class="title-area">
-                    <span id="title">당직상세조회</span>
+                    <span id="title">당직조회 및 수정</span>
                 </div>
                 <br>
 
@@ -246,20 +246,14 @@
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
-
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
-            }
-            
-            function del(no){
-            	location.href = "${root}/duty/delete/" + no
-            }
             
             function edit(){
             	alert("당직 수정 요청이 완료되었습니다.");
+            	location.href = "${root}/duty/select"
+            }
+            
+            function backPage(){
+            	location.href = "${root}/duty/select"
             }
             
         </script>

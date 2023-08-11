@@ -49,7 +49,7 @@ main {
 #sendRequest {
 	font-size: 20px;
 	color: white;
-	background-color: #5A8CF2;
+	background-color: #FF8686;
 	size: 10px;
 	border: none;
 	padding: 10px 15px;
@@ -280,12 +280,12 @@ tr:hover {
 
 <body>
 	<header>
-		<%@ include file="/WEB-INF/views/common/member/header.jsp"%>
+		<%@ include file="/WEB-INF/views/common/admin/header.jsp"%>
 	</header>
 
 	<main id="wrap">
 		<header>
-			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp"%>
+			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp"%>
 		</header>
 
 
@@ -303,7 +303,6 @@ tr:hover {
 
 
 					</label> <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
-					
 				</form>
 					
 					<button id="sendRequest" onclick="sendRequest();">글쓰기</button>
@@ -326,11 +325,12 @@ tr:hover {
 					</c:forEach>
 				</table>
 			</div>
+
 			<div class="number-area">
                 <c:if test="${pv.listCount > 10}">
                     <c:if test="${pv.currentPage > 1}">
-                        <a href="select?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
-                        <a href="select?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                        <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                        <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
                     </c:if>      
                     <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                     <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -339,13 +339,13 @@ tr:hover {
                                 <a class="currentPage">${i}</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="select?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                                <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:if test="${pv.maxPage > pv.currentPage}">
-                        <a href="select?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
-                        <a href="select?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                        <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                        <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
                     </c:if>
                 </c:if>
             </div>
@@ -353,7 +353,7 @@ tr:hover {
 	</main>
 
 	<footer>
-		<%@ include file="/WEB-INF/views/common/member/footer.jsp"%>
+		<%@ include file="/WEB-INF/views/common/admin/footer.jsp"%>
 	</footer>
 	<script>
     

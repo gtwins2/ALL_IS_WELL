@@ -16,7 +16,7 @@ public interface DutyService {
 
 	int edit(DutyVo vo);
 
-	int getBoardCnt();
+	int getBoardCnt(Map<String, String> paramMap);
 
 	List<DutyVo> list(PageVo pv, Map<String, String> paramMap);
 
