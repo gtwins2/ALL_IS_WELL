@@ -128,7 +128,7 @@
 		    background-color: #E0E0E0;
 		    border-radius: 5px;
 		    color: black;
-		    padding: 20px 20px;
+		    padding: 10px 10px;
 		}
 		
 		
@@ -159,7 +159,7 @@
 		    height: 100%;
 		    width: 100%;
 		    color: white;
-		    padding: 20px 20px;
+		    padding: 10px 10px;
 		
 		}
 		
