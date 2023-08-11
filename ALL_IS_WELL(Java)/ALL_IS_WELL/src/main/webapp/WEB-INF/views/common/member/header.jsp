@@ -82,10 +82,10 @@
         </div>
         <div id="header-right">
             <div id="messenger">
-                <i class="fas fa-comments"></i>
+                
             </div>
             <div id="mail">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-comments"></i>
             </div>
             <div id="profile">
                 <img alt="프로필 사진" src="#">
@@ -100,7 +100,7 @@
     
     <script>
 		document.addEventListener('DOMContentLoaded', function() {
-		    var messengerIcon = document.querySelector('#messenger i');
+		    var messengerIcon = document.querySelector('#mail i');
 		    if (messengerIcon) {
 		      messengerIcon.addEventListener('click', function() {
 		    	  const width = 600;

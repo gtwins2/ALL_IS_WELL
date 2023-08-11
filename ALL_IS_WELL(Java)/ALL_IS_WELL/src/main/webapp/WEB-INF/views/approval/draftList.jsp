@@ -86,7 +86,7 @@
         padding: 5px;
         margin-right: 0; 
         padding-right: 30px;
-        width: 600px;
+        width: 500px;
         height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
@@ -104,7 +104,6 @@
     .category-area select {
         padding: 5px;
         border-radius: 10px;
-        border: 1px solid gray;
         height: 40px;
     }
 
@@ -116,18 +115,14 @@
     .category-icon::before {
         font-family: "Font Awesome 5 Free";
         content: "\f0a5";
-        font-weight: 900;
     }
 
     #search-icon {
-        position: absolute; 
-        right: 0;
-        top: 10px; 
         display: flex; 
         align-items: center;
-        padding: 0 10px; 
         cursor: pointer; 
         color: gray;
+        margin-left: 20px;
     }
 
     .fa-solid{
@@ -200,6 +195,7 @@
         border-radius: 20px;
         background-color: #A7A7A7;
         color: white;
+        border: none;
     }
 
     tbody tr:hover{

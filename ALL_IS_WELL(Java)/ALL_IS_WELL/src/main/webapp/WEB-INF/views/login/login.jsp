@@ -92,13 +92,21 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 500px;
-    height: 350px;
+    width: 100%;
+    height: 80%;
+
     border: 0px solid black;
     
 }
 
 form > div:nth-child(4) {
+   margin-right: 100px;
+}
+
+img{
+    margin: auto;
+    width: 80%;
+    height: 80%;
 	margin-right: 100px;
 }
 
@@ -112,9 +120,8 @@ form > div:nth-child(4) {
         </div>
         
         <div id="div02">
-            <div id="div02-1">
-                <div><img src="/app/resources/static/img/logo/로그인로고.PNG" alt="logo"></div>
-            </div>
+            <img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt="logo">
+
             <form action="/app/member/login" method="POST" id="div02-2">
                 <div><input type="text" placeholder="아이디를 입력하세요" name="id"></div>
                 <div><input type="password" placeholder="비밀번호를 입력하세요" name="password"></div>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -113,65 +114,12 @@
     <div id="side-bar">
         <div class="menu-item">
             <div class="menu">
-                <div>행정업무</div>
-            </div>
-            <div class="sub-menu">
-                <div class="sub-menu-item">결재
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">재고
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">회의록
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">당직
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="menu-item">
-            <div class="menu">
                 <div>의료업무</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">수술
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">진료
-                    <div class="third-sidebar">
-                        <div>예제 항목1</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">입원
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
+                <div class="sub-menu-item" onclick="location.href='${root}/receipt/regist'">접수</div>
+                <div class="sub-menu-item">진료</div>
+                <div class="sub-menu-item">처방전</div>
             </div>
         </div>
         <div class="menu-item">
@@ -179,27 +127,27 @@
                 <div>게시판</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">건의 게시판
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">문의 게시판
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">공지 게시판
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
+                <div class="sub-menu-item">공지사항</div>
+                <div class="sub-menu-item">건의사항</div>
+                <div class="sub-menu-item">문의사항</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>수술</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item">수술실</div>
+                <div class="sub-menu-item">수술 일정</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>입원</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item">입원실</div>
+                <div class="sub-menu-item">입원 일정</div>
             </div>
         </div>
         <div class="menu-item">
@@ -207,34 +155,36 @@
                 <div>메일</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">메일 쓰기
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">받은 메일함
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">보낸 메일함
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">휴지통
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
+                <div class="sub-menu-item">받은 메일함</div>
+                <div class="sub-menu-item">보낸 메일함</div>
+                <div class="sub-menu-item">휴지통</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>근태</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item">근태 목록</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>결재</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item">기안 문서 목록</div>
+                <c:if test="${loginMember.positionNo == '1'}">
+                    <div class="sub-menu-item">결재 문서 목록</div>
+                </c:if>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>회의록</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item">근태 목록</div>
             </div>
         </div>
     </div>
