@@ -18,9 +18,12 @@
 		}
 	   
 	   .main-area {
-	        width: 80%;
-        	margin: auto;
-            padding: 20px;
+	       display: flex;
+		flex-direction: column;
+		width: 80%;
+		margin: auto;
+		padding: 20px;
+		height: 100%;
 	    }
 	   
 		.title-area {
@@ -134,7 +137,7 @@
                 color: #5A8CF2;
                 font-weight: bold;
                 font-size: 15px;
-                margin-left: 170px;
+                margin-left: 200px;
                 cursor: pointer;
             }
             
