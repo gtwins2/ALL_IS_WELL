@@ -13,10 +13,11 @@
    				 width: 1200px;
     			height: 1100px;
     			margin: auto;
-    			margin-top: 20px; /* Add this line */
+    			margin-top: 20px;
 }
 
             .title-area {
+            	margin-top: 50px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
@@ -24,7 +25,8 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 25px;
+                margin-left: 20%;
             }
 
             #sendRequest, #sendBack {
@@ -107,7 +109,10 @@
             }
 
             .list-area {
+            	margin-left: 20%;
                 margin-top: 20px;
+                width: 90%;
+                height: 50%;
 
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
