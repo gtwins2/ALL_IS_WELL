@@ -52,6 +52,9 @@
         background-color: #FF8686;
          font-size: 25px;
           margin-left: 50px;
+          font-weight: bold;
+        color: white;
+        border: none;
 	}
 	.btnClass33{
 		width: 180px;
@@ -59,6 +62,9 @@
         background-color: #FF8686;
         font-size: 25px;
         margin-left: 932px;
+        font-weight: bold;
+        color: white;
+        border: none;
 	}
     #btn3{
         width: 180px;
@@ -192,21 +198,21 @@
 
     .updown2 {
         margin-left: 135px;
-    	border: 3px solid black;
+    	border: 1px solid black;
         width: 0.1px;
         height: 100px;
     }
     
     .updown1 {
         margin-left: 1020px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 0.1px;
         height: 215px;
     }
     
     .updown3 {
         margin-left: 160px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 1600px;
         height: 0.1px;
     }
@@ -215,27 +221,27 @@
         position: absolute;
         margin-left: 0px;
         margin-top: -100px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 0.1px;
         height: 395px;
     }
 
     .rightbox{
         margin-left: 135px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 135px;
         height: 0.1px;
     }
 
     .centerbox{
-        border: 3px solid black;
+        border: 1px solid black;
         width: 270px;
         height: 0.1px;
     }
 
     .leftbox{
     	margin-left: -2px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 143px;
         height: 0.1px;
     }
@@ -255,9 +261,9 @@
         top: 200px;
         width: 800px; /* Full width */
         height: 500px; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        overflow: hidden;
+        /* background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); /* 
       }
 
         /* Modal Content/Box */
@@ -268,10 +274,11 @@
         padding: 20px;
         border: 1px solid #888;
         width: 500px; /* Could be more or less, depending on screen size */
-        height: 200px;
+        height: 300px;
+        text-align: justify;
+        line-height: 1.6;
       }
 
-      /* The Close Button */
       .close {
         color: #aaaaaa;
         float: right;
@@ -512,7 +519,7 @@
 	                <br>
 	                이메일 : <span id="email"></span>
 	                <br>
-	                <br>
+	                
 	                <br>
 	                 <button id="sendRequest" onclick="put();">회원리스트조회</button>
             	</p>
