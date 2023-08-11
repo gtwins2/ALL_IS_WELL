@@ -129,6 +129,7 @@
 		    background-color: #E0E0E0;
 		    border-radius: 5px;
 		    color: black;
+		    padding: 10px 10px;
 		}
 		
 		

@@ -136,24 +136,30 @@ color: #FFFFFF;
 
 #div03{
 position: absolute;
-width: 900px;
+width: 500px;
 height: 730px;
-left: 820px;
+left: 720px;
 top: 100px;
 
 background: #FDFDFD;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 50px;
 }
-#div03-1, #div03-3,#div03-5, #div03-7{
+ #div03-3,#div03-5, #div03-7{
     position: absolute;
     width: 428px;
     height: 0px;
     border: 1px solid #9D9A9A;
 }
 #div03-1{
-    left: 720px;
-    top: 460px;  
+	line-height: 85px;
+	
+}
+
+#div03-1 > div{
+	display: grid;
+	grid-template-columns: 1fr 5fr;
+	border-top: 1px solid #9D9A9A;
 }
 
 #div03-2, #div03-4, #div03-6, #div03-8{
@@ -192,7 +198,7 @@ border-radius: 50px;
 }
 
 #div03-6{
-     width: 30px;
+    width: 30px;
     height: 30px;
     left: 725px;
     top: 570px;
@@ -288,7 +294,7 @@ color: #000000;
     width: 200px;
     height: 75px;
     left: 370px;
-    top: 750px;
+    top: 650px;
     background: #5A8CF2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
@@ -319,23 +325,33 @@ color: #000000;
 			<!-- 프로필 -->
 		    <div id="div01"></div>
 		    <div id="div01-1"><img src="${root}/resources/static/img/logo/logo2.png" alt="" width="100%" height="100%"></div>
-			<h2 id="h2">${loginMember.name}<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
+			<h2 id="h2">${loginMember.dname} ${loginMember.pname }<br><br>  ${loginMember.name} <br><br> ${loginMember.licenseNumber}</h2>
 			
 			<input type="text" value="${loginMember.no}" name="no" hidden>
 		    <!-- 출근 -->
 		    
+		    <c:if test="${check == null}">
 		    <form action="/app/attend?no=${loginMember.no}" method="post" onclick="attend();">
 				<input type="submit" id="div02" value="출근" ></input>
 		    </form>
-		    
+		    </c:if>
+		    <c:if test="${check != null }">
 		    <form action="/app/leave?no=${loginMember.no}" method="post">
 				<input type="submit" id="div07" value="퇴근">
 		    </form>
+		    </c:if>
 		
 		    <!-- 일정 -->
 		    <!-- calendar 태그 -->
          <div id='div03'>
             <div id='calendar'></div>
+            <div id="div03-1">
+            	<c:forEach items="${operation}" var="vo">
+            	<div>
+            		<div>${vo.operationName }</div>
+            	</div>
+            	</c:forEach>
+            </div>
          </div>
 
 		    <script>
@@ -350,6 +366,7 @@ color: #000000;
 		                center : "title",
 		                end : 'dayGridMonth,dayGridWeek,dayGridDay'
 		                },
+		        displayEventTime : false,
 		    	selectable : true,
 		    	droppable : true,
 		    	editable : true,

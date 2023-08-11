@@ -1,10 +1,14 @@
 package com.kh.app.main.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.main.dao.MainDao;
+import com.kh.app.member.vo.MemberVo;
+import com.kh.app.operation.vo.OperationVo;
 import com.kh.app.page.vo.PageVo;
 
 import lombok.RequiredArgsConstructor;
@@ -55,6 +59,11 @@ public class MainService {
 	
 	public int fiveCount() {
 		return dao.fiveCount(sst);
+	}
+
+
+	public List<OperationVo> operation(MemberVo loginMember) {
+		return dao.operation(sst, loginMember);
 	}
 
 }

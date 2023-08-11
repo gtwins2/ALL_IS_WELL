@@ -18,13 +18,16 @@
 		}
 	   
 	   .main-area {
-	        width: 80%;
-        	margin: auto;
-            padding: 20px;
+	       display: flex;
+		flex-direction: column;
+		width: 80%;
+		margin: auto;
+		padding: 20px;
+		height: 100%;
 	    }
 	   
 		.title-area {
-				margin-top: 20px;
+				margin-top: 40px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
@@ -48,7 +51,7 @@
 
             .search-area input[type="text"] {
                 padding: 5px;
-                margin-right: 20px;
+                margin-right: 50px;
                 width: 350px;
                 height: 40px;
                 border: 1px solid gray;
@@ -99,6 +102,7 @@
 			  border: 1px solid #C4C4C4;
 			  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 			  border-radius: 20px;
+			  min-height: 50%;
 			}
 			
 			.list-area table {

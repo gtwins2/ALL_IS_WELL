@@ -94,6 +94,7 @@ a{
     margin-top: 50px;
     width: 100%;
     height: 80%;
+
     border: 0px solid black;
     
 }
@@ -106,6 +107,7 @@ img{
     margin: auto;
     width: 80%;
     height: 80%;
+	margin-right: 100px;
 }
 
 </style>
@@ -119,6 +121,7 @@ img{
         
         <div id="div02">
             <img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt="logo">
+
             <form action="/app/member/login" method="POST" id="div02-2">
                 <div><input type="text" placeholder="아이디를 입력하세요" name="id"></div>
                 <div><input type="password" placeholder="비밀번호를 입력하세요" name="password"></div>
