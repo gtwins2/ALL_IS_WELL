@@ -208,6 +208,7 @@
         border-radius: 20px;
         background-color: #A7A7A7;
         color: white;
+        border: none;
     }
 
     tbody tr:hover{

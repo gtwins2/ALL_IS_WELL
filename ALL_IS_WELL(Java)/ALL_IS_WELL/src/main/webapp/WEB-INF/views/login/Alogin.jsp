@@ -18,13 +18,10 @@ body, *{
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 99%;
-    height: 99%;
-    margin: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
-
-
-
 
 #div01{
     display: grid;
@@ -41,11 +38,11 @@ main{
     font-weight: 700;
     font-size: 50px;
     margin-top: 250px;
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 #div01-2{
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 
@@ -64,10 +61,9 @@ input{
     border: 0px;
     border-bottom:3px solid #FF8686;
     width: 80%;
-    font-size: 30px;
+    font-size: 20px;
     height: 80%;
 }
-
 
 #login{
     width: 80%;
@@ -96,12 +92,21 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 80%;
     border: 0px solid black;
+    
 }
 
+form > div:nth-child(4) {
+   margin-right: 100px;
+}
 
+img{
+    margin: auto;
+    width: 80%;
+    height: 80%;
+}
 
 </style>
 <body>
@@ -113,10 +118,8 @@ a{
         </div>
         
         <div id="div02">
-            <div id="div02-1">
-                <div><img src="/app/resources/static/img/logo/관리자로고.jpg" alt="logo"></div>
-            </div>
-             <form action="/app/member/Alogin" method="POST" id="div02-2">
+            <img src="/app/resources/static/img/logo/관리자 로그인 로고.jpg" alt="logo">
+            <form action="/app/member/Alogin" method="POST" id="div02-2">
                 <div><input type="text" placeholder="아이디를 입력하세요" name="adminId"></div>
                 <div><input type="password" placeholder="비밀번호를 입력하세요" name="adminPwd"></div>
                 <input type="submit" id="login" value="로그인">

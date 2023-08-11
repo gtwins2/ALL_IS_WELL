@@ -18,9 +18,9 @@ body, *{
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 99%;
-    height: 99%;
-    margin: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 #div01{
@@ -61,7 +61,7 @@ input{
     border: 0px;
     border-bottom:3px solid #5A8CF2;
     width: 80%;
-    font-size: 30px;
+    font-size: 20px;
     height: 80%;
 }
 
@@ -92,13 +92,21 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 450px;
-    height: 250px;
+    width: 100%;
+    height: 80%;
     border: 0px solid black;
     
 }
 
+form > div:nth-child(4) {
+   margin-right: 100px;
+}
 
+img{
+    margin: auto;
+    width: 80%;
+    height: 80%;
+}
 
 </style>
 <body>
@@ -110,9 +118,7 @@ a{
         </div>
         
         <div id="div02">
-            <div id="div02-1">
-                <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt="logo"></div>
-            </div>
+            <img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt="logo">
             <form action="/app/member/login" method="POST" id="div02-2">
                 <div><input type="text" placeholder="아이디를 입력하세요" name="id"></div>
                 <div><input type="password" placeholder="비밀번호를 입력하세요" name="password"></div>
