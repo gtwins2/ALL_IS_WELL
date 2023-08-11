@@ -60,9 +60,12 @@
 </head>
 <body>
     <div id="header">
-        <div id="header-left">
-            <img src="/app/resources/static/img/logo/adminlogo.png" alt="로고">
-        </div>
+        <a href="${root}/Amain">
+            <div id="header-left">
+                <img src="/app/resources/static/img/logo/adminlogo.png" alt="로고">
+            </div>
+        </a>
+        
         <div id="header-center">
 
         </div>

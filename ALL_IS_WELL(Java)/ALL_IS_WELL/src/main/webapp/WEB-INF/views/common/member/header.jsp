@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -58,22 +59,33 @@
         display: grid;
         grid-template-columns: 1fr 1fr 3fr;
     }
+
+    #header-right div{
+        margin: auto;
+    }
+
+    .fas.fa-comments, .fas.fa-envelope {
+        font-size: 40px;
+        color: #878787;
+    }
 </style>
 </head>
 <body>
     <div id="header">
-        <div id="header-left">
-            <img src="/app/resources/static/img/logo/logo2.png" alt="로고" onclick="">
-        </div>
+        <a href="${root}/Mmain">
+            <div id="header-left">
+                <img src="/app/resources/static/img/logo/logo2.png" alt="로고" onclick="">
+            </div>
+        </a>
         <div id="header-center">
 
         </div>
         <div id="header-right">
             <div id="messenger">
-                <img alt="메신저">
+                <i class="fas fa-comments"></i>
             </div>
             <div id="mail">
-                <img alt="메일" src="#">
+                <i class="fas fa-envelope"></i>
             </div>
             <div id="profile">
                 <img alt="프로필 사진" src="#">
@@ -88,7 +100,7 @@
     
     <script>
 		document.addEventListener('DOMContentLoaded', function() {
-		    var messengerIcon = document.querySelector('#messenger img');
+		    var messengerIcon = document.querySelector('#messenger i');
 		    if (messengerIcon) {
 		      messengerIcon.addEventListener('click', function() {
 		    	  const width = 600;
