@@ -26,7 +26,7 @@
             height: 800px;
             background-color: white;
            
-            position: relative; /* Added position relative */
+            position: relative;
         }
 
         .search-area {
@@ -57,7 +57,7 @@
         .detail-area {
             display: flex;
             align-items: center;
-            padding: 13px;
+            padding: 20px;
             /* border-bottom: 1px solid lightgray; */
         }
 
@@ -93,7 +93,7 @@
 
         #name {
             font-weight: normal;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         #date {
@@ -131,12 +131,11 @@
 		
 		
 		hr {
-  border-style: solid;
-  border-color: #d3d3d3;
-  border-width: 1px 0 0;
-  margin: 20px 0;
-}
-    
+		  border-style: solid;
+		  border-color: #d3d3d3;
+		  border-width: 1px 0 0;
+		  margin: 20px 0;
+		}
     </style>
 </head>
 <body>
@@ -221,10 +220,10 @@
   
 
     
-    	const plusButton = document.querySelector("#plus");
-    	plusButton.addEventListener("click", function(){
-    		location.href = "/app/chatting/chattingResult";
-    	});
+   	const plusButton = document.querySelector("#plus");
+   	plusButton.addEventListener("click", function(){
+   		location.href = "/app/chatting/chattingResult";
+   	});
     </script>
 </body>
 </html>

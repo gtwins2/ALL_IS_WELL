@@ -22,8 +22,8 @@
 
         .main-wrap {
             box-sizing: border-box;
-            width: 450px;
-            height: 600px;
+            width: 600px;
+            height: 800px;
             background-color: white;
            
             position: relative; /* Added position relative */
@@ -111,6 +111,7 @@
             color: white;
             /* padding: 15px 15px; */
             font-weight: bold;
+            margin-right: 50px;
            
             cursor: pointer;
         }
@@ -122,14 +123,13 @@
 		    background-color: #555;
 		}
 		
+		
 		hr {
 		  border-style: solid;
 		  border-color: #d3d3d3;
 		  border-width: 1px 0 0;
 		  margin: 20px 0;
 		}
-
-    
     </style>
 </head>
 <body>

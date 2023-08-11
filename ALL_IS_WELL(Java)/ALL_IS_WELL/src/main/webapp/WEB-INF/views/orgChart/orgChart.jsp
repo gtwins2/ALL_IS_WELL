@@ -52,6 +52,9 @@
         background-color: #5A8CF2;
          font-size: 25px;
           margin-left: 50px;
+          border: none;
+          color: white;
+          font-weight: bold;
 	}
 	.btnClass33{
 		width: 180px;
@@ -59,6 +62,9 @@
         background-color: #5A8CF2;
         font-size: 25px;
         margin-left: 932px;
+        border: none;
+        color: white;
+        font-weight: bold;
 	}
     #btn3{
         width: 180px;
@@ -67,6 +73,7 @@
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
+       
     }
     #btn4{
         width: 180px;
@@ -186,27 +193,28 @@
     }
 
     #namearea{
-        margin-left: 100px;
-        font-size: 25px;
+        margin-left: 110px;
+        font-size: 20px;
+        
     }
 
     .updown2 {
         margin-left: 135px;
-    	border: 3px solid black;
+    	border: 1px solid black;
         width: 0.1px;
         height: 100px;
     }
     
     .updown1 {
         margin-left: 1020px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 0.1px;
         height: 215px;
     }
     
     .updown3 {
         margin-left: 160px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 1600px;
         height: 0.1px;
     }
@@ -215,27 +223,27 @@
         position: absolute;
         margin-left: 0px;
         margin-top: -100px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 0.1px;
         height: 395px;
     }
 
     .rightbox{
         margin-left: 135px;
-        border: 3px solid black;
-        width: 135px;
+        border: 1px solid black;
+        width: 134px;
         height: 0.1px;
     }
 
     .centerbox{
-        border: 3px solid black;
+        border: 1px solid black;
         width: 270px;
         height: 0.1px;
     }
 
     .leftbox{
     	margin-left: -2px;
-        border: 3px solid black;
+        border: 1px solid black;
         width: 143px;
         height: 0.1px;
     }
@@ -266,10 +274,10 @@
         margin: 15% auto; /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
+        width: 40%; /* Could be more or less, depending on screen size */
+        
       }
 
-      /* The Close Button */
       .close {
         color: #aaaaaa;
         float: right;
@@ -541,11 +549,11 @@ buttons.forEach(function(btn) {
     });
 });
 
-// 모달 닫기 버튼 클릭 이벤트 핸들러 등록
-var closeBtn = modal.querySelector(".close");
-closeBtn.addEventListener("click", function() {
-    modal.style.display = "none"; // 모달 숨기기
-});
+		// 모달 닫기 버튼 클릭 이벤트 핸들러 등록
+		var closeBtn = modal.querySelector(".close");
+		closeBtn.addEventListener("click", function() {
+		    modal.style.display = "none"; // 모달 숨기기
+		});
 
 
         

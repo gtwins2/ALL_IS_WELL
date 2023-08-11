@@ -17,14 +17,17 @@
 			grid-template-columns: 150px 1770px;
 		}
 	   
-	   .main-area {
-	        width: 80%;
-        	margin: auto;
-            padding: 20px;
+	    .main-area {
+	       display: flex;
+		flex-direction: column;
+		width: 80%;
+		margin: auto;
+		padding: 20px;
+		height: 100%;
 	    }
 	   
 		.title-area {
-				margin-top: 20px;
+				margin-top: 40px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
@@ -99,6 +102,7 @@
 			  border: 1px solid #C4C4C4;
 			  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 			  border-radius: 20px;
+			  min-height: 50%;
 			}
 			
 			.list-area table {

@@ -42,6 +42,7 @@
                 cursor: pointer;
                 border-radius: 5px;
                 font-weight: bold;
+                
             }
 
             #sendRequest:hover {
@@ -323,6 +324,8 @@
 
                     </table>
                 </div>
+                <br>
+                <br>
                 <c:set var="range" value="5" />
 			<c:set var="startPage"
 				value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
