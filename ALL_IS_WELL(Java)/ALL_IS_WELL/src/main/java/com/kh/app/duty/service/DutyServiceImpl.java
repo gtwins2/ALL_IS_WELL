@@ -39,11 +39,6 @@ public class DutyServiceImpl implements DutyService{
 	}
 
 	@Override
-	public int getBoardCnt() {
-		return dao.getBoardCnt(sst);
-	}
-
-	@Override
 	public List<DutyVo> list(PageVo pv, Map<String, String> paramMap) {
 		return dao.list(sst , pv , paramMap);
 	}
@@ -61,6 +56,11 @@ public class DutyServiceImpl implements DutyService{
 	@Override
 	public List<MemberVo> getMemberList() {
 		return dao.getMemberList(sst);
+	}
+
+	@Override
+	public int getBoardCnt(Map<String, String> paramMap) {
+		return dao.getBoardCnt(sst , paramMap);
 	}
 
 }

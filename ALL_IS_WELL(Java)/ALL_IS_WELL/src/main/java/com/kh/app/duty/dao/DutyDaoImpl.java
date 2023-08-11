@@ -3,6 +3,7 @@ package com.kh.app.duty.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -35,12 +36,8 @@ public class DutyDaoImpl implements DutyDao{
 
 	@Override
 	public List<DutyVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
-		return sst.selectList("duty.getList");
-	}
-
-	@Override
-	public int getBoardCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("duty.getBoardCnt");
+		RowBounds rb = new RowBounds(pv.getOffset(), pv.getBoardLimit());
+		return sst.selectList("duty.getList" , paramMap , rb);
 	}
 
 	@Override
@@ -56,6 +53,11 @@ public class DutyDaoImpl implements DutyDao{
 	@Override
 	public List<MemberVo> getMemberList(SqlSessionTemplate sst) {
 		return sst.selectList("duty.getMemberList");
+	}
+
+	@Override
+	public int getBoardCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("duty.getBoardCnt" , paramMap);
 	}
 
 

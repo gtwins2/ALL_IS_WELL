@@ -20,7 +20,7 @@ public interface ProceedingService {
 	int edit(ProceedingVo vo);
 	
 	//�Խñ� ��ü ���� ��ȸ
-	int getBoardCnt();
+	int getBoardCnt(Map<String , String> paramMap);
 
 	ProceedingVo getProceedingByNo(String no);
 

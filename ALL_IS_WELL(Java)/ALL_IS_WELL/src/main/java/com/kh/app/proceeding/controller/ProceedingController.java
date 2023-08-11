@@ -25,6 +25,7 @@ import com.kh.app.pool.AllConstPool;
 import com.kh.app.proceeding.dao.ProceedingDao;
 import com.kh.app.proceeding.service.ProceedingService;
 import com.kh.app.proceeding.vo.ProceedingVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,23 +43,45 @@ public class ProceedingController {
 	public String proceeding(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
 			Model model, HttpSession session , @RequestParam Map<String , String> paramMap) {
 	
-//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-//		/*
-//		 * if(loginMember == null) { throw new LoginException(); }
-//		 */
-		
-		int listCount = service.getBoardCnt();
-		int pageLimit = 5;
-		int boardLimit = 10;
+		  SearchVo svo = new SearchVo();
+	      svo.setSearchType(paramMap.get("searchType"));
+	      svo.setSearchValue(paramMap.get("searchValue"));
+	      
+	      int listCount = service.getBoardCnt(paramMap);
+	      int pageLimit = 5;
+	      int boardLimit = 10;
 
-		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+	      PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		List<ProceedingVo> voList = service.list(pv, paramMap);
 
 		model.addAttribute("pv" , pv);
 		model.addAttribute("voList", voList);
+		model.addAttribute("svo" , svo);
 		
 		return "proceeding/list";
+	}
+	@GetMapping("admin/list")
+	public String proceedingAdmin(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+			Model model, HttpSession session , @RequestParam Map<String , String> paramMap) {
+		
+		  SearchVo svo = new SearchVo();
+	      svo.setSearchType(paramMap.get("searchType"));
+	      svo.setSearchValue(paramMap.get("searchValue"));
+	      
+	      int listCount = service.getBoardCnt(paramMap);
+	      int pageLimit = 5;
+	      int boardLimit = 10;
+
+	      PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<ProceedingVo> voList = service.list(pv, paramMap);
+		
+		model.addAttribute("pv" , pv);
+		model.addAttribute("voList", voList);
+		model.addAttribute("svo" , svo);
+		
+		return "proceeding/admin/list";
 	}
 	
 	//회의록 상세조회

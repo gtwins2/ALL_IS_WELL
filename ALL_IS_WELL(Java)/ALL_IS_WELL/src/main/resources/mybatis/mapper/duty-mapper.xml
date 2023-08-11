@@ -186,10 +186,13 @@
 	M.NAME AS mname
 	FROM DUTY D
 	JOIN MEMBER M ON D.MEMBER_NO = M.NO
-	ORDER BY "start" ASC
-	<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
-	  WHERE ${searchType} LIKE '%${searchValue}%'
-	  </if>
+	<if test="searchType == 'mname' and searchValue != null">
+	WHERE M.NAME LIKE '%${searchValue}%'
+	</if>
+	<if test="searchType == 'start' and searchValue != null">
+	WHERE D.DUTY_DAY LIKE '%${searchValue}%'
+	</if>
+	ORDER BY "DUTY_DAY" ASC
 	</select>
 	
 		<insert id="put">
@@ -216,10 +219,16 @@
    </update>
    
    <select id="getBoardCnt" resultType="int">
-      SELECT COUNT(NO) FROM DUTY
-      <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
-	  WHERE ${searchType} LIKE '%${searchValue}%'
-	  </if>
+      SELECT COUNT(D.NO) FROM DUTY D
+      <if test="searchType == 'mname' and searchValue != null">
+      JOIN MEMBER M
+      ON D.MEMBER_NO = M.NO
+      WHERE M.NAME LIKE '%${searchValue}%'
+      </if>
+      
+      <if test="searchType == 'start' and searchValue != null">
+      WHERE D.DUTY_DAY LIKE '%${searchValue}%'
+      </if>
    </select>
    
    

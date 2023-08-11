@@ -20,7 +20,7 @@ public interface DutyDao {
 
 	List<DutyVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap);
 
-	int getBoardCnt(SqlSessionTemplate sst);
+	int getBoardCnt(SqlSessionTemplate sst, Map<String, String> paramMap);
 
 	DutyVo detail(SqlSessionTemplate sst, String no);
 

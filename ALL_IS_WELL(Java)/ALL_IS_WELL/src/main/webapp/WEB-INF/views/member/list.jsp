@@ -221,18 +221,21 @@ main {
 }
 
 .number-area {
-	text-align: center;
-}
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
-.number-area a {
-	display: inline-block;
-	margin: 5px;
-	padding: 8px 12px;
-	text-decoration: none;
-	border: none;
-	color: inherit;
-	font-size: 20px;
-}
+    .number-area a {
+        display: inline-block;
+        margin: 5px;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: none;
+        color: inherit;
+        font-size: 15px;
+    }
+
 
 #previous {
 	color: #5A8CF2;
@@ -242,9 +245,15 @@ main {
 	color: #5A8CF2;
 }
 
-.number-area a:hover {
-	color: #5A8CF2;
-}
+    .number-area a:hover {
+        color: #5A8CF2;
+        cursor: pointer;
+    }
+
+    .currentPage{
+        color: #5A8CF2 !important;
+        pointer-events: none;
+    }
 
 .list-area th input[type="checkbox"] {
 	appearance: none;
@@ -401,31 +410,29 @@ tr:hover {
 				</table>
 			</div>
 
-			
-			<c:set var="range" value="5" />
-			<c:set var="startPage"
-				value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
-			<c:set var="endPage"
-				value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
-			<c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
-
-			<div class="number-area">
-			<c:if test="${pv.listCount > 10}">
-				<c:if test="${pv.currentPage > 1 }">
-					<a class="pageBtn"
-						onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>
-				</c:if>
-				<c:if test="${pv.maxPage > 1 }">
-					<c:forEach begin="${startPage}" end="${endPage}" var="i">
-						<a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pv.currentPage < pv.maxPage }">
-					<a class="pageBtn"
-						onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
-				</c:if>
-				</c:if>
-			</div>
+			  <div class="number-area">
+                <c:if test="${pv.listCount > 10}">
+                    <c:if test="${pv.currentPage > 1}">
+                        <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                        <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                    </c:if>      
+                    <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                    <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                        <c:choose>
+                            <c:when test="${i == pv.currentPage}">
+                                <a class="currentPage">${i}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${pv.maxPage > pv.currentPage}">
+                        <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                        <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                    </c:if>
+                </c:if>
+            </div>
 
 
 		</div>
@@ -483,7 +490,6 @@ tr:hover {
 		
 		const searchTypeTagArr = document.querySelectorAll("select[name=searchType] > option");
 		const x = '${paramMap.searchType}';
-		console.log(x);
 		if(x == 'title'){
 			searchTypeTagArr[0].selected = true;			
 		}else if(x == '${paramMap.enroll_date}'){

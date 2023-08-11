@@ -36,7 +36,7 @@ public class ProceedingDaoImpl implements ProceedingDao{
 	}
 
 	@Override
-	public int getBoardCnt(SqlSessionTemplate sst) {
+	public int getBoardCnt(SqlSessionTemplate sst , Map<String, String> paramMap) {
 		return sst.selectOne("proceeding.getBoardCnt");
 	}
 
