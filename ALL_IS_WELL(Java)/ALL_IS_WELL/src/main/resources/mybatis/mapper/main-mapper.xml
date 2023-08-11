@@ -87,4 +87,15 @@
 
 	</select>
 	
+	<select id="operation" resultType="com.kh.app.operation.vo.OperationVo">
+		SELECT 
+		OPERATION_NAME
+		,START_DATE
+		,END_DATE
+		,PARTICIPANT_NO
+		FROM OPERATION_SCHEDULE OS
+		JOIN PARTICIPANT PC ON PC.OPERATION_SCHEDULE_NO = OS.NO
+		WHERE PARTICIPANT_NO = #{no}
+	</select>
+	
 </mapper>

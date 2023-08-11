@@ -1,9 +1,13 @@
 package com.kh.app.main.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.app.attendance.vo.AttendanceVo;
+import com.kh.app.member.vo.MemberVo;
+import com.kh.app.operation.vo.OperationVo;
 import com.kh.app.page.vo.PageVo;
 
 @Repository
@@ -44,6 +48,10 @@ public class MainDao {
 	
 	public int fiveCount(SqlSessionTemplate sst) {
 		return sst.selectOne("main.fiveCount", sst);
+	}
+
+	public List<OperationVo> operation(SqlSessionTemplate sst, MemberVo loginMember) {
+		return sst.selectList("main.operation", loginMember);
 	}
 
 }

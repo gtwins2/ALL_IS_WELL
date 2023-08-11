@@ -28,4 +28,5 @@ public class MemberVo {
 	private String vacation;
 	private String dname;
 	private String pname;
+	private String check;
 }

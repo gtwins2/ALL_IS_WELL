@@ -20,6 +20,7 @@ import com.kh.app.main.service.MainService;
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.CertificationVo;
 import com.kh.app.member.vo.MemberVo;
+import com.kh.app.operation.vo.OperationVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.patient.vo.PatientVo;
 
@@ -58,11 +59,12 @@ public class LoginController {
 	}
 	
 	@PostMapping("login")
-	public String login(MemberVo vo, HttpSession session,ModelAndView mv, HttpServletRequest request) {
+	public String login(MemberVo vo, HttpSession session,ModelAndView mv, HttpServletRequest request, Model model) {
 		MemberVo loginMember = ms.login(vo);
 		session.setAttribute("loginMember", loginMember);
 		String viewpage = "calendar";
 		List<Calendar> calendar = null;
+		List<OperationVo> operation = ms2.operation(loginMember);
 		try {
 			calendar = calendarService.getCalendar(loginMember);
 			request.setAttribute("calendarList", calendar);
@@ -70,7 +72,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		mv.setViewName(viewpage);
-		
+		model.addAttribute("operation", operation);
 		if(loginMember == null) {
 			return "login/error/loginError";
 			
