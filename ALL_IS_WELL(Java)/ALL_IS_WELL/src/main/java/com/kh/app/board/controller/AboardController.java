@@ -149,7 +149,7 @@ public class AboardController {
 	//���ǻ��� ���(������)
 	@GetMapping("suggestList")
 	public String suggestList(@RequestParam(name="page", required=false, defaultValue="1") 
-	int currentPage, Model model, HttpSession session,SuggestVo vo
+	int currentPage, Model model, HttpSession session,InquiryVo vo
 	,@RequestParam Map<String , String> paramMap) {
 		
 		SearchVo svo = new SearchVo();
@@ -165,6 +165,10 @@ public class AboardController {
 		List<SuggestVo> voList = ss.suggestList(pv, paramMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList" ,voList);
+		
+		System.out.println(listCount);
+		System.out.println(voList);
+		
 		return "board/suggestList";
 	}
 	

@@ -30,7 +30,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
             }
             
             #sendMail {
@@ -65,8 +65,8 @@
             .search-area input[type="text"] {
                 padding: 5px;
                 margin-right: 20px;
-                width: 300px;
-                height: 30px;
+                width: 350px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -193,6 +193,10 @@
 }
      
 
+#tr:hover:not(#title) {
+			    background-color: #FF8686;
+			    color: white;
+			}
         </style>
     </head>
 
@@ -210,7 +214,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">건의사항</span>
+                    <span id="title">건의 사항</span>
 
                     <form action="" class="search-area" method="get">
                     <label for="search" class="category-area">
@@ -221,23 +225,22 @@
                     <input type="text" id="search-input" name="searchValue">
                     <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
              	    </form>
-
-                    <div></div>
+					<div></div>
                 </div>
                 <br>
 
                 <div class="list-area">
                     <table>
                     	<thead>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성일</th>
+	                        <th>번호</th>
+	                        <th>제목</th>
+	                        <th>작성일</th>
                         </thead>
 						<tbody>
                         <c:forEach items="${voList}" var="vo">
                             
 
-                                <tr>
+                                <tr  id="tr">
                                     <td>${vo.no}</td>
                                     <td>${vo.title}</td>
                                     <td>${vo.enrollDate}</td>
@@ -258,8 +261,8 @@
                <div class="number-area">
                <c:if test="${pv.listCount > 10}">
                 <c:if test="${pv.currentPage > 1}">
-                    <a href="noticeList?page=1">&laquo;</a>
-                    <a href="noticeList?page=${pv.currentPage - 1}">&lt;</a>
+                    <a href="suggestList?page=1">&laquo;</a>
+                    <a href="suggesteList?page=${pv.currentPage - 1}">&lt;</a>
                 </c:if>      
                 <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                 <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -268,13 +271,13 @@
                             <a class="currentPage">${i}</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="noticeList?page=${i}">${i}</a>
+                            <a href="suggestList?page=${i}">${i}</a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
                 <c:if test="${pv.maxPage > pv.currentPage}">
-                    <a href="noticeList?page=${pv.currentPage + 1}">&gt;</a>
-                    <a href="noticeList?page=${pv.maxPage}">&raquo;</a>
+                    <a href="suggestList?page=${pv.currentPage + 1}">&gt;</a>
+                    <a href="suggestList?page=${pv.maxPage}">&raquo;</a>
                 </c:if>
                 </c:if>
             </div>
