@@ -12,7 +12,7 @@
             .main-area {
    				 width: 1200px;
     			height: 1100px;
-    			margin: auto;
+    			left: 300px;
     			margin-top: 20px;
 }
 
@@ -25,7 +25,7 @@
             }
 
             #title {
-                font-size: 25px;
+                font-size: 35px;
                 margin-left: 20%;
             }
 
@@ -111,7 +111,7 @@
             .list-area {
             	margin-left: 20%;
                 margin-top: 20px;
-                width: 90%;
+                width: 80%;
                 height: 50%;
 
                 background: #FFFFFF;
@@ -122,9 +122,6 @@
 
             .list-area table {
                 border-collapse: collapse;
-                width: 100%;
-
-
                 width: 100%;
 
             }
@@ -215,9 +212,34 @@
             	margin-left: 70px;
             	font-size: 30px;
             }
-            div > textarea{
-            	margin-left: 100px;
-            }
+
+			tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
 
         </style>
     </head>
@@ -240,56 +262,40 @@
 
                 </div>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
 				<div class="list-area">
                     <table>
-
-					<br>
-					<br>
-					<input type="hidden" value=${loginMember.no} >
-					<div id="title-area" >제목<textarea id="title-area" cols="60" rows="1" name="title"  readonly>${vo.title}</textarea></div>
-					<br>					
-					<div id="title-area">작성자번호<textarea id="date-area" cols="60" rows="1"  name="memberNo" readonly>${vo.memberNo}</textarea></div>
-					<br>
-					<div id="title-area">작성일<textarea id="date-area" cols="60" rows="1"  name="enrollDate" readonly>${vo.enrollDate}</textarea></div>
-					<br>
-					<div id="title-area">수정일<textarea id="date-area" cols="60" rows="1"  name="modifyDate" readonly>${vo.modifyDate}</textarea></div>
-					<br>
-					<br>
-					<!-- <div id="content2">내용 -->
-					<div style="font-size:30px;">내용</div>
-					<div id="content-area">
-                        <textarea id="content-area2" cols="60" rows="10" name="content" readonly>${vo.content}</textarea>
-
-                    </div>
-                    
-                    
-                    
-     
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					
+					<tr>
+                        <td style="width: 200px;">제목</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>작성자번호</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>작성일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="enrollDate" value="${vo.enrollDate}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>수정일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="modifyDate" value="${vo.modifyDate}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>내용</td>
+                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" readonly></td>
+                    </tr>
 
                     </table>
                 </div>
 					
+					<div id="buttonDiv">
 					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
 					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					</div>
                 
                 </div>
-                <br>
-                <br>
                 <br>
 
             </div>

@@ -242,7 +242,7 @@
     .leftbox{
     	margin-left: -2px;
         border: 1px solid black;
-        width: 143px;
+        width: 139px;
         height: 0.1px;
     }
     

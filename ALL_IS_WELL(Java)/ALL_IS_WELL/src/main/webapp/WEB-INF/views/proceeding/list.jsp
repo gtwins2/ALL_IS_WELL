@@ -130,7 +130,6 @@ main {
 .list-area table {
 	border-collapse: collapse;
 	width: 100%;
-	width: 100%;
 }
 
 .list-area th, .list-area td {

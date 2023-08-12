@@ -225,18 +225,34 @@
 		border-collapse: collapse;
 	}
 	
-	td{
-		border-right: 1px solid black;
-		text-align: center;
-	}
-	th{
-		border-right: 1px solid black;
-		border-bottom: 1px solid black;
-	}
 	
-	td:nth-last-child() {
-		border-right: none;	
-	}
+	tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
         </style>
     </head>
 
@@ -267,29 +283,15 @@
 			<form action="${root}/edit/${vo.no}" method="post" >
 					
 					<table id="edit-area">
-				  <thead>
-				    <tr>
-				      <th>사번</th>
-				      <th>소속 부서</th>
-				      <th>직급</th>
-				      <th>이름</th>
-				      <th>상태</th>
-				      <th>입사일</th>
-				      <th>주민등록번호</th>
-				      <th>이메일</th>
-				      <th>휴대폰번호</th>
-				      <th>사무실번호</th>
-				      <th>면허번호</th>
-				      <th>연봉</th>
-				      <th>프로필 사진</th>
-				      <th style="border-right: none;">서명 이미지</th>
-				    </tr>
-				  </thead>
-				  
-				      <tr>
-				        <td><input type="text" name="no" value="${vo.no}" readonly="readonly"></td>
-				        <td>
-				        	<select name="departmentNo" style="height: 30px;">
+					
+					<tr>
+                        <td style="width: 300px;">사번</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="memberNo" value="${vo.no}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>소속 부서</td>
+                        <td colspan="2">
+                        	<select name="departmentNo" style="width: 1000px; height:40px; font-size: 20px;">
 				        		<option value="'1'">외과</option>
 				        		<option value="2">내과</option>
 				        		<option value="3">소아청소년과</option>
@@ -301,9 +303,12 @@
 				        		<option value="9">산부인과</option>
 				        		<option value="10">응급의학과</option>
 				        	</select>
-				        </td>
-				        <td>
-				        	<select name="positionNo" style="height: 30px;">
+			        	</td>
+                    </tr>
+					<tr>
+                        <td>직급</td>
+                        <td colspan="2">
+                        	<select name="positionNo" style="width: 1000px; height:40px; font-size: 20px;" type="text">
 				        		<option value="'1'">교수</option>
 				        		<option value="2">레지던트</option>
 				        		<option value="3">펠로우</option>
@@ -314,27 +319,63 @@
 				        		<option value="8">주임간호사</option>
 				        		<option value="9">간호사</option>
 				        	</select>
-				        </td>
-				        <td><input type="text" name="name" value="${vo.name}"></td>
-				        <td><input type="text" name="status" value="${vo.status}" readonly="readonly"></td>
-				        <td><input type="text" name="enrollDate" value="${vo.enrollDate}" readonly="readonly" style="width: 71px"></td>
-				        <td><input type="text" name="registrationNumber" value="${vo.registrationNumber}"style="width: 105px"></td>
-				        <td><input type="text" name="email" value="${vo.email}" style="width: 115px"></td>
-				        <td><input type="text" name="phoneNumber" value="${vo.phoneNumber}" style="width: 90px"></td>
-				        <td><input type="text" name="officeNumber" value="${vo.officeNumber}" style="width: 75px"></td>
-				        <td><input type="text" name="licenseNumber" value="${vo.licenseNumber}" style="width: 80px"></td>
-				        <td><input type="text" name="yearSalary" ></td>
-				        <td><img src="${vo.profile}" alt="프로필사진" /></td>
-				        <td style="border-right: none;"><img src="${vo.sign}" alt="서명이미지" /></td>
-				      </tr>
-				</table>
-                    
-                    
-                    
+                        </td>
+                    </tr>
+					<tr>
+                        <td>이름</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="name" value="${vo.name}"></td>
+                    </tr>
+					<tr>
+                        <td>상태</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="status" value="${vo.status}"></td>
+                    </tr>
+					<tr>
+                        <td>입사일</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="enrollDate" value="${vo.enrollDate}"></td>
+                    </tr>
+					<tr>
+                        <td>주민등록번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="registrationNumber" value="${vo.registrationNumber}"></td>
+                    </tr>
+					<tr>
+                        <td>이메일</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="email" value="${vo.email}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>휴대폰번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="phoneNumber" value="${vo.phoneNumber}"></td>
+                    </tr>
+					<tr>
+                        <td>사무실번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="officeNumber" value="${vo.officeNumber}"></td>
+                    </tr>
+					<tr>
+                        <td>면허번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="licenseNumber" value="${vo.licenseNumber}"></td>
+                    </tr>
+					<tr>
+                        <td>연봉</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="yearSalary" value="${vo.yearSalary}"></td>
+                    </tr>
+					<tr>
+                        <td>프로필 사진</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="profile" value="${vo.profile}"></td>
+                    </tr>
+					<tr>
+                        <td>서명 이미지</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="sign" value="${vo.sign}"></td>
+                    </tr>
+
+                  
+                    </table>
+					
+					<div id="buttonDiv">
+					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
+					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button id="sendRequest"  type="button" onclick="backPage();">뒤로가기</button>
+					</div>
                 </div>
 					
-					<button type="submit" id="sendRequest" onclick="sub();">수정완료</button>
-					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
 					
                 </form>
                 </div>

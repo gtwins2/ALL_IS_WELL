@@ -8,15 +8,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>회의록상세조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
-        <style>
+       <style>
             .main-area {
    				 width: 1200px;
     			height: 1100px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
+    			left: 300px;
+    			margin-top: 20px;
 }
 
             .title-area {
+            	margin-top: 50px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
@@ -24,7 +25,8 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 25px;
+                margin-left: 20%;
             }
 
             #sendRequest, #sendBack {
@@ -107,7 +109,10 @@
             }
 
             .list-area {
+            	margin-left: 20%;
                 margin-top: 20px;
+                width: 80%;
+                height: 50%;
 
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
@@ -210,9 +215,34 @@
             	margin-left: 70px;
             	font-size: 30px;
             }
-            div > textarea{
-            	margin-left: 100px;
-            }
+
+			tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
 
         </style>
     </head>
@@ -235,54 +265,41 @@
 
                 </div>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
 				<div class="list-area">
 			<form action="${root}/proceeding/edit/${vo.no}" method="post" >
                     <table>
-
-					
-					<input type="hidden" value=${loginMember.no} >
-					<div id="title-area" >제목<textarea id="title-area" cols="60" rows="1" name="title">${vo.title}</textarea></div>
-					<br>					
-					<div id="title-area">작성자번호<textarea id="date-area" cols="60" rows="1"  name="memberNo" readonly>${vo.memberNo}</textarea></div>
-					<br>
-					<div id="title-area">작성일<textarea id="date-area" cols="60" rows="1"  name="enrollDate" readonly>${vo.enrollDate}</textarea></div>
-					<br>
-					<!-- <div id="content2">내용 -->
-					<div style="font-size:30px;">내용</div>
-					<div id="content-area">
-                        <textarea id="content-area2" cols="60" rows="10" name="content">${vo.content}</textarea>
-
-                    </div>
-                    
-                    
-                    
-     
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					
+					<tr>
+                        <td style="width: 200px;">제목</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>작성자번호</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" ></td>
+                    </tr>
+					<tr>
+                        <td>작성일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="enrollDate" value="${vo.enrollDate}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>수정일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="modifyDate" value="${vo.modifyDate}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>내용</td>
+                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" ></td>
+                    </tr>
 
                     </table>
                 </div>
 					
+					<div id="buttonDiv">
 					<button type="submit" id="sendRequest">수정완료</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
-					<!-- <button id="sendRequest" onclick="edit();">수정하기</button> -->
+					</div>
 					
                 </form>
                 </div>
-                <br>
-                <br>
                 <br>
 
             </div>
