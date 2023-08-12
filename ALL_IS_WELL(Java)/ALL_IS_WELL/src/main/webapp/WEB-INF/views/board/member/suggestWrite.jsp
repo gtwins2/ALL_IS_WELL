@@ -14,10 +14,9 @@
 
 #content{
 	width: 1920px;
-	height: 1500px;
+	height: 750px;
 	display: grid;
-	grid-template-columns: 300px 1620px;
-	border-bottom: 1px ;
+	grid-template-columns: 150px 1770px;
 }
 
 #sendMail{
@@ -25,7 +24,7 @@
 	width: 115px;
 	height: 53px;
 	left: 367px;
-	top: 200px;
+	top: 125px;
 	background: #5A8CF2;
 	border-radius: 25px;
 	border: 0px;
@@ -44,19 +43,19 @@
 
 hr{
 	position: absolute;
-	width: 1617px;
+	width: 1770px;
 	height: 0px;
-	left: 303px;
-	top: 300px;
+	left: 150px;
+	top: 200px;
 	border: 1px solid #D1CECE;
 }
 
 #div01{
 	position: absolute;
 	width: 1617px;
-	height: 900px;
+	height: 700px;
 	left: 303px;
-	top: 340px;
+	top: 240px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 3fr;
 	
@@ -73,35 +72,23 @@ hr{
 	grid-template-columns: 1fr 3fr;
 }
 
-#file{
-	width: 115px;
-	height: 53px;
-	background: #5A8CF2;
-	border-radius: 25px;
-	border: 0px;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 20px;
-	line-height: 24px;
-	color: #FFFFFF;
-}
+
 
 #div01 > div:nth-child(1) > div > input{
 	width:80%;
 	font-size: 25px;
-
 }
 
-#div01 > div:nth-child(2) >  div:nth-child(2) {
-	text-align: left;
-	margin-left: 120px;
-}
+
 
 textarea{
 	width:80%;
-	height: 400px;
+	height: 250px;
 	font-size: 25px;
+	resize: none;
+	border: 1px solid gray;
+	font-family: 'Inter';
+	font-style: normal;
 }
 </style>
 </head>

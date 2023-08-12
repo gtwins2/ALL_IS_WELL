@@ -24,7 +24,7 @@
 	left: 439px;
 	top: 306px;
 	background: #FFFFFF;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border: 1px solid lightgray;
 	border-radius: 50px;
  	width: 1200px;
 	height: 450px;
@@ -35,11 +35,13 @@
 
 #div01 > div{text-align: center;}
 
-#div01-1{line-height: 50px;}
+#div01-1{line-height: 45px; margin-top: 15px; font-size: 20px;}
 
 #div01 > div > input{
 	width: 80%;
 	border: 1px solid #B2B2B2;
+	font-size: 20px;
+	
 }
 
 #input{height: 300px;}

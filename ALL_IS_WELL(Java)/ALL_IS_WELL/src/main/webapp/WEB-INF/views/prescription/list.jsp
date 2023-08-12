@@ -31,7 +31,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
             }
 
             .search-area {
@@ -44,8 +44,8 @@
             .search-area input[type="text"] {
                 padding: 5px;
                 margin-right: 20px;
-                width: 300px;
-                height: 30px;
+                width: 350px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -200,7 +200,8 @@
                     <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
 
-                    
+                    <div></div>
+                    <div></div>
                 </div>
                
                 <div class="list-area">

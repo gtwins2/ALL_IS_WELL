@@ -101,7 +101,7 @@
 		)
 		VALUES
 		(
-			SEQ_NOTICE_REPLY_NO.NEXTVAL
+			SEQ_INQUIRY_REPLY_NO.NEXTVAL
 			,#{inquiryNo}
 			,'1'
 			,#{content}

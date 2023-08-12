@@ -31,10 +31,10 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
             }
 
-            .search-area {
+            	    .search-area {
                 display: flex;
                 align-items: center;
             }
@@ -44,11 +44,12 @@
             .search-area input[type="text"] {
                 padding: 5px;
                 margin-right: 20px;
-                width: 300px;
-                height: 30px;
+                width: 350px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
+
 
 
 
@@ -165,6 +166,7 @@
     color: #FFFFFF;
     background: #5A8CF2;
     border: 0px;
+    width: 60px;
 }
 
 #div01:hover{
@@ -172,6 +174,11 @@
 	transition: 0.7s;
 }
 
+.list-area tr:hover:not(#title) {
+			    background-color: #5A8CF2;
+			    color: white;
+			}
+	
 
 
         </style>
@@ -203,17 +210,19 @@
                     <input type="text" id="search-input" name="searchValue">
                     <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </form>
-
+				<div></div>
                     
                 </div>
                
                 <div class="list-area">
                     <table>
+                    	<tr id="title">
                         <th>이름</th>
                         <th>생년월일</th>
                         <th>성별</th>
                         <th>이메일</th>
                         <th></th>
+                        </tr>
 						<c:forEach items="${voList}" var="vo">
                             
                             <form action="/app/receipt/list" method="post">

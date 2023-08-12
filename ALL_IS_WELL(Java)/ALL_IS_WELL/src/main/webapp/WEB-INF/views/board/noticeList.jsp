@@ -30,7 +30,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
             }
             
             #sendMail {
@@ -65,8 +65,8 @@
             .search-area input[type="text"] {
                 padding: 5px;
                 margin-right: 20px;
-                width: 300px;
-                height: 30px;
+                width: 350px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -192,7 +192,10 @@
 	transition: 0.7s;
 }
      
-
+#tr:hover:not(#title) {
+			    background-color: #FF8686;
+			    color: white;
+			}
         </style>
     </head>
 
@@ -228,16 +231,18 @@
 
                 <div class="list-area">
                     <table>
-                    	<thead>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성일</th>
+                    	<thead >
+                    		<tr>
+	                        <th>번호</th>
+	                        <th>제목</th>
+	                        <th>작성일</th>
+	                        </tr>
                         </thead>
-						<tbody>
+						<tbody >
                         <c:forEach items="${voList}" var="vo">
                             
 
-                                <tr>
+                                <tr id="tr">
                                     <td>${vo.no}</td>
                                     <td>${vo.title}</td>
                                     <td>${vo.enrollDate}</td>

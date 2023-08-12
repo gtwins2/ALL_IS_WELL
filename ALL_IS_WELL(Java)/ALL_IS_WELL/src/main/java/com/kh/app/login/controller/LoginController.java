@@ -2,6 +2,7 @@ package com.kh.app.login.controller;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.app.admin.vo.AdminVo;
+import com.kh.app.approval.service.ApprovalService;
+import com.kh.app.approval.vo.ApprovalVo;
+import com.kh.app.attendance.service.AttendanceService;
+import com.kh.app.attendance.vo.AttendanceVo;
+import com.kh.app.board.service.InquiryService;
+import com.kh.app.board.service.NoticeService;
+import com.kh.app.board.service.SuggestService;
+import com.kh.app.board.vo.NoticeVo;
 import com.kh.app.main.controller.CalendarService;
 import com.kh.app.main.service.MainService;
 import com.kh.app.member.service.MemberService;
@@ -23,6 +33,7 @@ import com.kh.app.member.vo.MemberVo;
 import com.kh.app.operation.vo.OperationVo;
 import com.kh.app.page.vo.PageVo;
 import com.kh.app.patient.vo.PatientVo;
+import com.kh.app.search.vo.SearchVo;
 
 import lombok.RequiredArgsConstructor;
 import net.nurigo.sdk.NurigoApp;
@@ -41,6 +52,11 @@ public class LoginController {
 	private final MemberService ms;
 	private final MainService ms2;
 	DefaultMessageService messageService;
+	private final NoticeService ns;
+	private final SuggestService ss;
+	private final InquiryService is;
+	private final ApprovalService as;
+	private final AttendanceService as2;
 	
 	@Autowired
 	public void ExampleController() {
@@ -59,24 +75,45 @@ public class LoginController {
 	}
 	
 	@PostMapping("login")
-	public String login(MemberVo vo, HttpSession session,ModelAndView mv, HttpServletRequest request, Model model) {
+	public String login(MemberVo vo, HttpSession session,ModelAndView mv, HttpServletRequest request, 
+			Model model, @RequestParam Map<String , String> paramMap) {
 		MemberVo loginMember = ms.login(vo);
 		session.setAttribute("loginMember", loginMember);
+		
+		if(loginMember == null) {
+			return "login/error/loginError";
+			
+		}
+		
 		String viewpage = "calendar";
+		
 		List<Calendar> calendar = null;
 		List<OperationVo> operation = ms2.operation(loginMember);
+		
+		PageVo pv = new PageVo(3, 3, 3, 3);
+		List<NoticeVo> voList = ns.noticeList(pv, paramMap);
+		model.addAttribute("voList" ,voList);
+		
+		SearchVo svo = new SearchVo();
+		svo.setNo(loginMember.getNo());
+		List<ApprovalVo> voList2 = as.getApprovalList(pv, svo);
+		model.addAttribute("voList2" ,voList2);
+		
+		String no = loginMember.getNo();
+		List<AttendanceVo> voList3 = as2.getAttendanceList(pv, no);
+		model.addAttribute("voList3" ,voList3);
+		
 		try {
 			calendar = calendarService.getCalendar(loginMember);
 			request.setAttribute("calendarList", calendar);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		mv.setViewName(viewpage);
 		model.addAttribute("operation", operation);
-		if(loginMember == null) {
-			return "login/error/loginError";
-			
-		}
+		
+		
 		
 		return "main/Mmain";
 	}
