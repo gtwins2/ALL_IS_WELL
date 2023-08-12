@@ -9,14 +9,15 @@
         <title>회의록작성하기</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-            .main-area {
+           .main-area {
    				 width: 1200px;
-    			height: 1000px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
+    			height: 1100px;
+    			left: 300px;
+    			margin-top: 20px;
 }
 
             .title-area {
+            	margin-top: 50px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
@@ -24,7 +25,8 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 25px;
+                margin-left: 20%;
             }
 
             #sendRequest, #sendBack {
@@ -107,7 +109,10 @@
             }
 
             .list-area {
+            	margin-left: 20%;
                 margin-top: 20px;
+                width: 80%;
+                height: 50%;
 
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
@@ -118,10 +123,6 @@
             .list-area table {
                 border-collapse: collapse;
                 width: 100%;
-
-
-                width: 100%;
-
             }
 
            
@@ -208,10 +209,38 @@
             	height: 300px;
             	margin-top: -30px;
             	margin-left: 70px;
+            	font-size: 30px;
             }
-            div > textarea{
-            	margin-left: 100px;
-            }
+
+			tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
+
+        </style>
 
         </style>
     </head>
@@ -238,43 +267,34 @@
 
                 </div>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
 				<form action="${root}/proceeding/write" method="post">
 					
 				<div class="list-area">
-                    <table>
+				<table>
+					<tr>
+                        <td style="width: 200px;">제목</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title"></td>
+                    </tr>
+					<tr>
+                        <td>회의예정일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="dueDate" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate" ></td>
+                    </tr>
+					<tr>
+                        <td>내용</td>
+                        <td colspan="2"><input style="width: 800px; height:400px;" type="text" name="content" ></td>
+                    </tr>
 
-					<br>
-					<br>
-					<input type="hidden" value=${loginMember.no} >
-					<div id="title-area">제목  <textarea id="title-area" cols="60" rows="1" name="title"></textarea></div>
-					
-					
-					<br>
-					<br>
-					<div id="title-area">회의예정일<textarea style="margin-left: 18px;" id="date-area" cols="60" rows="1" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate"></textarea></div>
-					<br>
-					<br>
-					<div id="content2">내용
-					<div id="content-area" style="margin-left: 100px;">
-                        <textarea id="content-area2" cols="60" rows="10" name="content"></textarea>
-
-                    </div>
-                    
                     </table>
                 </div>
 					
-					<button id="sendRequest" type="submit">작성하기</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
-                
+					<div id="buttonDiv">
+					<button type="submit" id="sendRequest">작성완료</button>
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
+					</div>
+				
 				</form>
+				
 				                    
-                <br>
-                <br>
-                <br>
 
                 </div>
             </div>
@@ -287,7 +307,7 @@
         <script>
             
             function backPage(){
-            	location.href = '${root}/common/member/home';
+            	location.href = '${root}/proceeding/list';
             }
             
             

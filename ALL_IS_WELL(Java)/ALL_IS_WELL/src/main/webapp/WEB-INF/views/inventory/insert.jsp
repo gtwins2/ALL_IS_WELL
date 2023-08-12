@@ -108,11 +108,11 @@
 
             .list-area {
                 margin-top: 20px;
-
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 border-radius: 20px;
+                width: 400px;
             }
 
             .list-area table {
@@ -271,7 +271,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">재고 입고</span>
+                    <span id="title">재고 수정</span>
 
                 </div>
                 <br>
@@ -299,15 +299,16 @@
 					
 					<br>
 					<br>
-					<div id="title-area">개수 <input type="number" name="count" id="put"> </div>
+					<div id="title-area">개수 <input type="number" name="count" id="put" style="width: 128px; margin-left: 95px;"> </div>
 					<br>
 					<br>
 
                     </table>
                 </div>
-					
+					<div style="margin-left: 170px;">
 					<button id="sendRequest" type="submit" onclick="senrRequest();">작성하기</button>
 					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
+					</div>                
                 
 				</form>
 

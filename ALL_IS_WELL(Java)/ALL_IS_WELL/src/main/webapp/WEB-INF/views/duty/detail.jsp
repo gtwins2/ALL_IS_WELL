@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>당직조회 및 수정</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
-        <style>
+        <style>	
             #wrap{
 				width: 1920px;
 				display: grid;
@@ -17,12 +17,14 @@
 		
 		    main{
 		        min-height: 100%;
+		        
 		    }
 		
 		    .main-area {
 		        width: 70%;
 		        min-height: 80%;
 		        margin-left: 100px;
+		    	
 		    }
 
             .title-area {
@@ -30,6 +32,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                 margin-left: 230px;
             }
 
             #title {
@@ -55,6 +58,7 @@
 
             .list-area {
                 margin-top: 20px;
+                margin-left: 230px;
             }
 
 
@@ -168,31 +172,41 @@
                 color: #5A8CF2;
             }
 
-
-        /*     .list-area td input[type="checkbox"] {
-                appearance: none;
-                width: 20px;
-                height: 20px;
-                border: 2px solid #C4C4C4;
-                border-radius: 3px;
-                outline: none;
-                vertical-align: middle;
-                position: relative;
-                top: 2px;
-                cursor: pointer;
-            } */
-
             #content{
                 display: grid;
                 grid-template-columns: 300px 1620px;
             }
+            
+            		tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-			input{
-			border: none;
-			}
-			input:hover{
-			background-color: lightgray;
-			}
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
+    .list-area{
+    	width: 1000px;
+    }
         </style>
     </head>
 
@@ -217,25 +231,31 @@
             <div class="list-area">
             <form action="${root}/duty/edit/${vo.no}" method="post" >
                     <table>
-                    <tr>
-                       <th>당직번호</th>
-                       <th>당직자번호</th>
-                       <th>당직자이름</th>
-                       <th>당직예정일</th>
+					<tr>
+                        <td style="width: 250px;">당직번호</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="no" value="${vo.no}" readonly></td>
                     </tr>
-                    <tr>
-                  <input type="hidden" value=${loginMember.no}>
-                  <td><input type="text" id="title-area" name="no" value="${vo.no}" readonly></td>
-                  <td><input type="text" id="title-area" name="mno" value="${vo.mno}"></td>
-                  <td><input type="text" id="title-area" name="mname" value="${vo.mname}"></td>
-                  <td><input type="text" id="title-area" name="dutyDay" value="${vo.start}"></td>
-               </tr>
+					<tr>
+                        <td>당직자번호</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="mno" value="${vo.mno}"></td>
+                    </tr>
+					<tr>
+                        <td>당직자이름</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="mname" value="${vo.mname}"></td>
+                    </tr>
+					<tr>
+                        <td>당직예정일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="dutyDay" value="${vo.start}"></td>
+                    </tr>
+
                     </table>
                 </div>
-               
-               <button  onclick="edit();" type="submit" id="sendRequest">수정하기</button>
-               <button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
-               
+					
+					<div id="buttonDiv">
+					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
+					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					</div>
                 
                 </form>
                 </div>

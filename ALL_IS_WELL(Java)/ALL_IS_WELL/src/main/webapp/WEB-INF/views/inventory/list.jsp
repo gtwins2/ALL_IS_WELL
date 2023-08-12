@@ -124,17 +124,14 @@
             .list-area table {
                 border-collapse: collapse;
                 width: 100%;
-
-
-                width: 100%;
-
+  				margin: auto;
             }
 
             .list-area th,
             .list-area td {
                 padding: 20px;
                 border-bottom: 1px solid #ddd;
-                text-align: left;
+                text-align: center;
             }
 
             .list-area th {
@@ -143,51 +140,6 @@
 
             }
 
-            .list-area th:first-child,
-            .list-area td:first-child {
-                width: 30px;
-            }
-
-            .list-area th:last-child,
-            .list-area td:last-child {
-                width: 100px;
-            }
-
-            .list-area td input[type="checkbox"] {
-                margin: 0;
-                padding: 0;
-            }
-
-            .list-area th:nth-child(3) {
-                padding-left: 10%;                
-                width: 150px;
-            }
-
-            .list-area th:nth-child(2) {
-                padding-left: 10%;
-                width: 150px;
-            }
-
-            .list-area th:nth-child(4) {
-                padding-left: 10%;
-                width: 150px;
-            }
-
-            .list-area td:nth-child(3) {
-                padding-left: 10.5%;
-                width: 150px;                
-            }
-
-            .list-area td:nth-child(2) {
-                padding-left: 10.5%;
-                width: 150px;                
-            }
-
-            .list-area td:nth-child(4) {
-                padding-left: 10%;
-                width: 150px;                
-            }
-			
 			
 .list-area td:nth-child(4) {
     white-space: nowrap;
@@ -292,31 +244,26 @@
 					
 
                         </label>
-                        <input type="text" id="search-input" name="searchValue"> <a
-						href="http://127.0.0.1:8888/app/inventory/list?page=1"
-						id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-					<input type="submit" value="검색">
+                        <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </form>
-                   
-
+                   <div>
+	                   <button id="sendRequest" onclick="sendRequest();">입고조회</button>
+	                   <button id="sendRequest" onclick="sendRequest2();" >재고수정</button>
+					</div>
 
                 </div>
                 <br>
 					
-                        <button id="sendRequest" onclick="sendRequest();">입고조회</button>
-                        <button id="sendRequest" onclick="sendRequest2();" >재고수정</button>
+                        
                 <div class="list-area">
                     <table>
                     <tr>
-                        <th>
-                        </th>
                         <th>종류</th>
                         <th>개수</th>
                     </tr>
 
                         <c:forEach items="${voList}" var="vo">
 						<tr>
-							<td></td>
 							<td>${vo.itemName}</td>
 							<td>${vo.inventoryCount}</td>
 						</tr>

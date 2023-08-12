@@ -137,7 +137,7 @@ main {
 }
 
 .list-area th:first-child, .list-area td:first-child {
-	width: 30px;
+	width: 80px;
 }
 
 .list-area th:last-child, .list-area td:last-child {
@@ -168,7 +168,7 @@ main {
 	font-weight: bold;
 }
 
-.list-area th:nth-child(2) {
+ .list-area th:nth-child(2) {
 	padding-left: 10%;
 	width: 200px;
 }
@@ -355,9 +355,6 @@ tr:hover {
 			</script>
 			</c:if> --%>
 
-
-
-
 		<div class="main-area">
 			<div class="title-area">
 				<span id="title">직원 정보 조회</span>
@@ -375,12 +372,9 @@ tr:hover {
 
 
 
-					</label> <input type="text" id="search-input" name="searchValue"> <a
-						href="http://127.0.0.1:8888/app/member/list?page=1"
-						id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-					<input type="submit" value="검색">
+					</label> <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
 				</form>
-
+					<div><button type="button" class="btnCalss" id="btn2" onclick="join();" style="width: 60px; height: 40px;">회원가입</button></div>
 
 
 			</div>
@@ -389,22 +383,19 @@ tr:hover {
 			<div class="list-area">
 				<table>
 					<tr>
-						<th><button type="button" class="btnCalss" id="btn2" onclick="join();">회원가입</button></th>
-						<th>이름</th>
-						<th>담당부서</th>
-						<th>직급</th>
-						<th>전화번호</th>
-						<th>상태</th>
+						<th style="text-align: center;">이름</th>
+						<th style="text-align: center;">담당부서</th>
+						<th style="text-align: center;">직급</th>
+						<th style="text-align: center;">전화번호</th>
+						<th style="text-align: center;">상태</th>
 					</tr>
 					<c:forEach items="${voList}" var="vo">
-						<!-- <input id="getNo" type="hidden" value=${vo.no}> -->
 						<tr onclick="detail(${vo.no});">
-							<th></th>
-							<th>${vo.name}</th>
-							<th>${vo.departmentName}</th>
-							<th>${vo.positionName}</th>
-							<th>${vo.phoneNumber}</th>
-							<th>${vo.status}</th>
+							<td style="text-align: center;">${vo.name}</td>
+							<td style="text-align: center;">${vo.departmentName}</td>
+							<td style="text-align: center;">${vo.positionName}</td>
+							<td style="text-align: center;">${vo.phoneNumber}</td>
+							<td style="text-align: center;">${vo.status}</td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -15,12 +15,13 @@
 
     .main-area {
         width: 1200px;
-        margin: auto;
+        margin-left: 200px;
         margin-top: 20px;
     }
 
     .title-area {
         text-align: center;
+        margin-left: 200px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -49,15 +50,15 @@
         transition: 0.7s;
     }
 
-    .list-area {
-        margin-top: 20px;
-        background: #FFFFFF;
-        border: 1px solid #C4C4C4;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        padding: 15px;
-        margin-bottom: 40px;
-    }
+     .list-area {
+            	margin-left: 20%;
+                margin-top: 20px;
+                width: 80%;
+                background: #FFFFFF;
+                border: 1px solid #C4C4C4;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+            }
 
     #content {
         display: grid;
@@ -227,7 +228,9 @@
                     </table>
     
                 </div>
-
+						<br>
+						<br>
+						<br>
                     <div id="buttonDiv">
                         <button type="submit" id="sendRequest">회원가입</button>
                         <button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>

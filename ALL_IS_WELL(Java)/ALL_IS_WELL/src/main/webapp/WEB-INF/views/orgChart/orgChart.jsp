@@ -244,7 +244,7 @@
     .leftbox{
     	margin-left: -2px;
         border: 1px solid black;
-        width: 143px;
+        width: 139px;
         height: 0.1px;
     }
     
@@ -255,33 +255,36 @@
       grid-template-columns: 300px 1620px;
    	}
 
-    .modal {
+.modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        left: 700px;
+        top: 200px;
+        width: 800px; /* Full width */
+        height: 500px; /* Full height */
+        overflow: hidden;
+        /* background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); /* 
       }
 
         /* Modal Content/Box */
         .modal-content {
         background-color: #fefefe;
         margin: 15% auto; /* 15% from the top and centered */
+        margin-left: 100px;
         padding: 20px;
         border: 1px solid #888;
-        width: 40%; /* Could be more or less, depending on screen size */
-        
+        width: 500px; /* Could be more or less, depending on screen size */
+        height: 300px;
+        text-align: justify;
+        line-height: 1.6;
       }
 
       .close {
         color: #aaaaaa;
         float: right;
-        font-size: 28px;
+        font-size: 40px;
         font-weight: bold;
       }
 
@@ -292,6 +295,21 @@
         cursor: pointer;
       }
 
+		#sendRequest {
+        font-size: 20px;
+        color: white;
+        background-color: #5A8CF2;
+        size: 10px;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    
+    .modal > p {
+    	margin-left: 200px;
+    }
 </style>
 </head>
 <body>
@@ -491,7 +509,7 @@
 		<div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-                <p>
+                <p style="text-align: center; font-size: 22px;">
 	                이름 : <span id="mname"></span>
 	                <br>
 	                직급 : <span id="position"></span>
@@ -501,6 +519,9 @@
 	                전화번호 : <span id="phone"></span>
 	                <br>
 	                이메일 : <span id="email"></span>
+	                <br>
+	                <br>
+	                <button id="sendRequest" onclick="put();">회원리스트조회</button>
             	</p>
             </div>
         </div>
@@ -555,7 +576,9 @@ buttons.forEach(function(btn) {
 		    modal.style.display = "none"; // 모달 숨기기
 		});
 
-
+		function put() {
+			location.href = "${root}/member/list"
+		}
         
 </script>
 

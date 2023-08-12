@@ -73,9 +73,8 @@
 
             .list-area {
                 margin-top: 20px;
-                margin-left: 400px;
-                width: 500px;
-                height: 800px;
+                margin-left: 0px;
+                width: 100%;
             }
 
 
@@ -120,7 +119,6 @@
 
             .list-area {
                 margin-top: 20px;
-
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -210,9 +208,33 @@
                 grid-template-columns: 300px 1620px;
             }
             
-            .list-area > p > i{
-            font-size: 20px;
-            }
+            tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
 
         </style>
     </head>
@@ -232,42 +254,76 @@
             <div class="main-area">
                 <div class="title-area">
                     <span id="title">직원 상세 정보 조회</span>
-
-                   
-
-
                 </div>
                 <br>
-
-					
                 
                   <!-- Member 정보 출력을 위한 테이블 -->
                   <div class="list-area">
-                  <p>
-                  <br>
-					<i>사번 : ${vo.no} <hr><br></i>
-					<i style="font-size: 20px;">소속 부서 : ${vo.departmentName}</i> <hr><br>
-					<i style="font-size: 20px;">직급 : ${vo.positionName}</i> <hr><br>
-					<i style="font-size: 20px;">이름 : ${vo.name}</i> <hr><br>
-					<i style="font-size: 20px;">상태 : ${vo.status}</i> <hr><br>
-					<i style="font-size: 20px;">입사일 : ${vo.enrollDate}</i> <hr><br>
-					<i style="font-size: 20px;">주민등록번호 : ${vo.registrationNumber}</i> <hr><br>
-					<i style="font-size: 20px;">이메일 : ${vo.email}</i> <hr><br>
-					<i style="font-size: 20px;">휴대폰번호 : ${vo.phoneNumber}</i> <hr><br>
-					<i style="font-size: 20px;">사무실번호 : ${vo.officeNumber}</i> <hr><br>
-					<i style="font-size: 20px;">면허번호 : ${vo.licenseNumber}</i> <hr><br>
-					<i style="font-size: 20px;">연봉 : ${vo.yearSalary}</i> <hr><br>
-					<i style="font-size: 20px;">프로필 사진 : ${vo.profile}</i> <hr><br>
-					<i style="font-size: 20px;">서명 이미지 : ${vo.sign}</i>
-				  </p>
-                </div>
-		        <button id="sendRequest" onclick="del(${vo.no});">삭제</button>
-		        <button id="sendRequest" onclick="edit(${vo.no});">수정</button>
-                
-                <br>
-                <br>
-                <br>
+                  <table>
+					<tr>
+                        <td style="width: 300px;">소속 부서</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="title" value="${vo.departmentName}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>직급</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="memberNo" value="${vo.positionName}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>이름</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="enrollDate" value="${vo.name}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>상태</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="modifyDate" value="${vo.status}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>입사일</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.enrollDate}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>주민등록번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.registrationNumber}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>이메일</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.email}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>휴대폰번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.phoneNumber}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>사무실번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.officeNumber}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>면허번호</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.licenseNumber}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>연봉</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.yearSalary}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>프로필 사진</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.profile}" readonly></td>
+                    </tr>
+					<tr>
+                        <td>서명 이미지</td>
+                        <td colspan="2"><input style="width: 1000px; height:40px; font-size: 20px;" type="text" name="content" value="${vo.sign}" readonly></td>
+                    </tr>
 
+                  
+                    </table>
+                </div>
+					
+					<div id="buttonDiv">
+					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
+					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button id="sendRequest"  type="button" onclick="backPage();">뒤로가기</button>
+					</div>
+                  
+                </div>
 
 	</main>
         <footer>
@@ -283,6 +339,10 @@
         function edit(no) {
             location.href = "${root}/member/edit/" + no;
         };
+        
+        function backPage(){
+        	location.href = "${root}/member/list";
+        }
         
         const sideBar = document.querySelector("#side-bar")
         const subMenus = document.querySelectorAll(".sub-menu");
