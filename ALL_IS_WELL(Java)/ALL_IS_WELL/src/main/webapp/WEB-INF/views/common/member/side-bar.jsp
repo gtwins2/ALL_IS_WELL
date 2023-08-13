@@ -117,9 +117,9 @@
                 <div>의료업무</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item" onclick="location.href='${root}/receipt/regist'">접수</div>
-                <div class="sub-menu-item">진료</div>
-                <div class="sub-menu-item">처방전</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/receipt/regist'">환자 등록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/receipt/registList'">환자 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/prescription/list'">처방전</div>
             </div>
         </div>
         <div class="menu-item">
@@ -127,9 +127,9 @@
                 <div>게시판</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">공지사항</div>
-                <div class="sub-menu-item">건의사항</div>
-                <div class="sub-menu-item">문의사항</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/Mboard/noticeList'">공지사항</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/Mboard/suggestList'">건의사항</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/Mboard/inquiryList'">문의사항</div>
             </div>
         </div>
         <div class="menu-item">
@@ -137,8 +137,8 @@
                 <div>수술</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">수술실</div>
-                <div class="sub-menu-item">수술 일정</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/operation/roomList'">수술실</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/operation/scheduleList'">수술 일정</div>
             </div>
         </div>
         <div class="menu-item">
@@ -146,8 +146,8 @@
                 <div>입원</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">입원실</div>
-                <div class="sub-menu-item">입원 일정</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/admission/roomList'">입원실</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/admission/admissionRecord'">입원 일정</div>
             </div>
         </div>
         <div class="menu-item">
@@ -155,9 +155,9 @@
                 <div>메일</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">받은 메일함</div>
-                <div class="sub-menu-item">보낸 메일함</div>
-                <div class="sub-menu-item">휴지통</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/mail/receiveList'">받은 메일함</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/mail/sendMailList'">보낸 메일함</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/mail/mailTrash'">휴지통</div>
             </div>
         </div>
         <div class="menu-item">
@@ -165,7 +165,7 @@
                 <div>근태</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">근태 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/attendance/list'">근태 목록</div>
             </div>
         </div>
         <div class="menu-item">
@@ -173,9 +173,9 @@
                 <div>결재</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">기안 문서 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/approval/draftList'">기안 문서 목록</div>
                 <c:if test="${loginMember.positionNo == '1'}">
-                    <div class="sub-menu-item">결재 문서 목록</div>
+                    <div class="sub-menu-item" onclick="location.href='${root}/approval/list'">결재 문서 목록</div>
                 </c:if>
             </div>
         </div>
@@ -184,7 +184,20 @@
                 <div>회의록</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">근태 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/proceeding/list'">회의록 목록</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>당직</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item" onclick="location.href='${root}/duty/select'">당직 목록</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div onclick="location.href='${root}/orgChart'">조직도</div>
             </div>
         </div>
     </div>

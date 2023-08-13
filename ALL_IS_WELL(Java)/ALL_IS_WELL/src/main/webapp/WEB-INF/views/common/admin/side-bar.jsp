@@ -113,65 +113,11 @@
     <div id="side-bar">
         <div class="menu-item">
             <div class="menu">
-                <div>행정업무</div>
+                <div>회원관리</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">결재
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">재고
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">회의록
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">당직
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="menu-item">
-            <div class="menu">
-                <div>의료업무</div>
-            </div>
-            <div class="sub-menu">
-                <div class="sub-menu-item">수술
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">진료
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">입원
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
+                <div class="sub-menu-item" onclick="location.href='${root}/member/list'">회원 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/member/join'">회원 가입</div>
             </div>
         </div>
         <div class="menu-item">
@@ -179,62 +125,57 @@
                 <div>게시판</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">건의 게시판
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">문의 게시판
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">공지 게시판
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
+                <div class="sub-menu-item" onclick="location.href='${root}/board/noticeList'">공지사항</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/board/suggestList'">건의사항</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/board/inquiryList'">문의사항</div>
             </div>
         </div>
         <div class="menu-item">
             <div class="menu">
-                <div>메일</div>
+                <div>근태</div>
             </div>
             <div class="sub-menu">
-                <div class="sub-menu-item">메일 쓰기
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">받은 메일함
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">보낸 메일함
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
-                <div class="sub-menu-item">휴지통
-                    <div class="third-sidebar">
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                        <div>예제 항목</div>
-                    </div>
-                </div>
+                <div class="sub-menu-item" onclick="location.href='${root}/attendance/admin/list'">근태 목록</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>결재</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item" onclick="location.href='${root}/approval/admin/list'">결재 목록</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>재고</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item" onclick="location.href='${root}/inventory/list'">재고 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/inventory/insert'">재고 수정</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/inventory/storeList'">재고 문서 조회</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>회의록</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item" onclick="location.href='${root}/proceeding/admin/list'">회의록 목록</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div>당직</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-item" onclick="location.href='${root}/duty/admin/select'">당직 목록</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/duty/put'">당직 지정</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu">
+                <div onclick="location.href='${root}/orgChartAdmin'">조직도</div>
             </div>
         </div>
     </div>
