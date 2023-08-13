@@ -269,13 +269,12 @@
 
 
             <div class="main-area">
+            <br>
+		<br>
                 <div class="title-area">
                     <span id="title">회원정보수정하기</span>
 
                 </div>
-                <br>
-                <br>
-                <br>
                 <br>
                 <br>
 
@@ -369,19 +368,16 @@
                   
                     </table>
 					
+					
+                </div>
+					
 					<div id="buttonDiv">
 					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
 					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
 					<button id="sendRequest"  type="button" onclick="backPage();">뒤로가기</button>
 					</div>
-                </div>
-					
-					
                 </form>
                 </div>
-                <br>
-                <br>
-                <br>
 
             </div>
 

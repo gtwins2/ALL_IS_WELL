@@ -52,9 +52,9 @@
         background-color: #5A8CF2;
          font-size: 25px;
           margin-left: 50px;
-          border: none;
-          color: white;
           font-weight: bold;
+        color: white;
+        border: none;
 	}
 	.btnClass33{
 		width: 180px;
@@ -62,9 +62,9 @@
         background-color: #5A8CF2;
         font-size: 25px;
         margin-left: 932px;
-        border: none;
-        color: white;
         font-weight: bold;
+        color: white;
+        border: none;
 	}
     #btn3{
         width: 180px;
@@ -73,7 +73,6 @@
         margin-left: 50px;
         margin-top: 0px;
         font-size: 25px;
-       
     }
     #btn4{
         width: 180px;
@@ -193,9 +192,8 @@
     }
 
     #namearea{
-        margin-left: 110px;
-        font-size: 20px;
-        
+        margin-left: 100px;
+        font-size: 25px;
     }
 
     .updown2 {
@@ -231,7 +229,7 @@
     .rightbox{
         margin-left: 135px;
         border: 1px solid black;
-        width: 134px;
+        width: 135px;
         height: 0.1px;
     }
 
@@ -255,7 +253,7 @@
       grid-template-columns: 300px 1620px;
    	}
 
-.modal {
+    .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -294,8 +292,8 @@
         text-decoration: none;
         cursor: pointer;
       }
-
-		#sendRequest {
+      
+      #sendRequest {
         font-size: 20px;
         color: white;
         background-color: #5A8CF2;
@@ -310,6 +308,7 @@
     .modal > p {
     	margin-left: 200px;
     }
+
 </style>
 </head>
 <body>
@@ -520,8 +519,9 @@
 	                <br>
 	                이메일 : <span id="email"></span>
 	                <br>
+	                
 	                <br>
-	                <button id="sendRequest" onclick="put();">회원리스트조회</button>
+	                 <button id="sendRequest" onclick="put();">회원리스트조회</button>
             	</p>
             </div>
         </div>
@@ -570,15 +570,15 @@ buttons.forEach(function(btn) {
     });
 });
 
-		// 모달 닫기 버튼 클릭 이벤트 핸들러 등록
-		var closeBtn = modal.querySelector(".close");
-		closeBtn.addEventListener("click", function() {
-		    modal.style.display = "none"; // 모달 숨기기
-		});
+// 모달 닫기 버튼 클릭 이벤트 핸들러 등록
+var closeBtn = modal.querySelector(".close");
+closeBtn.addEventListener("click", function() {
+    modal.style.display = "none"; // 모달 숨기기
+});
 
-		function put() {
-			location.href = "${root}/member/list"
-		}
+function put() {
+	location.href = "${root}/member/list"
+}
         
 </script>
 

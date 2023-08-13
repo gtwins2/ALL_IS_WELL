@@ -223,6 +223,8 @@
 
 
             <div class="main-area">
+          <br>
+		<br>
                <div class="title-area">
                     <span id="title">당직조회 및 수정</span>
                 </div>
@@ -260,7 +262,8 @@
                 </form>
                 </div>
                 </main>
-
+<br>
+		<br>
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>

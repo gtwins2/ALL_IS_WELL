@@ -29,7 +29,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
             }
 
             #sendRequest {
@@ -114,7 +114,7 @@
 
             .list-area {
                 margin-top: 20px;
-
+				font-size: 20px;
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -230,8 +230,10 @@
 
 
             <div class="main-area">
+            <br>
+            <br>
                 <div class="title-area">
-                    <span id="title">재고조회</span>
+                    <span id="title" style="font-size: 40px;">재고조회</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">

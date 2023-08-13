@@ -126,7 +126,7 @@ public class ProceedingController {
 	}
 	
 	//게시글 삭제 처리
-	@PostMapping({"delete/{no}"})
+	@GetMapping({"delete/{no}"})
 	public String delete(@PathVariable(value = "no" , required = true) String no, Model model) {
 		
 		int result = service.delete(no);

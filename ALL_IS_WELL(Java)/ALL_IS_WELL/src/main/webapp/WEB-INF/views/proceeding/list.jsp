@@ -43,7 +43,7 @@ main {
 }
 
 #title {
-	font-size: 35px;
+	font-size: 30px;
 }
 
 #sendRequest {
@@ -72,7 +72,7 @@ main {
 	padding: 5px;
 	margin-right: 20px;
 	width: 300px;
-	height: 30px;
+	height: 40px;
 	border: 1px solid gray;
 	border-radius: 10px;
 }
@@ -274,6 +274,21 @@ main {
 tr:hover {
 	  background-color: #f2f2f2;
 	}
+	
+	.list-area th:nth-child(1)
+	{
+		background-color: #5A8CF2;
+		border-top-left-radius: 15px;
+	}
+	.list-area th:nth-child(2)
+	{
+		background-color: #5A8CF2;
+	}
+	.list-area th:nth-child(3)
+	{
+		background-color: #5A8CF2;
+		border-top-right-radius: 15px;
+	}
 </style>
 </head>
 
@@ -289,6 +304,8 @@ tr:hover {
 
 
 		<div class="main-area">
+		<br>
+		<br>
 			<div class="title-area">
 				<span id="title">회의록목록</span>
 
@@ -328,8 +345,8 @@ tr:hover {
 			<div class="number-area">
                 <c:if test="${pv.listCount > 10}">
                     <c:if test="${pv.currentPage > 1}">
-                        <a href="select?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
-                        <a href="select?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                        <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                        <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
                     </c:if>      
                     <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                     <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -338,13 +355,13 @@ tr:hover {
                                 <a class="currentPage">${i}</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="select?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                                <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:if test="${pv.maxPage > pv.currentPage}">
-                        <a href="select?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
-                        <a href="select?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                        <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                        <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
                     </c:if>
                 </c:if>
             </div>

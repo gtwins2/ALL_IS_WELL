@@ -29,7 +29,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
             }
 
             #sendRequest {
@@ -64,7 +64,7 @@
                 padding: 5px;
                 margin-right: 20px;
                 width: 300px;
-                height: 30px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -117,7 +117,7 @@
 
             .list-area {
                 margin-top: 20px;
-
+				font-size: 25px;
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -127,10 +127,6 @@
             .list-area table {
                 border-collapse: collapse;
                 width: 100%;
-
-
-                width: 100%;
-
             }
 
             .list-area th,
@@ -279,8 +275,10 @@
 
 
             <div class="main-area">
+            <br>
+            <br>
                 <div class="title-area">
-                    <span id="title">재고결재문서조회</span>
+                    <span id="title" style="font-size: 40px;">재고결재문서조회</span>
 
                     <form action="" class="search-area">
                         <label for="search" class="category-area">
@@ -293,10 +291,7 @@
 					
 
                         </label>
-                        <input type="text" id="search-input" name="searchValue"> <a
-						href="http://127.0.0.1:8888/app/inventory/storeList?page=1"
-						id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-					<input type="submit" value="검색">
+                        <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </form>
                    
 

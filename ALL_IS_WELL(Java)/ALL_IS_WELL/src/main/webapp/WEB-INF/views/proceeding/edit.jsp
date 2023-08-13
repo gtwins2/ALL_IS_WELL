@@ -57,7 +57,7 @@
                 padding: 5px;
                 margin-right: 20px;
                 width: 300px;
-                height: 30px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -271,11 +271,11 @@
                     <table>
 					<tr>
                         <td style="width: 200px;">제목</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}" readonly></td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}"></td>
                     </tr>
 					<tr>
                         <td>작성자번호</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" ></td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" readonly></td>
                     </tr>
 					<tr>
                         <td>작성일</td>
@@ -293,11 +293,11 @@
                     </table>
                 </div>
 					
+					
 					<div id="buttonDiv">
 					<button type="submit" id="sendRequest">수정완료</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
 					</div>
-					
                 </form>
                 </div>
                 <br>
