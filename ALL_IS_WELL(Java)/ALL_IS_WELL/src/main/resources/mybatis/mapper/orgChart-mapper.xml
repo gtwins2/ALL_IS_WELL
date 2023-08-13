@@ -18,6 +18,7 @@
 	  ON M.POSITION_NO = P.NO
       WHERE M.POSITION_NO = 1
       AND M.STATUS = 'O'
+      ORDER BY M.NO
      
 	</select>
 

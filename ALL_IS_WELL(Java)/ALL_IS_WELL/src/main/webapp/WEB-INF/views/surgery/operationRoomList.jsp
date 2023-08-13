@@ -54,7 +54,7 @@
             padding: 5px;
             border-radius: 10px;
             border: 1px solid gray;
-            height: 30px;
+            height: 20px;
         }
 
         .search-area input[type="text"] {

@@ -17,7 +17,7 @@
 	}
 
     main{
-        min-height: 100%;
+        min-height: 1000px;
     }
 
     .main-area {
@@ -37,7 +37,7 @@
     }
 
     #title {
-        font-size: 20px;
+        font-size: 30px;
         margin: auto;
     }
 

@@ -55,7 +55,7 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 40px;
+	font-size: 30px;
 	line-height: 48px;
 	color: #000000;
 }
