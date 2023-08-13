@@ -279,15 +279,18 @@ tr:hover {
 	{
 		background-color: #5A8CF2;
 		border-top-left-radius: 15px;
+		color: white;
 	}
 	.list-area th:nth-child(2)
 	{
 		background-color: #5A8CF2;
+		color: white;
 	}
 	.list-area th:nth-child(3)
 	{
 		background-color: #5A8CF2;
 		border-top-right-radius: 15px;
+		color: white;
 	}
 </style>
 </head>
@@ -373,21 +376,17 @@ tr:hover {
 	</footer>
 	<script>
     
-    <c:if test="${not empty message}">
-		alert("${message}");
-	</c:if> 
+    const sideBar = document.querySelector("#side-bar")
+    const subMenus = document.querySelectorAll(".sub-menu");
+    const thirdSidebars = document.querySelectorAll(".third-sidebar");
 
-        const sideBar = document.querySelector("#side-bar")
-        const subMenus = document.querySelectorAll(".sub-menu");
-        const thirdSidebars = document.querySelectorAll(".third-sidebar");
+    subMenus.forEach(subMenu => {
+        subMenu.style.height = sideBar.offsetHeight + 'px';
+    });
 
-        subMenus.forEach(subMenu => {
-            subMenu.style.height = sideBar.offsetHeight + 'px';
-        });
-
-        thirdSidebars.forEach(thirdSidebar => {
-            thirdSidebar.style.height = sideBar.offsetHeight + 'px';
-        });
+    thirdSidebars.forEach(thirdSidebar => {
+        thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+    });
 
         const pageBtn = document.querySelectorAll('.pageBtn');
 

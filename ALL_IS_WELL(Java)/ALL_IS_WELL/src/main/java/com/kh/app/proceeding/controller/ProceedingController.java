@@ -84,6 +84,25 @@ public class ProceedingController {
 		return "proceeding/admin/list";
 	}
 	
+	@GetMapping(value = {"admin/detail/{no}"})
+	public String detail2(@PathVariable(value = "no" , required = true) String no, Model model) {
+		
+		/*
+		 * HttpSession session = req.getSession(); MemberVo loginMember = (MemberVo)
+		 * session.getAttribute("loginMember");
+		 */
+		
+		ProceedingVo vo = service.getProceedingByNo(no);
+		
+		model.addAttribute("vo", vo);
+		return "proceeding/admin/detail";
+	}
+	
+	@GetMapping("admin/write")
+	public String write2() {
+		return "proceeding/admin/write";
+	}
+	
 	//회의록 상세조회
 		@GetMapping(value = {"detail/{no}"})
 		public String detail(@PathVariable(value = "no" , required = true) String no, Model model) {
@@ -136,6 +155,16 @@ public class ProceedingController {
 		model.addAttribute("message", "회의록 삭제 성공");
 		return "redirect:/proceeding/list";
 	}
+	@GetMapping({"admin/delete/{no}"})
+	public String delete2(@PathVariable(value = "no" , required = true) String no, Model model) {
+		
+		int result = service.delete(no);
+		if(result != 1) {
+			model.addAttribute("message", "회의록 삭제 실패");
+		}
+		model.addAttribute("message", "회의록 삭제 성공");
+		return "redirect:/proceeding/admin/list";
+	}
 	
 	//게시글 수정 화면
 	@GetMapping({"edit/{no}"})
@@ -144,6 +173,13 @@ public class ProceedingController {
 		model.addAttribute("vo", vo);
 		
 		return "proceeding/edit";
+	}
+	@GetMapping({"admin/edit/{no}"})
+	public String edit2(@PathVariable(value = "no" , required = true) String no, Model model) {
+		ProceedingVo vo = service.getProceedingByNo(no);
+		model.addAttribute("vo", vo);
+		
+		return "proceeding/admin/edit";
 	}
 	
 	//게시글 수정 처리

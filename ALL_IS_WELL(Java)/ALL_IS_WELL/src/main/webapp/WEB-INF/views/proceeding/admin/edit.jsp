@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>회의록상세조회</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
-        <style>
+       <style>
             .main-area {
    				 width: 1200px;
     			height: 1100px;
@@ -25,7 +25,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 25px;
                 margin-left: 20%;
             }
 
@@ -57,7 +57,7 @@
                 padding: 5px;
                 margin-right: 20px;
                 width: 300px;
-                height: 30px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -122,6 +122,9 @@
 
             .list-area table {
                 border-collapse: collapse;
+                width: 100%;
+
+
                 width: 100%;
 
             }
@@ -258,16 +261,17 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">회의록상세조회</span>
+                    <span id="title">회의록수정하기</span>
 
                 </div>
                 <br>
 
 				<div class="list-area">
+			<form action="${root}/proceeding/edit/${vo.no}" method="post" >
                     <table>
 					<tr>
                         <td style="width: 200px;">제목</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}" readonly></td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}"></td>
                     </tr>
 					<tr>
                         <td>작성자번호</td>
@@ -283,18 +287,18 @@
                     </tr>
 					<tr>
                         <td>내용</td>
-                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" readonly></td>
+                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" ></td>
                     </tr>
 
                     </table>
                 </div>
 					
+					
 					<div id="buttonDiv">
-					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
-					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button type="submit" id="sendRequest">수정완료</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
 					</div>
-                
+                </form>
                 </div>
 
             </div>
@@ -306,16 +310,16 @@
         </footer>
 
         <script>
-        	function backPage(){
-        		location.href = "${root}/proceeding/admin/list"
-        	}    
-        
-            function del(no){
-            	location.href = "${root}/proceeding/admin/delete/" + no
+            function selectAll(selectAll) {
+                const checkboxes = document.getElementsByName('choose');
+
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = selectAll.checked;
+                })
             }
             
-            function edit(no){
-            	location.href = "${root}/proceeding/admin/edit/" + no
+            function del(no){
+            	location.href = "${root}/proceeding/admin/delete/" + no
             }
             const sideBar = document.querySelector("#side-bar")
             const subMenus = document.querySelectorAll(".sub-menu");
@@ -330,6 +334,5 @@
             });
         </script>
     </body>
-
 
     </html>

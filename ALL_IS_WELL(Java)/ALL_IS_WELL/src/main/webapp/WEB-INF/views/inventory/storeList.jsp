@@ -362,6 +362,17 @@
             function sendRequest(){
            		location.href="${root}/inventory/insert";
            	}
+            const sideBar = document.querySelector("#side-bar")
+            const subMenus = document.querySelectorAll(".sub-menu");
+            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+            subMenus.forEach(subMenu => {
+                subMenu.style.height = sideBar.offsetHeight + 'px';
+            });
+
+            thirdSidebars.forEach(thirdSidebar => {
+                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+            });
         </script>
     </body>
 

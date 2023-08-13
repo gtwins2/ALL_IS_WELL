@@ -51,11 +51,6 @@ public class DutyController {
 	@GetMapping(value = {"detail/{no}"})
 	public String detail(@PathVariable(value = "no" , required = true) String no, Model model) {
 		
-		/*
-		 * HttpSession session = req.getSession(); MemberVo loginMember = (MemberVo)
-		 * session.getAttribute("loginMember");
-		 */
-		
 		DutyVo vo = service.getDutyByNo(no);
 		
 		model.addAttribute("vo", vo);
@@ -187,7 +182,6 @@ public class DutyController {
 	
 	@PostMapping({"edit/{no}"})
 	public String edit2(@PathVariable(value = "no" , required = true) String no, Model model, DutyVo vo) {
-		vo.setNo(no);
 		int result = service.edit2(vo);
 		
 		model.addAttribute("vo" , vo);

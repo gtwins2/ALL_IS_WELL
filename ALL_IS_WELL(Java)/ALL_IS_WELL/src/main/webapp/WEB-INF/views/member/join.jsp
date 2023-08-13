@@ -137,10 +137,13 @@
     
     
         <div class="main-area">
+        <br>
+        <br>
             <div class="title-area">
                 <span id="title">회원가입</span>
             </div>
-    
+    	<br>
+    	<br>
     
             <div class="list-area">
                 <form action="${root}/member/join" method="post" onsubmit="return checkValue();">

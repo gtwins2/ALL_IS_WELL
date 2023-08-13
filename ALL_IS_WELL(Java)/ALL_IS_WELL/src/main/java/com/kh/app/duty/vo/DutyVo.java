@@ -14,5 +14,7 @@ public class DutyVo {
 	private String endDate;
 	private String no;
 	private String start;
+	private String dname;
+	private String pname;
 	
 }

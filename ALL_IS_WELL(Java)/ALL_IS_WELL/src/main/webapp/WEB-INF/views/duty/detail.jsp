@@ -207,6 +207,12 @@
     .list-area{
     	width: 1000px;
     }
+    .list-area td, th{
+    	font-size: 20px;
+    }
+    .list-area td input{
+    	font-size: 20px;
+    }
         </style>
     </head>
 
@@ -234,13 +240,15 @@
             <form action="${root}/duty/edit/${vo.no}" method="post" >
                     <table>
 					<tr>
-                        <td style="width: 250px;">당직번호</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="no" value="${vo.no}" readonly></td>
+                        <td>부서</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="dname" value="${vo.dname}" readonly></td>
                     </tr>
 					<tr>
-                        <td>당직자번호</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="mno" value="${vo.mno}"></td>
+                        <td>직급</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="pname" value="${vo.pname}" readonly></td>
                     </tr>
+                        <input type="hidden" name="no" value="${vo.no}"></td>
+                        <input type="hidden" name="mno" value="${vo.mno}"></td>
 					<tr>
                         <td>당직자이름</td>
                         <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="mname" value="${vo.mname}"></td>
@@ -262,8 +270,6 @@
                 </form>
                 </div>
                 </main>
-<br>
-		<br>
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
@@ -272,13 +278,23 @@
             
             function edit(){
             	alert("당직 수정 요청이 완료되었습니다.");
-            	location.href = "${root}/duty/select"
+            	location.href = "${root}/duty/admin/select"
             }
             
             function backPage(){
-            	location.href = "${root}/duty/select"
+            	location.href = "${root}/duty/admin/select"
             }
-            
+            const sideBar = document.querySelector("#side-bar")
+            const subMenus = document.querySelectorAll(".sub-menu");
+            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+            subMenus.forEach(subMenu => {
+                subMenu.style.height = sideBar.offsetHeight + 'px';
+            });
+
+            thirdSidebars.forEach(thirdSidebar => {
+                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+            });
         </script>
     </body>
 

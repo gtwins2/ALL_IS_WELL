@@ -64,7 +64,7 @@ main {
 	padding: 5px;
 	margin-right: 20px;
 	width: 300px;
-	height: 30px;
+	height: 40px;
 	border: 1px solid gray;
 	border-radius: 10px;
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -6,10 +6,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>회의록상세조회</title>
+        <title>회의록작성하기</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-            .main-area {
+           .main-area {
    				 width: 1200px;
     			height: 1100px;
     			left: 300px;
@@ -25,7 +25,7 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 25px;
                 margin-left: 20%;
             }
 
@@ -123,7 +123,6 @@
             .list-area table {
                 border-collapse: collapse;
                 width: 100%;
-
             }
 
            
@@ -242,6 +241,8 @@
     }
 
         </style>
+
+        </style>
     </head>
 
     <body>
@@ -250,6 +251,10 @@
         </header>
 
 
+	
+	
+
+	
         <div id="content">
             <div id="wrap">
                 <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
@@ -258,64 +263,51 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">회의록상세조회</span>
+                    <span id="title">회의록작성하기</span>
 
                 </div>
                 <br>
-
+				<form action="${root}/proceeding/write" method="post">
+					
 				<div class="list-area">
-                    <table>
+				<table>
 					<tr>
                         <td style="width: 200px;">제목</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}" readonly></td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title"></td>
                     </tr>
 					<tr>
-                        <td>작성자번호</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" readonly></td>
-                    </tr>
-					<tr>
-                        <td>작성일</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="enrollDate" value="${vo.enrollDate}" readonly></td>
-                    </tr>
-					<tr>
-                        <td>수정일</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="modifyDate" value="${vo.modifyDate}" readonly></td>
+                        <td>회의예정일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="dueDate" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate" ></td>
                     </tr>
 					<tr>
                         <td>내용</td>
-                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" readonly></td>
+                        <td colspan="2"><input style="width: 800px; height:400px;" type="text" name="content" ></td>
                     </tr>
 
                     </table>
                 </div>
 					
 					<div id="buttonDiv">
-					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
-					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
-					<button id="sendBack" onclick="backPage();">뒤로가기</button>
+					<button type="submit" id="sendRequest">작성완료</button>
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
 					</div>
-                
-                </div>
+				
+				</form>
+				
+				                    
 
+                </div>
             </div>
 
-        </div>
 
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
-        	function backPage(){
-        		location.href = "${root}/proceeding/admin/list"
-        	}    
-        
-            function del(no){
-            	location.href = "${root}/proceeding/admin/delete/" + no
-            }
             
-            function edit(no){
-            	location.href = "${root}/proceeding/admin/edit/" + no
+            function backPage(){
+            	location.href = '${root}/proceeding/admin/list';
             }
             const sideBar = document.querySelector("#side-bar")
             const subMenus = document.querySelectorAll(".sub-menu");
@@ -328,8 +320,8 @@
             thirdSidebars.forEach(thirdSidebar => {
                 thirdSidebar.style.height = sideBar.offsetHeight + 'px';
             });
+            
         </script>
     </body>
 
-
-    </html>
+    </html> 
