@@ -169,9 +169,19 @@
 }
 
 
+#tr:hover:not(#title) {
+			    background-color: #5A8CF2;
+			    color: white;
+			}
+			
+thead{
+	background-color: #5A8CF2;
+}
 
         </style>
     </head>
+
+
 
     <body>
         <header>
@@ -215,7 +225,7 @@
                             
                             <form action="/app/receipt/list" method="post">
 
-                                <tr>
+                                <tr id="tr">
                                     <input type="text" value="${vo.no}" name="no" hidden>
                                     <input type="text" value="${vo.name}" name="name" hidden>
                                     <td hidden>${vo.no}</td>

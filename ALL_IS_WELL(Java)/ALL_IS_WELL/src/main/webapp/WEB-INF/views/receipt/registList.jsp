@@ -325,17 +325,18 @@
             window.location.href = url.href;
     }
 
-        //환자정보가기
+        /* //환자정보가기
         const tbody = document.querySelector('tbody');
     	tbody.addEventListener('click', (event)=>{
     		//글번호 가져와서
     		const no = event.target.parentNode.children[0].innerText;
     		const name = event.target.parentNode.children[1].innerText;
-
+			console.log(no);
+			console.log(name);
     		//요청보내기
     		location.href='${root}/receipt/infoUpdate?no=' + no + "&name=" + name;
 
 
-    	}); 
+    	});  */
     
 </script>

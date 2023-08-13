@@ -36,7 +36,8 @@
 #div01 > div{text-align: center;line-height:40px;}
 
 #div01 > div > input{
-
+height:30px;
+	font-size:20px;
 	width: 80%;
 	border: 1px solid #B2B2B2;
 }
@@ -52,7 +53,7 @@ top: 109px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 40px;
+	font-size: 30px;
 	line-height: 48px;
 	color: #000000;
 }
@@ -86,11 +87,11 @@ border: 1px solid #D1CECE;
 }
 
 #div03{
-	left: 1300px;
+	left: 1350px;
 }
 
 #div04{
-	left: 1455px;
+	left: 1505px;
 }
 </style>
 </head>

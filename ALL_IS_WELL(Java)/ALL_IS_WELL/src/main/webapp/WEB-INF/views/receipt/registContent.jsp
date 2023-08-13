@@ -26,7 +26,7 @@ top: 109px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
-font-size: 40px;
+font-size: 30px;
 line-height: 48px;
 color: #000000;
 }
@@ -60,12 +60,15 @@ hr{
 	grid-template-columns: 1fr 8fr;
 	text-align: center;
 	margin-top: 20px;
+	font-size: 20px;
 
 }
 
 #div02 > div > div> input{
 	border: 1px solid #B2B2B2;
 	width: 80%;
+	font-size: 20px;
+	height: 30px;
 	
 }
 
@@ -92,11 +95,11 @@ hr{
 }
 
 #div03{
-	left: 1300px;
+	left: 1350px;
 }
 
 #div04{
-	left: 1455px;
+	left: 1505px;
 }
 </style>
 </head>

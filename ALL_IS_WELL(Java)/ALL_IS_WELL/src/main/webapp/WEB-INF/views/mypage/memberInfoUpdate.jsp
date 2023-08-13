@@ -91,7 +91,7 @@ hr{
 position: absolute;
 width: 92px;
 height: 53.07px;
-left: 1450px;
+left: 1500px;
 top: 780px;
 background: #5A8CF2;
 border-radius: 5px;

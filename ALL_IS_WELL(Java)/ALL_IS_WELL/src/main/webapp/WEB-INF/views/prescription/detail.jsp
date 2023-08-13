@@ -41,6 +41,7 @@
 	width: 80%;
 	border: 1px solid #B2B2B2;
 	font-size: 20px;
+	height: 30px;
 	
 }
 
@@ -73,7 +74,7 @@ hr{
 	position: absolute;
 	width: 127.61px;
 	height: 47.83px;
-	left: 1455px;
+	left: 1505px;
 	top: 780px;
 	background: #5A8CF2;
 	border-radius: 5px;
