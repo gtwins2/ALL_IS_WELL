@@ -43,8 +43,6 @@
 
     #writeBtn{
         text-align: right;
-        margin-top: 20px;
-        margin-right: 10px;
         margin: auto;
         display: flex;
     }
@@ -71,6 +69,21 @@
     #writeApproval:hover {
         background-color: #555;
         transition: 0.7s;
+    }
+
+    #writeBtn2{
+        margin: auto;
+        display: flex;
+        justify-content: right;
+        margin-bottom: 20px;
+        margin-right: 70px;
+    }
+
+    #writeBtn2 form{
+        flex-direction: column;
+        margin-right: 10px;
+        align-items: center;
+        justify-content: center;
     }
 
     .search-area {
@@ -139,7 +152,6 @@
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
-        padding: 20px;
     }
 
     .list-area table {
@@ -149,7 +161,7 @@
 
     .list-area th,
     .list-area td {
-        padding-top: 15px;
+        padding-top: 20px;
         padding-bottom: 15px;
         border-bottom: 0.5px solid #C4C4C4;
         text-align: center;
@@ -158,6 +170,16 @@
     .list-area th {
         font-size: 20px;
         font-weight: bold;
+        background-color: #5A8CF2;
+        color: white;
+    }
+
+    .list-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .list-area th:last-child{
+        border-top-right-radius: 20px;
     }
 
     .list-area td{
@@ -235,18 +257,21 @@
                 </form>
 
                 <div id="writeBtn">
-                    <form action="/app/approval/writeVacation" method="get" >
-                        <button id="writeApproval" type="submit">휴가작성</button>
-                    </form>
-                    <form action="/app/approval/writeTrip" method="get">
-                        <button id="writeApproval" type="submit">출장작성</button>
-                    </form>
-                    <c:if test="${loginMember.positionType eq 'N'}">
-                        <form action="/app/approval/writeInventory" method="get">
-                            <button id="writeApproval" type="submit">재고신청</button>
-                        </form>
-                    </c:if>
+
                 </div>
+            </div>
+            <div id="writeBtn2">
+                <form action="/app/approval/writeVacation" method="get" >
+                    <button id="writeApproval" type="submit">휴가작성</button>
+                </form>
+                <form action="/app/approval/writeTrip" method="get">
+                    <button id="writeApproval" type="submit">출장작성</button>
+                </form>
+                <c:if test="${loginMember.positionType eq 'N'}">
+                    <form action="/app/approval/writeInventory" method="get">
+                        <button id="writeApproval" type="submit">재고신청</button>
+                    </form>
+                </c:if>
             </div>
             <div class="list-area">
                 <table>

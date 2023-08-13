@@ -35,10 +35,6 @@
         height: 100px;
     }
 
-    #header span a {
-        margin-right: 15px;
-    }
-
     #profile {
         display: flex;
         flex-direction: column;
@@ -51,7 +47,7 @@
         height: 40px;
         border-radius: 50%;
         margin-bottom: 5px;
-        background-color: #ffaeae;
+        background-color: #FF8686;
         display: flex; 
         align-items: center; 
         justify-content: center;
@@ -80,7 +76,7 @@
             
             <div id="profile">
                 <div>관</div>
-                <span>
+                <span style="text-align: center;">
                     <a href="${root}/member/Alogin">로그아웃</a>
                 </span>
             </div>

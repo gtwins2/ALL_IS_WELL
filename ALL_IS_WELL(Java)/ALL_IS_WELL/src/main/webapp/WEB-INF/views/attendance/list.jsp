@@ -25,16 +25,6 @@
         margin: auto;
     }
 
-    .list-area {
-        width: 80%;
-        margin: auto;
-        margin-top: 20px;
-        background: #FFFFFF;
-        border: 1px solid #C4C4C4;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
-
     .title-area {
         width: 80%;
         margin: auto;
@@ -50,26 +40,84 @@
     .title-area table {
         width: 100%;
         font-size: 15px;
+        border-collapse: collapse;
     }
 
     .title-area th {
         padding: 15px;
         border-bottom: 1px solid #ddd;
         text-align: center;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: normal;
+    }
+
+    .title-area {
+        margin-top: 20px;
+        width: 80%;
+        margin: auto;
+    }
+
+    .title-area table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .title-area th,
+    .title-area td {
+        padding: 20px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .title-area th {
+        font-weight: bold;
+        background-color: #5A8CF2;
+        color: white;
+    }
+
+    .title-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .title-area th:last-child{
+        border-top-right-radius: 20px;
+    }
+
+    .list-area {
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        background: #FFFFFF;
+        border: 1px solid #C4C4C4;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+
+    .list-area table {
+        width: 100%;
+        border-collapse: collapse;
     }
 
     .list-area th,
     .list-area td {
-        padding: 15px;
+        padding: 20px;
         border-bottom: 1px solid #ddd;
         text-align: center;
+        font-size: 20px;
     }
 
     .list-area th {
-        font-size: 15px;
-        font-weight: normal;
+        font-weight: bold;
+        background-color: #5A8CF2;
+        color: white;
+    }
+
+    .list-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .list-area th:last-child{
+        border-top-right-radius: 20px;
     }
 
     .number-area {
@@ -117,17 +165,17 @@
 
     .title-area th#date,
     .list-area th#date {
-        width: 350px; /* 날짜 열의 너비 지정 */
+        width: 350px; 
     }
 
     .title-area th#writer,
     .list-area th#writer {
-        width: 310px; /* 출근시간 열의 너비 지정 */
+        width: 310px; 
     }
 
     .title-area th#content,
     .list-area th#content {
-        width: 310px; /* 퇴근시간 열의 너비 지정 */
+        width: 310px; 
     }
 
 </style>
@@ -146,25 +194,24 @@
             <div class="title-area">
                 <table>
                     <tr>
-                        <th id="date"><fmt:formatDate value="${fvo.presenceTime}" pattern="yyyy-MM-dd"/></th>
-                        <th id="writer">출근 시간 : <fmt:formatDate value="${fvo.presenceTime}" pattern="HH:mm:ss"/></th>
+                        <th id="date-label">날짜</th>
+                        <th id="writer-label">출근 시간</th>
+                        <th id="content-label">퇴근 시간</th>
+                    </tr>
+                    <tr>
+                        <td id="date"><fmt:formatDate value="${fvo.presenceTime}" pattern="yyyy-MM-dd"/></td>
+                        <td id="writer"><fmt:formatDate value="${fvo.presenceTime}" pattern="HH:mm:ss"/></td>
                         <c:if test="${fvo.leaveTime != null}">
-                            <th id="content">퇴근 시간 : <fmt:formatDate value="${fvo.leaveTime}" pattern="HH:mm:ss"/></th>
+                            <td id="content"><fmt:formatDate value="${fvo.leaveTime}" pattern="HH:mm:ss"/></td>
                         </c:if>
                         <c:if test="${fvo.leaveTime == null}">
-                            <th id="content">퇴근 시간 : X</th>
+                            <td id="content">X</td>
                         </c:if>
-                        
                     </tr>
                 </table>
             </div>
             <div class="list-area">
                 <table>
-                    <tr>
-                        <th id="date">날짜</th>
-                        <th id="writer">출근시간</th>
-                        <th id="content">퇴근시간</th>
-                    </tr>
                     <c:forEach items="${voList}" var="vo">
                         <tr>
                             <td hidden>${vo.memberNo}</td>
@@ -175,21 +222,27 @@
                     </c:forEach>
                 </table>
             </div>
-            <c:set var="range" value="2" /> 
-            <c:set var="startPage" value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
-            <c:set var="endPage" value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
-            <c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
-
             <div class="number-area">
-                <c:if test="${pv.currentPage > 1 }">
-                    <a class="pageBtn" onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>                </c:if>
-                <c:if test="${pv.maxPage > 1 }"> 
-                    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-                        <a class="pageBtn" class="pageBtn" onclick="pageMove('${i}');">${i}</a>
+                <c:if test="${pv.listCount > 10}">
+                    <c:if test="${pv.currentPage > 1}">
+                        <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                        <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                    </c:if>      
+                    <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                    <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                        <c:choose>
+                            <c:when test="${i == pv.currentPage}">
+                                <a class="currentPage">${i}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
-                </c:if>
-                <c:if test="${pv.currentPage < pv.maxPage }">
-                    <a class="pageBtn" onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
+                    <c:if test="${pv.maxPage > pv.currentPage}">
+                        <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                        <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                    </c:if>
                 </c:if>
             </div>
         </div>
