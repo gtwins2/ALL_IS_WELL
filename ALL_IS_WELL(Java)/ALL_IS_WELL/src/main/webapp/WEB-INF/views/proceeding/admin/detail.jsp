@@ -32,7 +32,7 @@
             #sendRequest, #sendBack {
                 font-size: 20px;
                 color: white;
-                background-color: #5A8CF2;
+                background-color: #FF8686;
                 size: 10px;
                 border: none;
                 padding: 10px 15px;
@@ -102,7 +102,7 @@
             }
 
             #delete-button {
-                color: #5A8CF2;
+                color: #FF8686;
                 font-weight: bold;
                 font-size: 15px;
                 margin-left: 2%;
@@ -143,15 +143,15 @@
             }
 
             #previous {
-                color: #5A8CF2;
+                color: #FF8686;
             }
 
             #after {
-                color: #5A8CF2;
+                color: #FF8686;
             }
 
             .number-area a:hover {
-                color: #5A8CF2;
+                color: #FF8686;
             }
 
             .list-area th input[type="checkbox"] {
@@ -246,13 +246,13 @@
 
     <body>
         <header>
-            <%@ include file="/WEB-INF/views/common/member/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/header.jsp" %>
         </header>
 
 
         <div id="content">
             <div id="wrap">
-                <%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
+                <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </div>
 
 
@@ -296,29 +296,38 @@
 					</div>
                 
                 </div>
-                <br>
 
             </div>
 
         </div>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/member/footer.jsp" %>
+            <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
         	function backPage(){
-        		location.href = "${root}/proceeding/list"
+        		location.href = "${root}/proceeding/admin/list"
         	}    
         
             function del(no){
-            	location.href = "${root}/proceeding/delete/" + no
+            	location.href = "${root}/proceeding/admin/delete/" + no
             }
             
             function edit(no){
-            	location.href = "${root}/proceeding/edit/" + no
+            	location.href = "${root}/proceeding/admin/edit/" + no
             }
-            
+            const sideBar = document.querySelector("#side-bar")
+            const subMenus = document.querySelectorAll(".sub-menu");
+            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+            subMenus.forEach(subMenu => {
+                subMenu.style.height = sideBar.offsetHeight + 'px';
+            });
+
+            thirdSidebars.forEach(thirdSidebar => {
+                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+            });
         </script>
     </body>
 
