@@ -19,12 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.app.admin.vo.AdminVo;
 import com.kh.app.approval.service.ApprovalService;
 import com.kh.app.approval.vo.ApprovalVo;
+import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.attendance.service.AttendanceService;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.board.service.InquiryService;
 import com.kh.app.board.service.NoticeService;
 import com.kh.app.board.service.SuggestService;
 import com.kh.app.board.vo.NoticeVo;
+import com.kh.app.inventory.service.InventoryService;
+import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.main.controller.CalendarService;
 import com.kh.app.main.service.MainService;
 import com.kh.app.member.service.MemberService;
@@ -57,6 +60,7 @@ public class LoginController {
 	private final InquiryService is;
 	private final ApprovalService as;
 	private final AttendanceService as2;
+	private final InventoryService service;
 	
 	@Autowired
 	public void ExampleController() {
@@ -124,11 +128,12 @@ public class LoginController {
 	}
 	
 	@PostMapping("Alogin")
-	public String Alogin(AdminVo vo, HttpSession session, Model model,ModelAndView mv, HttpServletRequest request) {
+	public String Alogin(AdminVo vo, HttpSession session, Model model,ModelAndView mv, HttpServletRequest request
+			, @RequestParam Map<String , String> paramMap) {
 		if(vo.getAdminId().equals("ADMIN") && vo.getAdminPwd().equals("1234")) {
 			int listCount = ms2.mCount();
 			int currentPage = ms2.fCount();
-			PageVo pv = new PageVo(listCount, currentPage, 3, 3);
+			PageVo pv2 = new PageVo(listCount, currentPage, 3, 3);
 			
 			int nine = ms2.nineCount(); 
 			int eight = ms2.eightCount(); 
@@ -138,6 +143,18 @@ public class LoginController {
 			
 			String viewpage = "calendar";
 			List<Calendar> calendar = null;
+			
+			PageVo pv = new PageVo(3, 3, 3, 3);
+			List<NoticeVo> voList = ns.noticeList(pv, paramMap);
+			model.addAttribute("voList" ,voList);
+			
+			SearchVo svo = new SearchVo();
+			List<ApproverVo> voList2 = as.getAdminList(pv, svo);
+			model.addAttribute("voList2" ,voList2);
+			
+			List<InventoryVo> voList3 = service.list(pv, paramMap);
+			model.addAttribute("voList3" ,voList3);
+			
 			try {
 				calendar = calendarService.getCalendar();
 				request.setAttribute("calendarList", calendar);
@@ -146,7 +163,7 @@ public class LoginController {
 			}
 			mv.setViewName(viewpage);
 			
-			model.addAttribute("pv", pv);
+			model.addAttribute("pv", pv2);
 			model.addAttribute("nine", nine);
 			model.addAttribute("eight", eight);
 			model.addAttribute("seven", seven);

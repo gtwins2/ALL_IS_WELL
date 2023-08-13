@@ -196,6 +196,11 @@
 			    background-color: #FF8686;
 			    color: white;
 			}
+#top {
+			background-color: #FF8686;
+			color: white;
+			font-weight: bold;
+		}
         </style>
     </head>
 
@@ -231,7 +236,7 @@
 
                 <div class="list-area">
                     <table>
-                    	<thead >
+                    	<thead id="top">
                     		<tr>
 	                        <th>번호</th>
 	                        <th>제목</th>

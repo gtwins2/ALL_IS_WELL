@@ -62,6 +62,7 @@ hr{
 	grid-template-columns: 1fr 8fr;
 	text-align: center;
 	line-height: 100px;
+	font-size: 20px;
 }
 
 #div02 > div > div> input{
@@ -69,6 +70,8 @@ hr{
 	width: 80%;
 	height: 80%;
 	margin-top: 30px;
+	
+	font-size: 20px;
 }
 
 #div02 > div:nth-child(2) > div:nth-child(2) > input{height: 80%;}

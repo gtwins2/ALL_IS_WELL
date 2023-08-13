@@ -275,7 +275,7 @@ grid-template-columns: 9fr 2fr 1fr;
     }
     
     function back() {
-    	location.href="${root}/Mboard/noticeList";
+    	location.href="${root}/Mboard/suggestList";
 		
 	}
 </script>
