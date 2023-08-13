@@ -239,10 +239,12 @@
         margin-bottom: 40px;
         text-align: right;
     }
+        .list-area td , input{
+    	font-size: 20px;
+    }
 
         </style>
 
-        </style>
     </head>
 
     <body>
@@ -309,7 +311,17 @@
             function backPage(){
             	location.href = '${root}/proceeding/list';
             }
-            
+            const sideBar = document.querySelector("#side-bar")
+            const subMenus = document.querySelectorAll(".sub-menu");
+            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+            subMenus.forEach(subMenu => {
+                subMenu.style.height = sideBar.offsetHeight + 'px';
+            });
+
+            thirdSidebars.forEach(thirdSidebar => {
+                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+            });
             
         </script>
     </body>

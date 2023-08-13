@@ -61,7 +61,7 @@
                 padding: 5px;
                 margin-right: 20px;
                 width: 300px;
-                height: 30px;
+                height: 40px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -214,6 +214,66 @@
                 grid-template-columns: 300px 1620px;
             }
 
+			.list-area th:nth-child(1)
+	{
+		background-color: #FF8686;
+		border-top-left-radius: 15px;
+		color: white;
+	}
+	.list-area th:nth-child(2)
+	{
+		background-color: #FF8686;
+		color: white;
+		border-top-right-radius: 15px;
+	}
+	.list-area th:nth-child(3)
+	{
+		background-color: #FF8686;
+		color: white;
+		
+	}
+	
+	
+	
+	.modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 700px;
+        top: 200px;
+        width: 800px; /* Full width */
+        height: 500px; /* Full height */
+        overflow: hidden;
+        /* background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); /* 
+      }
+
+        /* Modal Content/Box */
+        .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        margin-left: 100px;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 500px; /* Could be more or less, depending on screen size */
+        height: 300px;
+        text-align: justify;
+        line-height: 1.6;
+      }
+
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
         </style>
     </head>
 
@@ -250,7 +310,9 @@
                     </form>
                    <div>
 	                   <button id="sendRequest" onclick="sendRequest();">입고조회</button>
-	                   <button id="sendRequest" onclick="sendRequest2();" >재고수정</button>
+	                   <button type="button" class="btnClass" id="sendRequest" onclick="showmodal();">
+        재고수정
+    </button>
 					</div>
 
                 </div>
@@ -298,6 +360,35 @@
 				</c:if>
 			</div>
 		</div>
+		
+		<div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <form action="${root}/inventory/insert" method="post">
+                <div class="list-area" style="margin-top: 50px;">
+                    <table>
+					<input type="hidden" value=${loginMember.no} >
+					<br>
+					<label for="item-select" >종류</label>
+						<select	name="categoryNo" style="width: 128px; margin-left: 20px; font-size: 20px;">
+							<c:forEach items="${voList}" var="vo">
+							<option value="${vo.categoryNo}">${vo.itemName}</option>
+							</c:forEach>
+						</select>
+					<br>
+					<div>개수 <input type="number" name="count" id="put" style="width: 128px; margin-left: 12px; font-size: 20px"> </div>
+					<br>
+                    </table>
+                </div>
+                <br>
+					<button id="sendRequest" type="submit" onclick="senrRequest3();">작성하기</button>
+                
+				</form>
+
+                </div>
+            </div>
+        </div>
+		
 	</main>
 
         <footer>
@@ -305,20 +396,66 @@
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
+        
+        var modal = document.getElementById("myModal"); // 모달 요소
+        var buttons = document.querySelectorAll(".btnClass"); // 모든 버튼 요소들
 
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
-            }
-            
+        // 각 버튼 요소에 대하여
+        buttons.forEach(function(btn) {
+            // 클릭 이벤트 핸들러 등록
+            btn.addEventListener("click", function() {
+                // 버튼의 data 속성으로부터 정보를 가져옴
+                var name = this.getAttribute("data-name");
+                var position = this.getAttribute("data-position");
+                var department = this.getAttribute("data-department");
+                var phone = this.getAttribute("data-phone");
+                var email = this.getAttribute("data-email");
+
+                // 모달 내부의 요소에 정보를 설정
+                var mnameElem = modal.querySelector("#mname");
+                var positionElem = modal.querySelector("#position");
+                var departmentElem = modal.querySelector("#department");
+                var phoneElem = modal.querySelector("#phone");
+                var emailElem = modal.querySelector("#email");
+                mnameElem.innerText = name;
+                positionElem.innerText = position;
+                departmentElem.innerText = department;
+                phoneElem.innerText = phone;
+                emailElem.innerText = email;
+
+                // 모달 요소를 표시
+                modal.style.display = "block";
+            });
+        });
+
+        // 모달 닫기 버튼 클릭 이벤트 핸들러 등록
+        var closeBtn = modal.querySelector(".close");
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none"; // 모달 숨기기
+        });
             function sendRequest(){
            		location.href="${root}/inventory/storeList";
            	}
             function sendRequest2(){
            		location.href="${root}/inventory/insert";
            	}
+            function sendRequest3(){
+            	location.href = '${root}/inventory/list';
+            }
+            function showmodal(){
+            	modal.style.display = "block";
+            }
+            const sideBar = document.querySelector("#side-bar")
+            const subMenus = document.querySelectorAll(".sub-menu");
+            const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+            subMenus.forEach(subMenu => {
+                subMenu.style.height = sideBar.offsetHeight + 'px';
+            });
+
+            thirdSidebars.forEach(thirdSidebar => {
+                thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+            });
         </script>
     </body>
 

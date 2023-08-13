@@ -43,7 +43,7 @@ main {
 }
 
 #title {
-	font-size: 35px;
+	font-size: 30px;
 }
 
 #sendRequest {
@@ -72,7 +72,7 @@ main {
 	padding: 5px;
 	margin-right: 20px;
 	width: 300px;
-	height: 30px;
+	height: 40px;
 	border: 1px solid gray;
 	border-radius: 10px;
 }
@@ -113,7 +113,7 @@ main {
 }
 
 #delete-button {
-	color: #5A8CF2;
+	color: #FF8686;
 	font-weight: bold;
 	font-size: 15px;
 	margin-left: 2%;
@@ -129,7 +129,6 @@ main {
 
 .list-area table {
 	border-collapse: collapse;
-	width: 100%;
 	width: 100%;
 }
 
@@ -210,15 +209,15 @@ main {
 }
 
 #previous {
-	color: #5A8CF2;
+	color: #FF8686;
 }
 
 #after {
-	color: #5A8CF2;
+	color: #FF8686;
 }
 
 .number-area a:hover {
-	color: #5A8CF2;
+	color: #FF8686;
 	cursor: pointer;
 }
 
@@ -262,7 +261,7 @@ main {
 	padding-left: 10%;
 	font-size: 10px;
 	color: white;
-	background-color: #5A8CF2;
+	background-color: #FF8686;
 	width: 70px;
 	height: 30px;
 	border: none;
@@ -274,6 +273,24 @@ main {
 
 tr:hover {
 	  background-color: #f2f2f2;
+	}
+	
+	.list-area th:nth-child(1)
+	{
+		background-color: #FF8686;
+		border-top-left-radius: 15px;
+		color: white;
+	}
+	.list-area th:nth-child(2)
+	{
+		background-color: #FF8686;
+		color: white;
+	}
+	.list-area th:nth-child(3)
+	{
+		background-color: #FF8686;
+		border-top-right-radius: 15px;
+		color: white;
 	}
 </style>
 </head>
@@ -290,6 +307,8 @@ tr:hover {
 
 
 		<div class="main-area">
+		<br>
+		<br>
 			<div class="title-area">
 				<span id="title">회의록목록</span>
 
@@ -303,6 +322,7 @@ tr:hover {
 
 
 					</label> <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
+					
 				</form>
 					
 					<button id="sendRequest" onclick="sendRequest();">글쓰기</button>
@@ -325,7 +345,6 @@ tr:hover {
 					</c:forEach>
 				</table>
 			</div>
-
 			<div class="number-area">
                 <c:if test="${pv.listCount > 10}">
                     <c:if test="${pv.currentPage > 1}">
@@ -388,11 +407,11 @@ tr:hover {
         }
     
         function detail(no) {
-            location.href = "${root}/proceeding/detail/" + no
+            location.href = "${root}/proceeding/admin/detail/" + no
         };
 
         function sendRequest(){
-       		location.href="${root}/proceeding/write";
+       		location.href="${root}/proceeding/admin/write";
        	}
 
         const searchValueTag = document.querySelector("input[name=searchValue]");

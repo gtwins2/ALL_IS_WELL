@@ -80,6 +80,7 @@
 
     #title {
         font-size: 35px;
+        
     }
 
     #sendRequest {
@@ -244,9 +245,9 @@
         top: 2px;
         cursor: pointer;
     }
-    
     .list-area td, .list-area th{
     	text-align: center;
+    	font-size: 20px;
     }
 
     .list-area td input[type="checkbox"] {
@@ -285,25 +286,41 @@
         display: inline;
         position: absolute;
         width: 30%;
-        height: 50%;
+        height: 700px;
+    }
+    #calendar{
+    	height: 850px;
     }
     
     .list-area th:nth-child(1)
 	{
 		background-color: #5A8CF2;
 		border-top-left-radius: 15px;
+		color: white;
 	}
 	.list-area th:nth-child(2)
 	{
 		background-color: #5A8CF2;
+		color: white;
 	}
 	.list-area th:nth-child(3)
 	{
 		background-color: #5A8CF2;
-		border-top-right-radius: 15px;
+		color: white;
 	}
+	.list-area th:nth-child(4)
+	{
+		background-color: #5A8CF2;
+		border-top-right-radius: 15px;
+		color: white;
+	}
+	labe.category-area{
+		margin-left: 750px;
+	}
+    .gap{
+    width: 420px;
+    }
     </style>
-    
 </head>
 
 <body>
@@ -324,9 +341,9 @@
          <div class="title-area">
          <br>
          <br>
-                <span id="title">당직 리스트</span>
-                <!---->
+                <span id="title" style="width: 200px;">당직 리스트</span>
                 <form action="" class="search-area" method="get">
+                <div class="gap"></div>
                     <label for="search" class="category-area"> <select
                          id="search" name="searchType">
                              <option value="mname">당직자</option>
@@ -358,13 +375,15 @@
             <div class="list-area">
                 <table>
                 	<tr>
-	                    <th>당직자번호</th>
+	                    <th>직급</th>
+	                    <th>부서</th>
 	                    <th>당직자이름</th>
 	                    <th>당직예정일</th>
                     </tr>
                     <c:forEach items="${voList}" var="vo">
 						<tr onclick="detail(${vo.no});">
-							<td>${vo.mno}</td>
+							<td>${vo.pname}</td>
+							<td>${vo.dname}</td>
 							<td>${vo.mname}</td>
 							<td>${vo.start}</td>
 						</tr>
@@ -407,9 +426,7 @@
     </footer>
 
     <script>
-    function detail(no){
-   	 location.href = "${root}/duty/detail/" + no
-    }
+    
     const sideBar = document.querySelector("#side-bar")
     const subMenus = document.querySelectorAll(".sub-menu");
     const thirdSidebars = document.querySelectorAll(".third-sidebar");
@@ -421,12 +438,6 @@
     thirdSidebars.forEach(thirdSidebar => {
         thirdSidebar.style.height = sideBar.offsetHeight + 'px';
     });
-
-    function showTab() {
-        const div03 = document.querySelector('#div03');
-        div03.style.display = "none";
-    }
-
 
         function put(){
         	location.href="${root}/duty/put";

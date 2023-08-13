@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -6,22 +6,18 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>재고입고조회</title>
+        <title>회의록작성하기</title>
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
-	        #wrap {
-				width: 1920px;
-				display: grid;
-				grid-template-columns: 150px 1770px;
-			}
-            .main-area {
+           .main-area {
    				 width: 1200px;
     			height: 1100px;
-    			margin: auto;
-    			margin-top: 20px; /* Add this line */
+    			left: 300px;
+    			margin-top: 20px;
 }
 
             .title-area {
+            	margin-top: 50px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
@@ -29,10 +25,11 @@
             }
 
             #title {
-                font-size: 30px;
+                font-size: 25px;
+                margin-left: 20%;
             }
 
-            #sendRequest {
+            #sendRequest, #sendBack {
                 font-size: 20px;
                 color: white;
                 background-color: #FF8686;
@@ -43,12 +40,8 @@
                 border-radius: 5px;
                 font-weight: bold;
             }
-            #sendRequest:hover {
-		        background-color: #555;
-		        transition: 0.7s;
-		    }
 
-            #sendMail:hover {
+            #sendRequest:hover, #sendBack:hover {
                 background-color: #555;
                 transition: 0.7s;
             }
@@ -64,7 +57,7 @@
                 padding: 5px;
                 margin-right: 20px;
                 width: 300px;
-                height: 40px;
+                height: 30px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -109,15 +102,18 @@
             }
 
             #delete-button {
-                color: #5A8CF2;
+                color: #FF8686;
                 font-weight: bold;
                 font-size: 15px;
                 margin-left: 2%;
             }
 
             .list-area {
+            	margin-left: 20%;
                 margin-top: 20px;
-				font-size: 25px;
+                width: 80%;
+                height: 50%;
+
                 background: #FFFFFF;
                 border: 1px solid #C4C4C4;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -129,70 +125,7 @@
                 width: 100%;
             }
 
-            .list-area th,
-            .list-area td {
-                padding: 20px;
-                border-bottom: 1px solid #ddd;
-                text-align: left;
-            }
-
-            .list-area th {
-                font-size: 20px;
-                font-weight: normal;
-
-            }
-
-            .list-area th:first-child,
-            .list-area td:first-child {
-                width: 30px;
-            }
-
-            .list-area th:last-child,
-            .list-area td:last-child {
-                width: 100px;
-            }
-
-            .list-area td input[type="checkbox"] {
-                margin: 0;
-                padding: 0;
-            }
-
-            .list-area th:nth-child(3) {
-                padding-left: 10%;                
-                width: 150px;
-            }
-
-            .list-area th:nth-child(2) {
-                padding-left: 10%;
-                width: 150px;
-            }
-
-            .list-area th:nth-child(4) {
-                padding-left: 10%;
-                width: 150px;
-            }
-
-            .list-area td:nth-child(3) {
-                padding-left: 10.5%;
-                width: 150px;                
-            }
-
-            .list-area td:nth-child(2) {
-                padding-left: 10.5%;
-                width: 150px;                
-            }
-
-            .list-area td:nth-child(4) {
-                padding-left: 10%;
-                width: 150px;                
-            }
-			
-			
-.list-area td:nth-child(4) {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
+           
 
             .number-area {
                 text-align: center;
@@ -209,15 +142,15 @@
             }
 
             #previous {
-                color: #5A8CF2;
+                color: #FF8686;
             }
 
             #after {
-                color: #5A8CF2;
+                color: #FF8686;
             }
 
             .number-area a:hover {
-                color: #5A8CF2;
+                color: #FF8686;
             }
 
             .list-area th input[type="checkbox"] {
@@ -258,8 +191,56 @@
 
             #content{
                 display: grid;
-                grid-template-columns: 300px 1620px;
+                grid-template-columns: 300px 1220px;
             }
+            
+            #title-area , #content-area, #date-area {
+            	font-size: 30px;
+            }
+            
+            #content2{
+				font-size: 30px;
+				width: 1198px;
+				height: 400px; 
+            }
+            
+            #content-area2{
+            	width: 919px;
+            	height: 300px;
+            	margin-top: -30px;
+            	margin-left: 70px;
+            	font-size: 30px;
+            }
+
+			tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        border-right: 0.5px solid #d9d9d9;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+   
+    td > input {
+    	border: none;
+    }
+
+    #buttonDiv {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: right;
+    }
+
+        </style>
 
         </style>
     </head>
@@ -270,98 +251,64 @@
         </header>
 
 
-        <main id="wrap">
+	
+	
+
+	
+        <div id="content">
+            <div id="wrap">
                 <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
+            </div>
 
 
             <div class="main-area">
-            <br>
-            <br>
                 <div class="title-area">
-                    <span id="title" style="font-size: 40px;">재고결재문서조회</span>
-
-                    <form action="" class="search-area">
-                        <label for="search" class="category-area">
-                            <select id="search" name="searchType">
-                                <option value="ITEM_NAME">종류</option>
-                                <option value="INVENTORY_COUNT">개수</option>
-                                <option value="APPROVAL_DATE">입고일자</option>
-                            </select>
-
-					
-
-                        </label>
-                        <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </form>
-                   
-
+                    <span id="title">회의록작성하기</span>
 
                 </div>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="list-area">
-                    <table>
-                        <th></th>
-                        <th>종류</th>
-                        <th>개수</th>
-                        <th>입고일자</th>
-
-                        <c:forEach items="${voList}" var="vo">
-						<tr>
-							<td></td>
-							<td>${vo.itemName}</td>
-							<td>${vo.count}</td>
-							<td>${vo.approvalDate}</td>
-						</tr>
-					</c:forEach>
+				<form action="${root}/proceeding/write" method="post">
+					
+				<div class="list-area">
+				<table>
+					<tr>
+                        <td style="width: 200px;">제목</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title"></td>
+                    </tr>
+					<tr>
+                        <td>회의예정일</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="dueDate" placeholder="YYYYMMDD 형식으로 입력하세요" name="dueDate" ></td>
+                    </tr>
+					<tr>
+                        <td>내용</td>
+                        <td colspan="2"><input style="width: 800px; height:400px;" type="text" name="content" ></td>
+                    </tr>
 
                     </table>
                 </div>
-                <c:set var="range" value="5" />
-			<c:set var="startPage"
-				value="${pv.currentPage - range > 0 ? pv.currentPage - range : 1}" />
-			<c:set var="endPage"
-				value="${startPage + 4 <= pv.maxPage ? startPage + 4 : pv.maxPage}" />
-			<c:set var="startPage" value="${endPage - 4 > 0 ? endPage - 4 : 1}" />
+					
+					<div id="buttonDiv">
+					<button type="submit" id="sendRequest">작성완료</button>
+					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
+					</div>
+				
+				</form>
+				
+				                    
 
-			<div class="number-area">
-				<c:if test="${pv.currentPage > 1 }">
-					<a class="pageBtn"
-						onclick="pageMove('${startPage - 1 > 0 ? startPage - 1 : 1}');">‹</a>
-				</c:if>
-				<c:if test="${pv.maxPage > 1 }">
-					<c:forEach begin="${startPage}" end="${endPage}" var="i">
-						<a class="pageBtn" onclick="pageMove('${i}');">${i}</a>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pv.currentPage < pv.maxPage }">
-					<a class="pageBtn"
-						onclick="pageMove('${endPage + 1 <= pv.maxPage ? endPage + 1 : pv.maxPage}');">›</a>
-				</c:if>
-			</div>
-		</div>
-	</main>
+                </div>
+            </div>
+
 
         <footer>
             <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
         </footer>
 
         <script>
-            function selectAll(selectAll) {
-                const checkboxes = document.getElementsByName('choose');
-
-                checkboxes.forEach((checkbox) => {
-                    checkbox.checked = selectAll.checked;
-                })
-            }
             
-            function sendRequest(){
-           		location.href="${root}/inventory/insert";
-           	}
+            function backPage(){
+            	location.href = '${root}/proceeding/admin/list';
+            }
             const sideBar = document.querySelector("#side-bar")
             const subMenus = document.querySelectorAll(".sub-menu");
             const thirdSidebars = document.querySelectorAll(".third-sidebar");
@@ -373,7 +320,8 @@
             thirdSidebars.forEach(thirdSidebar => {
                 thirdSidebar.style.height = sideBar.offsetHeight + 'px';
             });
+            
         </script>
     </body>
 
-    </html>
+    </html> 

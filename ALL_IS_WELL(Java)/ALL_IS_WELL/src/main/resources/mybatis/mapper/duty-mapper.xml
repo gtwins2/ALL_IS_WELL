@@ -181,18 +181,21 @@
    <select id="getList" resultType="com.kh.app.duty.vo.DutyVo">
 	SELECT
 	D.NO,
-	D.MEMBER_NO AS mno ,
-	D.DUTY_DAY AS "start" ,
+	DE.NAME AS dname ,
+	P.NAME AS pname ,
+	TO_CHAR(D.DUTY_DAY, 'yyyyMMdd') AS "start",
 	M.NAME AS mname
 	FROM DUTY D
 	JOIN MEMBER M ON D.MEMBER_NO = M.NO
+	JOIN DEPARTMENT DE ON DE.NO = M.DEPARTMENT_NO
+	JOIN POSITION P ON P.NO = M.POSITION_NO
 	<if test="searchType == 'mname' and searchValue != null">
 	WHERE M.NAME LIKE '%${searchValue}%'
 	</if>
 	<if test="searchType == 'start' and searchValue != null">
 	WHERE D.DUTY_DAY LIKE '%${searchValue}%'
 	</if>
-	ORDER BY "DUTY_DAY" ASC
+	ORDER BY "DUTY_DAY" DESC
 	</select>
 	
 		<insert id="put">
@@ -234,12 +237,16 @@
    
    <select id="getDutyByNo" resultType="com.kh.app.duty.vo.DutyVo">
   SELECT
-	D.NO ,
-	D.MEMBER_NO AS mno ,
-	D.DUTY_DAY AS "start" ,
-	M.NAME AS mname
+	D.NO AS no ,
+	DE.NAME AS dname ,
+	P.NAME AS pname ,
+	TO_CHAR(D.DUTY_DAY, 'yyyyMMdd') AS "start",
+	M.NAME AS mname ,
+	M.NO AS mno
 	FROM DUTY D
 	JOIN MEMBER M ON D.MEMBER_NO = M.NO
+	JOIN DEPARTMENT DE ON DE.NO = M.DEPARTMENT_NO
+	JOIN POSITION P ON P.NO = M.POSITION_NO
 	WHERE D.NO = ${no}
    </select>
    

@@ -80,12 +80,13 @@
 
     #title {
         font-size: 35px;
+        
     }
 
     #sendRequest {
         font-size: 20px;
         color: white;
-        background-color: #FF8686;
+        background-color: #5A8CF2;
         size: 10px;
         border: none;
         padding: 10px 15px;
@@ -110,7 +111,7 @@
         padding: 5px;
         margin-right: 20px;
         width: 300px;
-        height: 30px;
+        height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
     }
@@ -119,6 +120,9 @@
 
     .list-area {
         margin-top: 20px;
+        width: 50%;
+        height: 40%;
+        margin-left: 750px;
     }
 
 
@@ -180,6 +184,7 @@
         padding: 20px;
         border-bottom: 1px solid #ddd;
         text-align: left;
+        font-size: 20px;
     }
 
     .list-area th {
@@ -244,6 +249,7 @@
     
     .list-area td, .list-area th{
     	text-align: center;
+    	font-size: 20px;
     }
 
     .list-area td input[type="checkbox"] {
@@ -279,10 +285,47 @@
 	}
 
     #div03{
-        display: none;
+        display: inline;
+        position: absolute;
+        width: 30%;
+        height: 700px;
+    }
+    #calendar{
+    	height: 850px;
+    }
+    
+    .list-area th:nth-child(1)
+	{
+		background-color: #FF8686;
+		border-top-left-radius: 15px;
+		color: white;
+	}
+	.list-area th:nth-child(2)
+	{
+		background-color: #FF8686;
+		color: white;
+	}
+	.list-area th:nth-child(3)
+	{
+		background-color: #FF8686;
+		color: white;
+	}
+	.list-area th:nth-child(4)
+	{
+		background-color:#FF8686;
+		border-top-right-radius: 15px;
+		color: white;
+	}
+	labe.category-area{
+		margin-left: 750px;
+	}
+    .gap{
+    width: 420px;
+    }
+    .list-area >tr >td{
+    	font-size: 25px;
     }
     </style>
-    
 </head>
 
 <body>
@@ -296,14 +339,16 @@
             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </header>
 
+
         <div class="main-area">
-<br>
+        <br>
 		<br>
          <div class="title-area">
-
-                <span id="title">당직 리스트</span>
-                <!---->
+         <br>
+         <br>
+                <span id="title" style="width: 200px;">당직 리스트</span>
                 <form action="" class="search-area" method="get">
+                <div class="gap"></div>
                     <label for="search" class="category-area"> <select
                          id="search" name="searchType">
                              <option value="mname">당직자</option>
@@ -315,31 +360,35 @@
                  </form>
                 <!---->
                 <div>
-                <button id="sendRequest" type="button" onclick="showCal();">달력 펼치기</button>
-                <button id="sendRequest" type="button" onclick="showTab();">달력 접기</button>
             </div>
             </div>
-                
+            <br>
+            <br>
+      <div id="leftside">
         	<!-- 일정 -->
             
             <div id='div03'>
             <div id='calendar'></div>
             </div>
             <div>
-                
+            </div>    
                 
             
-            </div>
+     </div>
+     
+     
             <div class="list-area">
                 <table>
                 	<tr>
-	                    <th>당직자번호</th>
+	                    <th>직급</th>
+	                    <th>부서</th>
 	                    <th>당직자이름</th>
 	                    <th>당직예정일</th>
                     </tr>
                     <c:forEach items="${voList}" var="vo">
-						<tr onclick="detail(${vo.no});">
-							<td>${vo.mno}</td>
+						<tr style="font-size: 25px;" onclick="detail(${vo.no});">
+							<td>${vo.pname}</td>
+							<td>${vo.dname}</td>
 							<td>${vo.mname}</td>
 							<td>${vo.start}</td>
 						</tr>
@@ -372,13 +421,10 @@
 			</div>
             
             </div>
-
 			 
                 
 
     </main>
-    <br>
-		<br>
 
     <footer>
         <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>
@@ -399,20 +445,6 @@
     thirdSidebars.forEach(thirdSidebar => {
         thirdSidebar.style.height = sideBar.offsetHeight + 'px';
     });
-
-    function showCal() {
-        const div03 = document.querySelector('#div03');
-        div03.style.display = "inline";
-        div03.style.position = "absolute";
-        div03.style.width = "60%";
-        div03.style.height = "50%";
-    }
-    
-    function showTab() {
-        const div03 = document.querySelector('#div03');
-        div03.style.display = "none";
-    }
-
 
         function put(){
         	location.href="${root}/duty/put";
@@ -440,6 +472,8 @@
 		                center : "title",
 		                end : 'dayGridMonth,dayGridWeek,dayGridDay'
 		                },
+                displayEventTime: false, // 이벤트 시간 안보이게
+                dayMaxEvents: false, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 		    	selectable : true,
 		    	droppable : true,
 		    	editable : true,

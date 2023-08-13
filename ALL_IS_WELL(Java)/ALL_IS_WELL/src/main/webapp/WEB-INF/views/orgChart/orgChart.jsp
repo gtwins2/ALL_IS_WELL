@@ -520,8 +520,6 @@
 	                이메일 : <span id="email"></span>
 	                <br>
 	                
-	                <br>
-	                 <button id="sendRequest" onclick="put();">회원리스트조회</button>
             	</p>
             </div>
         </div>
@@ -579,7 +577,17 @@ closeBtn.addEventListener("click", function() {
 function put() {
 	location.href = "${root}/member/list"
 }
-        
+const sideBar = document.querySelector("#side-bar")
+const subMenus = document.querySelectorAll(".sub-menu");
+const thirdSidebars = document.querySelectorAll(".third-sidebar");
+
+subMenus.forEach(subMenu => {
+    subMenu.style.height = sideBar.offsetHeight + 'px';
+});
+
+thirdSidebars.forEach(thirdSidebar => {
+    thirdSidebar.style.height = sideBar.offsetHeight + 'px';
+});    
 </script>
 
 
