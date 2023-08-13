@@ -16,7 +16,7 @@
 	}
 
     main{
-        min-height: 100%;
+        min-height: 900px;
     }
 
     .main-area {
@@ -147,9 +147,9 @@
                 <table>
                     <tr>
                         <th id="date"><fmt:formatDate value="${fvo.presenceTime}" pattern="yyyy-MM-dd"/></th>
-                        <th id="writer">출근 시간 : <fmt:formatDate value="${fvo.presenceTime}" pattern="HH시  mm분"/></th>
+                        <th id="writer">출근 시간 : <fmt:formatDate value="${fvo.presenceTime}" pattern="HH:mm:ss"/></th>
                         <c:if test="${fvo.leaveTime != null}">
-                            <th id="content">퇴근 시간 : <fmt:formatDate value="${fvo.leaveTime}" pattern="HH시  mm분"/></th>
+                            <th id="content">퇴근 시간 : <fmt:formatDate value="${fvo.leaveTime}" pattern="HH:mm:ss"/></th>
                         </c:if>
                         <c:if test="${fvo.leaveTime == null}">
                             <th id="content">퇴근 시간 : X</th>
@@ -169,8 +169,8 @@
                         <tr>
                             <td hidden>${vo.memberNo}</td>
                             <td><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd"/></td>
-                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="HH시  mm분"/></td>
-                            <td><fmt:formatDate value="${vo.leaveTime}" pattern="HH시  mm분"/></td>
+                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="HH:mm:ss"/></td>
+                            <td><fmt:formatDate value="${vo.leaveTime}" pattern="HH:mm:ss"/></td>
                         </tr>
                     </c:forEach>
                 </table>

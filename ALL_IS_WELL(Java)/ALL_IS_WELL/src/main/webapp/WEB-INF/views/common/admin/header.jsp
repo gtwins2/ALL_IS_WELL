@@ -46,11 +46,18 @@
         margin-right: 20px;
     }
 
-    #profile img {
+    #profile div {
         width: 40px;
         height: 40px;
         border-radius: 50%;
         margin-bottom: 5px;
+        background-color: #ffaeae;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
     }
     
    
@@ -72,9 +79,9 @@
         <div id="header-right">
             
             <div id="profile">
-                <img alt="프로필 사진" src="#">
+                <div>관</div>
                 <span>
-                    <a href="#">로그아웃</a>
+                    <a href="${root}/member/Alogin">로그아웃</a>
                 </span>
             </div>
         </div>

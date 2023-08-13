@@ -17,7 +17,7 @@
 	}
 
     main{
-        min-height: 100%;
+        min-height: 1000px;
     }
 
     .main-area {
@@ -37,7 +37,7 @@
     }
 
     #title {
-        font-size: 20px;
+        font-size: 30px;
         margin: auto;
     }
 
@@ -57,7 +57,7 @@
     }
 
     #writeApproval {
-        font-size: 15px;
+        font-size: 20px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
@@ -80,6 +80,7 @@
 
     #search {
         height: 40px;
+        font-size: 20px;
     }
 
     .search-area input[type="text"] {
@@ -90,6 +91,7 @@
         height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
+        font-size: 20px;
     }
 
     .category-area {

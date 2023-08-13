@@ -17,7 +17,7 @@
 	            ROW_NUMBER() OVER (ORDER BY PRESENCE_TIME DESC) AS RN
 	        FROM ATTENDANCE A
 	        JOIN MEMBER M ON A.MEMBER_NO = M.NO
-	        WHERE MEMBER_NO = 1
+	        WHERE MEMBER_NO = #{no}
 	    )
 	    WHERE RN > 1
 	</select>
@@ -41,7 +41,7 @@
 	            ROW_NUMBER() OVER (ORDER BY PRESENCE_TIME DESC) AS RN
 	        FROM ATTENDANCE A
 	        JOIN MEMBER M ON A.MEMBER_NO = M.NO
-	        WHERE MEMBER_NO = 1
+	        WHERE MEMBER_NO = #{no}
 	    )
 	    WHERE RN = 1
 	</select>

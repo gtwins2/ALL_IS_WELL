@@ -17,13 +17,17 @@
 	}
 
     main{
-        min-height: 100%;
+        min-height: 900px;
     }
 
     .main-area {
         width: 70%;
         min-height: 80%;
         margin: auto;
+    }
+
+    #title{
+        font-size: 30px;
     }
 
     .title-area {
@@ -61,15 +65,17 @@
 
     #search{
         height: 50px;
+        font-size: 20px;
     }
 
     .search-area input[type="text"] {
         padding: 5px;
         margin-right: 20px;
-        width: 800px;
-        height: 50px;
+        width: 500px;
+        height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
+        font-size: 20px;
     }
 
     .category-area {
@@ -111,10 +117,6 @@
         margin-left: 2%;
     }
 
-    #title {
-        font-size: 20px;
-    }
-
     #writeApproval {
         font-size: 15px;
         color: white;
@@ -138,16 +140,6 @@
 
     #search {
         height: 40px;
-    }
-
-    .search-area input[type="text"] {
-        padding: 5px;
-        margin-right: 0; 
-        padding-right: 30px;
-        width: 600px;
-        height: 40px;
-        border: 1px solid gray;
-        border-radius: 10px;
     }
 
     .category-area {
@@ -178,9 +170,6 @@
     }
 
     #search-icon {
-        position: absolute; 
-        right: 0;
-        top: 10px; 
         display: flex; 
         align-items: center;
         padding: 0 10px; 
@@ -290,12 +279,18 @@
             </div>
             <div class="list-area">
                 <table>
+                    <tr>
+                        <th>직원 이름</th>
+                        <th>출근 시간</th>
+                        <th>퇴근 시간</th>
+                        <th>퇴근 여부</th>
+                    </tr>
                 	<c:forEach items="${voList}" var="vo">
 						<tr>
                             <th hidden id="attendanceNo">${vo.no}</th>
 	                        <th id="member">${vo.memberName}(${vo.departmentName}-${vo.positionName})</th>
-	                        <th id="enter-time"><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd HH:mm"/></th>
-	                        <th id="out-time"><fmt:formatDate value="${vo.leaveTime}" pattern="yyyy-MM-dd HH:mm"/></th>
+	                        <th id="enter-time"><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd HH:mm:ss"/></th>
+	                        <th id="out-time"><fmt:formatDate value="${vo.leaveTime}" pattern="yyyy-MM-dd HH:mm:ss"/></th>
 	                        <th id="status">${vo.status}</th>
 	                    </tr>                	
                 	</c:forEach>
