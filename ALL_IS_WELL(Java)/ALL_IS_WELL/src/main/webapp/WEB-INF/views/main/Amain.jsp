@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="com.kh.app.main.controller.Calendar"%>
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@
 
 #content{
 		width: 1920px;
-		height: 750px;
+		height: 800px;
 		display: grid;
 		grid-template-columns: 150px 1770px;
 	}
@@ -161,12 +162,12 @@
 }
 #div03{
 position: absolute;
-width: 900px;
+width: 750px;
 height: 730px;
-left: 820px;
+left: 520px;
 top: 100px;
 background: #FDFDFD;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border: 1px solid lightgray;
 border-radius: 50px;
 }
 #div03-1, #div03-3,#div03-5, #div03-7{
@@ -250,10 +251,10 @@ color: #FFFFFF;
 #div04, #div05, #div06{
 position: absolute;
 width: 515.26px;
-height: 300px;
+height: 240px;
 left: 1317px;
 background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border: 1px solid lightgray;
 border-radius: 50px;
 font-family: 'Inter';
 font-style: normal;
@@ -264,11 +265,11 @@ color: #000000;
 }
 
 #div04{
-    top: 190px;
+    top: 100px;
 }
 
 #div04-1{
-    top: 265px;
+    top: 155px;
 }
 
 #right{
@@ -278,33 +279,33 @@ color: #000000;
 #div04 > div{
     display: grid;
     grid-template-columns: 270px 240px;
-    line-height: 40px;
+    line-height: 38px;
 }
 #div02 > div > div, #div04 > div > div, #div05 > div > div, #div06 > div > div{
     text-align: center;
 }
 
 #div05{
-    top: 500px;
+    top: 352px;
 }
 #div05 > div{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    line-height: 40px;
+    line-height: 47px;
 }
 #div05-1{
-    top: 575px;
+    top: 420px;
 }
 #div06{
-    top: 810px;
+    top: 600px;
 }
 #div06 > div{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    line-height: 40px;
+    grid-template-columns: 270px 240px;
+    line-height: 47px;
 }
 #div06-1{
-    top: 885px;
+    top: 670px;
 }
 
 </style>
@@ -320,8 +321,8 @@ color: #000000;
 		</nav>
 		<main>
 			<!-- <div id="div01"></div> -->
-			<div id="employee_piechart" style="width: 900px; height: 500px;"></div>
-			<div id="chart_div" style="width:650px;"></div>
+			<div id="employee_piechart" style="width: 500px; height: 500px;"></div>
+			<div id="chart_div" style="width:350px;"></div>
 
 <script type="text/javascript">
 
@@ -467,35 +468,29 @@ chart.draw(data, options);
 		    
 		
 		    <!-- 공지사항 -->
-		    <!-- <div id="div04">
+		    <div id="div04">
 		        <br>
 		        <div>
 		            <div id="right"><h3>공지사항</h3></div>
 		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br><br>
-		        <div>
-		            <div>원내식당 가격 인상 안내</div>
-		            <div>2023-06-22</div>
-		        </div>
-		        <div>
-		            <div>신규 바이러스 주의사항</div>
-		            <div>2023-06-15</div>
-		        </div>
-		        <div>
-		            <div>체육대회 안내</div>
-		            <div>2023-06-08</div>
-		        </div>
-		        <div>
-		            <div>5월 급여지급 지연 안내</div>
-		            <div>2023-06-07</div>
-		        </div>
-		    </div> -->
+		        <c:forEach items="${voList}" var="vo">
+			        <div>
+			            <div>${vo.content}</div>
+			            <div>
+			            <fmt:parseDate value=" ${vo.enrollDate}" var="startDate" pattern="yyyy-MM-dd HH:mm:ss" />
+	            		<fmt:formatDate pattern="MM-dd" value="${startDate}"/>
+			            </div>
+			        </div>
+		        
+		        </c:forEach>
+		    </div>
 		    <!-- 공지사항 틀 -->
-		    <!-- <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
-		     -->
+		    <div id="div04-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 등록일</div>
+		    
 		    <!-- 결제현황 -->
-		    <!-- <div id="div05">
+		    <div id="div05">
 		        <br>
 		        <div>
 		            <div><h3>결제현황</h3></div>
@@ -503,61 +498,35 @@ chart.draw(data, options);
 		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br><br>
+		        <c:forEach items="${voList2}" var="vo">
 		        <div>
-		            <div>휴가</div>
-		            <div>2023-06-22</div>
-		            <div>휴가 신청</div>
+		            <div>${vo.memberName }</div>
+		            <div>${vo.title }</div>
+		            <div>
+            		<fmt:formatDate pattern="MM-dd" value="${vo.createDate}" type="date"/>
+            		</div>
 		        </div>
-		        <div>
-		            <div>휴가</div>
-		            <div>2023-06-15</div>
-		            <div>휴가 신청</div>
-		        </div>
-		        <div>
-		            <div>재고 신청</div>
-		            <div>2023-06-08</div>
-		            <div>재고 신청</div>
-		        </div>
-		        <div>
-		            <div>출장 신청 </div>
-		            <div>2023-06-07</div>
-		            <div>5월 급여 잔여</div>
-		        </div>
+		        </c:forEach>
 		    </div>
 		    <div id="div05-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp구분&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp문서명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-		 -->
+		 
 		    <!-- 근태 -->
-		    <!-- <div id="div06">
+		    <div id="div06">
 		        <br>
-		        <div>
-		            <div><h3>결제현황</h3></div>
-		            <div></div>
-		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
+		       <div>
+		            <div id="right"><h3>재고현황</h3></div>
+		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br><br>
+		        <c:forEach items="${voList3}" var="vo">
 		        <div>
-		            <div>휴가</div>
-		            <div>2023-06-22</div>
-		            <div>휴가 신청</div>
+		            <div>${vo.itemName}</div>
+		            <div>${vo.inventoryCount }</div>
 		        </div>
-		        <div>
-		            <div>휴가</div>
-		            <div>2023-06-15</div>
-		            <div>휴가 신청</div>
-		        </div>
-		        <div>
-		            <div>재고 신청</div>
-		            <div>2023-06-08</div>
-		            <div>재고 신청</div>
-		        </div>
-		        <div>
-		            <div>출장 신청 </div>
-		            <div>2023-06-07</div>
-		            <div>5월 급여 잔여</div>
-		        </div>
+		        </c:forEach>
 		    </div>
-		    <div id="div06-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp구분&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp문서명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
- -->
+		    <div id="div06-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp종류&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 개수</div>
+
 		</main>
 	</div>
 

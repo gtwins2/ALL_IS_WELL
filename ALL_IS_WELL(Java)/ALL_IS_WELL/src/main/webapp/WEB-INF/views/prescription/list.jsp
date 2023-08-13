@@ -174,9 +174,11 @@
 			    color: white;
 			}
 			
-thead{
-	background-color: #5A8CF2;
-}
+#top {
+			background-color: #5A8CF2;
+			color: white;
+			font-weight: bold;
+		}	
 
         </style>
     </head>
@@ -216,7 +218,7 @@ thead{
                
                 <div class="list-area">
                     <table>
-                    	<thead>
+                    	<thead id="top">
                         	<th>이름</th>
                         	<th>등록날짜</th>
                         </thead>

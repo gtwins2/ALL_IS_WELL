@@ -177,7 +177,11 @@
 			    background-color: #5A8CF2;
 			    color: white;
 			}
-
+#top {
+			background-color: #5A8CF2;
+			color: white;
+			font-weight: bold;
+		}
         </style>
     </head>
 
@@ -214,7 +218,7 @@
                
                 <div class="list-area">
                     <table>
-                    	<tr id="title">
+                    	<tr id="top">
                         <th>이름</th>
                         <th>생년월일</th>
                         <th>성별</th>
