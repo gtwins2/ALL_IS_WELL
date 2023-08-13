@@ -9,51 +9,52 @@
 <style>
 #content{
 	width: 1920px;
-	height: 750px;
+	height: 800px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
 
 #div01{
 	position: absolute;
-	width: 539px;
-	height: 510px;
-	left: 524px;
+	width: 600px;
+	height: 600px;
+	left: 350px;
 	top: 220px;
 	background: #FFFFFF;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 50px;
+	border: 1px solid lightgray;
+	border-radius: 30px;
+
 }
 
 #div01-1{
 	position: absolute;
-	width: 260px;
-	height: 284px;
-	left: 674px;
-	top: 240px;
+	width: 200px;
+	height: 200px;
+	left: 380px;
+	top: 250px;
 	background: url(1674030642.jpg);
-	border-radius: 50px;
+	border-radius: 100px;
 	border: 1px solid black;
 }
 #hr02{
 	position: absolute;
-	width: 538.91px;
+	width: 600px;
 	height: 0.65px;
-	left: 523.6px;
-	top: 530px;
+	left: 350px;
+	top: 480px;
 	background: #000000;
 }
 #div01-2{
 	position: absolute;
 	width: 479px;
 	height: 288px;
-	left: 554px;
-	top: 540px;
+	left: 450px;
+	top: 500px;
 	font-family: 'Inter';
 	font-style: normal;
-	font-weight: 400;
-	font-size: 22px;
-	line-height: 27px;
+
+	font-size: 20px;
+	line-height: 40px;
 	color: #000000;
 }
 #div01-2{
@@ -61,24 +62,17 @@
 	grid-template-columns: 1fr 1fr;	
 }
 
-#div01-3{
-	position: absolute;
-	width: 0px;
-	height: 200px;
-	left: 705px;
-	top: 530px;
-	border: 1px solid lightgray;
-}
+
 
 #div02{
 	position: absolute;
-	width: 311.64px;
-	height: 90.01px;
-	left: 650.23px;
-	top: 740.74px;
+	width: 600px;
+	height: 80px;
+	left: 350px;
+	top: 780px;
 	background: #5A8CF2;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 20px;
+
+	border-radius: 0 0 30px 30px;
 	text-align: center;
 }
 
@@ -86,7 +80,7 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 30px;
+	font-size: 20px;
 	line-height: 80px;
 	color: #FFFFFF;
 }
@@ -100,7 +94,7 @@
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 40px;
+	font-size: 30px;
 	line-height: 48px;
 	color: #000000;
 }
@@ -118,12 +112,12 @@
 	position: absolute;
 	width: 257px;
 	height: 85px;
-	left: 1355px;
-	top: 220px;
+	left: 1400px;
+	top: 210px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 40px;
+	font-size: 20px;
 	line-height: 48px;
 	color: #000000;
 }
@@ -135,24 +129,24 @@
 	left: 1202px;
 	top: 280.84px;
 	background: #FFFFFF;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 50px;
+	border: 1px solid lightgray;
+	border-radius: 20px;
 	
 }
 
 #div04-2{
 	position: absolute;
-	width: 245px;
-	height: 85px;
-	left: 1350px;
-	top: 606px;
+	width: 500px;
+	height: 50px;
+	left: 1202px;
+	top: 480px;
 	background: #5A8CF2;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 20px;
+	
+	border-radius: 0 0 10px 10px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 30px;
+	font-size: 20px;
 	color: #FFFFFF;
 	text-align: center;
 	border: 0px;
@@ -176,25 +170,26 @@
 
 #div05{
 	position: absolute;
-	width: 539px;
+	width: 500px;
 	height: 90px;
 	left: 1202px;
 	top: 733px;
 	background: #FFFFFF;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 50px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
 }
 
 #div05 > div{
 	width: 487px;
 	height: 53px;
 	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 32px;
+	font-weight: normal;
+
+	font-size: 20px;
 	line-height: 80px;
 	color: #000000;
 	text-align: center;
+	word-spacing: 40px;
 } 
 </style>
 <body>
@@ -208,8 +203,8 @@
 			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</nav>
 		<main>
-			 <div id="div03">마이페이지</div>
-			 <hr id="hr01">
+			 <div id="div03">MY PAGE</div>
+			
 			
 			 <!-- 개인정보 -->
 			 <div id="div01"></div>
@@ -234,7 +229,7 @@
 			 
 			 <!-- 잔여휴가 -->
 			 <div id="div05">
-				<div><h3>잔여휴가수 | ${loginMember.vacation}일</h3></div>
+				<div><span>잔여휴가수 | ${loginMember.vacation}일</span></div>
 			 </div>
 		</main>
 	</div>
