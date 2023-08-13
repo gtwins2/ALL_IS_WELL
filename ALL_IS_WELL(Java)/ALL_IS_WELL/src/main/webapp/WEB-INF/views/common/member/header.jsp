@@ -71,6 +71,7 @@
 </style>
 </head>
 <body>
+    
     <div id="header">
         <a href="${root}/Mmain">
             <div id="header-left">
@@ -88,7 +89,7 @@
                 <i class="fas fa-comments"></i>
             </div>
             <div id="profile">
-                <img alt="프로필 사진" src="#">
+                <img alt="프로필 사진" src="/app/resources/static/profile/${loginMember.profile}">
                 <span>
                     <a href="${root}/mypageMember">마이페이지</a> | <a href="${root}/member/logout">로그아웃</a>
                 </span>

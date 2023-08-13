@@ -80,6 +80,7 @@
 
     #search {
         height: 40px;
+        font-size: 20px;
     }
 
     .search-area input[type="text"] {
@@ -90,6 +91,7 @@
         height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
+        font-size: 20px;
     }
 
     .category-area {
@@ -120,14 +122,11 @@
     }
 
     #search-icon {
-        position: absolute; 
-        right: 0;
-        top: 10px; 
         display: flex; 
         align-items: center;
-        padding: 0 10px; 
         cursor: pointer; 
         color: gray;
+        margin-left: 10px;
     }
 
     .fa-solid{
@@ -159,8 +158,12 @@
     }
 
     .list-area th {
-        font-size: 15px;
+        font-size: 20px;
         font-weight: bold;
+    }
+
+    .list-area td {
+        font-size: 20px;
     }
 
     .list-area th:not(#status) {

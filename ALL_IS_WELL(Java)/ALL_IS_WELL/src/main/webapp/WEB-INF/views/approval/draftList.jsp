@@ -17,7 +17,7 @@
 	}
 
     main{
-        min-height: 100%;
+        min-height: 1000px;
     }
 
     .main-area {
@@ -37,7 +37,7 @@
     }
 
     #title {
-        font-size: 20px;
+        font-size: 30px;
         margin: auto;
     }
 
@@ -57,7 +57,6 @@
     }
 
     #writeApproval {
-        font-size: 15px;
         color: white;
         background-color: #5A8CF2;
         size: 10px;
@@ -66,6 +65,7 @@
         cursor: pointer;
         border-radius: 5px;
         font-weight: bold;
+        font-size: 18px;
     }
 
     #writeApproval:hover {
@@ -80,6 +80,7 @@
 
     #search {
         height: 40px;
+        font-size: 20px;
     }
 
     .search-area input[type="text"] {
@@ -90,6 +91,7 @@
         height: 40px;
         border: 1px solid gray;
         border-radius: 10px;
+        font-size: 20px;
     }
 
     .category-area {
@@ -154,8 +156,12 @@
     }
 
     .list-area th {
-        font-size: 15px;
+        font-size: 20px;
         font-weight: bold;
+    }
+
+    .list-area td{
+        font-size: 20px;
     }
 
     .list-area th:not(#status) {
@@ -175,7 +181,6 @@
         text-decoration: none;
         border: none;
         color: inherit;
-        font-size: 15px;
     }
 
     .number-area a:hover {
