@@ -55,7 +55,7 @@
 
 #content{
 		width: 1920px;
-		height: 750px;
+		height: 800px;
 		display: grid;
 		grid-template-columns: 150px 1770px;
 	}
@@ -64,7 +64,7 @@
     width: 334px;
     height: 480px;
     left: 300px;
-    top: 113px;
+    top: 150px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -75,7 +75,7 @@
     width: 334px;
     height: 240px;
 	left: 300px;
-    top: 113px;
+    top: 150px;
 }
 
 hr{
@@ -91,8 +91,8 @@ hr{
 	position: absolute;
 	width: 311px;
 	height: 242px;
-	left: 320px;
-	top: 378px;
+	left: 310px;
+	top: 420px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
@@ -104,10 +104,10 @@ hr{
 
 #div02{    
     position: absolute;
-    width: 200px;
+    width: 320px;
     height: 75px;
-    left: 370px;
-    top: 650px;
+    left: 300px;
+    top: 740px;
     background: #5A8CF2;
     border: 1px solid lightgray;
     border-radius: 20px;
@@ -140,7 +140,7 @@ position: absolute;
 width: 500px;
 height: 730px;
 left: 720px;
-top: 100px;
+top: 140px;
 
 background: #FDFDFD;
 border: 1px solid lightgray;
@@ -177,7 +177,8 @@ border-radius: 50px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 22px;
+	font-size: 20px;
+	font-weight: bold;
 	color: #FFFFFF;
 }
 
@@ -186,10 +187,11 @@ border-radius: 50px;
     background: #5A8CF2;
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 1000;
     font-size: 20px;
     color: #FFFFFF;
     text-align: center;
+    
 }
 
 #div03-2{
@@ -440,7 +442,7 @@ color: #000000;
 		    <div id="div05">
 		        <br>
 		        <div>
-		            <div><h3>결제현황</h3></div>
+		            <div><h3>결재현황</h3></div>
 		            <div></div>
 		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
