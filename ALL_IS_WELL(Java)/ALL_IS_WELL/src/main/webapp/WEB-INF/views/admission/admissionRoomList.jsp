@@ -136,6 +136,8 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: #f9f9f9;
+             min-width: 200px;
+    		min-height: 150px; 
         }
 
 
