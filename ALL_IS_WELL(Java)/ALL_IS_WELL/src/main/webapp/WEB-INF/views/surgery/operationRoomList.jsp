@@ -27,7 +27,7 @@
         }
 
         .head-area {
-            margin-top: 30px;
+            margin-top: 50px;
             text-align: center;
             display: flex;
             flex-direction: row;
@@ -36,6 +36,10 @@
             font-weight: normal;
             width: 80%;
 
+        }
+        
+        #title {
+        	margin-right: 250px;
         }
 
         .search-area {
@@ -60,7 +64,7 @@
         .search-area input[type="text"] {
            padding: 5px;
            margin-right: 20px;
-           width: 500px;
+           width: 350px;
            height: 40px;
            border: 1px solid gray;
            border-radius: 10px;
@@ -138,7 +142,7 @@
             box-shadow: 0 2px 4px rgba(0, 0\, 0, 0.1);
             background-color: #f9f9f9;
             min-width: 200px;
-    		min-height: 150px; 
+    		min-height: 200px; 
         }
 
 
