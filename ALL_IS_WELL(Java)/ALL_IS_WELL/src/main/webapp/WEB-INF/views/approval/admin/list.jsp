@@ -141,7 +141,6 @@
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
-        padding: 20px;
     }
 
     .list-area table {
@@ -151,7 +150,7 @@
 
     .list-area th,
     .list-area td {
-        padding-top: 15px;
+        padding-top: 20px;
         padding-bottom: 15px;
         border-bottom: 0.5px solid #C4C4C4;
         text-align: center;
@@ -160,6 +159,16 @@
     .list-area th {
         font-size: 20px;
         font-weight: bold;
+        background-color: #FF8686;
+        color: white;
+    }
+
+    .list-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .list-area th:last-child{
+        border-top-right-radius: 20px;
     }
 
     .list-area td {

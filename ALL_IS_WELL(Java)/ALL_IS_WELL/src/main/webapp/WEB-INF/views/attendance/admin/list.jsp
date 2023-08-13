@@ -184,7 +184,6 @@
         border: 1px solid #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
-        padding: 20px;
     }
 
     .list-area table {
@@ -198,13 +197,23 @@
         padding-bottom: 15px;
         border-bottom: 0.5px solid #C4C4C4;
         text-align: center;
+        font-size: 20px;
     }
 
-    .list-area th {
-        font-size: 15px;
-        font-weight: normal;
+    .list-area th{
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffaeae;
+        color: white;
     }
 
+    .list-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .list-area th:last-child{
+        border-top-right-radius: 20px;
+    }
 
     .number-area {
         text-align: center;
@@ -283,15 +292,15 @@
                         <th>직원 이름</th>
                         <th>출근 시간</th>
                         <th>퇴근 시간</th>
-                        <th>퇴근 여부</th>
+                        <th>잔류 여부</th>
                     </tr>
                 	<c:forEach items="${voList}" var="vo">
 						<tr>
-                            <th hidden id="attendanceNo">${vo.no}</th>
-	                        <th id="member">${vo.memberName}(${vo.departmentName}-${vo.positionName})</th>
-	                        <th id="enter-time"><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd HH:mm:ss"/></th>
-	                        <th id="out-time"><fmt:formatDate value="${vo.leaveTime}" pattern="yyyy-MM-dd HH:mm:ss"/></th>
-	                        <th id="status">${vo.status}</th>
+                            <td hidden id="attendanceNo">${vo.no}</td>
+	                        <td id="member">${vo.memberName}(${vo.departmentName}-${vo.positionName})</td>
+	                        <td id="enter-time"><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	                        <td id="out-time"><fmt:formatDate value="${vo.leaveTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	                        <td id="status">${vo.status}</td>
 	                    </tr>                	
                 	</c:forEach>
                 </table>
@@ -299,8 +308,8 @@
             <div class="number-area">
                 <c:if test="${pv.listCount > 10}">
                     <c:if test="${pv.currentPage > 1}">
-                        <a href="list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
-                        <a href="list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                        <a href="admin/list?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                        <a href="admin/list?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
                     </c:if>      
                     <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
                     <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
@@ -309,13 +318,13 @@
                                 <a class="currentPage">${i}</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                                <a href="admin/list?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:if test="${pv.maxPage > pv.currentPage}">
-                        <a href="list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
-                        <a href="list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                        <a href="admin/list?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                        <a href="admin/list?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
                     </c:if>
                 </c:if>
             </div>

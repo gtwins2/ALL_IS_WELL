@@ -12,7 +12,7 @@
    
 	   #wrap{
 			width: 1920px;
-			height: 750px;
+			height: 800px;
 			display: grid;
 			grid-template-columns: 150px 1770px;
 		}
@@ -24,16 +24,17 @@
 	    }
 	   
 		.title-area {
+				margin-top: 30px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: space-evenly;
 				margin-bottom: 50px;
             }
 
 		#title {
 			font-size: 30px;
-			margin-right: 30px;
+			margin-right: 250px;
 			
 		}
 
