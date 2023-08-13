@@ -12,7 +12,7 @@
    
     #wrap{
 			width: 1920px;
-			height: 750px;
+			height: 830px;
 			display: grid;
 			grid-template-columns: 150px 1770px;
 		}
@@ -29,11 +29,12 @@
                 flex-direction: row;
                 justify-content: center;
 				margin-bottom: 50px;
+				margin-top: 50px;
             }
 
 		#title {
 			font-size: 30px;
-			margin-right: 30px;
+			margin-right: 430px;
 			
 		}
 
