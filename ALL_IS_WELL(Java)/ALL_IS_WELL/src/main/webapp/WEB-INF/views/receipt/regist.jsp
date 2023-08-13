@@ -29,7 +29,7 @@ top: 120px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
-font-size: 40px;
+font-size: 30px;
 line-height: 48px;
 color: #000000;
 }
@@ -62,6 +62,7 @@ color: #000000;
 	border: 1px solid #B2B2B2;
 	width: 80%;
 	font-size: 20px;
+	height: 30px;
 }
 
 #div02-2{
@@ -73,6 +74,7 @@ color: #000000;
 	border: 1px solid #B2B2B2;
 	width: 100px;
 	font-size: 20px;
+	
 }
 #div02-2 > div:nth-child(2){
 	text-align: left;
@@ -82,6 +84,7 @@ color: #000000;
 	border: 1px solid #B2B2B2;
 	width: 320px;
 	font-size: 20px;
+	height: 30px;
 }
 #div02-2 > div > textarea{
 	border: 1px solid #B2B2B2;
@@ -113,11 +116,11 @@ color: #000000;
 }
 
 #div03{
-	left: 1300px;
+	left: 1350px;
 }
 
 #div04{
-	left: 1455px;
+	left: 1505px;
 }
 
 #search{

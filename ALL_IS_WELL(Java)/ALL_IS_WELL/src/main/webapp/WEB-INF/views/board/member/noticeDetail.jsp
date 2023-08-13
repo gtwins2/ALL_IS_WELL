@@ -180,18 +180,30 @@ border-radius: 50px;
 	border: 0px;
 	margin-left: 60px;
 }
-#delete{
-background-color:gray; 
-	width: 30px;
-	height: 20px;
-}
-
-#reply{
+#delete, #reply{
 	background-color:gray; 
-	width: 30px;
-	height: 20px;
+	width: 50px;
+	height: 30px;
+	background: #5A8CF2;
+	border-radius: 25px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 24px;
+	text-align: center;
+	color: #FFFFFF;
+	border: 0px;
 }
 
+td{
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+tr {height:50px;}
 
 #replyInput{
 	border: 0px;

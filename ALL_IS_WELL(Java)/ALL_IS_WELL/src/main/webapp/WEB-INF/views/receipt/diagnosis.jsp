@@ -28,7 +28,7 @@ top: 109px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
-font-size: 40px;
+font-size: 30px;
 line-height: 48px;
 color: #000000;
 }
@@ -94,11 +94,11 @@ hr{
 }
 
 #div03{
-	left: 1300px;
+	left: 1350px;
 }
 
 #div04{
-	left: 1455px;
+	left: 1505px;
 }
 </style>
 </head>

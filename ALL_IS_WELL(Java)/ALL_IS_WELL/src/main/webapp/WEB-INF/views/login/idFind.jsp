@@ -18,9 +18,9 @@ body, *{
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 99%;
-    height: 99%;
-    margin: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 #div01{
@@ -54,14 +54,14 @@ main{
 
 #div02-2{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 input{
     border: 0px;
     border-bottom:3px solid #5A8CF2;
     width: 80%;
-    font-size: 30px;
+    font-size: 20px;
     height: 80%;
 }
 
@@ -92,9 +92,11 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 450px;
-    height: 250px;
+    width: 100%;
+    height: 80%;
+
     border: 0px solid black;
+    
 }
 
 #modal{
@@ -143,6 +145,13 @@ a{
 	width: 200px;
 	height: 50px;
     margin-right: 25px;
+    background-color: #5A8CF2;
+    border: 0px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
 }
 </style>
 <body>
@@ -155,7 +164,7 @@ a{
         
         <div id="div02">
             <div id="div02-1">
-                <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt="logo"></div>
+                <div><img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt="logo"></div>
             </div>
             <form action="/app/member/idFind" method="post">
             <div id="div02-2">
@@ -175,7 +184,7 @@ a{
 	<c:if test="${vo.id != null }">
     <div id="modal">
         <div>아이디 찾기</div>
-        <div>회원님의 아이디는 ${vo.id} 입니다</div>
+        <div>&nbsp&nbsp&nbsp회원님의 아이디는 ${vo.id} 입니다</div>
         <div>
             <button id="modalBtn" onclick="login2()">로그인</button>
             <button id="modalBtn" onclick="pwd()">비밀번호 찾기</button>

@@ -19,9 +19,9 @@ body, *{
 main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 99%;
-    height: 99%;
-    margin: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 #div01{
@@ -55,14 +55,14 @@ main{
 
 #div02-2{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 #input{
     border: 0px;
     border-bottom:3px solid #5A8CF2;
     width: 80%;
-    font-size: 30px;
+    font-size: 20px;
     height: 80%;
 }
 
@@ -93,11 +93,12 @@ a{
 #div02-1 > div{
     margin: auto;
     margin-top: 50px;
-    width: 450px;
-    height: 250px;
-    border: 0px solid black;
-}
+    width: 100%;
+    height: 80%;
 
+    border: 0px solid black;
+    
+}
 #modal{
     position: absolute;
     top: 0px;
@@ -143,15 +144,31 @@ a{
 
 #modalBtn{
     width: 200px;
-	height: 50px;
-	margin-left: 30px
-}
-#input{
+    height: 50px;
+	margin-left: 30px;
+	background-color: #5A8CF2;
     border: 0px;
-    border-bottom:3px solid #5A8CF2;
-    width: 80%;
-    font-size: 30px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
 }
+#modalBtn2{
+	position:absolute;
+    width: 200px;
+	height: 50px;
+	top:140px;
+	left: 260px;
+	background-color: #5A8CF2;
+    border: 0px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
 #modalInput{
     font-size: 20px;
     border: 1px solid black;
@@ -164,8 +181,27 @@ a{
 #certifi{
 	width: 50%;
 	height: 50%;
+	background-color: #5A8CF2;
+    border: 0px;
+    border-radius:20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
 }
 
+#div03{
+display: grid;
+grid-template-columns: 2fr 1fr ;
+}
+
+#div03 > input{
+ border: 0px;
+ border-bottom:3px solid #5A8CF2;
+ height: 80%;
+ width: 70%;
+ } 
 </style>
 <body>
     
@@ -176,14 +212,18 @@ a{
         </div>
         <div id="div02">
             <div id="div02-1">
-                <div><img src="/app/resources/static/img/logo/멤버로고.jpg" alt=""></div>
+                <div><img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt=""></div>
             </div>
             <div id="div02-2">
+            	<form action="/app/member/send-one" method="post">
+            		<div id="div03">
+    					<input type="text" placeholder="핸드폰 번호" name="id" >        		
+	                	<button id="certifi">인증번호 요청</button>
+            		</div>
+                </form>
                 <div><input type="text" placeholder="아이디" name="id" id="input" class="input2"></div>
                 <div><input type="password" placeholder=" 변경할 비밀번호" name="password" id="input" class="input"></div>
-                <form action="/app/member/send-one" method="post">
-                	<button id="certifi">인증번호 요청</button>
-                </form>
+                
 	                <button id="login">비밀번호 재설정</button>
                 
                 <div></div>
@@ -193,7 +233,7 @@ a{
     </main>
      <div id="modal">
         <div>비밀번호 재설정</div>
-        <div>휴대전화로 전송된 인증번호를 입력하세요.</div>
+        <div>&nbsp&nbsp&nbsp&nbsp&nbsp휴대전화로 전송된 인증번호를 입력하세요.</div>
         <form action="/app/member/certification" method="post">
         <input type="text" name="password" id="total" hidden>
         <input type="text" name="id" id="totalId" hidden>
@@ -203,7 +243,7 @@ a{
             <input type="submit" id="modalBtn" value="확인">
         </div>
         </form>
-            <button id="modalBtn" onclick="cancel()">취소</button>
+            <button id="modalBtn2" onclick="cancel()">취소</button>
 
     </div>
 </body>
