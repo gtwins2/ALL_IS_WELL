@@ -317,39 +317,34 @@
      </div>
      
      
-            <div class="list-area">
-                    <form action="${root}/duty/put" method="post"></form>
-            <table>
-					<tr>
-					<th style="font-size: 20px; ">당직 인원</th>
-					<br>
-		         	<td>
-		         	<label for="item-select"></label>
-						<select  style="border: none; border-radius: 5px; font-size: 30px" name="mno">
-							<c:forEach items="${voList}" var="vo">
-							<option name = "mno" value="${vo.no}">${vo.name}</option>
-							</c:forEach>
-						</select>
-					</td>
-					</tr>
-					<br>
-					<br>
-					<tr>
-						<th style="font-size: 20px;">당직 날짜</th>
-						<td>
-						<input type="text" name="start" id="dateInput" placeholder="yyyyMMdd형식으로 입력" style="border: none; border-radius: 5px; font-size: 30px;">
-					<br>
-						</td>
-					</tr>
-			</table>
-			<br>
-			<div style="margin-left: 370px;">
-					<button id="sendRequest" type="submit" onclick="sendRequest();">지정하기</button>
-					<button id="sendRequest" type="button" onclick="backPage();">뒤로가기</button>
-			</div>
-				</form>
-					<br>
-            </div>
+<form action="${root}/duty/put" method="post">
+    <div class="list-area">
+        <table>
+            <tr>
+                <th style="font-size: 20px;">당직 인원</th>
+                <td>
+                    <label for="item-select"></label>
+                    <select style="border: none; border-radius: 5px; font-size: 30px" name="mno">
+                        <c:forEach items="${voList}" var="vo">
+                            <option name="mno" value="${vo.no}">${vo.name}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th style="font-size: 20px;">당직 날짜</th>
+                <td>
+                    <input type="text" name="start" id="dateInput" placeholder="yyyyMMdd형식으로 입력" style="border: none; border-radius: 5px; font-size: 30px;">
+                    <br>
+                </td>
+            </tr>
+        </table>
+        <div style="margin-left: 370px;">
+            <button id="sendRequest" type="submit" onclick="sendRequest();">지정하기</button>
+            <button id="sendRequest" type="button" onclick="backPage();">뒤로가기</button>
+        </div>
+    </div>
+</form>
             
             <div class="number-area">
                 <c:if test="${pv.listCount > 10}">
