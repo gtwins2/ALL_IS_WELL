@@ -67,18 +67,17 @@
 			
 			.list-area th {
 			  font-size: 20px;
-			  font-weight: normal;
 			  text-align: center;
 			  
 			}
 			
 			.list-area td {
-				font-size: 15px;
+				font-size: 20px;
 				text-align: center;
 			}
 			
 
-			.list-area tr:hover:not(#title) {
+			.list-area tr:hover:not(#top) {
 			    background-color: #5A8CF2;
 			    color: white;
 			}
@@ -137,7 +136,7 @@
                 color: #5A8CF2;
                 font-weight: bold;
                 font-size: 15px;
-                margin-left: 200px;
+                margin-left: 170px;
                 cursor: pointer;
             }
             
@@ -178,7 +177,20 @@
             }
             
             
-      
+      		.list-area th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.list-area th:last-child {
+    border-top-right-radius: 20px;
+}
+
+       
+		#top {
+			background-color: #5A8CF2;
+			color: white;
+			font-weight: bold;
+		}	
 
 </style>
 </head>
@@ -207,7 +219,7 @@
 
 			   <div class="list-area">
 				<table>
-					<tr id="title">
+					<tr id="top">
 						<th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)" class="not-clickable"></th>
 						<th>발신자</th>
 						<th>제목</th>
