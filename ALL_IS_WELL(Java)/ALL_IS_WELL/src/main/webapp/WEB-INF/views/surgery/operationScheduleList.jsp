@@ -114,18 +114,17 @@
 			
 			.list-area th {
 			  font-size: 20px;
-			  font-weight: normal;
 			  text-align: center;
 			  
 			}
 			
 			.list-area td {
-				font-size: 15px;
+				font-size: 20px;
 				text-align: center;
 			}
 			
 
-			.list-area tr:hover:not(#title) {
+			.list-area tr:hover:not(#top) {
 			    background-color: #5A8CF2;
 			    color: white;
 			}
@@ -170,9 +169,21 @@
             transition: background-color 0.3s ease;
         }
       
+      
+      .list-area th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.list-area th:last-child {
+    border-top-right-radius: 20px;
+}
 
        
-			
+		#top {
+			background-color: #5A8CF2;
+			color: white;
+			font-weight: bold;
+		}	
 			
            
 </style>
@@ -210,7 +221,7 @@
 
 			   <div class="list-area">
 				<table>
-					<tr id="title">
+					<tr id="top">
 						<th>수술명</th>
 						<th>환자명</th>
 						<th>실시일</th>

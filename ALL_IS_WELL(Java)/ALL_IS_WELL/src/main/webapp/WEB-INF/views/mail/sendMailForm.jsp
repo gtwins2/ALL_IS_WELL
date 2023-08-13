@@ -26,18 +26,31 @@
 		height: 100%;
 	    }
 	   
-		.title-area {
+		/* .title-area {
 				margin-top: 40px;
                 text-align: center;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
 				margin-bottom: 30px;
-            }
+            } */
+            
+            .title-area {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin-left: 10%;
+    padding-right: 10px;
+    margin-bottom: 40px;
+}
 
 		#title {
 			font-size: 30px;
-			margin-right: 30px;
+			margin-right: 80px;
 			
 		}
 
@@ -45,13 +58,14 @@
 	    .search-area {
                 display: flex;
                 align-items: center;
+                margin-left: 30px;
             }
 
 
 
             .search-area input[type="text"] {
                 padding: 5px;
-                margin-right: 50px;
+                margin-right: 20px;
                 width: 350px;
                 height: 40px;
                 border: 1px solid gray;
@@ -92,6 +106,7 @@
 
             #search-icon {
                 color: gray;
+                
             }
 
 
@@ -119,18 +134,17 @@
 			
 			.list-area th {
 			  font-size: 20px;
-			  font-weight: normal;
 			  text-align: center;
 			  
 			}
 			
 			.list-area td {
-				font-size: 15px;
+				font-size: 20px;
 				text-align: center;
 			}
 			
 
-			.list-area tr:hover:not(#title) {
+			.list-area tr:hover:not(#top) {
 			    background-color: #5A8CF2;
 			    color: white;
 			}
@@ -228,7 +242,20 @@
             }
             
             
-      
+      		.list-area th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.list-area th:last-child {
+    border-top-right-radius: 20px;
+}
+
+       
+		#top {
+			background-color: #5A8CF2;
+			color: white;
+			font-weight: bold;
+		}	
 
 </style>
 </head>
@@ -269,7 +296,7 @@
 
 			   <div class="list-area">
 				<table>
-					<tr id="title">
+					<tr id="top">
 						<th><input type="checkbox" name="choose" value="selectAll" onclick="selectAll(this)" class="not-clickable"></th>
 						<th>수신자</th>
 						<th>제목</th>

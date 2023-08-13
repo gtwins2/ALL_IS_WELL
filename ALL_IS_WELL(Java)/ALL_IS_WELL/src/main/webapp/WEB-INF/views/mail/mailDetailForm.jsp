@@ -166,7 +166,7 @@
    </footer>
    
    <script type="text/javascript">
-   <script>
+
    $(document).ready(function() {
      // 썸머노트 초기화
      $('#mailContent').summernote({
@@ -187,7 +187,7 @@
 		const listBtn = document.querySelector('#list');
 		
 		listBtn.addEventListener("click", function(){
-			location.href = '/app/mail/receiveList';
+			history.back();
 		});
    </script>
 </body>
