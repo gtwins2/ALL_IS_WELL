@@ -174,6 +174,7 @@ public class DutyController {
 	
 	@PostMapping("put")
 	public String put(Model model , DutyVo vo) {
+		System.out.println(vo);
 		int result = service.put(vo);
 		
 		if(result != 1) {

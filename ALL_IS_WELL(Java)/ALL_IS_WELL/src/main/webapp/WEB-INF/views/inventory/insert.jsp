@@ -24,7 +24,8 @@
             }
 
             #title {
-                font-size: 35px;
+                font-size: 30px;
+                margin-left: 200px;
             }
 
             #sendRequest, #sendBack {
@@ -113,6 +114,7 @@
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 border-radius: 20px;
                 width: 400px;
+                margin: auto;
             }
 
             .list-area table {
@@ -270,6 +272,9 @@
 
 
             <div class="main-area">
+            <br>
+            <br>
+            <br>
                 <div class="title-area">
                     <span id="title">재고 수정</span>
 
@@ -305,7 +310,7 @@
 
                     </table>
                 </div>
-					<div style="margin-left: 170px;">
+					<div style="margin-left: 570px;">
 					<button id="sendRequest" type="submit" onclick="senrRequest();">작성하기</button>
 					<button id="sendBack" type="button" onclick="backPage();">뒤로가기</button>
 					</div>                

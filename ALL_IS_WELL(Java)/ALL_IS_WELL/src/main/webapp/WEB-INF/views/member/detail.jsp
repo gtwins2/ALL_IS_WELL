@@ -252,6 +252,8 @@
 
 
             <div class="main-area">
+            <br>
+		<br>
                 <div class="title-area">
                     <span id="title">직원 상세 정보 조회</span>
                 </div>

@@ -296,9 +296,11 @@
             <%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
             </header>
 
-
         <div class="main-area">
+<br>
+		<br>
          <div class="title-area">
+
                 <span id="title">당직 리스트</span>
                 <!---->
                 <form action="" class="search-area" method="get">
@@ -375,6 +377,8 @@
                 
 
     </main>
+    <br>
+		<br>
 
     <footer>
         <%@ include file="/WEB-INF/views/common/admin/footer.jsp" %>

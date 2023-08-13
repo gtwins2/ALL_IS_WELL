@@ -308,7 +308,28 @@ main {
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
-
+.list-area th:nth-child(1)
+	{
+		background-color: #FF8686;
+		border-top-left-radius: 15px;
+	}
+	.list-area th:nth-child(2)
+	{
+		background-color: #FF8686;
+	}
+	.list-area th:nth-child(3)
+	{
+		background-color: #FF8686;
+	}
+	.list-area th:nth-child(4)
+	{
+		background-color: #FF8686;
+	}
+	.list-area th:nth-child(5)
+	{
+		background-color: #FF8686;
+		border-top-right-radius: 15px;
+	}
 /* Modal Content/Box */
 .modal-content {
 	background-color: #fefefe;
@@ -356,6 +377,8 @@ tr:hover {
 			</c:if> --%>
 
 		<div class="main-area">
+		<br>
+		<br>
 			<div class="title-area">
 				<span id="title">직원 정보 조회</span>
 
@@ -440,6 +463,7 @@ tr:hover {
 		</div>
 
 	</main>
+	
 	<footer>
 		<%@ include file="/WEB-INF/views/common/admin/footer.jsp"%>
 	</footer>
