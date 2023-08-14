@@ -124,19 +124,18 @@ hr{
 			<%@ include file="/WEB-INF/views/common/member/side-bar.jsp" %>
 		</div>
 		<main>
-			<div id="div01">진료 기록</div>
+			<div id="div01">진료</div>
 			<form action="${root}/receipt/diagnosis" method="post">
-				
 				<div id="div02">
 					<input type="text" value="${vo.no}" name="rno" hidden>
 					<input type="text" value="${vo.patientNo}" name="no" hidden>
 					<div>
-						<div>특이사항</div>
+						<div>증상</div>
 						<div><input type="text" value="${vo.symptom}"></div>
 					</div>
 					<div>
 						<div>내용</div>
-						<div><input type="text" name="medicalRecord"></div>
+						<div><input type="text" name="medicalRecord" value="${vo.medicalRecord}"></div>
 					</div>
 				</div>
 				

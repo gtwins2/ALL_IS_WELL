@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -132,10 +133,11 @@ public class ReceiptController {
       return "receipt/registList";
    }
    
-   @PostMapping("registList")
-   public String registList(ReceiptVo vo, Model model) {
+   @GetMapping("registList/{no}")
+   public String registList(@PathVariable(value = "no" , required = true) String no, ReceiptVo vo, Model model) {
       ReceiptVo voList = rs.selectRegistList(vo);
       model.addAttribute("vo" ,voList);
+      System.out.println(vo);
       
       return "receipt/diagnosis";
    }
