@@ -66,4 +66,14 @@ public class MainService {
 		return dao.operation(sst, loginMember);
 	}
 
+
+	public int tenCount() {
+		return dao.tenCount(sst);
+	}
+
+
+	public int elevenCount() {
+		return dao.elevenCount(sst);
+	}
+
 }

@@ -162,8 +162,9 @@
 }
 #div03{
 position: absolute;
-width: 750px;
-left: 550px;
+width: 600px;
+height: 700px;
+left: 600px;
 top: 180px;
 
 background: #FDFDFD;
@@ -322,7 +323,7 @@ color: #000000;
 		<main>
 			<!-- <div id="div01"></div> -->
 			<div id="employee_piechart" style="width: 500px; height: 500px;"></div>
-			<div id="chart_div" style="width:350px;"></div>
+			<div id="chart_div" style="width:400px; margin-left: 30px;"></div>
 
 <script type="text/javascript">
 
@@ -338,11 +339,15 @@ var data = new google.visualization.DataTable();
 
 data.addColumn('string', '요일');
 
-data.addColumn('number', '(명)');
+data.addColumn('number');
 
  
 
 data.addRows([
+
+['10년생', ${eleven}],
+
+['00년생', ${ten}],
 
 ['90년생', ${nine}],
 
@@ -355,6 +360,7 @@ data.addRows([
 ['50년생',${five}],
 
 
+
 ]);
 
  
@@ -362,26 +368,6 @@ data.addRows([
 var options = {
 
 title: '환자 나이대 현황',
-
-hAxis: {
-
-title: '',
-
-viewWindow: {
-
-min: [7, 30, 0],
-
-max: [17, 30, 0]
-
-}
-
-},
-
-vAxis: {
-
-title: '(명)'
-
-}
 
 };
 

@@ -54,4 +54,12 @@ public class MainDao {
 		return sst.selectList("main.operation", loginMember);
 	}
 
+	public int tenCount(SqlSessionTemplate sst) {
+		return sst.selectOne("main.tenCount");
+	}
+
+	public int elevenCount(SqlSessionTemplate sst) {
+		return sst.selectOne("elevenCount");
+	}
+
 }
