@@ -126,9 +126,9 @@ main {
 .list-area {
 	margin-top: 20px;
 	width: 800px;
+	height: 750px;
 	margin-left: 850px
 }
-
 .category-area {
 	display: flex;
 	align-items: center;
