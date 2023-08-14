@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chatting">
 	<select id="getChattingList" resultType="com.kh.app.chatting.vo.ChattingVo">
-		SELECT
+		SELECT DISTINCT
 		  C.NO AS CHATTING_ROOM_NO, 
 		  SENDER_NO, RECEIVER_NO,
 		  SENDER_STATUS, RECEIVER_STATUS,
@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="searchMember" resultType="com.kh.app.member.vo.MemberVo">
-		SELECT M.NO, M.NAME, D.NAME AS DEPARTMENT_NAME, P.NAME AS POSITION_NAME, A.STATUS AS ATTENDANCE_STATUS 
+		SELECT DISTINCT M.NO, M.NAME, M.PROFILE, D.NAME AS DEPARTMENT_NAME, P.NAME AS POSITION_NAME, A.STATUS AS ATTENDANCE_STATUS 
 		FROM MEMBER M 
 		JOIN DEPARTMENT D 
 		ON D.NO = M.DEPARTMENT_NO 
@@ -69,7 +69,7 @@
 	</insert>
 	
 	<select id="getChattingDetail" resultType="com.kh.app.chatting.vo.ChattingVo">
-		SELECT
+		SELECT DISTINCT
 		  C.NO AS CHATTING_NO,
 		  C.ROOM_NO AS CHATTING_ROOM_NO,
 		  C.WRITER_NO,
