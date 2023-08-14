@@ -48,6 +48,20 @@
 		WHERE GENDER = 'F'
 	</select>
 	
+	<select id="elevenCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 0000000000000 AND 0999999999999
+	</select>
+	
+	<select id="tenCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM PATIENT
+		WHERE REGISTRATION_NUMBER BETWEEN 1000000000000 AND 1999999999999
+	</select>
+	
 	<select id="nineCount" resultType="int">
 		SELECT
 		COUNT(*)

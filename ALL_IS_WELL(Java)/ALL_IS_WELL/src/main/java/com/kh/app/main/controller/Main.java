@@ -123,6 +123,8 @@ public class Main {
 		int currentPage = ms2.fCount();
 		PageVo pv2 = new PageVo(listCount, currentPage, 3, 3);
 		
+		int eleven = ms2.elevenCount();
+		int ten = ms2.tenCount();
 		int nine = ms2.nineCount(); 
 		int eight = ms2.eightCount(); 
 		int seven = ms2.sevenCount(); 
@@ -152,6 +154,8 @@ public class Main {
 		mv.setViewName(viewpage);
 		
 		model.addAttribute("pv", pv2);
+		model.addAttribute("eleven", eleven);
+		model.addAttribute("ten", ten);
 		model.addAttribute("nine", nine);
 		model.addAttribute("eight", eight);
 		model.addAttribute("seven", seven);
