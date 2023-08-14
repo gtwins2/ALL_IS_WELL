@@ -52,7 +52,10 @@ main{
     grid-template-rows: 1fr 1fr;
     text-align: center;
 }
-
+#div02-3{
+	width: 800px;
+	height: 450px;
+}
 #div02-2{
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -211,7 +214,7 @@ grid-template-columns: 2fr 1fr ;
             <div id="div01-2">Connect, Collaborate, and Manage <br> for Medical Innovation</div> 
         </div>
         <div id="div02">
-            <div id="div02-1">
+            <div id="div02-3">
                 <div><img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt=""></div>
             </div>
             <div id="div02-2">

@@ -95,7 +95,14 @@ hr{
 	text-align: left;
 	margin-left: 120px;
 }
-
+#div01-1{
+	position: absolute;
+	width: 1770px;
+	height: 0px;
+	left: 150px;
+	top: 950px;
+	border: 1px solid #D1CECE;
+}
 #textarea{
 	width:80%;
 	height: 250px;
@@ -129,7 +136,7 @@ hr{
 	top: 980px;
 	box-sizing: border-box;
 	position: absolute;
-	width: 1420px;
+	width: 1600px;
 	height: 136px;
 	background: #FFFFFF;
 	margin-left: 200px;
@@ -153,7 +160,7 @@ position: absolute;
 width: 1516px;
 
 left: 347px;
-top: 1150px;
+top: 1000px;
 background: #D9D9D9;
 border-radius: 50px;
 
@@ -249,7 +256,7 @@ grid-template-columns: 9fr 2fr 1fr;
 				</div>
 
 			<button id="list" onclick="back()">목록</button>
-
+			<hr id="div01-1">
 			<div id="div03">
                             
 	                 <div id="div03-1">
