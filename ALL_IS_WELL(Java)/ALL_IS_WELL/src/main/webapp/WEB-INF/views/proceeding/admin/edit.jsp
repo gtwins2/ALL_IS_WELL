@@ -295,7 +295,7 @@
 					
 					
 					<div id="buttonDiv">
-					<button type="submit" id="sendRequest">수정완료</button>
+					<button type="submit" id="sendRequest" onclick="adminlist();">수정완료</button>
 					<button id="sendBack" onclick="backPage();">뒤로가기</button>
 					</div>
                 </form>
@@ -320,6 +320,9 @@
             
             function del(no){
             	location.href = "${root}/proceeding/admin/delete/" + no
+            }
+            function adminlist(){
+            	location.href = "${root}/proceeding/admin/list";
             }
             const sideBar = document.querySelector("#side-bar")
             const subMenus = document.querySelectorAll(".sub-menu");
