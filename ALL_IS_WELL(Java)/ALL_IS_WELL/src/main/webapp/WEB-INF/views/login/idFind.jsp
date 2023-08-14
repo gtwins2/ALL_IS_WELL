@@ -52,9 +52,14 @@ main{
     text-align: center;
 }
 
+#div02-1{
+	width: 800px;
+	height: 450px;
+}
+
 #div02-2{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 100px 100px;
 }
 
 input{
@@ -163,17 +168,14 @@ a{
         </div>
         
         <div id="div02">
-            <div id="div02-1">
-                <div><img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt="logo"></div>
-            </div>
-            <form action="/app/member/idFind" method="post">
-            <div id="div02-2">
+        	<div id="div02-1">
+            <img src="/app/resources/static/img/logo/회원 로그인 로고.jpg" alt="logo">
+        	</div>
+            <form action="/app/member/idFind" method="post" id="div02-2">
                 <div><input type="text" placeholder="이름을 입력하세요" name="name"></div>
                 <div><input type="text" placeholder="이메일을 입력하세요" name="email"></div>
                 <div><input type="text" placeholder="전화번호를 입력하세요" name="phoneNumber"></div>
                 <input type="submit" id="login" value="아이디 찾기">
-                <div></div>
-            </div>
             </form>
             
         </div>

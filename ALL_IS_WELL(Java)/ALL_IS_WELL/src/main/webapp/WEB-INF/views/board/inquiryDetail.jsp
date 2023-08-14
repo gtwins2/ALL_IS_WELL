@@ -96,6 +96,15 @@ hr{
 	margin-left: 120px;
 }
 
+#div01-1{
+	position: absolute;
+	width: 1770px;
+	height: 0px;
+	left: 150px;
+	top: 950px;
+	border: 1px solid #D1CECE;
+}
+
 #textarea{
 	width:80%;
 	height: 250px;
@@ -129,7 +138,7 @@ hr{
 	top: 980px;
 	box-sizing: border-box;
 	position: absolute;
-	width: 1420px;
+	width: 1600px;
 	height: 136px;
 	background: #FFFFFF;
 	margin-left: 200px;
@@ -247,7 +256,7 @@ grid-template-columns: 9fr 2fr 1fr;
 				</div>
 
 			<button id="list" onclick="back()">목록</button>
-
+			<hr id="div01-1">
 			<form action="${root}/board/inquiryDetail" method="post">
 				<div id="div02">
 					<input type="text" value="${vo.no}" name="inquiryNo" hidden> 

@@ -18,12 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.app.admin.vo.AdminVo;
 import com.kh.app.approval.service.ApprovalService;
 import com.kh.app.approval.vo.ApprovalVo;
+import com.kh.app.approver.vo.ApproverVo;
 import com.kh.app.attendance.service.AttendanceService;
 import com.kh.app.attendance.vo.AttendanceVo;
 import com.kh.app.board.service.InquiryService;
 import com.kh.app.board.service.NoticeService;
 import com.kh.app.board.service.SuggestService;
 import com.kh.app.board.vo.NoticeVo;
+import com.kh.app.inventory.service.InventoryService;
+import com.kh.app.inventory.vo.InventoryVo;
 import com.kh.app.main.service.MainService;
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
@@ -46,7 +49,8 @@ public class Main {
 	private final InquiryService is;
 	private final AttendanceService as2;
 	private final ApprovalService as;
-	
+	private final InventoryService service;
+
 	@GetMapping("Mmain")
 	public String Mmain(ModelAndView mv, HttpServletRequest request, String check,
 			Model model, OperationVo vo, @RequestParam Map<String , String> paramMap, HttpSession session) {
@@ -113,10 +117,11 @@ public class Main {
 	}
 	
 	@GetMapping("Amain")
-	public String Amain(AdminVo vo, HttpSession session, Model model,ModelAndView mv, HttpServletRequest request) {
+	public String Amain(AdminVo vo, HttpSession session, Model model,ModelAndView mv, HttpServletRequest request
+			, @RequestParam Map<String , String> paramMap) {
 		int listCount = ms2.mCount();
 		int currentPage = ms2.fCount();
-		PageVo pv = new PageVo(listCount, currentPage, 3, 3);
+		PageVo pv2 = new PageVo(listCount, currentPage, 3, 3);
 		
 		int nine = ms2.nineCount(); 
 		int eight = ms2.eightCount(); 
@@ -126,6 +131,18 @@ public class Main {
 		
 		String viewpage = "calendar";
 		List<Calendar> calendar = null;
+		
+		PageVo pv = new PageVo(3, 3, 3, 3);
+		List<NoticeVo> voList = ns.noticeList(pv, paramMap);
+		model.addAttribute("voList" ,voList);
+		
+		SearchVo svo = new SearchVo();
+		List<ApproverVo> voList2 = as.getAdminList(pv, svo);
+		model.addAttribute("voList2" ,voList2);
+		
+		List<InventoryVo> voList3 = service.list(pv, paramMap);
+		model.addAttribute("voList3" ,voList3);
+		
 		try {
 			calendar = calendarService.getCalendar();
 			request.setAttribute("calendarList", calendar);
@@ -134,7 +151,7 @@ public class Main {
 		}
 		mv.setViewName(viewpage);
 		
-		model.addAttribute("pv", pv);
+		model.addAttribute("pv", pv2);
 		model.addAttribute("nine", nine);
 		model.addAttribute("eight", eight);
 		model.addAttribute("seven", seven);
