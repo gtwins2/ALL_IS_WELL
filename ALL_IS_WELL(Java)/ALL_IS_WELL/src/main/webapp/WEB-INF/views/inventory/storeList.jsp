@@ -260,6 +260,33 @@
                 display: grid;
                 grid-template-columns: 300px 1620px;
             }
+            .list-area th:nth-child(1)
+			{
+				background-color: #FF8686;
+				border-top-left-radius: 15px;
+				color: white;
+				font-weight: bold;
+			}
+			.list-area th:nth-child(2)
+			{
+				background-color: #FF8686;
+				color: white;
+				font-weight: bold;
+			}
+			.list-area th:nth-child(3)
+			{
+				background-color: #FF8686;
+				
+				color: white;
+				font-weight: bold;
+			}
+			.list-area th:nth-child(4)
+			{
+				background-color: #FF8686;
+				border-top-right-radius: 15px;
+				color: white;
+				font-weight: bold;
+			}
 
         </style>
     </head>

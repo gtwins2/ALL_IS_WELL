@@ -25,7 +25,7 @@
             }
 
             #title {
-                font-size: 25px;
+                font-size: 35px;
                 margin-left: 20%;
             }
 
@@ -57,7 +57,7 @@
                 padding: 5px;
                 margin-right: 20px;
                 width: 300px;
-                height: 40px;
+                height: 30px;
                 border: 1px solid gray;
                 border-radius: 10px;
             }
@@ -122,9 +122,6 @@
 
             .list-area table {
                 border-collapse: collapse;
-                width: 100%;
-
-
                 width: 100%;
 
             }
@@ -242,6 +239,9 @@
         margin-top: 40px;
         margin-bottom: 40px;
         text-align: right;
+    }
+    .list-area td , input{
+    	font-size: 20px;
     }
 
         </style>
