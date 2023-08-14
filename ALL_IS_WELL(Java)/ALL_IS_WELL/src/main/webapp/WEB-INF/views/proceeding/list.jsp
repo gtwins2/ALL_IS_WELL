@@ -272,7 +272,7 @@ main {
 }
 
 tr:hover {
-	  background-color: #f2f2f2;
+	  background-color: #5A8CF2;
 	}
 	
 	.list-area th:nth-child(1)
@@ -280,17 +280,20 @@ tr:hover {
 		background-color: #5A8CF2;
 		border-top-left-radius: 15px;
 		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(2)
 	{
 		background-color: #5A8CF2;
 		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(3)
 	{
 		background-color: #5A8CF2;
 		border-top-right-radius: 15px;
 		color: white;
+		font-weight: bold;
 	}
 </style>
 </head>

@@ -274,6 +274,9 @@
         text-decoration: none;
         cursor: pointer;
       }
+      .rightgo{
+      	margin-left: 340px;
+      }
         </style>
     </head>
 
@@ -376,13 +379,15 @@
 							</c:forEach>
 						</select>
 					<br>
+					<hr>
 					<div>개수 <input type="number" name="count" id="put" style="width: 128px; margin-left: 12px; font-size: 20px"> </div>
 					<br>
                     </table>
                 </div>
                 <br>
+                <div class="rightgo">
 					<button id="sendRequest" type="submit" onclick="senrRequest3();">작성하기</button>
-                
+                </div>
 				</form>
 
                 </div>

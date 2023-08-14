@@ -312,23 +312,33 @@ main {
 	{
 		background-color: #FF8686;
 		border-top-left-radius: 15px;
+		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(2)
 	{
 		background-color: #FF8686;
+		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(3)
 	{
 		background-color: #FF8686;
+		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(4)
 	{
 		background-color: #FF8686;
+		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(5)
 	{
 		background-color: #FF8686;
 		border-top-right-radius: 15px;
+		color: white;
+		font-weight: bold;
 	}
 /* Modal Content/Box */
 .modal-content {
@@ -354,7 +364,7 @@ main {
 }
 
 tr:hover {
-	  background-color: #f2f2f2;
+	  background-color: #FF8686;
 	}
 </style>
 </head>
@@ -397,7 +407,7 @@ tr:hover {
 
 					</label> <input type="text" id="search-input" name="searchValue"> <a href="" id="search-icon" onclick="this.closest('form').submit(); return false;"><i class="fa-solid fa-magnifying-glass"></i></a>
 				</form>
-					<div><button type="button" class="btnCalss" id="btn2" onclick="join();" style="width: 60px; height: 40px;">회원가입</button></div>
+					<div><button type="button" class="btnCalss" id="btn2" onclick="join();" style="width: 100px; height: 60px; font-size: 20px;">회원가입</button></div>
 
 
 			</div>

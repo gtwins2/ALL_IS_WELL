@@ -279,7 +279,7 @@
     }
     
     tr:hover {
-	  background-color: #f2f2f2;
+	  background-color: #5A8CF2;
 	}
 
     #div03{
@@ -297,22 +297,26 @@
 		background-color: #5A8CF2;
 		border-top-left-radius: 15px;
 		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(2)
 	{
 		background-color: #5A8CF2;
 		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(3)
 	{
 		background-color: #5A8CF2;
 		color: white;
+		font-weight: bold;
 	}
 	.list-area th:nth-child(4)
 	{
 		background-color: #5A8CF2;
 		border-top-right-radius: 15px;
 		color: white;
+		font-weight: bold;
 	}
 	labe.category-area{
 		margin-left: 750px;

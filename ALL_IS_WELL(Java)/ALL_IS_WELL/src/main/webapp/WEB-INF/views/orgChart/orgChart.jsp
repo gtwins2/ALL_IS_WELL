@@ -509,6 +509,7 @@
             <div class="modal-content">
               <span class="close">&times;</span>
                 <p style="text-align: center; font-size: 22px;">
+	                <br>
 	                이름 : <span id="mname"></span>
 	                <br>
 	                직급 : <span id="position"></span>
