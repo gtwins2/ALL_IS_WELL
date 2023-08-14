@@ -324,7 +324,7 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${ivo.sign}</td>
+                                <td><img src="/app/resources/static/img/logo/${ivo.sign}" style="width: 100%; height: 100%;"></td>
                                 <c:if test="${ivo.approverName != null}">
                                     <td>
                                         <c:choose>
@@ -336,8 +336,8 @@
                                                 ${ivo.reason}
                                             </span>
                                         </c:when>
-                                        <c:when test="${ivo.status == 'F'}">
-                                            ${ivo.approverSign}
+                                        <c:when test="${ivo.status == 'F' || ivo.status == 'A'}">
+                                            <img src="/app/resources/static/img/logo/${ivo.approverSign}" style="width: 100%; height: 100%;">
                                         </c:when>
                                         </c:choose>
                                     </td>
@@ -354,7 +354,7 @@
                                             </span>
                                         </c:when>
                                         <c:when test="${ivo.status == 'F'}">
-                                            ${ivo.approverSign}
+                                            <img src="/app/resources/static/img/logo/${ivo.approverSign}" style="width: 100%; height: 100%;">
                                         </c:when>
                                         </c:choose>
                                     </td>

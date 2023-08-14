@@ -174,7 +174,7 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${ivo.sign}</td>
+                                <td><img src="/app/resources/static/img/logo/${ivo.sign}" style="width: 100%; height: 100%;"></td>
                                 <td></td>
                                 <td></td>
                             </tr>

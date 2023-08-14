@@ -377,9 +377,9 @@
                                     <th id="approval-title">중간 결재자</th>
                                 </c:if>
                                 <th id="approval-title">최종 결재자</th>
-                            </tr>
+                            </tr>                
                             <tr id="stamp">
-                                <td>${vvo.sign}</td>
+                                <td><img src="/app/resources/static/img/logo/${vvo.sign}" style="width: 100%; height: 100%;"></td>
                                 <c:if test="${vvo.approverName != null}">
                                     <td>
                                         <c:choose>
@@ -391,8 +391,8 @@
                                                 ${vvo.reason}
                                             </span>
                                         </c:when>
-                                        <c:when test="${vvo.status == 'F'}">
-                                            ${vvo.approverSign}
+                                        <c:when test="${vvo.status == 'F' || vvo.status == 'A'}">
+                                            <img src="/app/resources/static/img/logo/${vvo.approverSign}" style="width: 100%; height: 100%;">
                                         </c:when>
                                         </c:choose>
                                     </td>
@@ -409,7 +409,7 @@
                                             </span>
                                         </c:when>
                                         <c:when test="${vvo.status == 'F'}">
-                                            ${vvo.approverSign}
+                                            <img src="/app/resources/static/img/logo/${vvo.approverSign}" style="width: 100%; height: 100%;">
                                         </c:when>
                                         </c:choose>
                                     </td>

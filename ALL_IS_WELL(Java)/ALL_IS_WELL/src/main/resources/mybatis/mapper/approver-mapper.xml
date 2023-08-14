@@ -68,7 +68,7 @@
 			</if>
 		</if>
 
-		ORDER BY AD.NO DESC
+		ORDER BY AD.CREATE_DATE DESC
 	</select>
 
 	<update id="refuseUpdateStatus">

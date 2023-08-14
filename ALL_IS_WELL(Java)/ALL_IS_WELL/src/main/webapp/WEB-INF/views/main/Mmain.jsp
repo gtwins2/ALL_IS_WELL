@@ -421,12 +421,11 @@ color: #000000;
 		        <br>
 		        <div>
 		            <div id="right"><h3>공지사항</h3></div>
-		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br><br>
 		        <c:forEach items="${voList}" var="vo">
 			        <div>
-			            <div>${vo.content}</div>
+			            <div>${vo.title}</div>
 			            <div>
 			            <fmt:parseDate value=" ${vo.enrollDate}" var="startDate" pattern="yyyy-MM-dd HH:mm:ss" />
 	            		<fmt:formatDate pattern="MM-dd" value="${startDate}"/>
@@ -445,9 +444,10 @@ color: #000000;
 		        <div>
 		            <div><h3>결재현황</h3></div>
 		            <div></div>
-		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br>
+				<br>
+				<br>
 		        <c:forEach items="${voList2}" var="vo">
 		        <div>
 		            <div>${vo.memberName }</div>
@@ -467,9 +467,11 @@ color: #000000;
 		        <div>
 		            <div><h3>근태현황</h3></div>
 		            <div></div>
-		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br>
+				<br>
+				<br>
+				<br>
 		        <c:forEach items="${voList3}" var="vo">
 		        <div>
 		            <div><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd"/></div>
