@@ -36,13 +36,14 @@ main{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 70px;
     margin-top: 250px;
-    margin-left: 250px;
+    margin-left: 230px;
 }
 
 #div01-2{
-    margin-left: 250px;
+    margin-left: 220px;
+    font-size: 30px;
 }
 
 
@@ -64,7 +65,7 @@ main{
 
 input{
     border: 0px;
-    border-bottom:3px solid #5A8CF2;
+    border-bottom:1px solid #5A8CF2;
     width: 80%;
     font-size: 20px;
     height: 80%;
@@ -164,7 +165,7 @@ a{
     <main>
         <div id="div01">
             <div id="div01-1">ALL IS WELL</div> 
-            <div id="div01-2">Connect, Collaborate, and Manage <br> for Medical Innovation</div> 
+            <div id="div01-2">Connect, Collaborate and Manage for <br> Medical Innovation</div> 
         </div>
         
         <div id="div02">

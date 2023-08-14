@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 1500px;
+	height: 1000px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -60,9 +60,8 @@ hr{
 	grid-template-rows: 1fr 1fr 3fr;
 	
 	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 25px;
+	font-weight: normal;
+	font-size: 20px;
 }
 
 #div01 > div{
