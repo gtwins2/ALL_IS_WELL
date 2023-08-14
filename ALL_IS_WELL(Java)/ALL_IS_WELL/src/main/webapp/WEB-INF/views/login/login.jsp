@@ -32,17 +32,22 @@ main{
     color: #FFFFFF;
 }
 
+
+
+
+
 #div01-1{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 70px;
     margin-top: 250px;
-    margin-left: 250px;
+    margin-left: 230px;
 }
 
 #div01-2{
-    margin-left: 250px;
+    margin-left: 220px;
+    font-size: 30px;
 }
 
 
@@ -110,13 +115,15 @@ img{
 	margin-right: 100px;
 }
 
+
+
 </style>
 <body>
     
     <main>
         <div id="div01">
             <div id="div01-1">ALL IS WELL</div> 
-            <div id="div01-2">Connect, Collaborate, and Manage <br> for Medical Innovation</div> 
+            <div id="div01-2">Connect, Collaborate and Manage for <br> Medical Innovation</div>
         </div>
         
         <div id="div02">

@@ -37,13 +37,14 @@ main{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 70px;
     margin-top: 250px;
-    margin-left: 250px;
+    margin-left: 230px;
 }
 
 #div01-2{
-    margin-left: 250px;
+     margin-left: 220px;
+    font-size: 30px;
 }
 
 
@@ -63,7 +64,7 @@ main{
 
 #input{
     border: 0px;
-    border-bottom:3px solid #5A8CF2;
+    border-bottom:1px solid #5A8CF2;
     width: 80%;
     font-size: 20px;
     height: 80%;
@@ -120,7 +121,7 @@ a{
 	display: grid;
 	grid-template-rows: 1fr 1fr ;
 	background-color: #FFFFFF;
-	height: 120px;
+	height: 50px;
 }
 
 #modal > div:nth-child(1){
@@ -186,11 +187,10 @@ a{
 	height: 50%;
 	background-color: #5A8CF2;
     border: 0px;
-    border-radius:20px;
+    margin-left: 10px;
     font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 20px;
     color: #FFFFFF;
 }
 
@@ -201,9 +201,10 @@ grid-template-columns: 2fr 1fr ;
 
 #div03 > input{
  border: 0px;
- border-bottom:3px solid #5A8CF2;
+ border-bottom:1px solid #5A8CF2;
  height: 80%;
  width: 70%;
+ font-size: 20px;
  } 
 </style>
 <body>
@@ -211,7 +212,7 @@ grid-template-columns: 2fr 1fr ;
     <main>
         <div id="div01">
             <div id="div01-1">ALL IS WELL</div> 
-            <div id="div01-2">Connect, Collaborate, and Manage <br> for Medical Innovation</div> 
+            <div id="div01-2">Connect, Collaborate and Manage for <br> Medical Innovation</div> 
         </div>
         <div id="div02">
             <div id="div02-3">
@@ -220,12 +221,12 @@ grid-template-columns: 2fr 1fr ;
             <div id="div02-2">
             	<form action="/app/member/send-one" method="post">
             		<div id="div03">
-    					<input type="text" placeholder="핸드폰 번호" name="id" >        		
+    					<input type="text" placeholder="핸드폰 번호를 입력하세요" name="id" >        		
 	                	<button id="certifi">인증번호 요청</button>
             		</div>
                 </form>
-                <div><input type="text" placeholder="아이디" name="id" id="input" class="input2"></div>
-                <div><input type="password" placeholder=" 변경할 비밀번호" name="password" id="input" class="input"></div>
+                <div><input type="text" placeholder="아이디를 입력하세요" name="id" id="input" class="input2"></div>
+                <div><input type="password" placeholder=" 변경할 비밀번호를 입력하세요" name="password" id="input" class="input"></div>
                 
 	                <button id="login">비밀번호 재설정</button>
                 

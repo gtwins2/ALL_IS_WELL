@@ -55,7 +55,7 @@
 
 #content{
 		width: 1920px;
-		height: 800px;
+		height: 850px;
 		display: grid;
 		grid-template-columns: 150px 1770px;
 	}
@@ -267,11 +267,11 @@ color: #000000;
 }
 
 #div04{
-    top: 100px;
+    top: 140px;
 }
 
 #div04-1{
-    top: 160px;
+    top: 200px;
 }
 
 #right{
@@ -288,18 +288,19 @@ color: #000000;
 }
 
 #div05{
-    top: 352px;
+    top: 410px;
 }
 #div05 > div{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     line-height: 40px;
+
 }
 #div05-1{
-    top: 420px;
+    top: 470px;
 }
 #div06{
-    top: 600px;
+    top: 680px;
 }
 #div06 > div{
     display: grid;
@@ -307,7 +308,7 @@ color: #000000;
     line-height: 40px;
 }
 #div06-1{
-    top: 670px;
+    top: 750px;
 }
 
 #div07{

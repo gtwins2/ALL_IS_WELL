@@ -12,7 +12,7 @@
    
     #wrap{
 			width: 1920px;
-			height: 830px;
+			height: 900px;
 			display: grid;
 			grid-template-columns: 150px 1770px;
 		}

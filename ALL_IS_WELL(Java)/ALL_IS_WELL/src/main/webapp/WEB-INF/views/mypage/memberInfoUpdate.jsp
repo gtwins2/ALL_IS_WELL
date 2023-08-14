@@ -18,12 +18,12 @@
     position: absolute;
 	width: 263px;
 	height: 48px;
-	left: 367px;
-	top: 125px;
+	left: 410px;
+	top: 150px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 40px;
+	font-size: 30px;
 	line-height: 48px;
 	color: #000000;
 }
@@ -44,8 +44,8 @@ hr{
     left: 406px;
     top: 220px;
     background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr 2fr 1.5fr;
 }
@@ -53,11 +53,15 @@ hr{
 #div02 > div{
     line-height: 55px;
     text-align: center;
+    font-size: 20px;
 }
 
 #div02 > div > input{
     width: 400px;
+    height: 40px;
+    border-radius: 10px;
     border: 1px solid #B2B2B2;
+    font-size: 15px;
 }
 
 #div02 > div:nth-child(3){
@@ -69,8 +73,8 @@ hr{
     margin: auto;
     width: 300px;
     height: 300px;
-    background-color: lightgray;
-    border-radius: 50px;
+    box-shadow: 2px 2px 2px 2px lightgray;
+    border-radius: 300px;
 }
 
 #div02-2{
@@ -82,40 +86,39 @@ hr{
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 24px;
     color: #FFFFFF;
     line-height: 45px;
 }
 
 #div03{
 position: absolute;
-width: 92px;
-height: 53.07px;
-left: 1500px;
+width: 80px;
+height: 40px;
+left: 1520px;
+
 top: 780px;
 background: #5A8CF2;
 border-radius: 5px;
 border: 0px;
 font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 20px;
     color: #FFFFFF;
+    text-align: center;
 }
 
 #div04{
 position: absolute;
-width: 92px;
-height: 53.07px;
-left: 1609px;
+width: 90px;
+height: 40px;
+left: 1615px;
 top: 780px;
 background: #5A8CF2;
 border-radius: 5px;
 border: 0px;
 font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 20px;
     color: #FFFFFF;
 }
 </style>
@@ -132,12 +135,12 @@ font-family: 'Inter';
 		<main>
 		
 		    <div id="div01">개인정보 수정</div>
-		    <hr>
+
 		    <form action="/app/memberInfoUpdate" method="post">
 		    
 		    <div id="div02">
 		        <div>
-		            <br> 이름<br> 주민번호<br>  전화번호<br>  
+		            <br> 이름<br> 주민등록번호<br>  전화번호<br>  
 		            사무실 번호<br>  이메일<br>  아이디<br>
 		            비밀번호<br>  비밀번호 확인
 		        </div>
