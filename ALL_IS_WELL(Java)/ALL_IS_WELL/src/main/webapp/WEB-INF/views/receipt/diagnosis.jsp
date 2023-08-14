@@ -23,7 +23,7 @@
 position: absolute;
 width: 250px;
 height: 59px;
-left: 350px;
+left: 450px;
 top: 109px;
 font-family: 'Inter';
 font-style: normal;
@@ -31,6 +31,7 @@ font-weight: 400;
 font-size: 30px;
 line-height: 48px;
 color: #000000;
+
 }
 
 hr{
@@ -49,12 +50,13 @@ hr{
 	top: 206px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 50px;
+	border-radius: 20px;
  	width: 1200px;
 	height: 550px;
 	margin: auto;
 	display: grid;
 	grid-template-rows: 1fr 2fr;
+	border: 1px solid #939393;
 }
 
 #div02 > div{
@@ -103,6 +105,12 @@ hr{
 #div04{
 	left: 1505px;
 }
+
+#div03:hover, #div04:hover{
+    background-color: #555;
+    transition: 0.7s;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -117,7 +125,6 @@ hr{
 		</div>
 		<main>
 			<div id="div01">진료 기록</div>
-			<hr>
 			<form action="${root}/receipt/diagnosis" method="post">
 				
 				<div id="div02">

@@ -163,9 +163,9 @@
 #div03{
 position: absolute;
 width: 750px;
-height: 730px;
-left: 520px;
-top: 150px;
+left: 550px;
+top: 180px;
+
 background: #FDFDFD;
 border: 1px solid lightgray;
 border-radius: 50px;
@@ -265,11 +265,11 @@ color: #000000;
 }
 
 #div04{
-    top: 100px;
+    top: 120px;
 }
 
 #div04-1{
-    top: 155px;
+    top: 175px;
 }
 
 #right{
@@ -286,7 +286,7 @@ color: #000000;
 }
 
 #div05{
-    top: 352px;
+    top: 372px;
 }
 #div05 > div{
     display: grid;
@@ -294,10 +294,10 @@ color: #000000;
     line-height: 47px;
 }
 #div05-1{
-    top: 420px;
+    top: 440px;
 }
 #div06{
-    top: 600px;
+    top: 620px;
 }
 #div06 > div{
     display: grid;
@@ -305,7 +305,7 @@ color: #000000;
     line-height: 47px;
 }
 #div06-1{
-    top: 670px;
+    top: 690px;
 }
 
 </style>
@@ -493,15 +493,15 @@ chart.draw(data, options);
 		    <div id="div05">
 		        <br>
 		        <div>
-		            <div><h3>결제현황</h3></div>
+		            <div><h3>결재현황</h3></div>
 		            <div></div>
 		            <div><h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a>더보기></a></h3></div>
 		        </div>
 		        <br><br>
 		        <c:forEach items="${voList2}" var="vo">
 		        <div>
-		            <div>${vo.memberName }</div>
-		            <div>${vo.title }</div>
+		            <div>${vo.memberName}</div>
+		            <div>${vo.title}</div>
 		            <div>
             		<fmt:formatDate pattern="MM-dd" value="${vo.createDate}" type="date"/>
             		</div>

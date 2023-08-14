@@ -17,7 +17,7 @@
 	}
 
     main{
-        min-height: 1000px;
+        min-height: 800px;
     }
 
     .main-area {

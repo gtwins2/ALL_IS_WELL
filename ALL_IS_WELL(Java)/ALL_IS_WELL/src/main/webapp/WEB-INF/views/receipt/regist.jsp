@@ -14,7 +14,7 @@
 }
 #content{
 	width: 1920px;
-	height: 750px;
+	height: 800px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -37,10 +37,10 @@ color: #000000;
 #div02{
 	position: absolute;
 	left: 439px;
-	top: 170px;
-	background: #FFFFFF;
+	top: 200px;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 50px;
+	border-radius: 20px;
+	border: 1px solid #939393;
  	width: 1200px;
 	height: 600px;
 	margin: auto;
@@ -101,7 +101,7 @@ color: #000000;
 	width: 127.61px;
 	height: 47.83px;
 	left: 1455px;
-	top: 785px;
+	top: 830px;
 	background: #5A8CF2;
 	border-radius: 5px;
 	font-family: 'Inter';
@@ -126,6 +126,22 @@ color: #000000;
 #search{
 	font-size: 20px;
 }
+
+#div03:hover, #div04:hover{
+    background-color: #555;
+    transition: 0.7s;
+	cursor: pointer;
+}
+
+input[type=checkbox]{
+	width: 20px;
+	height: 20px;
+}
+
+#div02 *{
+	font-size: 20px;
+}
+
 </style>
 </head>
 <body>

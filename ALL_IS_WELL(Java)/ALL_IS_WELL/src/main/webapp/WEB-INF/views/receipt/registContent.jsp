@@ -31,16 +31,6 @@ line-height: 48px;
 color: #000000;
 }
 
-hr{
-	position: absolute;
-	width: 1770px;
-	height: 0px;
-	left: 150px;
-	top: 168px;
-	border: 1px solid #D1CECE;
-
-}
-
 #div02{
 	position: absolute;
 	left: 430px;
@@ -115,7 +105,6 @@ hr{
 		</div>
 		<main>
 			<div id="div01">접수 내용</div>
-			<hr>
 			<form action="/app/receipt/registContent" method="post">
 				
 				<div id="div02">
