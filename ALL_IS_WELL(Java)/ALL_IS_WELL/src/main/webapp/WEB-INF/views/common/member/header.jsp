@@ -64,9 +64,15 @@
         margin: auto;
     }
 
-    .fas.fa-comments, .fas.fa-envelope {
+    .fas.fa-comments{
         font-size: 40px;
         color: #878787;
+    }
+
+    .fas.fa-comments:hover{
+        cursor: pointer;
+        transition: 0.7s;
+        color: black;
     }
 </style>
 </head>

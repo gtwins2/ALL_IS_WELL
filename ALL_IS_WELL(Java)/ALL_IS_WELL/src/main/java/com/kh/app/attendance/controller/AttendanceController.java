@@ -63,9 +63,7 @@ public class AttendanceController {
 		int listCount = as.getAdminAttendanceListCnt(paramMap);
 		int pageLimit = 5;
 		int boardLimit = 10;
-		
-		System.out.println(listCount);
-		
+				
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		//리스트 조회

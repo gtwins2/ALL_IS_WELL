@@ -264,7 +264,6 @@
                     <span id="title">회의록상세조회</span>
 
                 </div>
-                <br>
 
 				<div class="list-area">
                     <table>

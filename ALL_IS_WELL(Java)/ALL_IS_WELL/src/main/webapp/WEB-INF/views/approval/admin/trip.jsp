@@ -37,7 +37,7 @@
         width: 80px;
         font-size: 20px;
         color: white;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         size: 10px;
         border: none;
         padding: 10px 15px;
@@ -179,7 +179,7 @@
         width: 100px;
         font-size: 20px;
         color: white;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         size: 10px;
         border: none;
         padding: 10px 15px;
@@ -252,7 +252,7 @@
         width: 100px;
         font-size: 20px;
         color: white;
-        background-color: #5A8CF2;
+        background-color: #FF8686;
         size: 10px;
         border: none;
         padding: 10px 15px;

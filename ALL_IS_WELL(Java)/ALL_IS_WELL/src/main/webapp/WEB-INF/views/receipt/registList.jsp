@@ -10,178 +10,172 @@
         <script src="https://kit.fontawesome.com/794ac64f16.js" crossorigin="anonymous"></script>
         <style>
         
-#content{
-    width: 1920px;
-    height: 750px;
-    display: grid;
-    grid-template-columns: 150px 1770px;
-}
+        #content{
+            width: 1920px;
+            height: 750px;
+            display: grid;
+            grid-template-columns: 150px 1770px;
+        }
 
-.main-area {
-    width: 70%;
-    min-height: 80%;
-    margin: auto;
-}
+        .main-area {
+            width: 70%;
+            min-height: 80%;
+            margin: auto;
+        }
 
-            .title-area {
-                text-align: center;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
+        .title-area {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
-            #title {
-                font-size: 30px;
-            }
+        #title {
+            font-size: 30px;
+        }
 
-            	    .search-area {
-                display: flex;
-                align-items: center;
-            }
-
-
-
-            .search-area input[type="text"] {
-                padding: 5px;
-                margin-right: 20px;
-                width: 350px;
-                height: 40px;
-                border: 1px solid gray;
-                border-radius: 10px;
-            }
+                .search-area {
+            display: flex;
+            align-items: center;
+        }
 
 
 
-
-            .category-area {
-                display: flex;
-                align-items: center;
-
-            }
-
-            .category-area label {
-                margin-right: 5px;
-            }
-
-            .category-area select {
-                padding: 5px;
-                border-radius: 10px;
-                border: 1px solid gray;
-                height: 40px;
-            }
-
-            .category-icon {
-                margin-right: 5px;
-                color: #555;
-            }
-
-            .category-icon::before {
-                font-family: "Font Awesome 5 Free";
-                content: "\f0a5";
-                font-weight: 900;
-            }
-
-            #search-icon {
-                color: gray;
-            }
-
-            .list-area {
-                margin-top: 20px;
-
-                background: #FFFFFF;
-                border: 1px solid #C4C4C4;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 20px;
-            }
-
-            .list-area table {
-                border-collapse: collapse;
-                width: 100%;
-
-            }
-
-            .list-area th,
-            .list-area td {
-                padding: 10px;
-                border-bottom: 1px solid #ddd;
-                text-align: center;
-            }
-
-            .list-area th {
-                font-size: 20px;
-                font-weight: normal;
-            }
-
-           
+        .search-area input[type="text"] {
+            padding: 5px;
+            margin-right: 20px;
+            width: 350px;
+            height: 40px;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
 
 
-           
-			
-			
-.list-area td:nth-child(4) {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.number-area {
-        text-align: center;
-        margin-top: -30px;
-}
-
-.number-area a {
-    display: inline-block;
-    margin: 5px;
-    padding: 8px 12px;
-    text-decoration: none;
-    border: none;
-    color: inherit;
-    font-size: 15px;
-}
-
-#previous {
-    color: #5A8CF2;
-}
-
-#after {
-    color: #5A8CF2;
-}
-
-.number-area a:hover {
-    color: #5A8CF2;
-    cursor: pointer;
-}
 
 
-           
+        .category-area {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .category-area label {
+            margin-right: 5px;
+        }
+
+        .category-area select {
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            height: 40px;
+        }
+
+        .category-icon {
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .category-icon::before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f0a5";
+            font-weight: 900;
+        }
+
+        #search-icon {
+            color: gray;
+        }
+
+        .list-area {
+            margin-top: 20px;
+
+            background: #FFFFFF;
+            border: 1px solid #C4C4C4;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+
+        .list-area table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        .list-area th,
+        .list-area td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .list-area th {
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+    .list-area td:nth-child(4) {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .number-area {
+            text-align: center;
+            margin-top: -30px;
+    }
+
+    .number-area a {
+        display: inline-block;
+        margin: 5px;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: none;
+        color: inherit;
+        font-size: 15px;
+    }
+
+    #previous {
+        color: #5A8CF2;
+    }
+
+    #after {
+        color: #5A8CF2;
+    }
+
+    .number-area a:hover {
+        color: #5A8CF2;
+        cursor: pointer;
+    }
+
+
             
+                
 
-#div01{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
-    color: #FFFFFF;
-    background: #5A8CF2;
-    border: 0px;
-    width: 60px;
-}
+    #div01{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #FFFFFF;
+        background: #5A8CF2;
+        border: 0px;
+        width: 60px;
+    }
 
-#div01:hover{
-	background-color: #555;
-	transition: 0.7s;
-}
+    #div01:hover{
+        background-color: #555;
+        transition: 0.7s;
+    }
 
-.list-area tr:hover:not(#title) {
-			    background-color: #5A8CF2;
-			    color: white;
-			}
-#top {
-			background-color: #5A8CF2;
-			color: white;
-			font-weight: bold;
-		}
+    .list-area tr:hover:not(#title) {
+                    background-color: #5A8CF2;
+                    color: white;
+                }
+    #top {
+                background-color: #5A8CF2;
+                color: white;
+                font-weight: bold;
+            }
         </style>
     </head>
 
