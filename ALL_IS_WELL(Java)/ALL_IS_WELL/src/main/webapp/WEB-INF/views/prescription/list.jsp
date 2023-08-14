@@ -113,12 +113,11 @@
 
             .list-area th {
                 padding: 10px;
+                font-size: 20px;
+                font-weight: bold;
             }
 
-            .list-area th {
-                font-size: 20px;
-                font-weight: normal;
-            }
+            
 
 .number-area {
         text-align: center;
