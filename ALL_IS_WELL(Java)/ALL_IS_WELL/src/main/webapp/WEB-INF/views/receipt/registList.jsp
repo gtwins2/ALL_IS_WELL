@@ -194,7 +194,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">접수한 환자 조회</span>
+                    <span id="title">환자 조회</span>
 
                     <form action="" class="search-area" method="get">
                     <label for="search" class="category-area">
