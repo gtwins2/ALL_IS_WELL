@@ -346,8 +346,8 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${avo.sign}</td>
-                                <td>${avo.approverSign}</td>
+                                <td><img src="/app/resources/static/img/logo/${avo.sign}" style="width: 100%; height: 100%;"></td>
+                                <td><img src="/app/resources/static/img/logo/${avo.approverSign}" style="width: 100%; height: 100%;"></td>
                                 <td class="${avo.status == 'A' ? 'approved' : (avo.status == 'O' ? 'rejected' : '')}">
                                     <c:if test="${avo.status == 'A'}">
                                         승 인

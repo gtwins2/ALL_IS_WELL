@@ -203,7 +203,7 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${vvo.sign}</td>
+                                <td><img src="/app/resources/static/img/logo/${vvo.sign}" style="width: 100%; height: 100%;"></td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -213,7 +213,8 @@
                                 <td></td>
                             </tr>
                             <tr id="date">
-                                <td>${vvo.memberName}(${vvo.departmentName})</td>                                <td></td>
+                                <td>${vvo.memberName}(${vvo.departmentName})</td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         </table>

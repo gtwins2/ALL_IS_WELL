@@ -115,7 +115,7 @@
     }
 
     .add-btn {
-        background-color: #C8C8C8;
+        background-color: #5A8CF2;
         border: none;
         color: white;
         text-align: right;
@@ -134,7 +134,7 @@
     }
 
     .subtract-btn {
-        background-color: #C8C8C8;
+        background-color: #5A8CF2;
         border: none;
         color: white;
         text-align: right;

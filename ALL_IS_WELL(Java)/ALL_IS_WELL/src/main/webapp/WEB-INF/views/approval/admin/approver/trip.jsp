@@ -350,7 +350,7 @@
                                 <th id="approval-title">최종 결재자</th>
                             </tr>
                             <tr id="stamp">
-                                <td>${avo.sign}</td>
+                                <td><img src="/app/resources/static/img/logo/${avo.sign}" style="width: 100%; height: 100%;"></td>
                                 <td>
                                     <c:if test="${avo.status == 'A'}">
                                         <span class="approved">
