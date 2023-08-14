@@ -165,6 +165,7 @@ position: absolute;
 width: 750px;
 left: 550px;
 top: 180px;
+
 background: #FDFDFD;
 border: 1px solid lightgray;
 border-radius: 50px;

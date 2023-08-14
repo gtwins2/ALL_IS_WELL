@@ -107,6 +107,7 @@
             text-align: center;
         }
 
+
         .list-area th {
             font-size: 20px;
             font-weight: normal;

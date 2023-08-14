@@ -132,7 +132,6 @@ public class ProceedingController {
 		if(loginMember == null) {
 			return "redirect:/error/errorPage";
 		}
-		
 		vo.setMemberNo(loginMember.getNo());
 		int result = service.write(vo);
 		if(result != 1) {
@@ -193,7 +192,7 @@ public class ProceedingController {
 			return "redirect:/error/errorPage";
 		}
 		model.addAttribute("message", "회의록 수정 성공");
-		return "redirect:/proceeding/list";
+		return "redirect:/proceeding/admin/list";
 		
 	}
     }

@@ -23,8 +23,8 @@
 	position: absolute;
 	width: 115px;
 	height: 53px;
-	left: 367px;
-	top: 125px;
+	left: 1748px;
+	top: 880px;
 	background: #FF8686;
 	border-radius: 25px;
 	border: 0px;
@@ -118,7 +118,7 @@ hr{
 	width: 115px;
 	height: 53px;
 	left: 1748px;
-	top: 880px;
+	top: 125px;
 	background: #FF8686;
 	border-radius: 25px;
 	font-family: 'Inter';
@@ -239,7 +239,6 @@ grid-template-columns: 9fr 2fr 1fr;
 		<main>
 
 				<button id="sendMail" onclick="update();">수정하기</button>
-				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>

@@ -113,12 +113,11 @@
 
             .list-area th {
                 padding: 10px;
+                font-size: 20px;
+                font-weight: bold;
             }
 
-            .list-area th {
-                font-size: 20px;
-                font-weight: normal;
-            }
+            
 
 .number-area {
         text-align: center;
@@ -149,7 +148,13 @@
 }
 
 
-            
+        .list-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .list-area th:last-child{
+        border-top-right-radius: 20px;
+    }    
             
 
 #div01{

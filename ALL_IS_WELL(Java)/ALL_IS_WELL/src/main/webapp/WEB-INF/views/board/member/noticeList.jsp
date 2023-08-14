@@ -129,10 +129,16 @@
 
             .list-area th {
                 font-size: 20px;
-                font-weight: normal;
+                font-weight: bold;
             }
 
-           
+           .list-area th:first-child{
+        border-top-left-radius: 20px;
+    }
+
+    .list-area th:last-child{
+        border-top-right-radius: 20px;
+    }
 
 
            
