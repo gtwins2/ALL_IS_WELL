@@ -129,7 +129,7 @@
 
             .list-area th {
                 font-size: 20px;
-                font-weight: normal;
+                font-weight: bold;
             }
 
            .list-area th:first-child{
