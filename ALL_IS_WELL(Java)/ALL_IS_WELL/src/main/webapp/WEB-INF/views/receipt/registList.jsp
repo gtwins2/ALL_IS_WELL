@@ -172,11 +172,38 @@
                     background-color: #5A8CF2;
                     color: white;
                 }
-    #top {
-                background-color: #5A8CF2;
-                color: white;
-                font-weight: bold;
-            }
+    .list-area th:nth-child(1)
+	{
+		background-color: #5A8CF2;
+		border-top-left-radius: 15px;
+		color: white;
+		font-weight: bold;
+	}
+	.list-area th:nth-child(2)
+	{
+		background-color: #5A8CF2;
+		color: white;
+		font-weight: bold;
+	}
+	.list-area th:nth-child(3)
+	{
+		background-color: #5A8CF2;
+		color: white;
+		font-weight: bold;
+	}
+	.list-area th:nth-child(4)
+	{
+		background-color: #5A8CF2;
+		color: white;
+		font-weight: bold;
+	}
+	.list-area th:nth-child(5)
+	{
+		background-color: #5A8CF2;
+		border-top-right-radius: 15px;
+		color: white;
+		font-weight: bold;
+	}
         </style>
     </head>
 
@@ -194,7 +221,7 @@
 
             <div class="main-area">
                 <div class="title-area">
-                    <span id="title">접수한 환자 조회</span>
+                    <span id="title">환자 조회</span>
 
                     <form action="" class="search-area" method="get">
                     <label for="search" class="category-area">
@@ -222,9 +249,8 @@
                         </tr>
                         <tbody>
 						<c:forEach items="${voList}" var="vo">
-                            <form action="/app/receipt/registList" method="post">
-
-                                <tr>
+                            <%-- <form action="/app/receipt/registList/${vo.no}" method="post"> --%>
+                                <tr onclick="selectone(${vo.no});">
                                     <input type="text" value="${vo.no}" name="no" hidden>
                                     <input type="text" value="${vo.name}" name="name" hidden>
                                     <td hidden>${vo.no}</td>
@@ -232,9 +258,8 @@
                                     <td>${vo.registrationNumber}</td>
                                     <td>${vo.gender}</td>
                                     <td>${vo.email}</td>
-                                    <td id="btn01"><input type="submit" id="div01" value="진료"></input></td>
                                 </tr>
-                            </form>
+                            <!-- </form> -->
                                 
 						</c:forEach>
                         </tbody>
@@ -285,6 +310,10 @@
     
     <script>
 
+    function selectone(no){
+    	location.href = "${root}/receipt/registList/" + no
+    	}
+    
 	const sideBar = document.querySelector("#side-bar")
 	const subMenus = document.querySelectorAll(".sub-menu");
 	const thirdSidebars = document.querySelectorAll(".third-sidebar");
