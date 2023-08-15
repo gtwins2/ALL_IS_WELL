@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 750px;
+	height: 1200px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -23,8 +23,8 @@
 	position: absolute;
 	width: 115px;
 	height: 53px;
-	left: 367px;
-	top: 125px;
+	left: 1748px;
+	top: 880px;
 	background: #5A8CF2;
 	border-radius: 25px;
 	border: 0px;
@@ -104,6 +104,8 @@ border: 0px;
 	font-size: 25px;
 	font-family: 'Inter';
 	font-style: normal;
+	resize: none;
+	border: 0px;
 }
 </style>
 </head>
@@ -120,8 +122,6 @@ border: 0px;
 		<main>
 			<form action="${root}/Mboard/suggestUpdate" method="post">
 				<input type="text" name="no" id="" value="${vo.no}" hidden>
-				<button id="sendMail">수정완료</button>
-				<hr>
 				<div id="div01">
 					<div>
 						<div>제목</div>
@@ -133,6 +133,7 @@ border: 0px;
 						<div><textarea name="content" id="" cols="30" rows="10">${vo.content}</textarea></div>
 					</div>
 				</div>
+				<button id="sendMail">수정완료</button>
 			</form>
 
 		</main>

@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 750px;
+	height: 1200px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
