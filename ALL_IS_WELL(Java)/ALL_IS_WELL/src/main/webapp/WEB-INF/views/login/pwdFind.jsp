@@ -121,7 +121,6 @@ a{
 	display: grid;
 	grid-template-rows: 1fr 1fr ;
 	background-color: #FFFFFF;
-	height: 50px;
 }
 
 #modal > div:nth-child(1){
