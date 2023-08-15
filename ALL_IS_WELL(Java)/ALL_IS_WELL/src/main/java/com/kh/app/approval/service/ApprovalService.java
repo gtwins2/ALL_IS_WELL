@@ -258,6 +258,21 @@ public class ApprovalService {
 	public AdminApproverVo getPositionNo(String no) {
 		return dao.getPositionNo(sst, no);
 	}
+
+	private int ApprovalVacationUpdate(AdminApproverVo avo) {
+		return dao.AdminApprovalVacationUpdate(sst, avo);
+	}
 	
+	public boolean adminVacationApproval(AdminApproverVo avo) {
+		
+		int approvalUpdate = AdminApprovalUpdate(avo);
+		int approvalVacationUpdate = ApprovalVacationUpdate(avo);
+		
+		if(approvalUpdate != 1 && approvalVacationUpdate != 1) {
+			throw new RuntimeException("휴가 승인 중 오류 발생");
+		}
+		
+		return true;
+	}
 	
 }

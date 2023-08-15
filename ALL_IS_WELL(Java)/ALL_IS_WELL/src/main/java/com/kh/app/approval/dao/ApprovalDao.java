@@ -156,5 +156,9 @@ public class ApprovalDao {
 		return sst.selectOne("approver.getPositionNo", no);
 	}
 
+	public int AdminApprovalVacationUpdate(SqlSessionTemplate sst, AdminApproverVo avo) {
+		return sst.update("approver.AdminApprovalVacationUpdate", avo);
+	}
+
 	
 }

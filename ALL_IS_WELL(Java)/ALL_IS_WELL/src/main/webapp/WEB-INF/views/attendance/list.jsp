@@ -26,7 +26,7 @@
     }
 
     .title-area {
-        width: 80%;
+        width: 100%;
         margin: auto;
         margin-top: 40px;
         margin-bottom: 40px;
@@ -178,6 +178,14 @@
         width: 310px; 
     }
 
+    .title-area tr th{
+        padding-right: 10px;
+    }
+
+    .title-area tr td{
+        padding-left: 40px;
+    }
+
 </style>
 </head>
 <body>
@@ -194,9 +202,9 @@
             <div class="title-area">
                 <table>
                     <tr>
-                        <th id="date-label">날짜</th>
-                        <th id="writer-label">출근 시간</th>
-                        <th id="content-label">퇴근 시간</th>
+                        <th id="date">날짜</th>
+                        <th id="writer">출근 시간</th>
+                        <th id="content">퇴근 시간</th>
                     </tr>
                     <tr>
                         <td id="date"><fmt:formatDate value="${fvo.presenceTime}" pattern="yyyy-MM-dd"/></td>
@@ -215,9 +223,9 @@
                     <c:forEach items="${voList}" var="vo">
                         <tr>
                             <td hidden>${vo.memberNo}</td>
-                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd"/></td>
-                            <td><fmt:formatDate value="${vo.presenceTime}" pattern="HH:mm:ss"/></td>
-                            <td><fmt:formatDate value="${vo.leaveTime}" pattern="HH:mm:ss"/></td>
+                            <td id="date"><fmt:formatDate value="${vo.presenceTime}" pattern="yyyy-MM-dd"/></td>
+                            <td id="writer"><fmt:formatDate value="${vo.presenceTime}" pattern="HH:mm:ss"/></td>
+                            <td id="content"><fmt:formatDate value="${vo.leaveTime}" pattern="HH:mm:ss"/></td>
                         </tr>
                     </c:forEach>
                 </table>
