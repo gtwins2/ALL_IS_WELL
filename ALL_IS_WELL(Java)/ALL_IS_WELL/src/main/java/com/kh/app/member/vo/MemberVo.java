@@ -29,4 +29,6 @@ public class MemberVo {
 	private String dname;
 	private String pname;
 	private String check;
+	private String positionNoDoctor;
+	private String positionNoNurse;
 }

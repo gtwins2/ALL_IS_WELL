@@ -558,6 +558,18 @@
 	</update>
 
 	<update id="AdminApprovalUpdate">
+		UPDATE MEMBER
+		SET VACATION = VACATION - (
+		 SELECT TRUNC(END_DATE) - TRUNC(START_DATE)
+		    FROM VACATION_APPROVAL_DOCUMENT VAD
+		    JOIN APPROVAL_DOCUMENT AD ON AD.NO = VAD.APPROVAL_DOCUMENT_NO
+		    JOIN MEMBER M ON M.NO = AD.MEMBER_NO
+		    WHERE VAD.APPROVAL_DOCUMENT_NO = #{no}
+		)
+		WHERE NO = #{memberNo}
+	</update>
+	
+	<update id="AdminApprovalVacationUpdate">
 		UPDATE APPROVAL_DOCUMENT SET STATUS = 'A', REASON =
 		#{reason}, COMPLETE_DATE = SYSDATE
 		WHERE NO = ${no}

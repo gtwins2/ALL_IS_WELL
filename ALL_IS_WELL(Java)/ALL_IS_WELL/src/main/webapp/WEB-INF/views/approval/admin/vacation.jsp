@@ -326,6 +326,7 @@
                             <tr>
                                 <th>문서번호</th>
                                 <td>${avo.no}</td>
+                                <td hidden>${avo.memberNo}</td>
                             </tr>
                             <tr>
                                 <th>작성일자</th>
@@ -488,12 +489,14 @@
         //승인 시 작동
         document.querySelector("#approvalBtn").addEventListener('click', function (){
             let documentNo = document.querySelector("#info tr:nth-child(1) td").innerText;
+            let memberNo = document.querySelector("#info tr:nth-child(1) td:nth-child(3)").innerText;
 
             $.ajax({
                 type : 'post',
-                url : '${root}/approval/admin/approval',
+                url : '${root}/approval/admin/vacation/approval',
                 data : {
                     no : documentNo,
+                    memberNo : memberNo
                 },
                 success : function(){
                     console.log(documentNo)
@@ -503,7 +506,7 @@
                     console.log("error", error);
                 }
             })
-        })
+        });
     
     </script>
     </script>

@@ -170,7 +170,7 @@ public class ApprovalController {
 	
 	//승인 선택
 	@PostMapping("admin/approval")
-	public String adminApproval(String no,HttpSession session) {
+	public String adminApproval(String no, HttpSession session) {
 		
 		loginMember = (MemberVo) session.getAttribute("loginMember");
 		
@@ -180,6 +180,23 @@ public class ApprovalController {
 		int result = as.AdminApprovalUpdate(avo);
 		
 		if(result != 1) {
+			return "error/errorPage";
+		}
+		
+		return "redirect:/approval/admin/list";
+	}
+	
+	//휴가 승인 선택
+	@PostMapping("admin/vacation/approval")
+	public String adminVacationApproval(String no, String memberNo, HttpSession session) {
+		
+		AdminApproverVo avo = new AdminApproverVo();
+		avo.setNo(no);
+		avo.setMemberNo(memberNo);
+		
+		boolean result = as.adminVacationApproval(avo);
+		
+		if(!result) {
 			return "error/errorPage";
 		}
 		
