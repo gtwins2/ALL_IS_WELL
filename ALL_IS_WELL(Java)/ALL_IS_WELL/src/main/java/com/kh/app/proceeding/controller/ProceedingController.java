@@ -186,13 +186,12 @@ public class ProceedingController {
 	public String edit2(@PathVariable(value = "no" , required = true) String no, Model model, ProceedingVo vo) {
 
 		int result = service.edit(vo);
-		log.info(result + "");
 		if(result != 1) {
 			model.addAttribute("message", "회의록 수정 실패");
 			return "redirect:/error/errorPage";
 		}
 		model.addAttribute("message", "회의록 수정 성공");
-		return "redirect:/proceeding/admin/list";
+		return "redirect:/proceeding/detail/{no}";
 		
 	}
     }

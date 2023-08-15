@@ -273,6 +273,7 @@ main {
 
 tr:hover {
 	  background-color: #5A8CF2;
+	  color: white;
 	}
 	
 	.list-area th:nth-child(1)

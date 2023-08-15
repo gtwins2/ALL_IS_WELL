@@ -271,9 +271,10 @@
                         <td style="width: 200px;">제목</td>
                         <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}" readonly></td>
                     </tr>
+                    <input type="hidden" name="memberNo" value="${vo.memberNo}">
 					<tr>
-                        <td>작성자번호</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" readonly></td>
+                        <td>작성자</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="name" value="${vo.name}" readonly></td>
                     </tr>
 					<tr>
                         <td>작성일</td>

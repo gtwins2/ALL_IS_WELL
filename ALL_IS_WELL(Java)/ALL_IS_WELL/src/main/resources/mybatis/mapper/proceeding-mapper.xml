@@ -16,6 +16,7 @@
       <if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">		
 	  AND ${searchType} LIKE '%${searchValue.toString()}%'
 	  </if>
+	  ORDER BY ENROLL_DATE DESC
    </select>
 	
 	 <insert id="write">
@@ -44,15 +45,17 @@
 	 <select id="getProceedingByNo" resultType="com.kh.app.proceeding.vo.ProceedingVo">
 	 
 	 	SELECT
-			NO,
-			MEMBER_NO,
-			TITLE,
-			CONTENT,
-			ENROLL_DATE,
-			MODIFY_DATE,
-			STATUS
-		FROM PROCEEDING
-		WHERE NO = ${no}
+			P.NO,
+			P.MEMBER_NO,
+			P.TITLE,
+			P.CONTENT,
+			P.ENROLL_DATE,
+			P.MODIFY_DATE,
+			P.STATUS,
+			M.NAME
+		FROM PROCEEDING P
+		JOIN MEMBER M ON P.MEMBER_NO = M.NO
+		WHERE P.NO = ${no}
 	 
 	 </select>
 	 

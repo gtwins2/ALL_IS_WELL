@@ -273,9 +273,10 @@
                         <td style="width: 200px;">제목</td>
                         <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="title" value="${vo.title}"></td>
                     </tr>
+                    <input type="hidden" name="memberNo" value="${vo.memberNo}">
 					<tr>
-                        <td>작성자번호</td>
-                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="memberNo" value="${vo.memberNo}" readonly></td>
+                        <td>작성자</td>
+                        <td colspan="2"><input style="width: 800px; height:40px;" type="text" name="name" value="${vo.name}" readonly></td>
                     </tr>
 					<tr>
                         <td>작성일</td>
@@ -287,11 +288,12 @@
                     </tr>
 					<tr>
                         <td>내용</td>
-                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" ></td>
+                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}"></td>
                     </tr>
 
                     </table>
                 </div>
+					
 					
 					
 					<div id="buttonDiv">
@@ -332,6 +334,10 @@
             thirdSidebars.forEach(thirdSidebar => {
                 thirdSidebar.style.height = sideBar.offsetHeight + 'px';
             });
+            
+            function backPage(){
+            	location.href = "${root}/proceeding/list";
+            }
             
         </script>
     </body>
