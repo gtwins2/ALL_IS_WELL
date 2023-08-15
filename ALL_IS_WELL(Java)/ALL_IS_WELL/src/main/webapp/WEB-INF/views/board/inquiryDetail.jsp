@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 1000px;
+	height: 1300px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -254,7 +254,6 @@ grid-template-columns: 9fr 2fr 1fr;
 				</div>
 
 			<button id="list" onclick="back()">목록</button>
-			<hr id="div01-1">
 			<form action="${root}/board/inquiryDetail" method="post">
 				<div id="div02">
 					<input type="text" value="${vo.no}" name="inquiryNo" hidden> 

@@ -558,6 +558,12 @@
 	</update>
 
 	<update id="AdminApprovalUpdate">
+		UPDATE APPROVAL_DOCUMENT SET STATUS = 'A', REASON =
+		#{reason}, COMPLETE_DATE = SYSDATE
+		WHERE NO = ${no}
+	</update>
+	
+	<update id="AdminApprovalVacationUpdate">
 		UPDATE MEMBER
 		SET VACATION = VACATION - (
 		 SELECT TRUNC(END_DATE) - TRUNC(START_DATE)
@@ -567,12 +573,6 @@
 		    WHERE VAD.APPROVAL_DOCUMENT_NO = #{no}
 		)
 		WHERE NO = #{memberNo}
-	</update>
-	
-	<update id="AdminApprovalVacationUpdate">
-		UPDATE APPROVAL_DOCUMENT SET STATUS = 'A', REASON =
-		#{reason}, COMPLETE_DATE = SYSDATE
-		WHERE NO = ${no}
 	</update>
 	
 	<select id="getPositionNo" resultType="com.kh.app.approver.vo.AdminApproverVo">

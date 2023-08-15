@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 1500px;
+	height: 1300px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -39,15 +39,6 @@
 #sendMail:hover, #file:hover {
 	background-color: #555;
 	transition: 0.7s;
-}
-
-hr{
-	position: absolute;
-	width: 1770px;
-	height: 0px;
-	left: 150px;
-	top: 200px;
-	border: 1px solid #D1CECE;
 }
 
 #div01{
@@ -253,7 +244,6 @@ grid-template-columns: 9fr 2fr 1fr;
 				</div>
 
 			<button id="list" onclick="back()">목록</button>
-			<hr id="div01-1">
 			<form action="${root}/Mboard/noticeDetail" method="post">
 				<div id="div02">
 					<input type="text" value="${vo.no}" name="noticeNo" hidden> 				

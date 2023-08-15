@@ -14,7 +14,7 @@
 
 #content{
 	width: 1920px;
-	height: 1500px;
+	height: 1300px;
 	display: grid;
 	grid-template-columns: 150px 1770px;
 }
@@ -253,7 +253,6 @@ grid-template-columns: 9fr 2fr 1fr;
 				</div>
 
 			<button id="list" onclick="back()">목록</button>
-			<hr id="div01-1">
 			<div id="div03">
                             
 	                 <div id="div03-1">
