@@ -195,7 +195,7 @@
    			'${id}',
    			'${password}',
    			'${name}',
-   			${positionType},
+   			'${positionType}',
    			'${registrationNumber}',
    			'${email}',
    			'${phoneNumber}',

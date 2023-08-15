@@ -279,7 +279,7 @@
                 <br>
 
 				<div class="list-area">
-			<form action="${root}/edit/${vo.no}" method="post" >
+			<form action="${root}/member/edit/${vo.no}" method="post" >
 					
 					<table id="edit-area">
 					
@@ -372,8 +372,7 @@
                 </div>
 					
 					<div id="buttonDiv">
-					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
-					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
+					<button id="sendRequest" type="submit" onclick="sub();">수정하기</button>
 					<button id="sendRequest"  type="button" onclick="backPage();">뒤로가기</button>
 					</div>
                 </form>

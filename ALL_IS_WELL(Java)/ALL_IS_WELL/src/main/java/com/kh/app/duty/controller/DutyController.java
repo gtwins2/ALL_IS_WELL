@@ -1,6 +1,6 @@
 package com.kh.app.duty.controller;
 
-import java.time.LocalDateTime;
+import java.time.LocalDateTime; 
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
@@ -9,8 +9,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.json.JSONParser;
-import org.apache.tomcat.util.json.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,13 +37,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("duty")
 @RequiredArgsConstructor
-@Slf4j
 public class DutyController {
 
 	private final DutyService service;
 	private final CalendarService calendarService; 
 	private final MemberService ms;
-	private final MainService ms2;
 	
 	//당직 상세 조회
 	@GetMapping(value = {"detail/{no}"})
@@ -176,7 +172,7 @@ public class DutyController {
 			return "error/errorPage";
 		}
 
-		return "redirect:/duty/select";
+		return "redirect:/duty/admin/select";
 		
 	}
 	

@@ -262,7 +262,6 @@
                 </div>
 					
 					<div id="buttonDiv">
-					<button id="sendRequest" onclick="del(${vo.no});">삭제하기</button>
 					<button id="sendRequest" onclick="edit(${vo.no});">수정하기</button>
 					<button type="button" id="sendBack" onclick="backPage();">뒤로가기</button>
 					</div>

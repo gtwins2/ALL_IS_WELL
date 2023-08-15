@@ -111,7 +111,7 @@ main {
 .search-area {
 	display: flex;
 	align-items: center;
-	margin-left: 100px;
+	margin-right: 230px;
 }
 
 .search-area input[type="text"] {
