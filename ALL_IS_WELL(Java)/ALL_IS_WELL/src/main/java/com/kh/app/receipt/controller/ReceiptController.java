@@ -129,16 +129,16 @@ public class ReceiptController {
       List<PatientVo> voList = rs.registList(pv, paramMap);
       model.addAttribute("voList" ,voList);
       model.addAttribute("pv", pv);
+      model.addAttribute("svo", svo);
       
       return "receipt/registList";
    }
    
-   @GetMapping("registList/{no}")
-   public String registList(@PathVariable(value = "no" , required = true) String no, ReceiptVo vo, Model model) {
+   @PostMapping("registList")
+   public String registList(ReceiptVo vo, Model model) {
       ReceiptVo voList = rs.selectRegistList(vo);
       model.addAttribute("vo" ,voList);
-      System.out.println(vo);
-      
+      System.out.println(voList);
       return "receipt/diagnosis";
    }
    
