@@ -66,7 +66,7 @@
         .area span {
             width: 20%;
             margin-right: 10px;
-            font-size: 20px;
+            font-size: 15px;
         }
 
         .area input[type="text"],

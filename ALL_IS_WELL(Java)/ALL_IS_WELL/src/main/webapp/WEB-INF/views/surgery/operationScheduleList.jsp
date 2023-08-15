@@ -120,7 +120,7 @@
 			}
 			
 			.list-area td {
-				font-size: 20px;
+				font-size: 15px;
 				text-align: center;
 			}
 			
