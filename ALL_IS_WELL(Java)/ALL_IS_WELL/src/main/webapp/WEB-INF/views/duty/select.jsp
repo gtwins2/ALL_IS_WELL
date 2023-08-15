@@ -111,7 +111,7 @@ main {
 .search-area {
 	display: flex;
 	align-items: center;
-	margin-left: 100px;
+	margin-right: 230px;
 }
 
 .search-area input[type="text"] {
@@ -442,9 +442,6 @@ labe.category-area {
 	</footer>
 
 	<script>
-    function detail(no){
-   	 location.href = "${root}/duty/detail/" + no
-    }
     const sideBar = document.querySelector("#side-bar")
     const subMenus = document.querySelectorAll(".sub-menu");
     const thirdSidebars = document.querySelectorAll(".third-sidebar");
@@ -457,9 +454,6 @@ labe.category-area {
         thirdSidebar.style.height = sideBar.offsetHeight + 'px';
     });
 
-        function put(){
-        	location.href="${root}/duty/put";
-        }
 
         function getRandomColor() {
             var letters = '0123456789ABCDEF';

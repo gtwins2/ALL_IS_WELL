@@ -273,6 +273,7 @@ main {
 
 tr:hover {
 	  background-color: #FF8686;
+	  color: white;
 	}
 	
 	.list-area th:nth-child(1)
@@ -328,7 +329,7 @@ tr:hover {
 					
 				</form>
 					
-					<button id="sendRequest" onclick="sendRequest();">글쓰기</button>
+					<div></div>
 			</div>
 
 			

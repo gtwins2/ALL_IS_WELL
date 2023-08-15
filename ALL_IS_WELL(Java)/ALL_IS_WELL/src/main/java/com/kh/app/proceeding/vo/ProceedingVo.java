@@ -12,5 +12,6 @@ public class ProceedingVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String status;
+	private String name;
 	
 }
