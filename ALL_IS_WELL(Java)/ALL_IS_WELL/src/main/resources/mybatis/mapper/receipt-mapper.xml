@@ -151,11 +151,7 @@
 			R.NO AS rno
 			,R.PATIENT_NO AS patientNo
 			,R.SYMPTOM AS symptom
-            ,P.NAME AS name
-            ,D.MEDICAL_RECORD AS medicalRecord
 		FROM RECEIPT R
-        JOIN PATIENT P ON P.NO= R.PATIENT_NO
-        JOIN DIAGNOSIS D ON D.RECEIPT_NO = R.NO
 		WHERE R.NO = ${no}
 	</select>
 	

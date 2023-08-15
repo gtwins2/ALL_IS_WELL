@@ -127,7 +127,7 @@ hr{
 			<div id="div01">진료</div>
 			<form action="${root}/receipt/diagnosis" method="post">
 				<div id="div02">
-					<input type="text" value="${vo.no}" name="rno" hidden>
+					<input type="text" value="${vo.rno}" name="rno" hidden>
 					<input type="text" value="${vo.patientNo}" name="no" hidden>
 					<div>
 						<div>증상</div>

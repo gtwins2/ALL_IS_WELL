@@ -249,8 +249,8 @@
                         </tr>
                         <tbody>
 						<c:forEach items="${voList}" var="vo">
-                            <%-- <form action="/app/receipt/registList/${vo.no}" method="post"> --%>
-                                <tr onclick="selectone(${vo.no});">
+                            <form action="/app/receipt/registList" method="post">
+                                <tr>
                                     <input type="text" value="${vo.no}" name="no" hidden>
                                     <input type="text" value="${vo.name}" name="name" hidden>
                                     <td hidden>${vo.no}</td>
@@ -258,8 +258,10 @@
                                     <td>${vo.registrationNumber}</td>
                                     <td>${vo.gender}</td>
                                     <td>${vo.email}</td>
+									<td id="btn01"><input type="submit" id="div01" value="진료"></input></td>
                                 </tr>
-                            <!-- </form> -->
+                            </form>
+                            
                                 
 						</c:forEach>
                         </tbody>
@@ -272,26 +274,26 @@
 
                 
               <div class="number-area">
-              <c:if test="${pv.listCount > 10}">
-                <c:if test="${pv.currentPage > 1}">
-                    <a href="registList?page=1">&laquo;</a>
-                    <a href="registList?page=${pv.currentPage - 1}">&lt;</a>
-                </c:if>      
-                <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
-                <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
-                    <c:choose>
-                        <c:when test="${i == pv.currentPage}">
-                            <a class="currentPage">${i}</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="registList?page=${i}">${i}</a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <c:if test="${pv.maxPage > pv.currentPage}">
-                    <a href="registList?page=${pv.currentPage + 1}">&gt;</a>
-                    <a href="registList?page=${pv.maxPage}">&raquo;</a>
-                </c:if>
+                <c:if test="${pv.listCount > 10}">
+                    <c:if test="${pv.currentPage > 1}">
+                        <a href="registList?page=1&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&laquo;</a>
+                        <a href="registList?page=${pv.currentPage - 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&lt;</a>
+                    </c:if>      
+                    <c:set var="finalEndPage" value="${pv.endPage > pv.maxPage ? pv.maxPage : pv.endPage}" />
+                    <c:forEach var="i" begin="${pv.startPage}" end="${finalEndPage}" step="1">
+                        <c:choose>
+                            <c:when test="${i == pv.currentPage}">
+                                <a class="currentPage">${i}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="registList?page=${i}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${pv.maxPage > pv.currentPage}">
+                        <a href="registList?page=${pv.currentPage + 1}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&gt;</a>
+                        <a href="registList?page=${pv.maxPage}&searchType=${svo.getSearchType()}&searchValue=${svo.getSearchValue()}">&raquo;</a>
+                    </c:if>
                 </c:if>
             </div>
 
