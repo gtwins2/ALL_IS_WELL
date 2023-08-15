@@ -224,7 +224,6 @@ grid-template-columns: 9fr 2fr 1fr;
 			<%@ include file="/WEB-INF/views/common/admin/side-bar.jsp" %>
 		</nav>
 		<main>
-				<button id="sendMail" onclick="update();">수정하기</button>
 				<div id="div01">
 					<div>
 						<div>제목</div>

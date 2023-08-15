@@ -251,7 +251,9 @@ grid-template-columns: 9fr 2fr 1fr;
 						<div><textarea name="" id="textarea" cols="30" rows="10" readonly>${vo.content}</textarea></div>
 					</div>
 				</div>
-
+			<c:if test="${loginMember.no == vo.memberNo }">
+					<button id="sendMail" onclick="update();">수정하기</button>
+				</c:if>	
 			<button id="list" onclick="back()">목록</button>
 			<div id="div03">
                             
