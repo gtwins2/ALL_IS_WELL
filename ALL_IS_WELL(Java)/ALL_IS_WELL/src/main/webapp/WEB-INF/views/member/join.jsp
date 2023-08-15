@@ -175,13 +175,11 @@
                                 </select>
                             </td>
                             <td>
-                                <select name="positionNoDoctor">
+                                <select name="positionNo">
                                     <option value="1">교수</option>
                                     <option value="2">레지던트</option>
                                     <option value="3">펠로우</option>
                                     <option value="4">인턴</option>
-                                </select>
-                                <select name="positionNoNurse">
                                     <option value="5">부장간호사</option>
                                     <option value="6">과장간호사</option>
                                     <option value="7">수간호사</option>
