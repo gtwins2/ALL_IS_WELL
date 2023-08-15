@@ -107,7 +107,7 @@ public class ReceiptController {
       }
 
 
-      return "redirect:/receipt/registList";
+      return "redirect:/receipt/list";
    }
    
    
