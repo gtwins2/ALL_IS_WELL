@@ -152,7 +152,7 @@
             </div>
             <div class="sub-menu">
                 <div class="sub-menu-item" onclick="location.href='${root}/inventory/list'">재고 목록</div>
-                <div class="sub-menu-item" onclick="location.href='${root}/inventory/storeList'">재고 문서 조회</div>
+                <div class="sub-menu-item" onclick="location.href='${root}/inventory/storeList'">신청 재고 조회</div>
             </div>
         </div>
         <div class="menu-item">
