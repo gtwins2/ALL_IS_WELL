@@ -20,7 +20,7 @@
             [["GENDER","Rating"],["M",${pv.listCount}],["W",${pv.currentPage}]]
         );
         var options = {
-            title: "Gender Ratings"
+            title: "환자 성비"
         };
         var chart = new google.visualization.PieChart(document.getElementById("employee_piechart"));
         chart.draw(data, options);

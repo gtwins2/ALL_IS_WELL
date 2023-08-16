@@ -11,12 +11,14 @@
          NO
          ,MEMBER_NO
          ,PRESENCE_TIME
+         ,STATUS
       )
       VALUES
       (
          SEQ_ATTENDANCE_NO.NEXTVAL
          ,#{no}
          ,TO_DATE(TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI'), 'YYYY-MM-DD HH24:MI')
+         , 'O'
       )
    </insert>
    

@@ -240,7 +240,7 @@ grid-template-columns: 2fr 1fr ;
         <form action="/app/member/certification" method="post">
         <input type="text" name="password" id="total" hidden>
         <input type="text" name="id" id="totalId" hidden>
-        <input type="text" name="n" value="${n}" hidden>
+        <input type="text" name="n" value="1234" hidden>
         <div><input type="text" id="modalInput" name="number" ></div>
         <div>
             <input type="submit" id="modalBtn" value="확인">

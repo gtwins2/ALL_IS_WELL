@@ -243,6 +243,13 @@
     	font-size: 20px;
     }
 
+    textarea{
+        font-size: 20px;
+        font-weight: normal;
+        resize: none;
+        border: none;
+    }
+
         </style>
 
     </head>
@@ -283,8 +290,7 @@
                     </tr>
 					<tr>
                         <td>내용</td>
-                        <td colspan="2"><input style="width: 800px; height:400px;" type="text" name="content" ></td>
-                    </tr>
+                        <td colspan="2"><textarea style="width: 800px; height:400px;" type="text" name="content" ></textarea></td>                    </tr>
 
                     </table>
                 </div>

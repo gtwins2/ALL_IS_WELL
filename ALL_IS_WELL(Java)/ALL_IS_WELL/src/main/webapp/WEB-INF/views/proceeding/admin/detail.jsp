@@ -241,6 +241,12 @@
         text-align: right;
     }
 
+    textarea{
+        font-size: 20px;
+        resize: none;
+        border: none;
+    }
+
         </style>
     </head>
 
@@ -284,7 +290,7 @@
                     </tr>
 					<tr>
                         <td>내용</td>
-                        <td colspan="2"><input style="width: 800px; height:200px;" type="text" name="content" value="${vo.content}" readonly></td>
+                        <td colspan="2"><textarea style="width: 800px; height:200px;" type="text" name="content" readonly>${vo.content}</textarea></td>
                     </tr>
 
                     </table>
