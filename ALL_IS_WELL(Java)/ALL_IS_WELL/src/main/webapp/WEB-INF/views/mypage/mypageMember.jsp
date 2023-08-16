@@ -30,7 +30,7 @@
 	position: absolute;
 	width: 200px;
 	height: 200px;
-	left: 380px;
+	left: 550px;
 	top: 250px;
 	background: url(1674030642.jpg);
 	border-radius: 100px;
@@ -125,7 +125,7 @@
 #div04-1{
 	position: absolute;
 	width: 500.91px;
-	height: 250.16px;
+	height: 300.16px;
 	left: 1202px;
 	top: 280.84px;
 	background: #FFFFFF;
@@ -139,7 +139,7 @@
 	width: 500px;
 	height: 50px;
 	left: 1202px;
-	top: 480px;
+	top: 560px;
 	background: #5A8CF2;
 	
 	border-radius: 0 0 10px 10px;
@@ -165,7 +165,7 @@
 #div04-3{
 	position: absolute;
 	left: 1350px;
-	top: 550px;
+	top: 640px;
 }
 
 #div05{

@@ -241,7 +241,7 @@
         </div>
         <div class="main-area">
             <div class="title-area">
-                <span id="title">기안문서함</span>
+                <span id="title">결재문서함</span>
 
                 <form action="" class="search-area">
                     <label for="search" class="category-area">

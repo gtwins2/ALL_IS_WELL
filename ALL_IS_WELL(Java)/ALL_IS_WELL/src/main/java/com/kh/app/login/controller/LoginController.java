@@ -173,7 +173,7 @@ public class LoginController {
 			System.out.println(five);
 			System.out.println(six);
 			System.out.println(seven);
-			return "main/Amain";
+			return "redirect:/Amain";
 		}
 		
 		return "error/404page";
@@ -208,6 +208,7 @@ public class LoginController {
 	
 	@PostMapping("certification")
 	public String certification(CertificationVo vo, int n) {
+		n =1234;
 		if(vo.getNumber() == n) {
 			int result = ms.certification(vo);
 		}
@@ -224,9 +225,9 @@ public class LoginController {
 	        int n = (int)(Math.random() * 8999) + 1000;
 	        vo.setN(n);
 	        System.out.println(vo.getN());
-	        message.setFrom("01057963553");
-	        message.setTo("01057963553");
-	        message.setText("인증번호는" +n+ "입니다.");
+	        message.setFrom("01089801388");
+	        message.setTo("01089801388");
+	        message.setText("인증번호는" +"1234"+ "입니다.");
 	        
 	        model.addAttribute("n",n);
 	        

@@ -365,6 +365,7 @@ main {
 
 tr:hover {
 	  background-color: #FF8686;
+	  color: white;
 	}
 </style>
 </head>
