@@ -42,7 +42,7 @@
 	<p>🛠 사용 툴 🛠</p>
 </div>
 <div align=left>
-	<img src="https://img.shields.io/badge/Eclipse%20IDE-2C2255?style=flat&logo=EclipseIDE&logoColor=white" />
+	<img src="https://img.shields.io/badge/Spring-Boot%20IDE-2C2255?style=flat&logo=EclipseIDE&logoColor=white" />
 	<img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat&logo=VisualStudioCode&logoColor=white" />
 	<br>
 	<img src="https://img.shields.io/badge/Tomcat-F8DC75?style=flat&logo=ApacheTomcat&logoColor=white" />
@@ -50,7 +50,7 @@
   <br>
   <br>
 
-## 🚀👩‍🚀👨‍🚀 팀원
+## 팀원
 |   | 지세연  | 곽세경  | 이현철  | 송준섭  | 
 |:---:|:---:|:---:|:---:|:---:|
 | 역할 | 조장  | 형상관리자  | DB관리자  | 일정관리자  |
